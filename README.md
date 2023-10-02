@@ -17,7 +17,7 @@ make setup
 
 **install xcodes**
 
-xcodes とは、Xcode のバージョン管理ツールです。
+xcodes とは、Xcode のバージョン管理ツールです。(一旦これしないでビルドしてみてください)
 
 ```bash
 brew install xcodesorg/made/xcodes
@@ -58,23 +58,23 @@ make format
 
 ```
 ├── lib/
-│   ├── foundation/
+│   ├── foundation/ (基盤系のインスタンスまとめ)
 │   │   └── supabase/
 │   │   └── supabase_auth.dart
-│   ├── domain/
+│   ├── domain/ (DB アクセス関連)
 │   │   ├── entity/
 │   │   │   ├── xxx_entity.dart
-│   │   └── repository/
-│   │   └── xxx_repo.dart
-│   │   ├── notifier/
-│   │   └── xxx_notifier.dart
-│   │   ├── infrastructure/
-│   │   └── xxx_impl.dart
-│   ├── presentation/
-│   │   ├── component/
+│   │   └── repository/ (xxx_implの抽象クラス)
+│   │   │   ├── xxx_repo.dart
+│   │   ├── notifier/ (stateとロジックを管理する)
+│   │   │   ├── xxx_notifier.dart
+│   │   ├── infrastructure/ (実際のロジックを実行するとこ)
+│   │       ├── xxx_impl.dart
+│   ├── presentation/ (UI 層)
+│   │   ├── component/ (全ての screen で使用するコンポーネント)
 │   │   ├── screen/
 │   │   └── xxx/
-│   │       └── component/
+│   │       └── component/ (この screen で使用するコンポーネント)
 │   │           └── xxx_screen.dart
 │   ├── route
 │   │   └── auto_route.dart
