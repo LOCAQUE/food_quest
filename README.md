@@ -1,6 +1,3 @@
-# flagger_app
-
-this is flagger_app
 
 # 導入
 
@@ -39,6 +36,10 @@ dart pub global activate flutter_gen
 
 
 ```
+
+# GithubActions
+.github->workflowの中に ios自動ビルド android自動ビルド リントテスト の三つのactionsを設定しました。
+発火タイミングはプルリクエストやプルリクエストにコミットした時です。
 
 # 使用方法
 
@@ -89,7 +90,7 @@ make format
 └── README.md
 └──.env
 ```
-# .envファイルを tenpei-peso からもらってください。
+## .envファイルを tenpei-peso からもらってください。
 .envに外部に流出してはいけない情報を記入しているのでgitignoreしています。
 
 # 実装方針
