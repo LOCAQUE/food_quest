@@ -87,7 +87,10 @@ make format
 ├── pubspec.yaml
 ├── DOCUMENT.md
 └── README.md
+└──.env
 ```
+# .envファイルを tenpei-peso からもらってください。
+.envに外部に流出してはいけない情報を記入しているのでgitignoreしています。
 
 # 実装方針
 
