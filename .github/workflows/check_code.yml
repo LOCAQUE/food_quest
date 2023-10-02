@@ -1,0 +1,34 @@
+name: Check and test the source code
+on:
+  pull_request:
+    # プルリク作成時とプルリクにコミットが行われた時
+    types: [opened, synchronize, reopened]
+
+  # GitHubページから手動で実行できる
+  workflow_dispatch:
+
+env:
+  DATABASE_URL: ${{secrets.VAR_URL}}
+  SHADOW_DATABASE_URL: ${{secrets.VAR_ANONKEY}}
+
+jobs:
+  test:
+    name: Check the source code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create .env file
+        run: |
+          cat > .env <<EOF
+          VAR_URL=${{ secrets.VAR_URL }}
+          VAR_ANONKEY=${{ secrets.VAR_ANONKEY }}
+          EOF
+      - uses: subosito/flutter-action@v2.3.0
+        with:
+          flutter-version: "3.13.6"
+          channel: "stable"
+          cache: true
+      - name: Install packages
+        run: flutter pub get
+      - name: Linter
+        run: flutter analyze
