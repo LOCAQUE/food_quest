@@ -44,7 +44,7 @@ dart pub global activate flutter_gen
 # 使用方法
 
 Makefile を使用しているので、以下のコマンドを実行することで、必要なコマンドを実行できます。
-##実装後、make formatを必ずかけること。
+## 実装後、make formatを必ずかけること。
 
 ```bash
 # example
