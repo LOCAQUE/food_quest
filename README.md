@@ -65,12 +65,8 @@ make format
 │   ├── domain/ (DB アクセス関連)
 │   │   ├── entity/
 │   │   │   ├── xxx_entity.dart
-│   │   └── repository/ (xxx_implの抽象クラス)
-│   │   │   ├── xxx_repo.dart
-│   │   ├── notifier/ (stateとロジックを管理する)
+│   │   ├── notifier/ (stateとロジックを管理し、DBアクセスを実行するとこ)
 │   │   │   ├── xxx_notifier.dart
-│   │   ├── infrastructure/ (実際のロジックを実行するとこ)
-│   │       ├── xxx_impl.dart
 │   ├── presentation/ (UI 層)
 │   │   ├── component/ (全ての screen で使用するコンポーネント)
 │   │   ├── screen/
