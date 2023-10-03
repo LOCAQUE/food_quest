@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase_flutter;
@@ -13,13 +14,11 @@ class AuthNotifierState with _$AuthNotifierState {
 }
 
 final authNotifierProvider =
-StateNotifierProvider<AuthNotifier, AuthNotifierState>((ref) {
+    StateNotifierProvider<AuthNotifier, AuthNotifierState>((ref) {
   return AuthNotifier(ref);
 });
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
-
-
   AuthNotifier(this.ref) : super(AuthNotifierState());
   final Ref ref;
 
@@ -27,12 +26,8 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
   final TextEditingController passwordController = TextEditingController();
 
   void signIn() {
-    try {
-
-    } on supabase_flutter.AuthException catch(e) {
+    try {} on supabase_flutter.AuthException catch (e) {
       debugPrint(e.toString());
     }
   }
-
-
 }

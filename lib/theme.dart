@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'gen/colors.gen.dart';
-
+import 'package:food_quest/gen/colors.gen.dart';
 
 ThemeData customTheme() {
   // TODO(username): テーマ切り替える.
