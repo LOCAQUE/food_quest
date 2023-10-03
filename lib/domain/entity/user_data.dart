@@ -10,5 +10,6 @@ abstract class UserData with _$UserData {
     required String email,
     required String name,
   }) = _UserData;
-  factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
 }

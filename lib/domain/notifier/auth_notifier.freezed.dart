@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthNotifierState {
-  bool get isLogin => throw _privateConstructorUsedError;
+  UserData? get currentUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthNotifierStateCopyWith<AuthNotifierState> get copyWith =>
@@ -29,7 +29,9 @@ abstract class $AuthNotifierStateCopyWith<$Res> {
           AuthNotifierState value, $Res Function(AuthNotifierState) then) =
       _$AuthNotifierStateCopyWithImpl<$Res, AuthNotifierState>;
   @useResult
-  $Res call({bool isLogin});
+  $Res call({UserData? currentUser});
+
+  $UserDataCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -45,14 +47,26 @@ class _$AuthNotifierStateCopyWithImpl<$Res, $Val extends AuthNotifierState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLogin = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_value.copyWith(
-      isLogin: null == isLogin
-          ? _value.isLogin
-          : isLogin // ignore: cast_nullable_to_non_nullable
-              as bool,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as UserData?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDataCopyWith<$Res>? get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+
+    return $UserDataCopyWith<$Res>(_value.currentUser!, (value) {
+      return _then(_value.copyWith(currentUser: value) as $Val);
+    });
   }
 }
 
@@ -64,7 +78,10 @@ abstract class _$$AuthNotifierStateImplCopyWith<$Res>
       __$$AuthNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLogin});
+  $Res call({UserData? currentUser});
+
+  @override
+  $UserDataCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -78,13 +95,13 @@ class __$$AuthNotifierStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLogin = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_$AuthNotifierStateImpl(
-      isLogin: null == isLogin
-          ? _value.isLogin
-          : isLogin // ignore: cast_nullable_to_non_nullable
-              as bool,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as UserData?,
     ));
   }
 }
@@ -92,15 +109,14 @@ class __$$AuthNotifierStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthNotifierStateImpl implements _AuthNotifierState {
-  _$AuthNotifierStateImpl({this.isLogin = false});
+  _$AuthNotifierStateImpl({this.currentUser});
 
   @override
-  @JsonKey()
-  final bool isLogin;
+  final UserData? currentUser;
 
   @override
   String toString() {
-    return 'AuthNotifierState(isLogin: $isLogin)';
+    return 'AuthNotifierState(currentUser: $currentUser)';
   }
 
   @override
@@ -108,11 +124,12 @@ class _$AuthNotifierStateImpl implements _AuthNotifierState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthNotifierStateImpl &&
-            (identical(other.isLogin, isLogin) || other.isLogin == isLogin));
+            (identical(other.currentUser, currentUser) ||
+                other.currentUser == currentUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLogin);
+  int get hashCode => Object.hash(runtimeType, currentUser);
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +140,11 @@ class _$AuthNotifierStateImpl implements _AuthNotifierState {
 }
 
 abstract class _AuthNotifierState implements AuthNotifierState {
-  factory _AuthNotifierState({final bool isLogin}) = _$AuthNotifierStateImpl;
+  factory _AuthNotifierState({final UserData? currentUser}) =
+      _$AuthNotifierStateImpl;
 
   @override
-  bool get isLogin;
+  UserData? get currentUser;
   @override
   @JsonKey(ignore: true)
   _$$AuthNotifierStateImplCopyWith<_$AuthNotifierStateImpl> get copyWith =>

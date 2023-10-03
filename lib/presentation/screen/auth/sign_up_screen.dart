@@ -51,7 +51,14 @@ class SignUpScreen extends HookConsumerWidget {
                   alignment: Alignment.centerRight,
                   child: Text('8文字以上12文字以下の半角英数字'),
                 ),
-                // const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.only(top: 28),
+                  child: CustomTextField(
+                    obscureText: true,
+                    controller: authNotifier.nameController,
+                    hintText: '名前を入力してください',
+                  ),
+                ),
                 const Gap(20),
                 SizedBox(
                   height: 64,
