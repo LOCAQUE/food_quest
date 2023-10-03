@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supabase_flutter;
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../foundation/supabase_client_provider.dart';
 
 part 'auth_notifier.freezed.dart';
 
@@ -15,18 +17,25 @@ class AuthNotifierState with _$AuthNotifierState {
 
 final authNotifierProvider =
     StateNotifierProvider<AuthNotifier, AuthNotifierState>((ref) {
-  return AuthNotifier(ref);
+      final client = ref.watch(supabaseClientProvider);
+      return AuthNotifier(client);
 });
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
-  AuthNotifier(this.ref) : super(AuthNotifierState());
-  final Ref ref;
+
+  AuthNotifier(this.client) : super(AuthNotifierState());
+  final SupabaseClient client;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void signIn() {
-    try {} on supabase_flutter.AuthException catch (e) {
+  Future<void> signUp() async {
+    try {
+      await client.auth.signUp(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+    } on AuthException catch (e) {
       debugPrint(e.toString());
     }
   }

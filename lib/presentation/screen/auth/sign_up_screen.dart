@@ -56,9 +56,10 @@ class SignUpScreen extends HookConsumerWidget {
                 SizedBox(
                   height: 64,
                   width: 320,
-                  //全体のコンポーネントにボタン作ってそれ使う
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await authNotifier.signUp();
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
                         const Color(0xFF1a0b08),
