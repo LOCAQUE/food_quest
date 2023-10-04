@@ -24,4 +24,10 @@ class AppColor {
 
   /// Color: #4d4d4d
   static const Color textColor = Color(0xFF4D4D4D);
+
+  /// Color: #EE7D50
+  static const Color primaryColor = Color(0xFFEE7D50);
+
+  /// Color: #8E8E93
+  static const Color disabledColor = Color(0xFF8E8E93);
 }
