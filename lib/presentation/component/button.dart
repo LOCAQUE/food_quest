@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
+
 enum ButtonVariant {
   primary,
   outline,
@@ -40,10 +42,10 @@ class CustomButton extends StatelessWidget {
       onPressed: null,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
-          const Color(0xFFEE7D50),
+          AppColor.primaryColor,
         ),
         foregroundColor: MaterialStateProperty.all<Color>(
-          const Color(0xFFFFFFFF),
+          AppColor.white,
         ),
       ),
       child: Text(text),
@@ -53,11 +55,10 @@ class CustomButton extends StatelessWidget {
   Widget _buildOutlineButton() {
     return OutlinedButton(
       onPressed: null,
-      style: OutlinedButton.styleFrom(
-        side: const BorderSide(
-          color: Color(0xFFEE7D50),
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(
+          AppColor.primaryColor,
         ),
-        foregroundColor: const Color(0xFFEE7D50),
       ),
       child: Text(text),
     );
@@ -68,10 +69,10 @@ class CustomButton extends StatelessWidget {
       onPressed: null,
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
-          const Color(0xFF8E8E93),
+          AppColor.disabledColor,
         ),
         foregroundColor: MaterialStateProperty.all<Color>(
-          const Color(0xFFFFFFFF),
+          AppColor.white,
         ),
       ),
       child: Text(text),
