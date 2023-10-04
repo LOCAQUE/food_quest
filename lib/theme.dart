@@ -65,7 +65,7 @@ ThemeData customTheme() {
 TextTheme _buildStaffTextTheme(TextTheme textTheme) {
   return textTheme.copyWith(
     displayLarge: textTheme.displayLarge!.copyWith(
-      color: AppColor.white,
+      color: AppColor.textColor,
       fontSize: 32,
       fontWeight: FontWeight.bold,
     ),
