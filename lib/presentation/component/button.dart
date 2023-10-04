@@ -22,11 +22,16 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: 300,
       height: 50,
-      child: variant == ButtonVariant.primary
-          ? _buildPrimaryButton()
-          : variant == ButtonVariant.outline
-              ? _buildOutlineButton()
-              : _buildDisabledButton(),
+      child: () {
+        switch (variant) {
+          case ButtonVariant.primary:
+            return _buildPrimaryButton();
+          case ButtonVariant.outline:
+            return _buildOutlineButton();
+          case ButtonVariant.disabled:
+            return _buildDisabledButton();
+        }
+      }(),
     );
   }
 
