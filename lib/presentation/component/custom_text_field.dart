@@ -1,30 +1,72 @@
 import 'package:flutter/material.dart';
 
+import 'package:gap/gap.dart';
+
+import 'package:food_quest/gen/colors.gen.dart';
+
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
+    required this.title,
     required this.controller,
     required this.hintText,
-    this.obscureText = false,
+    this.isObscure = false,
+    super.key,
+  });
+
+  final String title;
+  final TextEditingController controller;
+  final String hintText;
+  final bool isObscure;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 12,
+          ),
+        ),
+        const Gap(4),
+        BuildTextField(
+          controller: controller,
+          isObscure: isObscure,
+          hintText: hintText,
+        ),
+      ],
+    );
+  }
+}
+
+class BuildTextField extends StatelessWidget {
+  const BuildTextField({
+    required this.controller,
+    required this.isObscure,
+    required this.hintText,
     super.key,
   });
 
   final TextEditingController controller;
+  final bool isObscure;
   final String hintText;
-  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      obscureText: obscureText,
+      obscureText: isObscure,
       decoration: InputDecoration(
-        filled: true,
-        fillColor: const Color(0xffe3dfdc),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-          borderSide: BorderSide.none,
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColor.textColor, //通常時
+          ),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColor.primaryColor, //入力中
+          ),
         ),
         hintText: hintText,
       ),
