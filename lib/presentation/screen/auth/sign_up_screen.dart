@@ -35,6 +35,7 @@ class SignUpScreen extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 28),
                   child: CustomTextField(
+                    title: 'メールアドレス',
                     controller: authNotifier.emailController,
                     hintText: 'emailを入力してください',
                   ),
@@ -42,7 +43,8 @@ class SignUpScreen extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 28),
                   child: CustomTextField(
-                    obscureText: true,
+                    title: 'パスワード',
+                    isObscure: true,
                     controller: authNotifier.passwordController,
                     hintText: 'passwordを入力してください',
                   ),
@@ -54,7 +56,8 @@ class SignUpScreen extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 28),
                   child: CustomTextField(
-                    obscureText: true,
+                    title: '名前',
+                    isObscure: true,
                     controller: authNotifier.nameController,
                     hintText: '名前を入力してください',
                   ),
