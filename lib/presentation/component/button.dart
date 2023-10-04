@@ -8,22 +8,43 @@ enum ButtonVariant {
   disabled,
 }
 
+enum ButtonSize {
+  small,
+  large,
+}
+
 class CustomButton extends StatelessWidget {
   const CustomButton({
     required this.text,
     required this.variant,
     required this.onPressed,
+    this.size = ButtonSize.large,
     super.key,
   });
   final String text;
+  final ButtonSize size;
   final ButtonVariant variant;
   final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
-      height: 50,
+      width: () {
+        switch (size) {
+          case ButtonSize.small:
+            return 80.0;
+          case ButtonSize.large:
+            return 300.0;
+        }
+      }(),
+      height: () {
+        switch (size) {
+          case ButtonSize.small:
+            return 25.0;
+          case ButtonSize.large:
+            return 50.0;
+        }
+      }(),
       child: () {
         switch (variant) {
           case ButtonVariant.primary:
