@@ -48,17 +48,29 @@ class CustomButton extends StatelessWidget {
       child: () {
         switch (variant) {
           case ButtonVariant.primary:
-            return _buildPrimaryButton();
+            return BuildPrimaryButton(text: text, onPressed: onPressed);
           case ButtonVariant.outline:
-            return _buildOutlineButton();
+            return BuildOutlineButton(text: text, onPressed: onPressed);
           case ButtonVariant.disabled:
-            return _buildDisabledButton();
+            return BuildDisabledButton(text: text, onPressed: onPressed);
         }
       }(),
     );
   }
+}
 
-  Widget _buildPrimaryButton() {
+class BuildPrimaryButton extends StatelessWidget {
+  const BuildPrimaryButton({
+    required this.text,
+    required this.onPressed,
+    super.key,
+  });
+
+  final String text;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: null,
       style: ButtonStyle(
@@ -72,20 +84,20 @@ class CustomButton extends StatelessWidget {
       child: Text(text),
     );
   }
+}
 
-  Widget _buildOutlineButton() {
-    return OutlinedButton(
-      onPressed: null,
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(
-          AppColor.primaryColor,
-        ),
-      ),
-      child: Text(text),
-    );
-  }
+class BuildDisabledButton extends StatelessWidget {
+  const BuildDisabledButton({
+    required this.text,
+    required this.onPressed,
+    super.key,
+  });
 
-  Widget _buildDisabledButton() {
+  final String text;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: null,
       style: ButtonStyle(
@@ -94,6 +106,30 @@ class CustomButton extends StatelessWidget {
         ),
         foregroundColor: MaterialStateProperty.all<Color>(
           AppColor.white,
+        ),
+      ),
+      child: Text(text),
+    );
+  }
+}
+
+class BuildOutlineButton extends StatelessWidget {
+  const BuildOutlineButton({
+    required this.text,
+    required this.onPressed,
+    super.key,
+  });
+
+  final String text;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: null,
+      style: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(
+          AppColor.primaryColor,
         ),
       ),
       child: Text(text),
