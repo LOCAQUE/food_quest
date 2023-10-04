@@ -2,31 +2,84 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supabase_flutter;
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'package:food_quest/domain/entity/user_data.dart';
+import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'auth_notifier.freezed.dart';
 
 @freezed
 class AuthNotifierState with _$AuthNotifierState {
   factory AuthNotifierState({
-    @Default(false) bool isLogin,
+    UserData? currentUser,
   }) = _AuthNotifierState;
 }
 
 final authNotifierProvider =
     StateNotifierProvider<AuthNotifier, AuthNotifierState>((ref) {
-  return AuthNotifier(ref);
+  final client = ref.watch(supabaseClientProvider);
+  return AuthNotifier(client);
 });
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
-  AuthNotifier(this.ref) : super(AuthNotifierState());
-  final Ref ref;
+  AuthNotifier(this.client) : super(AuthNotifierState());
+  final SupabaseClient client;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
-  void signIn() {
-    try {} on supabase_flutter.AuthException catch (e) {
+  Future<void> signUp() async {
+    try {
+      //supabaseAuthにユーザー作成
+      final authResponse = await client.auth.signUp(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      //idが帰ってきたらidを使用してDBにユーザー作成する
+      if (authResponse.user?.id != null) {
+        await createUserData(uid: authResponse.user!.id);
+        //登録したユーザーを取得
+        final currentUser = await getCurrentUser(uid: authResponse.user!.id);
+        state = state.copyWith(currentUser: currentUser);
+      }
+      //idが帰ってこなければUserDataはnullになる
+      //nullの場合HomeScreenでエラーダイアログ出るようにする
+      return;
+    } on AuthException catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> createUserData({required String uid}) async {
+    try {
+      final sendUserData = UserData(
+        id: uid,
+        email: emailController.text,
+        name: nameController.text,
+      ).toJson();
+      await client.from('users').insert(sendUserData);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<UserData?> getCurrentUser({required String uid}) async {
+    try {
+      final response =
+          await client.from('users').select<PostgrestList>().eq('id', uid);
+      return UserData.fromJson(response.first);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
+
+  Future<void> logout() async {
+    try {
+      await client.auth.signOut();
+    } on AuthException catch (e) {
       debugPrint(e.toString());
     }
   }

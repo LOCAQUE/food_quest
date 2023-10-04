@@ -19,17 +19,15 @@ class App extends HookConsumerWidget {
 
     useEffect(
       () {
-        Future<void> fetchData() async {
-          auth.onAuthStateChange.listen((event) {
-            if (event.event == AuthChangeEvent.signedIn) {
-              isSignIn.value = true;
-            } else {
-              isSignIn.value = false;
-            }
-          });
-        }
-
-        fetchData();
+        auth.onAuthStateChange.listen((event) {
+          if (event.event == AuthChangeEvent.signedIn) {
+            isSignIn.value = true;
+            return;
+          } else {
+            isSignIn.value = false;
+            return;
+          }
+        });
         return null;
       },
       const [],
