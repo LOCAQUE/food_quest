@@ -34,7 +34,7 @@ ThemeData customTheme() {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        backgroundColor: AppColor.accentColor,
+        // backgroundColor: AppColor.accentColor,
         side: const BorderSide(
           color: AppColor.secondColor,
           width: 2,
