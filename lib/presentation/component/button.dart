@@ -38,7 +38,7 @@ class CustomButton extends StatelessWidget {
   Widget _buildPrimaryButton() {
     return ElevatedButton(
       onPressed: () async {
-        await onPressed();
+        await onPressed;
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
@@ -55,7 +55,7 @@ class CustomButton extends StatelessWidget {
   Widget _buildOutlineButton() {
     return OutlinedButton(
       onPressed: () async {
-        await onPressed();
+        await onPressed;
       },
       style: OutlinedButton.styleFrom(
         side: const BorderSide(
