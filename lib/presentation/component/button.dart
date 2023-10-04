@@ -7,15 +7,15 @@ enum ButtonVariant {
 }
 
 class CustomButton extends StatelessWidget {
+  const CustomButton({
+    required this.text,
+    required this.variant,
+    required this.onPressed,
+    super.key,
+  });
   final String text;
   final ButtonVariant variant;
   final Function onPressed;
-
-  const CustomButton(
-      {super.key,
-      required this.text,
-      required this.variant,
-      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class CustomButton extends StatelessWidget {
           const Color(0xFFEE7D50),
         ),
         foregroundColor: MaterialStateProperty.all<Color>(
-          Color(0xFFFFFFFF),
+          const Color(0xFFFFFFFF),
         ),
       ),
       child: Text(text),
@@ -54,16 +54,17 @@ class CustomButton extends StatelessWidget {
 
   Widget _buildOutlineButton() {
     return OutlinedButton(
-        onPressed: () async {
-          await onPressed();
-        },
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(
-            color: Color(0xFFEE7D50),
-          ),
-          foregroundColor: const Color(0xFFEE7D50),
+      onPressed: () async {
+        await onPressed();
+      },
+      style: OutlinedButton.styleFrom(
+        side: const BorderSide(
+          color: Color(0xFFEE7D50),
         ),
-        child: Text(text));
+        foregroundColor: const Color(0xFFEE7D50),
+      ),
+      child: Text(text),
+    );
   }
 
   Widget _buildDisabledButton() {
@@ -74,7 +75,7 @@ class CustomButton extends StatelessWidget {
           const Color(0xFF8E8E93),
         ),
         foregroundColor: MaterialStateProperty.all<Color>(
-          Color(0xFFFFFFFF),
+          const Color(0xFFFFFFFF),
         ),
       ),
       child: Text(text),
