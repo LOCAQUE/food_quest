@@ -1,15 +1,65 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyPicker extends StatefulWidget {
-  const MyPicker({required this.options, super.key});
+import 'package:gap/gap.dart';
+
+import 'package:food_quest/gen/colors.gen.dart';
+
+class CustomPicker extends StatelessWidget {
+  const CustomPicker({
+    required this.title,
+    required this.options,
+    super.key,
+  });
+
+  final String title;
   final List<String> options;
 
   @override
-  _CustomPicker createState() => _CustomPicker();
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 12,
+          ),
+        ),
+        const Gap(4),
+        Row(
+          children: [
+            Expanded(
+              child: BuildPicker(
+                options: options,
+                title: title,
+              ),
+            ),
+            const Icon(
+              Icons.arrow_drop_down,
+              color: AppColor.textColor,
+            ),
+          ],
+        ),
+        Container(
+          height: 1,
+          color: AppColor.textColor,
+        ),
+      ],
+    );
+  }
 }
 
-class _CustomPicker extends State<MyPicker> {
+class Picker extends StatefulWidget {
+  const Picker({required this.options, required this.title, super.key});
+  final List<String> options;
+  final String title;
+
+  @override
+  _BuildPicker createState() => _BuildPicker();
+}
+
+class _BuildPicker extends State<Picker> {
   String selectedOption = '';
 
   @override
@@ -18,7 +68,7 @@ class _CustomPicker extends State<MyPicker> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         CupertinoNavigationBar(
-          middle: const Text('選択'),
+          middle: Text(widget.title),
           trailing: CupertinoButton(
             padding: EdgeInsets.zero,
             onPressed: () {
@@ -51,13 +101,15 @@ class _CustomPicker extends State<MyPicker> {
   }
 }
 
-class CustomPicker extends StatelessWidget {
-  const CustomPicker({
+class BuildPicker extends StatelessWidget {
+  const BuildPicker({
     required this.options,
+    required this.title,
     super.key,
   });
 
   final List<String> options;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +127,7 @@ class CustomPicker extends StatelessWidget {
                 builder: (BuildContext builder) {
                   return FractionallySizedBox(
                     heightFactor: 0.3, // 画面の30%の高さを使用
-                    child: MyPicker(options: options),
+                    child: Picker(options: options, title: title),
                   );
                 },
               );
@@ -91,15 +143,24 @@ class CustomPicker extends StatelessWidget {
                 if (value.isNotEmpty) ...[
                   Text(
                     value,
-                    style: const TextStyle(fontSize: 16, color: Colors.blue),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: AppColor.textColor,
+                    ),
                   ),
                   const SizedBox(width: 8),
                 ] else ...[
-                  const Text(
-                    '選択してください',
-                    style: TextStyle(fontSize: 18, color: Colors.blue),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '選択してください',
+                        style:
+                            TextStyle(fontSize: 18, color: AppColor.textColor),
+                      ),
+                    ],
                   ),
-                ]
+                ],
               ],
             ),
           );
