@@ -56,10 +56,10 @@ class Picker extends StatefulWidget {
   final String title;
 
   @override
-  _BuildPicker createState() => _BuildPicker();
+  PickerState createState() => PickerState();
 }
 
-class _BuildPicker extends State<Picker> {
+class PickerState extends State<Picker> {
   String selectedOption = '';
 
   @override
@@ -119,49 +119,53 @@ class BuildPicker extends StatelessWidget {
       child: ValueListenableBuilder<String>(
         valueListenable: selectedOption,
         builder: (context, value, child) {
-          return TextButton(
-            onPressed: () async {
-              final result = await showModalBottomSheet<String>(
-                context: context,
-                isScrollControlled: true,
-                builder: (BuildContext builder) {
-                  return FractionallySizedBox(
-                    heightFactor: 0.3, // 画面の30%の高さを使用
-                    child: Picker(options: options, title: title),
-                  );
-                },
-              );
+          return SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              onPressed: () async {
+                final result = await showModalBottomSheet<String>(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext builder) {
+                    return FractionallySizedBox(
+                      heightFactor: 0.3, // 画面の30%の高さを使用
+                      child: Picker(options: options, title: title),
+                    );
+                  },
+                );
 
-              if (result != null && result.isNotEmpty) {
-                selectedOption.value = result;
-              }
-            },
-            style: TextButton.styleFrom(foregroundColor: Colors.blue),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (value.isNotEmpty) ...[
-                  Text(
-                    value,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: AppColor.textColor,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                ] else ...[
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        '選択してください',
-                        style:
-                            TextStyle(fontSize: 18, color: AppColor.textColor),
+                if (result != null && result.isNotEmpty) {
+                  selectedOption.value = result;
+                }
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (value.isNotEmpty) ...[
+                    Text(
+                      value,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: AppColor.textColor,
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(width: 8),
+                  ] else ...[
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          '選択してください',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: AppColor.textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
           );
         },
