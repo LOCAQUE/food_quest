@@ -15,6 +15,7 @@ class TopScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFFF5E0),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
