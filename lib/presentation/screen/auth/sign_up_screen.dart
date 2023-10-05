@@ -7,6 +7,7 @@ import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
+import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 
 class SignUpScreen extends HookConsumerWidget {
   const SignUpScreen({super.key});
@@ -73,7 +74,14 @@ class SignUpScreen extends HookConsumerWidget {
                 CustomButton(
                   text: 'はじめる',
                   onPressed: () async {
-                    await authNotifier.signUp();
+                    await authNotifier.signUp().then((_) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => SignUpProfile(),
+                        ),
+                      );
+                    });
                   },
                   variant: ButtonVariant.primary,
                 ),
