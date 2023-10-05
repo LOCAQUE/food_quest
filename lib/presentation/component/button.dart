@@ -16,15 +16,15 @@ enum ButtonSize {
 class CustomButton extends StatelessWidget {
   const CustomButton({
     required this.text,
-    required this.variant,
     required this.onPressed,
+    this.variant = ButtonVariant.primary,
     this.size = ButtonSize.large,
     super.key,
   });
   final String text;
   final ButtonSize size;
   final ButtonVariant variant;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,14 @@ class BuildPrimaryButton extends StatelessWidget {
   });
 
   final String text;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: null,
+      onPressed: () async {
+        onPressed();
+      },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
           AppColor.primaryColor,
@@ -94,12 +96,14 @@ class BuildDisabledButton extends StatelessWidget {
   });
 
   final String text;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: null,
+      onPressed: () async {
+        onPressed();
+      },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
           AppColor.disabledColor,
@@ -121,12 +125,14 @@ class BuildOutlineButton extends StatelessWidget {
   });
 
   final String text;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: null,
+      onPressed: () async {
+        onPressed();
+      },
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(
           AppColor.primaryColor,
