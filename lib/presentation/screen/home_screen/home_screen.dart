@@ -5,6 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/screen/question_screen/question_screen.dart';
+import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
+
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 
@@ -22,16 +24,26 @@ class HomeScreen extends HookConsumerWidget {
             },
             child: const Text('ログアウト'),
           ),
-          const Gap(20),  // 追加したボタンとの間隔を開けるためのスペース
+          const Gap(20), // 追加したボタンとの間隔を開けるためのスペース
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute<QuestionScreen>(
                   builder: (context) => const QuestionScreen(),
+                ),
+              );
+            },
+            child: const Text('質問ページ'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<PetScreen>(
+                  builder: (context) => const PetScreen(),
                   ),
                 );
             },
-            child: const Text('新しいページへ'),
+            child: const Text('ペットページ'),
           ),
         ],
       ),
