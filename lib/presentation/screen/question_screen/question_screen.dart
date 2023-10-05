@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _budgetLowerController = TextEditingController();
@@ -68,8 +69,7 @@ class QuestionScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 50),
             ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               child: const Text('完了'),
             ),
           ],
