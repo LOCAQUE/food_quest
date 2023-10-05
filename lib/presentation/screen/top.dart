@@ -1,10 +1,10 @@
 // アプリ起動時のトップ画面
 
 import 'package:flutter/material.dart';
-import 'package:food_quest/gen/colors.gen.dart';
 
 import 'package:gap/gap.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
@@ -85,9 +85,10 @@ class TopScreen extends StatelessWidget {
             const Gap(26),
             // TO-DO: Googleログインの実装
             CustomButton(
-                text: 'Googleでログイン',
-                variant: ButtonVariant.outline,
-                onPressed: () {}),
+              text: 'Googleでログイン',
+              variant: ButtonVariant.outline,
+              onPressed: () {},
+            ),
             const Gap(15),
           ],
         ),
