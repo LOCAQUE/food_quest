@@ -26,7 +26,7 @@ ThemeData customTheme() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.accentColor,
+        backgroundColor: AppColor.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -34,14 +34,13 @@ ThemeData customTheme() {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        backgroundColor: AppColor.accentColor,
         side: const BorderSide(
-          color: AppColor.secondColor,
-          width: 2,
+          color: AppColor.primaryColor,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        foregroundColor: AppColor.primaryColor,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
