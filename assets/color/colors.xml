@@ -4,4 +4,10 @@
     <color name="firstColor">#FAF9F4</color>
     <color name="secondColor">#D0C9C0</color>
     <color name="accentColor">#6D8B74</color>
+    <color name="primaryColor">#EE7D50</color>
+<<<<<<< HEAD
+    <color name="disabledColor">#8E8E93</color>
+    <color name="white">#FFFFFF</color>
+=======
+>>>>>>> 0a876dd (style: プライマリーカラーの追加)
 </resources>
