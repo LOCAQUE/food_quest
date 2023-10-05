@@ -8,6 +8,8 @@ import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 
+import 'select_pet_screen.dart';
+
 class SignUpProfile extends StatelessWidget {
   SignUpProfile({super.key});
 
@@ -74,10 +76,17 @@ class SignUpProfile extends StatelessWidget {
                     title: '居住地',
                   ),
                 ),
-                Gap(80),
+                const Gap(80),
                 CustomButton(
                   text: 'ペット選択へ',
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute<SelectPetScreen>(
+                        builder: (context) => const SelectPetScreen(),
+                      ),
+                    );
+                  },
                   variant: ButtonVariant.primary,
                 ),
               ],
