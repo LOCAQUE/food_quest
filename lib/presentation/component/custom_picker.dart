@@ -119,8 +119,9 @@ class BuildPicker extends StatelessWidget {
       child: ValueListenableBuilder<String>(
         valueListenable: selectedOption,
         builder: (context, value, child) {
-          return SizedBox(
+          return Container(
             width: double.infinity,
+            alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () async {
                 final result = await showModalBottomSheet<String>(
@@ -139,6 +140,7 @@ class BuildPicker extends StatelessWidget {
                 }
               },
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (value.isNotEmpty) ...[
