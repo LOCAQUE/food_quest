@@ -54,37 +54,26 @@ class BottomNavigationScreen extends HookConsumerWidget {
         //params
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 4,
-              spreadRadius: 0.2,
-            ),
-          ],
-        ),
-        child: AnimatedBottomNavigationBar.builder(
-          itemCount: iconList.length,
-          backgroundColor: Colors.white,
-          activeIndex: bottomNavIndex.value,
-          gapLocation: GapLocation.center,
-          notchSmoothness: NotchSmoothness.softEdge,
-          splashColor: Colors.orangeAccent,
-          splashSpeedInMilliseconds: 300,
-          onTap: (index) {
-            //選択したindexをstateに反映
-            bottomNavIndex.value = index;
-          },
-          tabBuilder: (int index, bool isActive) {
-            final color = isActive ? Colors.orange : Colors.grey;
-            return Icon(
-              iconList[index],
-              size: 32,
-              color: color,
-            );
-          },
-        ),
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+        itemCount: iconList.length,
+        backgroundColor: Colors.white,
+        activeIndex: bottomNavIndex.value,
+        gapLocation: GapLocation.center,
+        notchSmoothness: NotchSmoothness.softEdge,
+        splashColor: Colors.orangeAccent,
+        splashSpeedInMilliseconds: 300,
+        onTap: (index) {
+          //選択したindexをstateに反映
+          bottomNavIndex.value = index;
+        },
+        tabBuilder: (int index, bool isActive) {
+          final color = isActive ? Colors.orange : Colors.grey;
+          return Icon(
+            iconList[index],
+            size: 32,
+            color: color,
+          );
+        },
       ),
     );
   }
