@@ -8,7 +8,6 @@ import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_sc
 import 'package:food_quest/presentation/screen/home_screen/task_screen/task_screen.dart';
 import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/screen/question_screen/question_screen.dart';
-import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});

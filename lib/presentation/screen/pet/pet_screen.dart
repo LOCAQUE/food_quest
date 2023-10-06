@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -134,38 +134,37 @@ class PetScreen extends HookConsumerWidget {
                     ],
                   ),
                 ),
+
+                Center(
+                  child: SizedBox(
+                    child: Image.asset(gif),
+                  ),
+                ),
+                // 宝箱の画像
+                Positioned(
+                  left: 25, // 左側からのオフセット
+                  bottom: 120, // 下側からのオフセット
+                  width: 80,
+                  height: 80,
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet<String>(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return const FractionallySizedBox(
+                            heightFactor: 0.3,
+                            child: ItemsModalSheet(),
+                          );
+                        },
+                      );
+                    },
+                    child: Image.asset('assets/images/box.png'),
+                  ),
+                ),
               ],
             ),
-          ),
-          // キャラクターの画像
-          // TO-DO: gif画像に変更する
-          Center(
-            child: SizedBox(
-              child: Image.asset(gif),
-            ),
-          ),
-          // 宝箱の画像
-          Positioned(
-            left: 25, // 左側からのオフセット
-            bottom: 120, // 下側からのオフセット
-            width: 80,
-            height: 80,
-            child: GestureDetector(
-              onTap: () {
-                showModalBottomSheet<String>(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return const FractionallySizedBox(
-                      heightFactor: 0.3,
-                      child: ItemsModalSheet(),
-                    );
-                  },
-                );
-              },
-              child: Image.asset('assets/images/box.png'),
-            ),
-          ),
+          )
         ],
       ),
     );
