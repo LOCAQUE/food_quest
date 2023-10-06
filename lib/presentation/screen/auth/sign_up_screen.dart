@@ -77,8 +77,8 @@ class SignUpScreen extends HookConsumerWidget {
                   ),
                 ),
                 const Gap(360),
-                // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
-                if (isButtonEnabled) ...[
+                // linterによる警告を抑制するために、if文で分岐させています。
+                if (isButtonEnabled)
                   CustomButton(
                     text: 'はじめる',
                     onPressed: () async {
@@ -91,14 +91,13 @@ class SignUpScreen extends HookConsumerWidget {
                         );
                       });
                     },
-                  ),
-                ] else ...[
+                  )
+                else
                   CustomButton(
                     text: 'はじめる',
                     variant: ButtonVariant.disabled,
                     onPressed: () {},
                   ),
-                ],
               ],
             ),
           ),
