@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/question_screen/question_screen.dart';
 
 class HomeScreen extends HookConsumerWidget {
@@ -15,32 +16,38 @@ class HomeScreen extends HookConsumerWidget {
         length: 2,
         child: Column(
           children: [
-            const SizedBox(height: 50), // 画面上部の余白
+            const Gap(50),
             const TabBar(
+              padding: EdgeInsets.symmetric(horizontal: 50),
+              indicatorColor: AppColor.primaryColor,
               tabs: [
-                Tab(text: 'Tab1'),
-                Tab(text: 'Tab2'),
+                Tab(text: 'Quest'),
+                Tab(text: 'Task'),
               ],
             ),
             Expanded(
               child: TabBarView(
                 children: [
-                  Column(
+                  ListView(
                     children: [
-                      const Gap(20), // 追加したボタンとの間隔を開けるためのスペース
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute<QuestionScreen>(
-                              builder: (context) => const QuestionScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text('新しいページへ'),
+                      Column(
+                        children: [
+                          const Gap(20), // 追加したボタンとの間隔を開けるためのスペース
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<QuestionScreen>(
+                                  builder: (context) => const QuestionScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text('新しいページへ'),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  const Center(child: Text('Tab2')),
+                  const Center(child: Text('タスク一覧')),
                 ],
               ),
             ),
