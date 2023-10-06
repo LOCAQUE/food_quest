@@ -76,7 +76,7 @@ class SignInScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const Gap(360),
+                const Gap(330),
                 // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
                 if (authNotifier.emailController.text.isEmpty &&
                     authNotifier.passwordController.text.isEmpty) ...[
