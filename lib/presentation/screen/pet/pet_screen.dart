@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
-
-import 'items_modal_sheet.dart';
+import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
 
 class PetScreen extends HookConsumerWidget {
   const PetScreen({super.key});
@@ -153,7 +152,7 @@ class PetScreen extends HookConsumerWidget {
                   context: context,
                   isScrollControlled: true,
                   builder: (BuildContext context) {
-                    return FractionallySizedBox(
+                    return const FractionallySizedBox(
                       heightFactor: 0.3,
                       child: ItemsModalSheet(),
                     );

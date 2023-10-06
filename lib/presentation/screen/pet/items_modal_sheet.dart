@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import 'package:food_quest/gen/colors.gen.dart';
 
 class ItemsModalSheet extends StatelessWidget {
+  const ItemsModalSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
