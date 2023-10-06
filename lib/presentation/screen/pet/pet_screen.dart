@@ -15,119 +15,136 @@ class PetScreen extends HookConsumerWidget {
     const heart = 50;
 
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/castle.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: 50),
-            // 経験値ゲージ
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Stack(
-                alignment: Alignment.centerLeft,
-                children: [
-                  Column(
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/castle.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 50),
+                // 経験値ゲージ
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Stack(
+                    alignment: Alignment.centerLeft,
                     children: [
-                      const SizedBox(height: 20), // 調整用
-                      Row(
+                      Column(
                         children: [
-                          Expanded(
-                            child: SizedBox(
-                              height: 15, // EXPのゲージを太くします
-                              width: 270,
-                              child: LinearProgressIndicator(
-                                borderRadius: BorderRadius.circular(50),
-                                value: exp / maxEXP, // 割合
-                                backgroundColor: Colors.grey[300],
-                                valueColor: const AlwaysStoppedAnimation(
-                                  AppColor.primaryColor,
+                          const SizedBox(height: 20), // 調整用
+                          Row(
+                            children: [
+                              Expanded(
+                                child: SizedBox(
+                                  height: 15, // EXPのゲージを太くします
+                                  width: 270,
+                                  child: LinearProgressIndicator(
+                                    borderRadius: BorderRadius.circular(50),
+                                    value: exp / maxEXP, // 割合
+                                    backgroundColor: Colors.grey[300],
+                                    valueColor: const AlwaysStoppedAnimation(
+                                      AppColor.primaryColor,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Container(
-                        alignment: Alignment.topRight,
-                        child: const Text(
-                          '経験値: $exp/$maxEXP',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundColor: AppColor.primaryColor,
-                    child: Text(
-                      '$level',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // ハートゲージ
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Stack(
-                alignment: Alignment.centerLeft,
-                children: [
-                  Column(
-                    children: [
-                      const SizedBox(height: 20), // 調整用
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const SizedBox(width: 40),
-                          SizedBox(
-                            height: 10, // ハートのゲージを太くします
-                            width: 270,
-                            child: LinearProgressIndicator(
-                              value: heart / 100,
-                              borderRadius: BorderRadius.circular(50),
-                              backgroundColor: Colors.grey[300],
-                              valueColor: const AlwaysStoppedAnimation(
-                                AppColor.primaryColor,
+                          Container(
+                            alignment: Alignment.topRight,
+                            child: const Text(
+                              '経験値: $exp/$maxEXP',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Container(
-                        alignment: Alignment.topRight,
-                        child: const Text(
-                          '満足度: $heart%',
+                      const CircleAvatar(
+                        radius: 30,
+                        backgroundColor: AppColor.primaryColor,
+                        child: Text(
+                          '$level',
                           style: TextStyle(
-                            fontSize: 16,
                             color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 60),
-                    child: Icon(Icons.favorite, color: Colors.red, size: 40),
+                ),
+                // ハートゲージ
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Stack(
+                    alignment: Alignment.centerLeft,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(height: 20), // 調整用
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const SizedBox(width: 40),
+                              SizedBox(
+                                height: 10, // ハートのゲージを太くします
+                                width: 270,
+                                child: LinearProgressIndicator(
+                                  value: heart / 100,
+                                  borderRadius: BorderRadius.circular(50),
+                                  backgroundColor: Colors.grey[300],
+                                  valueColor: const AlwaysStoppedAnimation(
+                                    AppColor.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            alignment: Alignment.topRight,
+                            child: const Text(
+                              '満足度: $heart%',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 60),
+                        child:
+                            Icon(Icons.favorite, color: Colors.red, size: 40),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          // 宝箱の画像
+          Positioned(
+            left: 25, // 左側からのオフセット
+            bottom: 120, // 下側からのオフセット
+            width: 80,
+            height: 80,
+            child: GestureDetector(
+              onTap: () {},
+              // TO-DO: 画像の変更
+              child: Image.asset('assets/images/box.png'),
+            ),
+          ),
+        ],
       ),
     );
   }
