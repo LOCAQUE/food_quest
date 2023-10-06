@@ -11,7 +11,8 @@ class PetScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const level = 1;
     const maxEXP = 150;
-    const exp = 20;
+    const exp = 60;
+    const heart = 50;
 
     return Scaffold(
       body: Container(
@@ -24,6 +25,7 @@ class PetScreen extends HookConsumerWidget {
         child: Column(
           children: [
             const SizedBox(height: 50),
+            // 経験値ゲージ
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(
@@ -31,10 +33,10 @@ class PetScreen extends HookConsumerWidget {
                 children: [
                   Row(
                     children: [
-                      const SizedBox(width: 30), // CircleAvatarの幅と一致するスペース
                       Expanded(
                         child: SizedBox(
                           height: 15, // EXPのゲージを太くします
+                          width: 270,
                           child: LinearProgressIndicator(
                             borderRadius: BorderRadius.circular(50),
                             value: exp / maxEXP, // 割合
@@ -71,25 +73,24 @@ class PetScreen extends HookConsumerWidget {
                 ),
               ),
             ),
+            // ハートゲージ
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(
                 alignment: Alignment.centerLeft,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const SizedBox(width: 40),
-                      Expanded(
-                        child: SizedBox(
-                          height: 10, // ハートのゲージを太くします
-                          child: LinearProgressIndicator(
-                            value: 0.5,
-                            borderRadius: BorderRadius.circular(50),
-                            backgroundColor: Colors.grey[300],
-                            valueColor: const AlwaysStoppedAnimation(
-                              AppColor.primaryColor,
-                            ),
+                      SizedBox(
+                        height: 10, // ハートのゲージを太くします
+                        width: 250,
+                        child: LinearProgressIndicator(
+                          value: heart / 100,
+                          borderRadius: BorderRadius.circular(50),
+                          backgroundColor: Colors.grey[300],
+                          valueColor: const AlwaysStoppedAnimation(
+                            AppColor.primaryColor,
                           ),
                         ),
                       ),
@@ -105,7 +106,7 @@ class PetScreen extends HookConsumerWidget {
             const Padding(
               padding: EdgeInsets.only(left: 200),
               child: Text(
-                '満足度:   50%',
+                '満足度: $heart%',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
