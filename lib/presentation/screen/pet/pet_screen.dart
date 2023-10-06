@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
 
+import 'items_modal_sheet.dart';
+
 class PetScreen extends HookConsumerWidget {
   const PetScreen({super.key});
 
@@ -146,33 +148,7 @@ class PetScreen extends HookConsumerWidget {
                   builder: (BuildContext context) {
                     return FractionallySizedBox(
                       heightFactor: 0.3,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 10, // この数は要素の数によります
-                        itemBuilder: (context, index) {
-                          return SizedBox(
-                            width: 100, // 各要素の幅を設定
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundColor: AppColor.primaryColor,
-                                    child: Text(
-                                      '$index',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 30,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('Item $index'),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                      child: ItemsModalSheet(),
                     );
                   },
                 );
