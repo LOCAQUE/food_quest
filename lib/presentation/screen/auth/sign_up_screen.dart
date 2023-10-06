@@ -85,6 +85,7 @@ class SignUpScreen extends HookConsumerWidget {
                   ),
                 ] else ...[
                   CustomButton(
+                    variant: ButtonVariant.primary,
                     text: 'はじめる',
                     onPressed: () async {
                       await authNotifier.signUp().then((_) {

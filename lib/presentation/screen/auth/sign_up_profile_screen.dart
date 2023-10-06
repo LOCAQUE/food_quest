@@ -56,6 +56,7 @@ class SignUpProfile extends HookConsumerWidget {
                 ),
                 const Gap(360),
                 CustomButton(
+                  variant: ButtonVariant.primary,
                   text: 'ペット選択へ',
                   onPressed: () async {
                     await Navigator.push(
