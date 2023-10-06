@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/foundation/supabase_client_provider.dart';
-import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
 import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
+import 'package:food_quest/presentation/screen/top.dart';
 import 'package:food_quest/theme.dart';
 
 class App extends HookConsumerWidget {
@@ -37,9 +37,7 @@ class App extends HookConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'beta',
       theme: customTheme(),
-      home: isSignIn.value
-          ? const BottomNavigationScreen()
-          : const SignUpScreen(),
+      home: isSignIn.value ? const BottomNavigationScreen() : const TopScreen(),
     );
   }
 }
