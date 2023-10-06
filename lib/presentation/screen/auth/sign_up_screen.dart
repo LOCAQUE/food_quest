@@ -86,7 +86,7 @@ class SignUpScreen extends HookConsumerWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (context) => SignUpProfile(),
+                            builder: (context) => const SignUpProfile(),
                           ),
                         );
                       });

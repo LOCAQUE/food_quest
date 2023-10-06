@@ -31,6 +31,7 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
 
   final ValueNotifier<bool> isFormValid = ValueNotifier<bool>(false);
 
@@ -75,6 +76,24 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
         prefecture: '',
       ).toJson();
       await client.from('users').insert(sendUserData);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  // 名前と都道府県を受け取ってDBに保存する
+  Future<void> updateUserData() async {
+    try {
+      final sendUserData = UserData(
+        id: state.currentUser!.id,
+        email: state.currentUser!.email,
+        name: nameController.text,
+        prefecture: addressController.text,
+      ).toJson();
+      await client
+          .from('users')
+          .update(sendUserData)
+          .eq('id', state.currentUser!.id);
     } catch (e) {
       debugPrint(e.toString());
     }
