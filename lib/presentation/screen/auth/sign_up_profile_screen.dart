@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/list.dart';
 import 'package:food_quest/presentation/component/button.dart';
@@ -9,7 +10,7 @@ import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
 
-class SignUpProfile extends StatelessWidget {
+class SignUpProfile extends HookConsumerWidget {
   SignUpProfile({super.key});
 
   final TextEditingController nameController = TextEditingController();
@@ -19,7 +20,7 @@ class SignUpProfile extends StatelessWidget {
   final TextEditingController addressController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF5E0),
       body: ListView(

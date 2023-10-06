@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
 
-class CustomDatePicker extends StatelessWidget {
+class CustomDatePicker extends HookConsumerWidget {
   const CustomDatePicker({
     required this.title,
     required this.controller,
@@ -16,7 +18,11 @@ class CustomDatePicker extends StatelessWidget {
   final TextEditingController controller;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    //useStateを使うだけで画面自動で切り替わる reactと一緒
+    //使い方は 変数名.value = 代入 ってしてデータ入れる
+    final dateValue = useState('');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,66 +33,35 @@ class CustomDatePicker extends StatelessWidget {
           ),
         ),
         const Gap(4),
-        BuildDatePicker(
-          onDateConfirmed: (date) {
-            controller.text = date.toString().split(' ')[0]; // 日付部分だけを取得
-          },
-        ),
-        Container(
-          height: 1,
-          color: AppColor.textColor,
-        ),
-      ],
-    );
-  }
-}
-
-class BuildDatePicker extends StatelessWidget {
-  const BuildDatePicker({required this.onDateConfirmed, super.key});
-  final void Function(DateTime) onDateConfirmed;
-
-  @override
-  Widget build(BuildContext context) {
-    final selectedDate = ValueNotifier<String>('');
-    return Row(
-      children: [
-        const Expanded(child: SizedBox()),
-        ValueListenableBuilder<String>(
-          valueListenable: selectedDate,
-          builder: (context, value, child) {
-            return TextButton(
-              onPressed: () {
-                DatePicker.showDatePicker(
-                  context,
-                  minTime: DateTime(1984),
-                  maxTime: DateTime(2023, 12, 31),
-                  onConfirm: (date) {
-                    onDateConfirmed(date);
-                    selectedDate.value =
-                        date.toString().split(' ')[0]; // 日付部分だけを取得
-                    print(selectedDate.value);
-                  },
-                  currentTime: DateTime.now(),
-                  locale: LocaleType.jp,
-                );
-              },
-              child: Row(
-                children: [
-                  if (value.isNotEmpty) ...[
-                    Text(
-                      value,
-                      style: const TextStyle(color: AppColor.textColor),
-                    ),
-                  ] else ...[
-                    const Text(
-                      '日付を選択してください',
-                      style: TextStyle(color: AppColor.textColor),
-                    ),
-                  ],
-                ],
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton(
+            onPressed: () {
+              DatePicker.showDatePicker(
+                context,
+                minTime: DateTime(1984),
+                maxTime: DateTime(2023, 12, 31),
+                onConfirm: (date) {
+                  dateValue.value = date.toString().split(' ')[0]; // 日付部分だけを取得
+                  controller.text =
+                      date.toIso8601String(); //supabaseに入れるためTimeStamp型にする
+                },
+                currentTime: DateTime.now(),
+                locale: LocaleType.jp,
+              );
+            },
+            child: Text(
+              dateValue.value != '' ? dateValue.value : '日付を選択してください',
+              style: const TextStyle(
+                color: AppColor.textColor,
               ),
-            );
-          },
+            ),
+          ),
+        ),
+        const Divider(
+          height: 2,
+          thickness: 1,
+          color: AppColor.textColor,
         ),
       ],
     );
