@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PetScreen extends ConsumerWidget {
   const PetScreen({super.key});
@@ -11,7 +12,7 @@ class PetScreen extends ConsumerWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/洞窟.png'),
+            image: AssetImage('assets/images/castle.png'),
             fit: BoxFit.cover,
           ),
         ),
