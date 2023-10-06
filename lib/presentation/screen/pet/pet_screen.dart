@@ -80,11 +80,12 @@ class PetScreen extends HookConsumerWidget {
                 alignment: Alignment.centerLeft,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const SizedBox(width: 40),
                       SizedBox(
                         height: 10, // ハートのゲージを太くします
-                        width: 250,
+                        width: 270,
                         child: LinearProgressIndicator(
                           value: heart / 100,
                           borderRadius: BorderRadius.circular(50),
@@ -97,7 +98,7 @@ class PetScreen extends HookConsumerWidget {
                     ],
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(left: 60),
                     child: Icon(Icons.favorite, color: Colors.red, size: 40),
                   ),
                 ],
