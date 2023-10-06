@@ -75,19 +75,28 @@ class SignUpScreen extends HookConsumerWidget {
                   ),
                 ),
                 const Gap(360),
-                CustomButton(
-                  text: 'はじめる',
-                  onPressed: () async {
-                    await authNotifier.signUp().then((_) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => SignUpProfile(),
-                        ),
-                      );
-                    });
-                  },
-                ),
+                if (authNotifier.emailController != null &&
+                    authNotifier.passwordController != null) ...[
+                  CustomButton(
+                    text: 'はじめる',
+                    variant: ButtonVariant.disabled,
+                    onPressed: () async {},
+                  ),
+                ] else ...[
+                  CustomButton(
+                    text: 'はじめる',
+                    onPressed: () async {
+                      await authNotifier.signUp().then((_) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => SignUpProfile(),
+                          ),
+                        );
+                      });
+                    },
+                  ),
+                ],
               ],
             ),
           ),
