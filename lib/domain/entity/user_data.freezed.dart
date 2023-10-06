@@ -23,6 +23,7 @@ mixin _$UserData {
   String get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get prefecture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $UserDataCopyWith<$Res> {
   factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
-  $Res call({String id, String email, String name});
+  $Res call({String id, String email, String name, String prefecture});
 }
 
 /// @nodoc
@@ -54,6 +55,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? id = null,
     Object? email = null,
     Object? name = null,
+    Object? prefecture = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -68,6 +70,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -80,7 +86,7 @@ abstract class _$$UserDataImplCopyWith<$Res>
       __$$UserDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email, String name});
+  $Res call({String id, String email, String name, String prefecture});
 }
 
 /// @nodoc
@@ -97,6 +103,7 @@ class __$$UserDataImplCopyWithImpl<$Res>
     Object? id = null,
     Object? email = null,
     Object? name = null,
+    Object? prefecture = null,
   }) {
     return _then(_$UserDataImpl(
       id: null == id
@@ -111,6 +118,10 @@ class __$$UserDataImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -119,7 +130,10 @@ class __$$UserDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserDataImpl implements _UserData {
   const _$UserDataImpl(
-      {required this.id, required this.email, required this.name});
+      {required this.id,
+      required this.email,
+      required this.name,
+      required this.prefecture});
 
   factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataImplFromJson(json);
@@ -130,10 +144,12 @@ class _$UserDataImpl implements _UserData {
   final String email;
   @override
   final String name;
+  @override
+  final String prefecture;
 
   @override
   String toString() {
-    return 'UserData(id: $id, email: $email, name: $name)';
+    return 'UserData(id: $id, email: $email, name: $name, prefecture: $prefecture)';
   }
 
   @override
@@ -143,12 +159,14 @@ class _$UserDataImpl implements _UserData {
             other is _$UserDataImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.prefecture, prefecture) ||
+                other.prefecture == prefecture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, name);
+  int get hashCode => Object.hash(runtimeType, id, email, name, prefecture);
 
   @JsonKey(ignore: true)
   @override
@@ -168,7 +186,8 @@ abstract class _UserData implements UserData {
   const factory _UserData(
       {required final String id,
       required final String email,
-      required final String name}) = _$UserDataImpl;
+      required final String name,
+      required final String prefecture}) = _$UserDataImpl;
 
   factory _UserData.fromJson(Map<String, dynamic> json) =
       _$UserDataImpl.fromJson;
@@ -179,6 +198,8 @@ abstract class _UserData implements UserData {
   String get email;
   @override
   String get name;
+  @override
+  String get prefecture;
   @override
   @JsonKey(ignore: true)
   _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
