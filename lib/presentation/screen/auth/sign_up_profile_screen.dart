@@ -42,32 +42,9 @@ class SignUpProfile extends HookConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 18),
                   child: CustomTextField(
-                    title: 'ニックネーム',
+                    title: 'ユーザー名',
                     controller: nameController,
-                    hintText: 'ニックネームを入力してください',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18),
-                  child: CustomTextField(
-                    title: 'ユーザーネーム',
-                    controller: userNameController,
-                    hintText: '@username',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18),
-                  child: CustomPicker(
-                    options: genderList,
-                    title: '性別',
-                    controller: genderController,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18),
-                  child: CustomDatePicker(
-                    title: '生年月日',
-                    controller: birthdayController,
+                    hintText: 'ユーザー名を入力してください',
                   ),
                 ),
                 Padding(
@@ -78,7 +55,7 @@ class SignUpProfile extends HookConsumerWidget {
                     controller: addressController,
                   ),
                 ),
-                const Gap(80),
+                const Gap(360),
                 CustomButton(
                   text: 'ペット選択へ',
                   onPressed: () async {
