@@ -7,9 +7,7 @@ import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
-import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
-
-import '../bottom_navigation/bottom_navigation_screen.dart';
+import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
 
 class SignInScreen extends HookConsumerWidget {
   const SignInScreen({super.key});
