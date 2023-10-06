@@ -110,6 +110,22 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
     return null;
   }
 
+  Future<void> signIn() async {
+    try {
+      final authResponse = await client.auth.signInWithPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      if (authResponse.user?.id != null) {
+        final currentUser = await getCurrentUser(uid: authResponse.user!.id);
+        state = state.copyWith(currentUser: currentUser);
+      }
+      return;
+    } on AuthException catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   Future<void> logout() async {
     try {
       await client.auth.signOut();

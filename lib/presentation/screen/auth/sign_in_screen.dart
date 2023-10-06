@@ -9,6 +9,8 @@ import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 
+import '../bottom_navigation/bottom_navigation_screen.dart';
+
 class SignInScreen extends HookConsumerWidget {
   const SignInScreen({super.key});
 
@@ -86,7 +88,17 @@ class SignInScreen extends HookConsumerWidget {
                 ] else ...[
                   CustomButton(
                     text: 'ログイン',
-                    onPressed: () async {},
+                    onPressed: () async {
+                      await authNotifier.signIn().then((_) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<BottomNavigationScreen>(
+                            builder: (context) =>
+                                const BottomNavigationScreen(),
+                          ),
+                        );
+                      });
+                    },
                   ),
                 ],
               ],
