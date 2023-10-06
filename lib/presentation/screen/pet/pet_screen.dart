@@ -8,77 +8,90 @@ class PetScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          const SizedBox(height: 50),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                const CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Color(0xFFEE7D50),
-                  child: Text(
-                    '45',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: SizedBox(
-                    height: 15,
-                    child: LinearProgressIndicator(
-                      value: 1,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation(
-                        Color(0xFFE4AB94),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/洞窟.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Color(0xFFEE7D50),
+                    child: Text(
+                      '1',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 200),
-            child: Text(
-              'EXP',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
+                  Expanded(
+                    child: SizedBox(
+                      height: 15, // EXPのゲージを太くします
+                      child: LinearProgressIndicator(
+                        value: 0,
+                        backgroundColor: Colors.grey[300],
+                        valueColor: const AlwaysStoppedAnimation(
+                          Color(0xFFE4AB94),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Row(
-              children: [
-                const Icon(Icons.favorite, color: Colors.red, size: 40),
-                Expanded(
-                  child: SizedBox(
-                    height: 15,
-                    child: LinearProgressIndicator(
-                      value: 0.5,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation(
-                        Color(0xFFE4AB94),
+            const Padding(
+              padding: EdgeInsets.only(left: 200),
+              child: Text(
+                '経験値:0/150',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(width: 40),
+                  const Icon(Icons.favorite, color: Colors.red, size: 40),
+                  Expanded(
+                    child: SizedBox(
+                      height: 10, // ハートのゲージを太くします
+                      child: LinearProgressIndicator(
+                        value: 0.5,
+                        backgroundColor: Colors.grey[300],
+                        valueColor: const AlwaysStoppedAnimation(
+                          Color(0xFFE4AB94),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
+            const Padding(
+              padding: EdgeInsets.only(left: 200),
+              child: Text(
+                '満足度:   50%',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

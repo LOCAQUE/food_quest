@@ -5,7 +5,7 @@
 
 version:
   revision: "ead455963c12b453cdb2358cad34969c76daf180"
-  channel: "stable"
+  channel: "[user-branch]"
 
 project_type: app
 
@@ -13,9 +13,6 @@ project_type: app
 migration:
   platforms:
     - platform: root
-      create_revision: ead455963c12b453cdb2358cad34969c76daf180
-      base_revision: ead455963c12b453cdb2358cad34969c76daf180
-    - platform: android
       create_revision: ead455963c12b453cdb2358cad34969c76daf180
       base_revision: ead455963c12b453cdb2358cad34969c76daf180
     - platform: ios

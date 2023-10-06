@@ -7,7 +7,7 @@ import 'package:navigator_scope/navigator_scope.dart';
 
 import 'package:food_quest/presentation/screen/blue_screen/blue_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/home_screen.dart';
-import 'package:food_quest/presentation/screen/orange_screen/orange_screen.dart';
+import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
 import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 import 'package:food_quest/presentation/screen/setting_screen/setting_screen.dart';
 
@@ -32,7 +32,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
     final pageList = [
       const ProfileScreen(),
       const BlueScreen(),
-      const OrangeScreen(),
+      const PetScreen(),
       const SettingScreen(),
     ];
 
