@@ -31,19 +31,35 @@ class PetScreen extends HookConsumerWidget {
               child: Stack(
                 alignment: Alignment.centerLeft,
                 children: [
-                  Row(
+                  Column(
                     children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 15, // EXPのゲージを太くします
-                          width: 270,
-                          child: LinearProgressIndicator(
-                            borderRadius: BorderRadius.circular(50),
-                            value: exp / maxEXP, // 割合
-                            backgroundColor: Colors.grey[300],
-                            valueColor: const AlwaysStoppedAnimation(
-                              AppColor.primaryColor,
+                      const SizedBox(height: 20), // 調整用
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 15, // EXPのゲージを太くします
+                              width: 270,
+                              child: LinearProgressIndicator(
+                                borderRadius: BorderRadius.circular(50),
+                                value: exp / maxEXP, // 割合
+                                backgroundColor: Colors.grey[300],
+                                valueColor: const AlwaysStoppedAnimation(
+                                  AppColor.primaryColor,
+                                ),
+                              ),
                             ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: const Text(
+                          '経験値: $exp/$maxEXP',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -63,35 +79,41 @@ class PetScreen extends HookConsumerWidget {
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment.topRight,
-              child: const Text(
-                '経験値: $exp/$maxEXP',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
-              ),
-            ),
             // ハートゲージ
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(
                 alignment: Alignment.centerLeft,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  Column(
                     children: [
-                      const SizedBox(width: 40),
-                      SizedBox(
-                        height: 10, // ハートのゲージを太くします
-                        width: 270,
-                        child: LinearProgressIndicator(
-                          value: heart / 100,
-                          borderRadius: BorderRadius.circular(50),
-                          backgroundColor: Colors.grey[300],
-                          valueColor: const AlwaysStoppedAnimation(
-                            AppColor.primaryColor,
+                      const SizedBox(height: 20), // 調整用
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const SizedBox(width: 40),
+                          SizedBox(
+                            height: 10, // ハートのゲージを太くします
+                            width: 270,
+                            child: LinearProgressIndicator(
+                              value: heart / 100,
+                              borderRadius: BorderRadius.circular(50),
+                              backgroundColor: Colors.grey[300],
+                              valueColor: const AlwaysStoppedAnimation(
+                                AppColor.primaryColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: const Text(
+                          '満足度: $heart%',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -102,16 +124,6 @@ class PetScreen extends HookConsumerWidget {
                     child: Icon(Icons.favorite, color: Colors.red, size: 40),
                   ),
                 ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 200),
-              child: Text(
-                '満足度: $heart%',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                ),
               ),
             ),
           ],
