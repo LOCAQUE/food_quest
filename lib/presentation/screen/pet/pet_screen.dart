@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PetScreen extends HookConsumerWidget {
@@ -10,7 +11,7 @@ class PetScreen extends HookConsumerWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/洞窟.png'),
+            image: AssetImage('assets/images/castle.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -34,7 +35,7 @@ class PetScreen extends HookConsumerWidget {
                   ),
                   Expanded(
                     child: SizedBox(
-                      height: 15,  // EXPのゲージを太くします
+                      height: 15, // EXPのゲージを太くします
                       child: LinearProgressIndicator(
                         value: 0,
                         backgroundColor: Colors.grey[300],
@@ -60,13 +61,13 @@ class PetScreen extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,  
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(width: 40),
                   const Icon(Icons.favorite, color: Colors.red, size: 40),
                   Expanded(
                     child: SizedBox(
-                      height: 10,  // ハートのゲージを太くします
+                      height: 10, // ハートのゲージを太くします
                       child: LinearProgressIndicator(
                         value: 0.5,
                         backgroundColor: Colors.grey[300],
