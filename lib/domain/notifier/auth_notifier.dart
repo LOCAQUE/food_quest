@@ -23,12 +23,26 @@ final authNotifierProvider =
 });
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
-  AuthNotifier(this.client) : super(AuthNotifierState());
+  AuthNotifier(this.client) : super(AuthNotifierState()) {
+    _addTextListeners();
+  }
   final SupabaseClient client;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+
+  final ValueNotifier<bool> isFormValid = ValueNotifier<bool>(false);
+
+  void _addTextListeners() {
+    emailController.addListener(_validateForm);
+    passwordController.addListener(_validateForm);
+  }
+
+  void _validateForm() {
+    isFormValid.value =
+        emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+  }
 
   Future<void> signUp() async {
     try {
