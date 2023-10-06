@@ -60,6 +60,8 @@ class SignUpProfile extends HookConsumerWidget {
                   child: CustomPicker(
                     options: genderList,
                     title: '性別',
+                    controller: genderController,
+                    defaultValue: '男性',
                   ),
                 ),
                 Padding(
@@ -74,6 +76,8 @@ class SignUpProfile extends HookConsumerWidget {
                   child: CustomPicker(
                     options: prefectures,
                     title: '居住地',
+                    controller: addressController,
+                    defaultValue: '北海道',
                   ),
                 ),
                 const Gap(80),
