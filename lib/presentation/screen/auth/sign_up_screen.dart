@@ -18,6 +18,19 @@ class SignUpScreen extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFF5E0),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFFFF5E0),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: ListView(
         children: [
           Padding(
