@@ -74,16 +74,7 @@ class SignUpScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 28),
-                  child: CustomTextField(
-                    title: '名前',
-                    isObscure: true,
-                    controller: authNotifier.nameController,
-                    hintText: '名前を入力してください',
-                  ),
-                ),
-                const Gap(280),
+                const Gap(360),
                 CustomButton(
                   text: 'はじめる',
                   onPressed: () async {

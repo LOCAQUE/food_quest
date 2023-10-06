@@ -57,7 +57,7 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
       final sendUserData = UserData(
         id: uid,
         email: emailController.text,
-        name: nameController.text,
+        name: '',
       ).toJson();
       await client.from('users').insert(sendUserData);
     } catch (e) {
