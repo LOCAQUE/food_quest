@@ -8,9 +8,9 @@ ThemeData customTheme() {
   return base.copyWith(
     primaryColor: AppColor.secondColor,
     cardColor: Colors.white,
-    scaffoldBackgroundColor: AppColor.firstColor,
+    scaffoldBackgroundColor: AppColor.backgroundColor,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColor.accentColor,
+      backgroundColor: AppColor.backgroundColor,
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColor.secondColor,

@@ -18,7 +18,6 @@ class SignUpProfile extends HookConsumerWidget {
     final authNotifier = ref.watch(authNotifierProvider.notifier);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E0),
       body: ListView(
         children: [
           Padding(
