@@ -20,6 +20,7 @@ class SignUpProfile extends HookConsumerWidget {
     return Scaffold(
       body: ListView(
         children: [
+          const SizedBox(height: 28),
           Padding(
             padding: const EdgeInsets.all(40),
             child: Column(
@@ -42,6 +43,7 @@ class SignUpProfile extends HookConsumerWidget {
                     hintText: 'ユーザー名を入力してください',
                   ),
                 ),
+                const Gap(10),
                 Padding(
                   padding: const EdgeInsets.only(top: 18),
                   child: CustomPicker(
@@ -50,7 +52,7 @@ class SignUpProfile extends HookConsumerWidget {
                     controller: authNotifier.addressController,
                   ),
                 ),
-                const Gap(360),
+                const Gap(330),
                 CustomButton(
                   text: 'ペット選択へ',
                   onPressed: () async {

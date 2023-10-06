@@ -74,7 +74,7 @@ class SignUpScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const Gap(360),
+                const Gap(250),
                 // linterによる警告を抑制するために、if文で分岐させています。
                 if (isButtonEnabled)
                   CustomButton(
