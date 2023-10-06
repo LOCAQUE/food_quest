@@ -139,8 +139,44 @@ class PetScreen extends HookConsumerWidget {
             width: 80,
             height: 80,
             child: GestureDetector(
-              onTap: () {},
-              // TO-DO: 画像の変更
+              onTap: () {
+                showModalBottomSheet<String>(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                    return FractionallySizedBox(
+                      heightFactor: 0.3,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10, // この数は要素の数によります
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            width: 100, // 各要素の幅を設定
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 30,
+                                    backgroundColor: AppColor.primaryColor,
+                                    child: Text(
+                                      '$index',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 30,
+                                      ),
+                                    ),
+                                  ),
+                                  Text('Item $index'),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                );
+              },
               child: Image.asset('assets/images/box.png'),
             ),
           ),
