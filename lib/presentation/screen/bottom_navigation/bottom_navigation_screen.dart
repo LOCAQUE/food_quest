@@ -6,9 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:navigator_scope/navigator_scope.dart';
 
 import 'package:food_quest/presentation/screen/blue_screen/blue_screen.dart';
-import 'package:food_quest/presentation/screen/green_screen/green_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/home_screen.dart';
 import 'package:food_quest/presentation/screen/orange_screen/orange_screen.dart';
+import 'package:food_quest/presentation/screen/setting_screen/setting_screen.dart';
 
 class BottomNavigationScreen extends HookConsumerWidget {
   const BottomNavigationScreen({super.key});
@@ -30,7 +30,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
       const HomeScreen(),
       const BlueScreen(),
       const OrangeScreen(),
-      const GreenScreen(),
+      const SettingScreen(),
     ];
 
     return Scaffold(
