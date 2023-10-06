@@ -75,12 +75,13 @@ class SignUpScreen extends HookConsumerWidget {
                   ),
                 ),
                 const Gap(360),
-                if (authNotifier.emailController != null &&
-                    authNotifier.passwordController != null) ...[
+                // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
+                if (authNotifier.emailController.text.isEmpty &&
+                    authNotifier.passwordController.text.isEmpty) ...[
                   CustomButton(
                     text: 'はじめる',
                     variant: ButtonVariant.disabled,
-                    onPressed: () async {},
+                    onPressed: () {},
                   ),
                 ] else ...[
                   CustomButton(
