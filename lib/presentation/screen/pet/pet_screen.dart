@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/gen/colors.gen.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,7 +26,7 @@ class PetScreen extends ConsumerWidget {
                 children: [
                   const CircleAvatar(
                     radius: 30,
-                    backgroundColor: Color(0xFFEE7D50),
+                    backgroundColor: AppColor.primaryColor,
                     child: Text(
                       '1',
                       style: TextStyle(
@@ -38,6 +39,7 @@ class PetScreen extends ConsumerWidget {
                     child: SizedBox(
                       height: 15, // EXPのゲージを太くします
                       child: LinearProgressIndicator(
+                        borderRadius: BorderRadius.circular(50),
                         value: 0,
                         backgroundColor: Colors.grey[300],
                         valueColor: const AlwaysStoppedAnimation(
@@ -71,6 +73,7 @@ class PetScreen extends ConsumerWidget {
                       height: 10, // ハートのゲージを太くします
                       child: LinearProgressIndicator(
                         value: 0.5,
+                        borderRadius: BorderRadius.circular(50),
                         backgroundColor: Colors.grey[300],
                         valueColor: const AlwaysStoppedAnimation(
                           Color(0xFFE4AB94),
