@@ -61,7 +61,6 @@ class SignUpProfile extends HookConsumerWidget {
                     options: genderList,
                     title: '性別',
                     controller: genderController,
-                    defaultValue: '男性',
                   ),
                 ),
                 Padding(
@@ -77,7 +76,6 @@ class SignUpProfile extends HookConsumerWidget {
                     options: prefectures,
                     title: '居住地',
                     controller: addressController,
-                    defaultValue: '北海道',
                   ),
                 ),
                 const Gap(80),
@@ -91,7 +89,6 @@ class SignUpProfile extends HookConsumerWidget {
                       ),
                     );
                   },
-                  variant: ButtonVariant.primary,
                 ),
               ],
             ),

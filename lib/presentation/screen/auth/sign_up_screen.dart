@@ -96,7 +96,6 @@ class SignUpScreen extends HookConsumerWidget {
                       );
                     });
                   },
-                  variant: ButtonVariant.primary,
                 ),
               ],
             ),
