@@ -135,10 +135,10 @@ class PetScreen extends HookConsumerWidget {
           ),
           // キャラクターの画像
           // TO-DO: gif画像に変更する
-          Positioned(
-            right: 120,
-            bottom: 270,
-            child: Image.asset('assets/images/ushi.png'),
+          Center(
+            child: SizedBox(
+              child: Image.asset('assets/images/gif/a10.gif'),
+            ),
           ),
           // 宝箱の画像
           Positioned(
