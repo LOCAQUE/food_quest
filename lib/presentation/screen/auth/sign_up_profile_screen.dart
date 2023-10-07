@@ -8,7 +8,7 @@ import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
-import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
+import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
 
 class SignUpProfile extends HookConsumerWidget {
   const SignUpProfile({super.key});
@@ -61,7 +61,7 @@ class SignUpProfile extends HookConsumerWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute<void>(
-                          builder: (context) => const SelectPetScreen(),
+                          builder: (context) => const BottomNavigationScreen(),
                         ),
                       );
                     });
