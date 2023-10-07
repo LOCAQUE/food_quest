@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$QuestionTaskNotifierState {
   List<QuestionResponse>? get questionList =>
       throw _privateConstructorUsedError;
+  List<QuestionResponse>? get myQuestionList =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuestionTaskNotifierStateCopyWith<QuestionTaskNotifierState> get copyWith =>
@@ -30,7 +32,9 @@ abstract class $QuestionTaskNotifierStateCopyWith<$Res> {
           $Res Function(QuestionTaskNotifierState) then) =
       _$QuestionTaskNotifierStateCopyWithImpl<$Res, QuestionTaskNotifierState>;
   @useResult
-  $Res call({List<QuestionResponse>? questionList});
+  $Res call(
+      {List<QuestionResponse>? questionList,
+      List<QuestionResponse>? myQuestionList});
 }
 
 /// @nodoc
@@ -48,11 +52,16 @@ class _$QuestionTaskNotifierStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? questionList = freezed,
+    Object? myQuestionList = freezed,
   }) {
     return _then(_value.copyWith(
       questionList: freezed == questionList
           ? _value.questionList
           : questionList // ignore: cast_nullable_to_non_nullable
+              as List<QuestionResponse>?,
+      myQuestionList: freezed == myQuestionList
+          ? _value.myQuestionList
+          : myQuestionList // ignore: cast_nullable_to_non_nullable
               as List<QuestionResponse>?,
     ) as $Val);
   }
@@ -67,7 +76,9 @@ abstract class _$$QuestionTaskNotifierStateImplCopyWith<$Res>
       __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<QuestionResponse>? questionList});
+  $Res call(
+      {List<QuestionResponse>? questionList,
+      List<QuestionResponse>? myQuestionList});
 }
 
 /// @nodoc
@@ -84,11 +95,16 @@ class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? questionList = freezed,
+    Object? myQuestionList = freezed,
   }) {
     return _then(_$QuestionTaskNotifierStateImpl(
       questionList: freezed == questionList
           ? _value._questionList
           : questionList // ignore: cast_nullable_to_non_nullable
+              as List<QuestionResponse>?,
+      myQuestionList: freezed == myQuestionList
+          ? _value._myQuestionList
+          : myQuestionList // ignore: cast_nullable_to_non_nullable
               as List<QuestionResponse>?,
     ));
   }
@@ -97,8 +113,11 @@ class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
-  _$QuestionTaskNotifierStateImpl({final List<QuestionResponse>? questionList})
-      : _questionList = questionList;
+  _$QuestionTaskNotifierStateImpl(
+      {final List<QuestionResponse>? questionList,
+      final List<QuestionResponse>? myQuestionList})
+      : _questionList = questionList,
+        _myQuestionList = myQuestionList;
 
   final List<QuestionResponse>? _questionList;
   @override
@@ -110,9 +129,19 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<QuestionResponse>? _myQuestionList;
+  @override
+  List<QuestionResponse>? get myQuestionList {
+    final value = _myQuestionList;
+    if (value == null) return null;
+    if (_myQuestionList is EqualUnmodifiableListView) return _myQuestionList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'QuestionTaskNotifierState(questionList: $questionList)';
+    return 'QuestionTaskNotifierState(questionList: $questionList, myQuestionList: $myQuestionList)';
   }
 
   @override
@@ -121,12 +150,16 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
         (other.runtimeType == runtimeType &&
             other is _$QuestionTaskNotifierStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._questionList, _questionList));
+                .equals(other._questionList, _questionList) &&
+            const DeepCollectionEquality()
+                .equals(other._myQuestionList, _myQuestionList));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_questionList));
+      runtimeType,
+      const DeepCollectionEquality().hash(_questionList),
+      const DeepCollectionEquality().hash(_myQuestionList));
 
   @JsonKey(ignore: true)
   @override
@@ -138,11 +171,14 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
 
 abstract class _QuestionTaskNotifierState implements QuestionTaskNotifierState {
   factory _QuestionTaskNotifierState(
-          {final List<QuestionResponse>? questionList}) =
+          {final List<QuestionResponse>? questionList,
+          final List<QuestionResponse>? myQuestionList}) =
       _$QuestionTaskNotifierStateImpl;
 
   @override
   List<QuestionResponse>? get questionList;
+  @override
+  List<QuestionResponse>? get myQuestionList;
   @override
   @JsonKey(ignore: true)
   _$$QuestionTaskNotifierStateImplCopyWith<_$QuestionTaskNotifierStateImpl>

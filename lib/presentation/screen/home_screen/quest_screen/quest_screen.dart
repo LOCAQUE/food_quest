@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen_notifier.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
+import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen_notifier.dart';
 
 class QuestScreen extends HookConsumerWidget {
   const QuestScreen({super.key});
@@ -15,11 +15,20 @@ class QuestScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final screenNotifier = ref.watch(questScreenNotifierProvider.notifier);
+
+    final isLoading = ref.watch(
+      questScreenNotifierProvider.select((state) => state.isLoading),
+    );
     final questionList = ref.watch(
           questionTaskNotifierProvider.select((state) => state.questionList),
         ) ??
         [];
+
+    if (isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
 
     if (questionList.isEmpty) {
       return const SizedBox.shrink();

@@ -26,6 +26,8 @@ class QuestScreenNotifier extends StateNotifier<QuestScreenState> {
   final Ref ref;
 
   void _init() {
+    state = state.copyWith(isLoading: true);
     ref.watch(questionTaskNotifierProvider.notifier).getQuestList();
+    state = state.copyWith(isLoading: false);
   }
 }

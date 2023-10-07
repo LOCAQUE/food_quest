@@ -13,6 +13,7 @@ part 'question_task_notifier.freezed.dart';
 class QuestionTaskNotifierState with _$QuestionTaskNotifierState {
   factory QuestionTaskNotifierState({
     List<QuestionResponse>? questionList,
+    List<QuestionResponse>? myQuestionList,
   }) = _QuestionTaskNotifierState;
 }
 
@@ -52,6 +53,7 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
     }
   }
 
+  //ホームの質問一覧
   Future<void> getQuestList() async {
     try {
       final response =
@@ -59,6 +61,23 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
       final questionList = response.map(QuestionResponse.fromJson).toList();
       state = state.copyWith(questionList: questionList);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  //自分の回答一覧
+  Future<void> getMyQuestList() async {
+    final currentUserId = client.auth.currentUser?.id;
+
+    try {
+      final response = await client
+          .from('quests')
+          .select<PostgrestList>('*, users(*)')
+          .eq('userId', currentUserId);
+
+      final myQuestionList = response.map(QuestionResponse.fromJson).toList();
+      state = state.copyWith(myQuestionList: myQuestionList);
     } catch (e) {
       debugPrint(e.toString());
     }
