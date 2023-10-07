@@ -22,35 +22,44 @@ class TaskComponent extends StatelessWidget {
         child: SizedBox(
           width: 310,
           height: 95,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(text),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    height: 16, // EXPのゲージを太くします
-                    width: 248,
-                    child: LinearProgressIndicator(
-                      borderRadius: BorderRadius.circular(50),
-                      value: now / achievement,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: const AlwaysStoppedAnimation(
-                        AppColor.primaryColor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(text),
+                  ],
+                ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 16, // EXPのゲージを太くします
+                        child: LinearProgressIndicator(
+                          borderRadius: BorderRadius.circular(50),
+                          value: now / achievement,
+                          backgroundColor: Colors.grey[300],
+                          valueColor: const AlwaysStoppedAnimation(
+                            AppColor.primaryColor,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    '${now.toString()} / ${achievement.toString()}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.white,
+                    Text(
+                      '${now.toString()} / ${achievement.toString()}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.white,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
