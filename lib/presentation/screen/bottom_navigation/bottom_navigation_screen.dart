@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:navigator_scope/navigator_scope.dart';
 
@@ -18,7 +19,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bottomNavIndex = useState<int>(0);
     //フローティングボタンをからpushするとボトムバー消えてしまう
-    final isPushFloating = useState(false);
+    final isPushFloating = useState(true);
 
     //ボトムバーに並べるアイコンのリスト
     final iconList = <IconData>[
@@ -30,7 +31,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
 
     //真ん中を除くページのリスト
     final pageList = [
-      const HomeScreen(),
+      const ProfileScreen(),
       const BlueScreen(),
       const OrangeScreen(),
       const SettingScreen(),
@@ -74,7 +75,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
           bottomNavIndex.value = index;
         },
         tabBuilder: (int index, bool isActive) {
-          final color = isActive ? Colors.orange : Colors.grey;
+          final color = isActive && !isPushFloating.value ? Colors.orange : Colors.grey;
           return Icon(
             iconList[index],
             size: 32,

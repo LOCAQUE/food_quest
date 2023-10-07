@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/presentation/screen/home_screen/task_screen.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
-import 'package:food_quest/presentation/screen/home_screen/quest_screen.dart';
+import 'package:food_quest/presentation/screen/profile_screen/answered_list_screen.dart';
+import 'package:food_quest/presentation/screen/profile_screen/asked_list_screen.dart';
 
-class HomeScreen extends HookConsumerWidget {
-  const HomeScreen({super.key});
+class ProfileScreen extends HookConsumerWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,15 +22,15 @@ class HomeScreen extends HookConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: 50),
               indicatorColor: AppColor.primaryColor,
               tabs: [
-                Tab(text: 'Quest'),
-                Tab(text: 'Task'),
+                Tab(text: 'Asked'),
+                Tab(text: 'Answered'),
               ],
             ),
             Expanded(
               child: TabBarView(
                 children: [
-                  QuestScreen(),
-                  TaskScreen(),
+                  AskedListScreen(),
+                  AnsweredListScreen(),
                 ],
               ),
             ),
