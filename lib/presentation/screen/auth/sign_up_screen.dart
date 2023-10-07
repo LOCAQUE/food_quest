@@ -4,7 +4,10 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/auth_notifier.dart';
+import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
+import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 
 class SignUpScreen extends HookConsumerWidget {
   const SignUpScreen({super.key});
@@ -35,7 +38,6 @@ class SignUpScreen extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //Gap効いてない気がする...
                 const Gap(10),
                 const Text(
                   '新規登録',
@@ -64,47 +66,38 @@ class SignUpScreen extends HookConsumerWidget {
                 ),
                 const Align(
                   alignment: Alignment.centerRight,
-                  child: Text('8文字以上12文字以下の半角英数字'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 28),
-                  child: CustomTextField(
-                    title: '名前',
-                    isObscure: true,
-                    controller: authNotifier.nameController,
-                    hintText: '名前を入力してください',
+                  child: Text(
+                    '8文字以上12文字以下の半角英数字',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColor.textColor,
+                    ),
                   ),
                 ),
-                const Gap(20),
-                SizedBox(
-                  height: 64,
-                  width: 320,
-                  child: ElevatedButton(
+                const Gap(360),
+                // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
+                if (authNotifier.emailController.text.isEmpty &&
+                    authNotifier.passwordController.text.isEmpty) ...[
+                  CustomButton(
+                    text: 'はじめる',
+                    variant: ButtonVariant.disabled,
+                    onPressed: () {},
+                  ),
+                ] else ...[
+                  CustomButton(
+                    text: 'はじめる',
                     onPressed: () async {
-                      await authNotifier.signUp();
+                      await authNotifier.signUp().then((_) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => SignUpProfile(),
+                          ),
+                        );
+                      });
                     },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFF1a0b08),
-                      ),
-                      foregroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFFFF5E0),
-                      ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                      ),
-                    ),
-                    child: const Text(
-                      'はじめる',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ),
