@@ -27,5 +27,5 @@ class QuestScreenNotifier extends StateNotifier<QuestScreenState> {
 
   void _init() {
     ref.watch(questionTaskNotifierProvider.notifier).getQuestList();
-
+  }
 }

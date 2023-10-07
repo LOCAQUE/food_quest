@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen_notifier.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,6 +15,7 @@ class QuestScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final screenNotifier = ref.watch(questScreenNotifierProvider.notifier);
     final questionList = ref.watch(
           questionTaskNotifierProvider.select((state) => state.questionList),
         ) ??
