@@ -10,17 +10,16 @@ class TaskComponent extends HookConsumerWidget {
     required this.text,
     required this.now,
     required this.achievement,
-    required this.isDone,
     super.key,
   });
 
   final String text;
   final int now;
   final int achievement;
-  final bool isDone;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDone = now == achievement;
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
