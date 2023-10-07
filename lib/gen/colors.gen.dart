@@ -16,6 +16,9 @@ class AppColor {
   /// Color: #6D8B74
   static const Color accentColor = Color(0xFF6D8B74);
 
+  /// Color: #FFF5E0
+  static const Color backgroundColor = Color(0xFFFFF5E0);
+
   /// Color: #8E8E93
   static const Color disabledColor = Color(0xFF8E8E93);
 

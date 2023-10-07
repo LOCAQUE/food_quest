@@ -31,6 +31,7 @@ class TopScreen extends StatelessWidget {
             ),
             const Gap(260),
             CustomButton(
+              variant: ButtonVariant.primary,
               text: '新規登録はこちら',
               onPressed: () {
                 Navigator.push(
