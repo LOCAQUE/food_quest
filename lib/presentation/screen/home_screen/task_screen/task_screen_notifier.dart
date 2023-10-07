@@ -27,7 +27,7 @@ class TaskScreenNotifier extends StateNotifier<TaskScreenState> {
 
   void _init() {
     state = state.copyWith(isLoading: true);
-    ref.watch(questionTaskNotifierProvider.notifier).getTaskList();
+    ref.watch(questionTaskNotifierProvider.notifier).getTask();
     state = state.copyWith(isLoading: false);
   }
 }

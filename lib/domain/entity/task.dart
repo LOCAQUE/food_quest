@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'task.freezed.dart';
 part 'task.g.dart';
@@ -22,6 +23,12 @@ abstract class TaskResponse with _$TaskResponse {
     required String task,
     required int targetNumber,
   }) = _TaskResponse;
+
+  const TaskResponse._();
+
   factory TaskResponse.fromJson(Map<String, dynamic> json) =>
       _$TaskResponseFromJson(json);
+
+  // DateTimeから"yyyy-MM-dd"形式の文字列に変換
+  String get formattedCreatedAt => DateFormat('yyyy-MM-dd').format(createdAt);
 }

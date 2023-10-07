@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/domain/entity/task.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'question_task_notifier.freezed.dart';
@@ -14,6 +15,7 @@ class QuestionTaskNotifierState with _$QuestionTaskNotifierState {
   factory QuestionTaskNotifierState({
     List<QuestionResponse>? questionList,
     List<QuestionResponse>? myQuestionList,
+    List<TaskResponse>? taskList,
   }) = _QuestionTaskNotifierState;
 }
 
@@ -78,6 +80,22 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
       final myQuestionList = response.map(QuestionResponse.fromJson).toList();
       state = state.copyWith(myQuestionList: myQuestionList);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  // user_tasksテーブルからcurrentUserIdのtaskを取得
+  Future<void> getTask() async {
+    final currentUserId = client.auth.currentUser?.id;
+
+    try {
+      final response = await client.from('tasks').select<PostgrestList>();
+      // .eq('userId', currentUserId);
+
+      print('response: $response');
+      final taskList = response.map(TaskResponse.fromJson).toList();
+      state = state.copyWith(taskList: taskList);
     } catch (e) {
       debugPrint(e.toString());
     }

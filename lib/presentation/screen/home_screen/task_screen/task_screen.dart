@@ -11,6 +11,7 @@ class TaskScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('isLoading');
     final isLoading = ref.watch(
       taskScreenNotifierProvider.select((state) => state.isLoading),
     );
@@ -19,6 +20,7 @@ class TaskScreen extends HookConsumerWidget {
         ) ??
         [];
     print('taskList: $taskList');
+    print('taskList length: ${taskList.length}');
 
     if (isLoading) {
       return const Scaffold(
@@ -34,10 +36,14 @@ class TaskScreen extends HookConsumerWidget {
         itemCount: taskList.length,
         itemBuilder: (context, index) {
           final task = taskList[index];
+          if (task.task == null) {
+            return const SizedBox.shrink();
+          }
+          print('task: ${task.task}');
           return const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: TaskComponent(
-              text: '質問を作成する',
+              text: task.task,
               achievement: 4,
               target: 5,
             ),
