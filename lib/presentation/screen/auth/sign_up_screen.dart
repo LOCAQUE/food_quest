@@ -78,6 +78,7 @@ class SignUpScreen extends HookConsumerWidget {
                 // linterによる警告を抑制するために、if文で分岐させています。
                 if (isButtonEnabled)
                   CustomButton(
+                    variant: ButtonVariant.primary,
                     text: 'はじめる',
                     onPressed: () async {
                       await authNotifier.signUp().then((_) {

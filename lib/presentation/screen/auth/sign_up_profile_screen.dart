@@ -54,6 +54,7 @@ class SignUpProfile extends HookConsumerWidget {
                 ),
                 const Gap(330),
                 CustomButton(
+                  variant: ButtonVariant.primary,
                   text: 'ペット選択へ',
                   onPressed: () async {
                     await authNotifier.updateUserData().then((_) {
