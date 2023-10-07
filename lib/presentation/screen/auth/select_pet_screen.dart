@@ -38,7 +38,7 @@ class _PetSelectorState extends State<PetSelector> {
                 ),
                 const Text(
                   'Back',
-                  style: TextStyle(fontSize: 20), 
+                  style: TextStyle(fontSize: 20),
                 ),
               ],
             ),
@@ -59,7 +59,7 @@ class _PetSelectorState extends State<PetSelector> {
           final attributes = <String>['火属性', '水属性', '土属性'];
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10), 
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
@@ -67,14 +67,16 @@ class _PetSelectorState extends State<PetSelector> {
                 });
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black, backgroundColor: Colors.white, 
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(width: 0.1),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding: const EdgeInsets.symmetric(
-                  vertical: 20, 
-                  horizontal: 24,),
+                  vertical: 20,
+                  horizontal: 24,
+                ),
               ),
               child: Row(
                 children: [
@@ -113,11 +115,12 @@ class _PetSelectorState extends State<PetSelector> {
                   : null,
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: _selectedPet != null ? Colors.orange : Colors.grey[300],
+                backgroundColor:
+                    _selectedPet != null ? Colors.orange : Colors.grey[300],
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 20), 
+                padding: const EdgeInsets.symmetric(vertical: 20),
               ),
               child: const Text('次へ'),
             ),
