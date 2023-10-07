@@ -15,3 +15,18 @@ abstract class Question with _$Question {
   factory Question.fromJson(Map<String, dynamic> json) =>
       _$QuestionFromJson(json);
 }
+
+@freezed
+abstract class QuestionResponse with _$QuestionResponse {
+  const factory QuestionResponse({
+    required int id,
+    required DateTime createdAt,
+    required String contents,
+    required String userId,
+    required int minimumBudget,
+    required int maximumBudget,
+    required DateTime deadLine,
+  }) = _QuestionResponse;
+  factory QuestionResponse.fromJson(Map<String, dynamic> json) =>
+      _$QuestionResponseFromJson(json);
+}
