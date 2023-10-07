@@ -6,8 +6,6 @@ part 'question.g.dart';
 @freezed
 abstract class Question with _$Question {
   const factory Question({
-    required int id,
-    required DateTime createdAt,
     required String contents,
     required String userId,
     required int minimumBudget,

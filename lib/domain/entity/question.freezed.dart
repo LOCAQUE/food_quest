@@ -20,8 +20,6 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Question {
-  int get id => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
   String get contents => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   int get minimumBudget => throw _privateConstructorUsedError;
@@ -40,9 +38,7 @@ abstract class $QuestionCopyWith<$Res> {
       _$QuestionCopyWithImpl<$Res, Question>;
   @useResult
   $Res call(
-      {int id,
-      DateTime createdAt,
-      String contents,
+      {String contents,
       String userId,
       int minimumBudget,
       int maximumBudget,
@@ -62,8 +58,6 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? createdAt = null,
     Object? contents = null,
     Object? userId = null,
     Object? minimumBudget = null,
@@ -71,14 +65,6 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
     Object? deadLine = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       contents: null == contents
           ? _value.contents
           : contents // ignore: cast_nullable_to_non_nullable
@@ -112,9 +98,7 @@ abstract class _$$QuestionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      DateTime createdAt,
-      String contents,
+      {String contents,
       String userId,
       int minimumBudget,
       int maximumBudget,
@@ -132,8 +116,6 @@ class __$$QuestionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? createdAt = null,
     Object? contents = null,
     Object? userId = null,
     Object? minimumBudget = null,
@@ -141,14 +123,6 @@ class __$$QuestionImplCopyWithImpl<$Res>
     Object? deadLine = null,
   }) {
     return _then(_$QuestionImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       contents: null == contents
           ? _value.contents
           : contents // ignore: cast_nullable_to_non_nullable
@@ -177,9 +151,7 @@ class __$$QuestionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$QuestionImpl implements _Question {
   const _$QuestionImpl(
-      {required this.id,
-      required this.createdAt,
-      required this.contents,
+      {required this.contents,
       required this.userId,
       required this.minimumBudget,
       required this.maximumBudget,
@@ -188,10 +160,6 @@ class _$QuestionImpl implements _Question {
   factory _$QuestionImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionImplFromJson(json);
 
-  @override
-  final int id;
-  @override
-  final DateTime createdAt;
   @override
   final String contents;
   @override
@@ -205,7 +173,7 @@ class _$QuestionImpl implements _Question {
 
   @override
   String toString() {
-    return 'Question(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine)';
+    return 'Question(contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine)';
   }
 
   @override
@@ -213,9 +181,6 @@ class _$QuestionImpl implements _Question {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.contents, contents) ||
                 other.contents == contents) &&
             (identical(other.userId, userId) || other.userId == userId) &&
@@ -229,8 +194,8 @@ class _$QuestionImpl implements _Question {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, contents, userId,
-      minimumBudget, maximumBudget, deadLine);
+  int get hashCode => Object.hash(
+      runtimeType, contents, userId, minimumBudget, maximumBudget, deadLine);
 
   @JsonKey(ignore: true)
   @override
@@ -248,9 +213,7 @@ class _$QuestionImpl implements _Question {
 
 abstract class _Question implements Question {
   const factory _Question(
-      {required final int id,
-      required final DateTime createdAt,
-      required final String contents,
+      {required final String contents,
       required final String userId,
       required final int minimumBudget,
       required final int maximumBudget,
@@ -259,10 +222,6 @@ abstract class _Question implements Question {
   factory _Question.fromJson(Map<String, dynamic> json) =
       _$QuestionImpl.fromJson;
 
-  @override
-  int get id;
-  @override
-  DateTime get createdAt;
   @override
   String get contents;
   @override

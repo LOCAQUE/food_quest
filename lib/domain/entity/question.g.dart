@@ -8,8 +8,6 @@ part of 'question.dart';
 
 _$QuestionImpl _$$QuestionImplFromJson(Map<String, dynamic> json) =>
     _$QuestionImpl(
-      id: json['id'] as int,
-      createdAt: DateTime.parse(json['createdAt'] as String),
       contents: json['contents'] as String,
       userId: json['userId'] as String,
       minimumBudget: json['minimumBudget'] as int,
@@ -19,8 +17,6 @@ _$QuestionImpl _$$QuestionImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$QuestionImplToJson(_$QuestionImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
       'contents': instance.contents,
       'userId': instance.userId,
       'minimumBudget': instance.minimumBudget,
