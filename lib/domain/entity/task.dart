@@ -13,3 +13,15 @@ abstract class Task with _$Task {
   }) = _Task;
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }
+
+@freezed
+abstract class TaskResponse with _$TaskResponse {
+  const factory TaskResponse({
+    required int id,
+    required DateTime createdAt,
+    required String task,
+    required int targetNumber,
+  }) = _TaskResponse;
+  factory TaskResponse.fromJson(Map<String, dynamic> json) =>
+      _$TaskResponseFromJson(json);
+}
