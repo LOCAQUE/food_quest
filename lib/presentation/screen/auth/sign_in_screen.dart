@@ -81,12 +81,6 @@ class SignInScreen extends HookConsumerWidget {
                 if (isButtonEnabled)
                   CustomButton(
                     text: 'ログイン',
-                    variant: ButtonVariant.disabled,
-                    onPressed: () {},
-                  )
-                else
-                  CustomButton(
-                    text: 'ログイン',
                     variant: ButtonVariant.primary,
                     onPressed: () async {
                       await authNotifier.signIn().then((_) {
@@ -99,6 +93,12 @@ class SignInScreen extends HookConsumerWidget {
                         );
                       });
                     },
+                  )
+                else
+                  CustomButton(
+                    text: 'ログイン',
+                    variant: ButtonVariant.disabled,
+                    onPressed: () {},
                   ),
               ],
             ),
