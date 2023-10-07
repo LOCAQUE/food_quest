@@ -204,16 +204,227 @@ abstract class _Task implements Task {
       throw _privateConstructorUsedError;
 }
 
+UserTask _$UserTaskFromJson(Map<String, dynamic> json) {
+  return _UserTask.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserTask {
+  int get id => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  int get taskId => throw _privateConstructorUsedError;
+  int get achievedNumber => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserTaskCopyWith<UserTask> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserTaskCopyWith<$Res> {
+  factory $UserTaskCopyWith(UserTask value, $Res Function(UserTask) then) =
+      _$UserTaskCopyWithImpl<$Res, UserTask>;
+  @useResult
+  $Res call(
+      {int id, DateTime createdAt, int taskId, int achievedNumber, int userId});
+}
+
+/// @nodoc
+class _$UserTaskCopyWithImpl<$Res, $Val extends UserTask>
+    implements $UserTaskCopyWith<$Res> {
+  _$UserTaskCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? taskId = null,
+    Object? achievedNumber = null,
+    Object? userId = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+      achievedNumber: null == achievedNumber
+          ? _value.achievedNumber
+          : achievedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UserTaskImplCopyWith<$Res>
+    implements $UserTaskCopyWith<$Res> {
+  factory _$$UserTaskImplCopyWith(
+          _$UserTaskImpl value, $Res Function(_$UserTaskImpl) then) =
+      __$$UserTaskImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id, DateTime createdAt, int taskId, int achievedNumber, int userId});
+}
+
+/// @nodoc
+class __$$UserTaskImplCopyWithImpl<$Res>
+    extends _$UserTaskCopyWithImpl<$Res, _$UserTaskImpl>
+    implements _$$UserTaskImplCopyWith<$Res> {
+  __$$UserTaskImplCopyWithImpl(
+      _$UserTaskImpl _value, $Res Function(_$UserTaskImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? taskId = null,
+    Object? achievedNumber = null,
+    Object? userId = null,
+  }) {
+    return _then(_$UserTaskImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+      achievedNumber: null == achievedNumber
+          ? _value.achievedNumber
+          : achievedNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserTaskImpl implements _UserTask {
+  const _$UserTaskImpl(
+      {required this.id,
+      required this.createdAt,
+      required this.taskId,
+      required this.achievedNumber,
+      required this.userId});
+
+  factory _$UserTaskImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserTaskImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final DateTime createdAt;
+  @override
+  final int taskId;
+  @override
+  final int achievedNumber;
+  @override
+  final int userId;
+
+  @override
+  String toString() {
+    return 'UserTask(id: $id, createdAt: $createdAt, taskId: $taskId, achievedNumber: $achievedNumber, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserTaskImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.achievedNumber, achievedNumber) ||
+                other.achievedNumber == achievedNumber) &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, createdAt, taskId, achievedNumber, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserTaskImplCopyWith<_$UserTaskImpl> get copyWith =>
+      __$$UserTaskImplCopyWithImpl<_$UserTaskImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserTaskImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserTask implements UserTask {
+  const factory _UserTask(
+      {required final int id,
+      required final DateTime createdAt,
+      required final int taskId,
+      required final int achievedNumber,
+      required final int userId}) = _$UserTaskImpl;
+
+  factory _UserTask.fromJson(Map<String, dynamic> json) =
+      _$UserTaskImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  DateTime get createdAt;
+  @override
+  int get taskId;
+  @override
+  int get achievedNumber;
+  @override
+  int get userId;
+  @override
+  @JsonKey(ignore: true)
+  _$$UserTaskImplCopyWith<_$UserTaskImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 TaskResponse _$TaskResponseFromJson(Map<String, dynamic> json) {
   return _TaskResponse.fromJson(json);
 }
 
 /// @nodoc
 mixin _$TaskResponse {
-  int get id => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  String get task => throw _privateConstructorUsedError;
-  int get targetNumber => throw _privateConstructorUsedError;
+  Task get tasks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -227,7 +438,9 @@ abstract class $TaskResponseCopyWith<$Res> {
           TaskResponse value, $Res Function(TaskResponse) then) =
       _$TaskResponseCopyWithImpl<$Res, TaskResponse>;
   @useResult
-  $Res call({int id, DateTime createdAt, String task, int targetNumber});
+  $Res call({Task tasks});
+
+  $TaskCopyWith<$Res> get tasks;
 }
 
 /// @nodoc
@@ -243,29 +456,22 @@ class _$TaskResponseCopyWithImpl<$Res, $Val extends TaskResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? createdAt = null,
-    Object? task = null,
-    Object? targetNumber = null,
+    Object? tasks = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      task: null == task
-          ? _value.task
-          : task // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetNumber: null == targetNumber
-          ? _value.targetNumber
-          : targetNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+      tasks: null == tasks
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as Task,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TaskCopyWith<$Res> get tasks {
+    return $TaskCopyWith<$Res>(_value.tasks, (value) {
+      return _then(_value.copyWith(tasks: value) as $Val);
+    });
   }
 }
 
@@ -277,7 +483,10 @@ abstract class _$$TaskResponseImplCopyWith<$Res>
       __$$TaskResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, DateTime createdAt, String task, int targetNumber});
+  $Res call({Task tasks});
+
+  @override
+  $TaskCopyWith<$Res> get tasks;
 }
 
 /// @nodoc
@@ -291,28 +500,13 @@ class __$$TaskResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? createdAt = null,
-    Object? task = null,
-    Object? targetNumber = null,
+    Object? tasks = null,
   }) {
     return _then(_$TaskResponseImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      task: null == task
-          ? _value.task
-          : task // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetNumber: null == targetNumber
-          ? _value.targetNumber
-          : targetNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+      tasks: null == tasks
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as Task,
     ));
   }
 }
@@ -320,28 +514,17 @@ class __$$TaskResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TaskResponseImpl extends _TaskResponse {
-  const _$TaskResponseImpl(
-      {required this.id,
-      required this.createdAt,
-      required this.task,
-      required this.targetNumber})
-      : super._();
+  const _$TaskResponseImpl({required this.tasks}) : super._();
 
   factory _$TaskResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskResponseImplFromJson(json);
 
   @override
-  final int id;
-  @override
-  final DateTime createdAt;
-  @override
-  final String task;
-  @override
-  final int targetNumber;
+  final Task tasks;
 
   @override
   String toString() {
-    return 'TaskResponse(id: $id, createdAt: $createdAt, task: $task, targetNumber: $targetNumber)';
+    return 'TaskResponse(tasks: $tasks)';
   }
 
   @override
@@ -349,18 +532,12 @@ class _$TaskResponseImpl extends _TaskResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskResponseImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.task, task) || other.task == task) &&
-            (identical(other.targetNumber, targetNumber) ||
-                other.targetNumber == targetNumber));
+            (identical(other.tasks, tasks) || other.tasks == tasks));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, createdAt, task, targetNumber);
+  int get hashCode => Object.hash(runtimeType, tasks);
 
   @JsonKey(ignore: true)
   @override
@@ -377,24 +554,14 @@ class _$TaskResponseImpl extends _TaskResponse {
 }
 
 abstract class _TaskResponse extends TaskResponse {
-  const factory _TaskResponse(
-      {required final int id,
-      required final DateTime createdAt,
-      required final String task,
-      required final int targetNumber}) = _$TaskResponseImpl;
+  const factory _TaskResponse({required final Task tasks}) = _$TaskResponseImpl;
   const _TaskResponse._() : super._();
 
   factory _TaskResponse.fromJson(Map<String, dynamic> json) =
       _$TaskResponseImpl.fromJson;
 
   @override
-  int get id;
-  @override
-  DateTime get createdAt;
-  @override
-  String get task;
-  @override
-  int get targetNumber;
+  Task get tasks;
   @override
   @JsonKey(ignore: true)
   _$$TaskResponseImplCopyWith<_$TaskResponseImpl> get copyWith =>
