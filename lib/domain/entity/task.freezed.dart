@@ -211,10 +211,10 @@ UserTask _$UserTaskFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserTask {
   int get id => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  int get taskId => throw _privateConstructorUsedError;
-  int get achievedNumber => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
+  DateTime get created_at => throw _privateConstructorUsedError;
+  int get task_id => throw _privateConstructorUsedError;
+  int get achieved_number => throw _privateConstructorUsedError;
+  int get user_id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -228,7 +228,11 @@ abstract class $UserTaskCopyWith<$Res> {
       _$UserTaskCopyWithImpl<$Res, UserTask>;
   @useResult
   $Res call(
-      {int id, DateTime createdAt, int taskId, int achievedNumber, int userId});
+      {int id,
+      DateTime created_at,
+      int task_id,
+      int achieved_number,
+      int user_id});
 }
 
 /// @nodoc
@@ -245,31 +249,31 @@ class _$UserTaskCopyWithImpl<$Res, $Val extends UserTask>
   @override
   $Res call({
     Object? id = null,
-    Object? createdAt = null,
-    Object? taskId = null,
-    Object? achievedNumber = null,
-    Object? userId = null,
+    Object? created_at = null,
+    Object? task_id = null,
+    Object? achieved_number = null,
+    Object? user_id = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      taskId: null == taskId
-          ? _value.taskId
-          : taskId // ignore: cast_nullable_to_non_nullable
+      task_id: null == task_id
+          ? _value.task_id
+          : task_id // ignore: cast_nullable_to_non_nullable
               as int,
-      achievedNumber: null == achievedNumber
-          ? _value.achievedNumber
-          : achievedNumber // ignore: cast_nullable_to_non_nullable
+      achieved_number: null == achieved_number
+          ? _value.achieved_number
+          : achieved_number // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -284,7 +288,11 @@ abstract class _$$UserTaskImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, DateTime createdAt, int taskId, int achievedNumber, int userId});
+      {int id,
+      DateTime created_at,
+      int task_id,
+      int achieved_number,
+      int user_id});
 }
 
 /// @nodoc
@@ -299,31 +307,31 @@ class __$$UserTaskImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? createdAt = null,
-    Object? taskId = null,
-    Object? achievedNumber = null,
-    Object? userId = null,
+    Object? created_at = null,
+    Object? task_id = null,
+    Object? achieved_number = null,
+    Object? user_id = null,
   }) {
     return _then(_$UserTaskImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created_at: null == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      taskId: null == taskId
-          ? _value.taskId
-          : taskId // ignore: cast_nullable_to_non_nullable
+      task_id: null == task_id
+          ? _value.task_id
+          : task_id // ignore: cast_nullable_to_non_nullable
               as int,
-      achievedNumber: null == achievedNumber
-          ? _value.achievedNumber
-          : achievedNumber // ignore: cast_nullable_to_non_nullable
+      achieved_number: null == achieved_number
+          ? _value.achieved_number
+          : achieved_number // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: null == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -334,10 +342,10 @@ class __$$UserTaskImplCopyWithImpl<$Res>
 class _$UserTaskImpl implements _UserTask {
   const _$UserTaskImpl(
       {required this.id,
-      required this.createdAt,
-      required this.taskId,
-      required this.achievedNumber,
-      required this.userId});
+      required this.created_at,
+      required this.task_id,
+      required this.achieved_number,
+      required this.user_id});
 
   factory _$UserTaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserTaskImplFromJson(json);
@@ -345,17 +353,17 @@ class _$UserTaskImpl implements _UserTask {
   @override
   final int id;
   @override
-  final DateTime createdAt;
+  final DateTime created_at;
   @override
-  final int taskId;
+  final int task_id;
   @override
-  final int achievedNumber;
+  final int achieved_number;
   @override
-  final int userId;
+  final int user_id;
 
   @override
   String toString() {
-    return 'UserTask(id: $id, createdAt: $createdAt, taskId: $taskId, achievedNumber: $achievedNumber, userId: $userId)';
+    return 'UserTask(id: $id, created_at: $created_at, task_id: $task_id, achieved_number: $achieved_number, user_id: $user_id)';
   }
 
   @override
@@ -364,18 +372,18 @@ class _$UserTaskImpl implements _UserTask {
         (other.runtimeType == runtimeType &&
             other is _$UserTaskImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.taskId, taskId) || other.taskId == taskId) &&
-            (identical(other.achievedNumber, achievedNumber) ||
-                other.achievedNumber == achievedNumber) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.task_id, task_id) || other.task_id == task_id) &&
+            (identical(other.achieved_number, achieved_number) ||
+                other.achieved_number == achieved_number) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, createdAt, taskId, achievedNumber, userId);
+  int get hashCode => Object.hash(
+      runtimeType, id, created_at, task_id, achieved_number, user_id);
 
   @JsonKey(ignore: true)
   @override
@@ -394,10 +402,10 @@ class _$UserTaskImpl implements _UserTask {
 abstract class _UserTask implements UserTask {
   const factory _UserTask(
       {required final int id,
-      required final DateTime createdAt,
-      required final int taskId,
-      required final int achievedNumber,
-      required final int userId}) = _$UserTaskImpl;
+      required final DateTime created_at,
+      required final int task_id,
+      required final int achieved_number,
+      required final int user_id}) = _$UserTaskImpl;
 
   factory _UserTask.fromJson(Map<String, dynamic> json) =
       _$UserTaskImpl.fromJson;
@@ -405,13 +413,13 @@ abstract class _UserTask implements UserTask {
   @override
   int get id;
   @override
-  DateTime get createdAt;
+  DateTime get created_at;
   @override
-  int get taskId;
+  int get task_id;
   @override
-  int get achievedNumber;
+  int get achieved_number;
   @override
-  int get userId;
+  int get user_id;
   @override
   @JsonKey(ignore: true)
   _$$UserTaskImplCopyWith<_$UserTaskImpl> get copyWith =>

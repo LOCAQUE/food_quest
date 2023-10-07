@@ -35,11 +35,7 @@ class TaskScreen extends HookConsumerWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: emptyMessage != null
-                ? Center(
-                    child: Text(
-                      emptyMessage,
-                    ),
-                  )
+                ? Text(emptyMessage)
                 : TaskComponent(
                     text: task.task,
                     achievement: 4,

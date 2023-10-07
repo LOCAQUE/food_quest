@@ -24,19 +24,19 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
 _$UserTaskImpl _$$UserTaskImplFromJson(Map<String, dynamic> json) =>
     _$UserTaskImpl(
       id: json['id'] as int,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      taskId: json['taskId'] as int,
-      achievedNumber: json['achievedNumber'] as int,
-      userId: json['userId'] as int,
+      created_at: DateTime.parse(json['created_at'] as String),
+      task_id: json['task_id'] as int,
+      achieved_number: json['achieved_number'] as int,
+      user_id: json['user_id'] as int,
     );
 
 Map<String, dynamic> _$$UserTaskImplToJson(_$UserTaskImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'taskId': instance.taskId,
-      'achievedNumber': instance.achievedNumber,
-      'userId': instance.userId,
+      'created_at': instance.created_at.toIso8601String(),
+      'task_id': instance.task_id,
+      'achieved_number': instance.achieved_number,
+      'user_id': instance.user_id,
     };
 
 _$TaskResponseImpl _$$TaskResponseImplFromJson(Map<String, dynamic> json) =>

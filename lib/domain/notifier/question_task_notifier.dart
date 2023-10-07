@@ -94,7 +94,7 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
       final response = await client
           .from('user_tasks')
           .select<PostgrestList>('*, tasks(*)')
-          .eq('userId', currentUserId);
+          .eq('user_id', currentUserId);
 
       final taskList = response.map(TaskResponse.fromJson).toList();
       if (taskList.isEmpty) {
