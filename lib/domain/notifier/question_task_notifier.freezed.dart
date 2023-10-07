@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'make_question_notifier.dart';
+part of 'question_task_notifier.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,19 +15,19 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$MakeQuestionNotifierState {
+mixin _$QuestionTaskNotifierState {
   UserData? get currentUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MakeQuestionNotifierStateCopyWith<MakeQuestionNotifierState> get copyWith =>
+  $QuestionTaskNotifierStateCopyWith<QuestionTaskNotifierState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MakeQuestionNotifierStateCopyWith<$Res> {
-  factory $MakeQuestionNotifierStateCopyWith(MakeQuestionNotifierState value,
-          $Res Function(MakeQuestionNotifierState) then) =
-      _$MakeQuestionNotifierStateCopyWithImpl<$Res, MakeQuestionNotifierState>;
+abstract class $QuestionTaskNotifierStateCopyWith<$Res> {
+  factory $QuestionTaskNotifierStateCopyWith(QuestionTaskNotifierState value,
+          $Res Function(QuestionTaskNotifierState) then) =
+      _$QuestionTaskNotifierStateCopyWithImpl<$Res, QuestionTaskNotifierState>;
   @useResult
   $Res call({UserData? currentUser});
 
@@ -35,10 +35,10 @@ abstract class $MakeQuestionNotifierStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MakeQuestionNotifierStateCopyWithImpl<$Res,
-        $Val extends MakeQuestionNotifierState>
-    implements $MakeQuestionNotifierStateCopyWith<$Res> {
-  _$MakeQuestionNotifierStateCopyWithImpl(this._value, this._then);
+class _$QuestionTaskNotifierStateCopyWithImpl<$Res,
+        $Val extends QuestionTaskNotifierState>
+    implements $QuestionTaskNotifierStateCopyWith<$Res> {
+  _$QuestionTaskNotifierStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -72,12 +72,12 @@ class _$MakeQuestionNotifierStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$MakeQuestionNotifierStateImplCopyWith<$Res>
-    implements $MakeQuestionNotifierStateCopyWith<$Res> {
-  factory _$$MakeQuestionNotifierStateImplCopyWith(
-          _$MakeQuestionNotifierStateImpl value,
-          $Res Function(_$MakeQuestionNotifierStateImpl) then) =
-      __$$MakeQuestionNotifierStateImplCopyWithImpl<$Res>;
+abstract class _$$QuestionTaskNotifierStateImplCopyWith<$Res>
+    implements $QuestionTaskNotifierStateCopyWith<$Res> {
+  factory _$$QuestionTaskNotifierStateImplCopyWith(
+          _$QuestionTaskNotifierStateImpl value,
+          $Res Function(_$QuestionTaskNotifierStateImpl) then) =
+      __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserData? currentUser});
@@ -87,13 +87,13 @@ abstract class _$$MakeQuestionNotifierStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$MakeQuestionNotifierStateImplCopyWithImpl<$Res>
-    extends _$MakeQuestionNotifierStateCopyWithImpl<$Res,
-        _$MakeQuestionNotifierStateImpl>
-    implements _$$MakeQuestionNotifierStateImplCopyWith<$Res> {
-  __$$MakeQuestionNotifierStateImplCopyWithImpl(
-      _$MakeQuestionNotifierStateImpl _value,
-      $Res Function(_$MakeQuestionNotifierStateImpl) _then)
+class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
+    extends _$QuestionTaskNotifierStateCopyWithImpl<$Res,
+        _$QuestionTaskNotifierStateImpl>
+    implements _$$QuestionTaskNotifierStateImplCopyWith<$Res> {
+  __$$QuestionTaskNotifierStateImplCopyWithImpl(
+      _$QuestionTaskNotifierStateImpl _value,
+      $Res Function(_$QuestionTaskNotifierStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -101,7 +101,7 @@ class __$$MakeQuestionNotifierStateImplCopyWithImpl<$Res>
   $Res call({
     Object? currentUser = freezed,
   }) {
-    return _then(_$MakeQuestionNotifierStateImpl(
+    return _then(_$QuestionTaskNotifierStateImpl(
       currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
@@ -112,22 +112,22 @@ class __$$MakeQuestionNotifierStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MakeQuestionNotifierStateImpl implements _MakeQuestionNotifierState {
-  _$MakeQuestionNotifierStateImpl({this.currentUser});
+class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
+  _$QuestionTaskNotifierStateImpl({this.currentUser});
 
   @override
   final UserData? currentUser;
 
   @override
   String toString() {
-    return 'MakeQuestionNotifierState(currentUser: $currentUser)';
+    return 'QuestionTaskNotifierState(currentUser: $currentUser)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MakeQuestionNotifierStateImpl &&
+            other is _$QuestionTaskNotifierStateImpl &&
             (identical(other.currentUser, currentUser) ||
                 other.currentUser == currentUser));
   }
@@ -138,19 +138,19 @@ class _$MakeQuestionNotifierStateImpl implements _MakeQuestionNotifierState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MakeQuestionNotifierStateImplCopyWith<_$MakeQuestionNotifierStateImpl>
-      get copyWith => __$$MakeQuestionNotifierStateImplCopyWithImpl<
-          _$MakeQuestionNotifierStateImpl>(this, _$identity);
+  _$$QuestionTaskNotifierStateImplCopyWith<_$QuestionTaskNotifierStateImpl>
+      get copyWith => __$$QuestionTaskNotifierStateImplCopyWithImpl<
+          _$QuestionTaskNotifierStateImpl>(this, _$identity);
 }
 
-abstract class _MakeQuestionNotifierState implements MakeQuestionNotifierState {
-  factory _MakeQuestionNotifierState({final UserData? currentUser}) =
-      _$MakeQuestionNotifierStateImpl;
+abstract class _QuestionTaskNotifierState implements QuestionTaskNotifierState {
+  factory _QuestionTaskNotifierState({final UserData? currentUser}) =
+      _$QuestionTaskNotifierStateImpl;
 
   @override
   UserData? get currentUser;
   @override
   @JsonKey(ignore: true)
-  _$$MakeQuestionNotifierStateImplCopyWith<_$MakeQuestionNotifierStateImpl>
+  _$$QuestionTaskNotifierStateImplCopyWith<_$QuestionTaskNotifierStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

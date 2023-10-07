@@ -8,25 +8,25 @@ import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
-part 'make_question_notifier.freezed.dart';
+part 'question_task_notifier.freezed.dart';
 
 @freezed
-class MakeQuestionNotifierState with _$MakeQuestionNotifierState {
-  factory MakeQuestionNotifierState({
+class QuestionTaskNotifierState with _$QuestionTaskNotifierState {
+  factory QuestionTaskNotifierState({
     UserData? currentUser,
-  }) = _MakeQuestionNotifierState;
+  }) = _QuestionTaskNotifierState;
 }
 
-final makeQuestionNotifierProvider =
-    StateNotifierProvider<MakeQuestionNotifier, MakeQuestionNotifierState>(
+final questionTaskNotifierProvider =
+StateNotifierProvider<QuestionTaskNotifier, QuestionTaskNotifierState>(
         (ref) {
-  final client = ref.watch(supabaseClientProvider);
-  return MakeQuestionNotifier(client, ref);
-});
+      final client = ref.watch(supabaseClientProvider);
+      return QuestionTaskNotifier(client, ref);
+    });
 
-class MakeQuestionNotifier extends StateNotifier<MakeQuestionNotifierState> {
-  MakeQuestionNotifier(this.client, this.ref)
-      : super(MakeQuestionNotifierState());
+class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
+  QuestionTaskNotifier(this.client, this.ref)
+      : super(QuestionTaskNotifierState());
   final SupabaseClient client;
   final Ref ref;
 
