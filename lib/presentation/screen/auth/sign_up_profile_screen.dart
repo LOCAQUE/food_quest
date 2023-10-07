@@ -60,8 +60,8 @@ class SignUpProfile extends HookConsumerWidget {
                   onPressed: () async {
                     await Navigator.push(
                       context,
-                      MaterialPageRoute<SelectPetScreen>(
-                        builder: (context) => const SelectPetScreen(),
+                      MaterialPageRoute<PetSelectPage>(
+                        builder: (context) => const PetSelectPage(),
                       ),
                     );
                   },
