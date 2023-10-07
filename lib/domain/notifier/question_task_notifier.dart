@@ -100,4 +100,22 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
       debugPrint(e.toString());
     }
   }
+
+  // user_tasksテーブルからcurrentUserIdのtaskを取得
+  Future<void> getTaskList() async {
+    final currentUserId = client.auth.currentUser?.id;
+
+    try {
+      final response = await client
+          .from('user_tasks')
+          .select<PostgrestList>('*, tasks(*)')
+          .eq('userId', currentUserId);
+
+      print('response: $response');
+      final taskList = response.map(TaskResponse.fromJson).toList();
+      state = state.copyWith(taskList: taskList);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 }

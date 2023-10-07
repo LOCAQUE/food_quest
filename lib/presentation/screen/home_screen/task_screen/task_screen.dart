@@ -33,7 +33,7 @@ class TaskScreen extends HookConsumerWidget {
       body: ListView.builder(
         itemCount: taskList.length,
         itemBuilder: (context, index) {
-          final task = taskList[index];
+          final task = taskList[index].tasks;
           print('task: $task');
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
