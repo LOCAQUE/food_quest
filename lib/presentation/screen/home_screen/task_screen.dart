@@ -16,7 +16,7 @@ class TaskScreen extends StatelessWidget {
             // TO-DO: DBから取得したデータを表示する
             child: TaskComponent(
               text: '質問を作成する',
-              achievement: 4,
+              achievement: 5,
               target: 5,
             ),
           );

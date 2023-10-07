@@ -20,6 +20,8 @@ class TaskComponent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDone = achievement == target;
+    var showGif = true;
+
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
@@ -30,19 +32,33 @@ class TaskComponent extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Stack(
                 children: [
-                  Text(text),
-                  if (isDone)
-                    CustomButton(
-                      text: '受取',
-                      variant: ButtonVariant.outline,
-                      onPressed: () {},
-                      size: ButtonSize.small,
+                  if (showGif)
+                    SizedBox(
+                      width: 75,
+                      height: 75,
+                      child: Image.asset('assets/images/gif/bestAnswer.gif'),
                     )
                   else
                     const SizedBox(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(text),
+                      if (isDone)
+                        CustomButton(
+                          text: '受取',
+                          variant: ButtonVariant.outline,
+                          onPressed: () {
+                            showGif = true;
+                          },
+                          size: ButtonSize.small,
+                        )
+                      else
+                        const SizedBox(),
+                    ],
+                  ),
                 ],
               ),
               Stack(
