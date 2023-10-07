@@ -149,13 +149,14 @@ class __$$QuestionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$QuestionImpl implements _Question {
+class _$QuestionImpl extends _Question {
   const _$QuestionImpl(
       {required this.contents,
       required this.userId,
       required this.minimumBudget,
       required this.maximumBudget,
-      required this.deadLine});
+      required this.deadLine})
+      : super._();
 
   factory _$QuestionImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionImplFromJson(json);
@@ -211,13 +212,14 @@ class _$QuestionImpl implements _Question {
   }
 }
 
-abstract class _Question implements Question {
+abstract class _Question extends Question {
   const factory _Question(
       {required final String contents,
       required final String userId,
       required final int minimumBudget,
       required final int maximumBudget,
       required final DateTime deadLine}) = _$QuestionImpl;
+  const _Question._() : super._();
 
   factory _Question.fromJson(Map<String, dynamic> json) =
       _$QuestionImpl.fromJson;
@@ -251,6 +253,7 @@ mixin _$QuestionResponse {
   int get minimumBudget => throw _privateConstructorUsedError;
   int get maximumBudget => throw _privateConstructorUsedError;
   DateTime get deadLine => throw _privateConstructorUsedError;
+  UserData? get users => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -271,7 +274,10 @@ abstract class $QuestionResponseCopyWith<$Res> {
       String userId,
       int minimumBudget,
       int maximumBudget,
-      DateTime deadLine});
+      DateTime deadLine,
+      UserData? users});
+
+  $UserDataCopyWith<$Res>? get users;
 }
 
 /// @nodoc
@@ -294,6 +300,7 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
     Object? minimumBudget = null,
     Object? maximumBudget = null,
     Object? deadLine = null,
+    Object? users = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -324,7 +331,23 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
           ? _value.deadLine
           : deadLine // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      users: freezed == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as UserData?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDataCopyWith<$Res>? get users {
+    if (_value.users == null) {
+      return null;
+    }
+
+    return $UserDataCopyWith<$Res>(_value.users!, (value) {
+      return _then(_value.copyWith(users: value) as $Val);
+    });
   }
 }
 
@@ -343,7 +366,11 @@ abstract class _$$QuestionResponseImplCopyWith<$Res>
       String userId,
       int minimumBudget,
       int maximumBudget,
-      DateTime deadLine});
+      DateTime deadLine,
+      UserData? users});
+
+  @override
+  $UserDataCopyWith<$Res>? get users;
 }
 
 /// @nodoc
@@ -364,6 +391,7 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
     Object? minimumBudget = null,
     Object? maximumBudget = null,
     Object? deadLine = null,
+    Object? users = freezed,
   }) {
     return _then(_$QuestionResponseImpl(
       id: null == id
@@ -394,13 +422,17 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
           ? _value.deadLine
           : deadLine // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      users: freezed == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as UserData?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$QuestionResponseImpl implements _QuestionResponse {
+class _$QuestionResponseImpl extends _QuestionResponse {
   const _$QuestionResponseImpl(
       {required this.id,
       required this.createdAt,
@@ -408,7 +440,9 @@ class _$QuestionResponseImpl implements _QuestionResponse {
       required this.userId,
       required this.minimumBudget,
       required this.maximumBudget,
-      required this.deadLine});
+      required this.deadLine,
+      this.users})
+      : super._();
 
   factory _$QuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionResponseImplFromJson(json);
@@ -427,10 +461,12 @@ class _$QuestionResponseImpl implements _QuestionResponse {
   final int maximumBudget;
   @override
   final DateTime deadLine;
+  @override
+  final UserData? users;
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine)';
+    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, users: $users)';
   }
 
   @override
@@ -449,13 +485,14 @@ class _$QuestionResponseImpl implements _QuestionResponse {
             (identical(other.maximumBudget, maximumBudget) ||
                 other.maximumBudget == maximumBudget) &&
             (identical(other.deadLine, deadLine) ||
-                other.deadLine == deadLine));
+                other.deadLine == deadLine) &&
+            (identical(other.users, users) || other.users == users));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdAt, contents, userId,
-      minimumBudget, maximumBudget, deadLine);
+      minimumBudget, maximumBudget, deadLine, users);
 
   @JsonKey(ignore: true)
   @override
@@ -472,7 +509,7 @@ class _$QuestionResponseImpl implements _QuestionResponse {
   }
 }
 
-abstract class _QuestionResponse implements QuestionResponse {
+abstract class _QuestionResponse extends QuestionResponse {
   const factory _QuestionResponse(
       {required final int id,
       required final DateTime createdAt,
@@ -480,7 +517,9 @@ abstract class _QuestionResponse implements QuestionResponse {
       required final String userId,
       required final int minimumBudget,
       required final int maximumBudget,
-      required final DateTime deadLine}) = _$QuestionResponseImpl;
+      required final DateTime deadLine,
+      final UserData? users}) = _$QuestionResponseImpl;
+  const _QuestionResponse._() : super._();
 
   factory _QuestionResponse.fromJson(Map<String, dynamic> json) =
       _$QuestionResponseImpl.fromJson;
@@ -499,6 +538,8 @@ abstract class _QuestionResponse implements QuestionResponse {
   int get maximumBudget;
   @override
   DateTime get deadLine;
+  @override
+  UserData? get users;
   @override
   @JsonKey(ignore: true)
   _$$QuestionResponseImplCopyWith<_$QuestionResponseImpl> get copyWith =>

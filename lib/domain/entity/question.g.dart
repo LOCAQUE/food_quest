@@ -34,6 +34,9 @@ _$QuestionResponseImpl _$$QuestionResponseImplFromJson(
       minimumBudget: json['minimumBudget'] as int,
       maximumBudget: json['maximumBudget'] as int,
       deadLine: DateTime.parse(json['deadLine'] as String),
+      users: json['users'] == null
+          ? null
+          : UserData.fromJson(json['users'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$QuestionResponseImplToJson(
@@ -46,4 +49,5 @@ Map<String, dynamic> _$$QuestionResponseImplToJson(
       'minimumBudget': instance.minimumBudget,
       'maximumBudget': instance.maximumBudget,
       'deadLine': instance.deadLine.toIso8601String(),
+      'users': instance.users,
     };
