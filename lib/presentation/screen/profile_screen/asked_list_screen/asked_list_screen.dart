@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/presentation/component/question_tile.dart';
 
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
+import 'package:food_quest/presentation/component/question_tile.dart';
 import 'package:food_quest/presentation/screen/profile_screen/asked_list_screen/asked_list_screen_notifier.dart';
 
 class AskedListScreen extends HookConsumerWidget {
@@ -32,7 +31,9 @@ class AskedListScreen extends HookConsumerWidget {
     }
 
     return Scaffold(
-      body: QuestionTile(questionList: myQuestionList,)
+      body: QuestionTiles(
+        questionList: myQuestionList,
+      ),
     );
   }
 }
