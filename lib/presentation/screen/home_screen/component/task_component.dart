@@ -8,18 +8,18 @@ import 'package:food_quest/presentation/component/button.dart';
 class TaskComponent extends HookConsumerWidget {
   const TaskComponent({
     required this.text,
-    required this.now,
     required this.achievement,
+    required this.target,
     super.key,
   });
 
   final String text;
-  final int now;
   final int achievement;
+  final int target;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDone = now == achievement;
+    final isDone = achievement == target;
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
@@ -53,7 +53,7 @@ class TaskComponent extends HookConsumerWidget {
                       height: 16, // EXPのゲージを太くします
                       child: LinearProgressIndicator(
                         borderRadius: BorderRadius.circular(50),
-                        value: now / achievement,
+                        value: achievement / target,
                         backgroundColor: Colors.grey[300],
                         valueColor: const AlwaysStoppedAnimation(
                           AppColor.primaryColor,
@@ -62,7 +62,7 @@ class TaskComponent extends HookConsumerWidget {
                     ),
                   ),
                   Text(
-                    '$now / $achievement',
+                    '$achievement / $target',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColor.white,
