@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/presentation/screen/orange_screen/orange_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:navigator_scope/navigator_scope.dart';
 
 import 'package:food_quest/presentation/screen/blue_screen/blue_screen.dart';
-import 'package:food_quest/presentation/screen/green_screen/green_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/home_screen.dart';
 import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
+import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 
 class BottomNavigationScreen extends HookConsumerWidget {
   const BottomNavigationScreen({super.key});
@@ -16,6 +17,8 @@ class BottomNavigationScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bottomNavIndex = useState<int>(0);
+    //フローティングボタンをからpushするとボトムバー消えてしまう
+    final isPushFloating = useState(true);
 
     //ボトムバーに並べるアイコンのリスト
     final iconList = <IconData>[
@@ -27,10 +30,10 @@ class BottomNavigationScreen extends HookConsumerWidget {
 
     //真ん中を除くページのリスト
     final pageList = [
-      const HomeScreen(),
+      const ProfileScreen(),
       const BlueScreen(),
       const PetScreen(),
-      const GreenScreen(),
+      const OrangeScreen(),
     ];
 
     return Scaffold(
@@ -41,7 +44,8 @@ class BottomNavigationScreen extends HookConsumerWidget {
         destinationCount: iconList.length,
         destinationBuilder: (context, index) {
           return NestedNavigator(
-            builder: (context) => pageList[index],
+            builder: (context) =>
+                isPushFloating.value ? const HomeScreen() : pageList[index],
           );
         },
       ),
@@ -50,7 +54,9 @@ class BottomNavigationScreen extends HookConsumerWidget {
           Icons.brightness_3,
           color: Colors.orangeAccent,
         ),
-        onPressed: () {},
+        onPressed: () {
+          isPushFloating.value = true;
+        },
         //params
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -64,10 +70,12 @@ class BottomNavigationScreen extends HookConsumerWidget {
         splashSpeedInMilliseconds: 300,
         onTap: (index) {
           //選択したindexをstateに反映
+          isPushFloating.value = false;
           bottomNavIndex.value = index;
         },
         tabBuilder: (int index, bool isActive) {
-          final color = isActive ? Colors.orange : Colors.grey;
+          final color =
+              isActive && !isPushFloating.value ? Colors.orange : Colors.grey;
           return Icon(
             iconList[index],
             size: 32,
