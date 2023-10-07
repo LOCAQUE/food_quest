@@ -4,26 +4,23 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/list.dart';
+import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
 
 class SignUpProfile extends HookConsumerWidget {
-  SignUpProfile({super.key});
-
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController genderController = TextEditingController();
-  final TextEditingController birthdayController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
+  const SignUpProfile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authNotifier = ref.watch(authNotifierProvider.notifier);
+
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E0),
       body: ListView(
         children: [
+          const SizedBox(height: 28),
           Padding(
             padding: const EdgeInsets.all(40),
             child: Column(
@@ -42,28 +39,31 @@ class SignUpProfile extends HookConsumerWidget {
                   padding: const EdgeInsets.only(top: 18),
                   child: CustomTextField(
                     title: 'ユーザー名',
-                    controller: nameController,
+                    controller: authNotifier.nameController,
                     hintText: 'ユーザー名を入力してください',
                   ),
                 ),
+                const Gap(10),
                 Padding(
                   padding: const EdgeInsets.only(top: 18),
                   child: CustomPicker(
                     options: prefectures,
                     title: '居住地',
-                    controller: addressController,
+                    controller: authNotifier.addressController,
                   ),
                 ),
-                const Gap(360),
+                const Gap(330),
                 CustomButton(
                   text: 'ペット選択へ',
                   onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute<SelectPetScreen>(
-                        builder: (context) => const SelectPetScreen(),
-                      ),
-                    );
+                    await authNotifier.updateUserData().then((_) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => const SelectPetScreen(),
+                        ),
+                      );
+                    });
                   },
                 ),
               ],

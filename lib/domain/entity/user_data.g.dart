@@ -11,6 +11,7 @@ _$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       email: json['email'] as String,
       name: json['name'] as String,
+      prefecture: json['prefecture'] as String,
     );
 
 Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
+      'prefecture': instance.prefecture,
     };

@@ -7,4 +7,5 @@
     <color name="primaryColor">#EE7D50</color>
     <color name="disabledColor">#8E8E93</color>
     <color name="white">#FFFFFF</color>
+    <color name="backgroundColor">#FFF5E0</color>
 </resources>
