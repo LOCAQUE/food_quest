@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
 
@@ -12,21 +14,23 @@ class QuestScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    // final currentUser =
-    //     ref.watch(authNotifierProvider.select((state) => state.currentUser));
+    final questionList = ref.watch(
+          questionTaskNotifierProvider.select((state) => state.questionList),
+        ) ??
+        [];
 
-    //currentUser取れてなかったら何も表示しない
-    // TODO(tenpei-peso): ダイアログとか表示させるかエラー画面作る.
-    // if(currentUser == null) {
-    //   return const SizedBox.shrink();
-    // }
+    if (questionList.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     return Scaffold(
       body: Stack(
         children: <Widget>[
           ListView.builder(
-            itemCount: 10,
+            itemCount: questionList.length,
             itemBuilder: (context, index) {
+              final question = questionList[index];
+
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: Card(
@@ -39,26 +43,18 @@ class QuestScreen extends HookConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'あああああ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Text(
+                          question.users?.name ?? '',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 8),
-                        const Text('ああああああああああああああああああああああああああ'),
-                        const SizedBox(height: 8),
+                        const Gap(32),
+                        Text(question.contents),
+                        const Gap(8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            TextButton(
-                              onPressed: () {
-                                // Comment Button was pressed
-                              },
-                              child: const Text('Comment'),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.thumb_up_alt_outlined),
-                            ),
+                            Text(question.users?.prefecture ?? ''),
+                            Text(question.formattedDeadLine),
                           ],
                         ),
                       ],
