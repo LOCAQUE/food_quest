@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
-
-import '../../../domain/notifier/auth_notifier.dart';
 
 class QuestScreen extends HookConsumerWidget {
   const QuestScreen({super.key});
@@ -14,8 +13,8 @@ class QuestScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final currentUser =
-    ref.watch(authNotifierProvider.select((state) => state.currentUser));
+    // final currentUser =
+    //     ref.watch(authNotifierProvider.select((state) => state.currentUser));
 
     //currentUser取れてなかったら何も表示しない
     // TODO(tenpei-peso): ダイアログとか表示させるかエラー画面作る.

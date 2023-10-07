@@ -8,8 +8,6 @@ import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
-import 'package:food_quest/domain/notifier/auth_notifier.dart';
-
 part 'make_question_notifier.freezed.dart';
 
 @freezed
@@ -40,11 +38,13 @@ class MakeQuestionNotifier extends StateNotifier<MakeQuestionNotifierState> {
 
   Future<void> createQuest() async {
     // final currentUserId = ref
-    //     .watch(authNotifierProvider.select((state) => state.currentUser!.id));
+    //     .watch(authNotifierProvider.select((state) => state.currentUser!.id))
+    // ;
 
     final sendQuestionData = Question(
       contents: contentController.text,
-      userId: 'f78677c4-8173-46be-8538-0c24dd25b173', //毎回だるいからモックで
+      userId: 'f78677c4-8173-46be-8538-0c24dd25b173',
+      //毎回だるいからモックで
       // userId: currentUserId,
       minimumBudget: int.parse(minimumBudgetController.text),
       maximumBudget: int.parse(maximumBudgetController.text),
