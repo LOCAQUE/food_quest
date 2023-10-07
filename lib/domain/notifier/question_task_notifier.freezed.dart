@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$QuestionTaskNotifierState {
-  UserData? get currentUser => throw _privateConstructorUsedError;
+  List<QuestionResponse>? get questionList =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuestionTaskNotifierStateCopyWith<QuestionTaskNotifierState> get copyWith =>
@@ -29,9 +30,7 @@ abstract class $QuestionTaskNotifierStateCopyWith<$Res> {
           $Res Function(QuestionTaskNotifierState) then) =
       _$QuestionTaskNotifierStateCopyWithImpl<$Res, QuestionTaskNotifierState>;
   @useResult
-  $Res call({UserData? currentUser});
-
-  $UserDataCopyWith<$Res>? get currentUser;
+  $Res call({List<QuestionResponse>? questionList});
 }
 
 /// @nodoc
@@ -48,26 +47,14 @@ class _$QuestionTaskNotifierStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUser = freezed,
+    Object? questionList = freezed,
   }) {
     return _then(_value.copyWith(
-      currentUser: freezed == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
+      questionList: freezed == questionList
+          ? _value.questionList
+          : questionList // ignore: cast_nullable_to_non_nullable
+              as List<QuestionResponse>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserDataCopyWith<$Res>? get currentUser {
-    if (_value.currentUser == null) {
-      return null;
-    }
-
-    return $UserDataCopyWith<$Res>(_value.currentUser!, (value) {
-      return _then(_value.copyWith(currentUser: value) as $Val);
-    });
   }
 }
 
@@ -80,10 +67,7 @@ abstract class _$$QuestionTaskNotifierStateImplCopyWith<$Res>
       __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserData? currentUser});
-
-  @override
-  $UserDataCopyWith<$Res>? get currentUser;
+  $Res call({List<QuestionResponse>? questionList});
 }
 
 /// @nodoc
@@ -99,13 +83,13 @@ class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUser = freezed,
+    Object? questionList = freezed,
   }) {
     return _then(_$QuestionTaskNotifierStateImpl(
-      currentUser: freezed == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
+      questionList: freezed == questionList
+          ? _value._questionList
+          : questionList // ignore: cast_nullable_to_non_nullable
+              as List<QuestionResponse>?,
     ));
   }
 }
@@ -113,14 +97,22 @@ class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
-  _$QuestionTaskNotifierStateImpl({this.currentUser});
+  _$QuestionTaskNotifierStateImpl({final List<QuestionResponse>? questionList})
+      : _questionList = questionList;
 
+  final List<QuestionResponse>? _questionList;
   @override
-  final UserData? currentUser;
+  List<QuestionResponse>? get questionList {
+    final value = _questionList;
+    if (value == null) return null;
+    if (_questionList is EqualUnmodifiableListView) return _questionList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'QuestionTaskNotifierState(currentUser: $currentUser)';
+    return 'QuestionTaskNotifierState(questionList: $questionList)';
   }
 
   @override
@@ -128,12 +120,13 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionTaskNotifierStateImpl &&
-            (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser));
+            const DeepCollectionEquality()
+                .equals(other._questionList, _questionList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentUser);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_questionList));
 
   @JsonKey(ignore: true)
   @override
@@ -144,11 +137,12 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
 }
 
 abstract class _QuestionTaskNotifierState implements QuestionTaskNotifierState {
-  factory _QuestionTaskNotifierState({final UserData? currentUser}) =
+  factory _QuestionTaskNotifierState(
+          {final List<QuestionResponse>? questionList}) =
       _$QuestionTaskNotifierStateImpl;
 
   @override
-  UserData? get currentUser;
+  List<QuestionResponse>? get questionList;
   @override
   @JsonKey(ignore: true)
   _$$QuestionTaskNotifierStateImplCopyWith<_$QuestionTaskNotifierStateImpl>
