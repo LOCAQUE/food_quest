@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:gap/gap.dart';
+import 'package:food_quest/presentation/screen/home_screen/component/task_component.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
@@ -8,15 +8,19 @@ class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: const [
-          Column(
-            children: [
-              Gap(20), // 追加したボタンとの間隔を開けるためのスペース
-              Text('タスク一覧'),
-            ],
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            // TO-DO: DBから取得したデータを表示する
+            child: TaskComponent(
+              text: '質問を作成する',
+              achievement: 4,
+              target: 5,
+            ),
+          );
+        },
       ),
     );
   }
