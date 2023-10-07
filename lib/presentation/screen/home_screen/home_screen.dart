@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
-import 'package:food_quest/presentation/screen/home_screen/quest_screen.dart';
+import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/task_screen.dart';
 
 class HomeScreen extends HookConsumerWidget {

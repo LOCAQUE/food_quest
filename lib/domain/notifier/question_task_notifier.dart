@@ -5,28 +5,27 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
-import 'package:food_quest/domain/entity/user_data.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
-part 'make_question_notifier.freezed.dart';
+part 'question_task_notifier.freezed.dart';
 
 @freezed
-class MakeQuestionNotifierState with _$MakeQuestionNotifierState {
-  factory MakeQuestionNotifierState({
-    UserData? currentUser,
-  }) = _MakeQuestionNotifierState;
+class QuestionTaskNotifierState with _$QuestionTaskNotifierState {
+  factory QuestionTaskNotifierState({
+    List<QuestionResponse>? questionList,
+  }) = _QuestionTaskNotifierState;
 }
 
-final makeQuestionNotifierProvider =
-    StateNotifierProvider<MakeQuestionNotifier, MakeQuestionNotifierState>(
+final questionTaskNotifierProvider =
+    StateNotifierProvider<QuestionTaskNotifier, QuestionTaskNotifierState>(
         (ref) {
   final client = ref.watch(supabaseClientProvider);
-  return MakeQuestionNotifier(client, ref);
+  return QuestionTaskNotifier(client, ref);
 });
 
-class MakeQuestionNotifier extends StateNotifier<MakeQuestionNotifierState> {
-  MakeQuestionNotifier(this.client, this.ref)
-      : super(MakeQuestionNotifierState());
+class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
+  QuestionTaskNotifier(this.client, this.ref)
+      : super(QuestionTaskNotifierState());
   final SupabaseClient client;
   final Ref ref;
 
@@ -37,15 +36,10 @@ class MakeQuestionNotifier extends StateNotifier<MakeQuestionNotifierState> {
   final TextEditingController prefectureController = TextEditingController();
 
   Future<void> createQuest() async {
-    // final currentUserId = ref
-    //     .watch(authNotifierProvider.select((state) => state.currentUser!.id))
-    // ;
-
+    final currentUserId = client.auth.currentUser?.id;
     final sendQuestionData = Question(
       contents: contentController.text,
-      userId: 'f78677c4-8173-46be-8538-0c24dd25b173',
-      //毎回だるいからモックで
-      // userId: currentUserId,
+      userId: currentUserId!,
       minimumBudget: int.parse(minimumBudgetController.text),
       maximumBudget: int.parse(maximumBudgetController.text),
       deadLine: DateTime.parse(deadLineController.text),
@@ -53,6 +47,18 @@ class MakeQuestionNotifier extends StateNotifier<MakeQuestionNotifierState> {
 
     try {
       await client.from('quests').insert(sendQuestionData);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getQuestList() async {
+    try {
+      final response =
+          await client.from('quests').select<PostgrestList>('*, users(*)');
+
+      final questionList = response.map(QuestionResponse.fromJson).toList();
+      state = state.copyWith(questionList: questionList);
     } catch (e) {
       debugPrint(e.toString());
     }

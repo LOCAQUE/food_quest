@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/list.dart';
-import 'package:food_quest/domain/notifier/make_question_notifier.dart';
+import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_date_picker.dart';
@@ -27,8 +27,8 @@ class MakeQuestionModal extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final makeQuestionNotifier =
-        ref.watch(makeQuestionNotifierProvider.notifier);
+    final questionTaskNotifier =
+        ref.watch(questionTaskNotifierProvider.notifier);
 
     return ListView(
       children: [
@@ -54,7 +54,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                     variant: ButtonVariant.primary,
                     size: ButtonSize.small,
                     onPressed: () async {
-                      await makeQuestionNotifier.createQuest().then((value) {
+                      await questionTaskNotifier.createQuest().then((value) {
                         Navigator.of(context).pop();
                       });
                     },
@@ -67,7 +67,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最低予算',
                     options: priceList,
-                    controller: makeQuestionNotifier.minimumBudgetController,
+                    controller: questionTaskNotifier.minimumBudgetController,
                   ),
                   const Gap(8),
                   const Text('~'),
@@ -75,7 +75,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最大予算',
                     options: priceList,
-                    controller: makeQuestionNotifier.maximumBudgetController,
+                    controller: questionTaskNotifier.maximumBudgetController,
                   ),
                 ],
               ),
@@ -83,16 +83,16 @@ class MakeQuestionModal extends HookConsumerWidget {
               CustomPicker(
                 title: 'エリア',
                 options: prefectures,
-                controller: makeQuestionNotifier.prefectureController,
+                controller: questionTaskNotifier.prefectureController,
               ),
               const Gap(16),
               CustomDatePicker(
                 title: '締切日',
-                controller: makeQuestionNotifier.deadLineController,
+                controller: questionTaskNotifier.deadLineController,
               ),
               const Gap(24),
               TextField(
-                controller: makeQuestionNotifier.contentController,
+                controller: questionTaskNotifier.contentController,
                 maxLines: 15,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
