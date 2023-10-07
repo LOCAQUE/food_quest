@@ -37,7 +37,12 @@ class QuestScreen extends HookConsumerWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          QuestionTiles(questionList: questionList),
+          QuestionTiles(
+            questionList: questionList,
+            onTap: () {
+              return;
+            },
+          ),
           Positioned(
             bottom: height * 0.15,
             right: width * 0.07,

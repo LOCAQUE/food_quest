@@ -33,6 +33,9 @@ class AskedListScreen extends HookConsumerWidget {
     return Scaffold(
       body: QuestionTiles(
         questionList: myQuestionList,
+        onTap: () {
+          return;
+        }
       ),
     );
   }
