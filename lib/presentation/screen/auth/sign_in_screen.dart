@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,6 +16,7 @@ class SignInScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.watch(authNotifierProvider.notifier);
+    final isButtonEnabled = useValueListenable(authNotifier.isFormValid);
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFF5E0),
@@ -76,16 +78,16 @@ class SignInScreen extends HookConsumerWidget {
                 ),
                 const Gap(330),
                 // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
-                if (authNotifier.emailController.text.isEmpty &&
-                    authNotifier.passwordController.text.isEmpty) ...[
+                if (isButtonEnabled)
                   CustomButton(
                     text: 'ログイン',
                     variant: ButtonVariant.disabled,
                     onPressed: () {},
-                  ),
-                ] else ...[
+                  )
+                else
                   CustomButton(
                     text: 'ログイン',
+                    variant: ButtonVariant.primary,
                     onPressed: () async {
                       await authNotifier.signIn().then((_) {
                         Navigator.push(
@@ -98,7 +100,6 @@ class SignInScreen extends HookConsumerWidget {
                       });
                     },
                   ),
-                ],
               ],
             ),
           ),

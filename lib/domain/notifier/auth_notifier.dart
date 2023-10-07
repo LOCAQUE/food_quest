@@ -25,6 +25,7 @@ final authNotifierProvider =
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
   AuthNotifier(this.client) : super(AuthNotifierState()) {
     _addTextListeners();
+    _addFormListeners();
   }
   final SupabaseClient client;
 
@@ -40,9 +41,19 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
     passwordController.addListener(_validateForm);
   }
 
+  void _addFormListeners() {
+    nameController.addListener(_validateProfileForm);
+    addressController.addListener(_validateProfileForm);
+  }
+
   void _validateForm() {
     isFormValid.value =
         emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+  }
+
+  void _validateProfileForm() {
+    isFormValid.value =
+        nameController.text.isNotEmpty && addressController.text.isNotEmpty;
   }
 
   Future<void> signUp() async {
