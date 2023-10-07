@@ -3,18 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/component/button.dart';
 
 class TaskComponent extends HookConsumerWidget {
   const TaskComponent({
     required this.text,
     required this.now,
     required this.achievement,
+    required this.isDone,
     super.key,
   });
 
   final String text;
   final int now;
   final int achievement;
+  final bool isDone;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,8 +32,18 @@ class TaskComponent extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(text),
+                  if (isDone)
+                    CustomButton(
+                      text: '受取',
+                      variant: ButtonVariant.outline,
+                      onPressed: () {},
+                      size: ButtonSize.small,
+                    )
+                  else
+                    const SizedBox(),
                 ],
               ),
               Stack(
