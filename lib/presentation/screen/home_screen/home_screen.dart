@@ -1,16 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/gen/colors.gen.dart';
-import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
+
 class HomeScreen extends HookConsumerWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Stack(
@@ -30,13 +31,13 @@ class HomeScreen extends HookConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'あああああ',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 8.0),
-                        Text('ああああああああああああああああああああああああああ'),
-                        SizedBox(height: 8.0),
+                        const SizedBox(height: 8),
+                        const Text('ああああああああああああああああああああああああああ'),
+                        const SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -44,12 +45,11 @@ class HomeScreen extends HookConsumerWidget {
                               onPressed: () {
                                 // Comment Button was pressed
                               },
-                              child: Text('Comment'),
+                              child: const Text('Comment'),
                             ),
                             IconButton(
-                              onPressed: () {
-                              },
-                              icon: Icon(Icons.thumb_up_alt_outlined),
+                              onPressed: () {},
+                              icon: const Icon(Icons.thumb_up_alt_outlined),
                             ),
                           ],
                         ),
@@ -69,11 +69,11 @@ class HomeScreen extends HookConsumerWidget {
                 MakeQuestionModal.show(context);
               },
               style: ElevatedButton.styleFrom(
-                primary: AppColor.primaryColor, // ボタンの背景色を赤に設定
+                backgroundColor: AppColor.primaryColor, // ボタンの背景色を赤に設定
                 shape: const CircleBorder(), // ボタンの形を円に設定
                 padding: const EdgeInsets.all(20), // ボタンのパディングを設定
               ),
-              child: Icon(Icons.note),
+              child: const Icon(Icons.note),
             ),
           ),
         ],
