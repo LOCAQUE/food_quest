@@ -21,6 +21,7 @@ mixin _$QuestionTaskNotifierState {
   List<QuestionResponse>? get myQuestionList =>
       throw _privateConstructorUsedError;
   List<TaskResponse>? get taskList => throw _privateConstructorUsedError;
+  String? get emptyMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuestionTaskNotifierStateCopyWith<QuestionTaskNotifierState> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $QuestionTaskNotifierStateCopyWith<$Res> {
   $Res call(
       {List<QuestionResponse>? questionList,
       List<QuestionResponse>? myQuestionList,
-      List<TaskResponse>? taskList});
+      List<TaskResponse>? taskList,
+      String? emptyMessage});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$QuestionTaskNotifierStateCopyWithImpl<$Res,
     Object? questionList = freezed,
     Object? myQuestionList = freezed,
     Object? taskList = freezed,
+    Object? emptyMessage = freezed,
   }) {
     return _then(_value.copyWith(
       questionList: freezed == questionList
@@ -70,6 +73,10 @@ class _$QuestionTaskNotifierStateCopyWithImpl<$Res,
           ? _value.taskList
           : taskList // ignore: cast_nullable_to_non_nullable
               as List<TaskResponse>?,
+      emptyMessage: freezed == emptyMessage
+          ? _value.emptyMessage
+          : emptyMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -86,7 +93,8 @@ abstract class _$$QuestionTaskNotifierStateImplCopyWith<$Res>
   $Res call(
       {List<QuestionResponse>? questionList,
       List<QuestionResponse>? myQuestionList,
-      List<TaskResponse>? taskList});
+      List<TaskResponse>? taskList,
+      String? emptyMessage});
 }
 
 /// @nodoc
@@ -105,6 +113,7 @@ class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
     Object? questionList = freezed,
     Object? myQuestionList = freezed,
     Object? taskList = freezed,
+    Object? emptyMessage = freezed,
   }) {
     return _then(_$QuestionTaskNotifierStateImpl(
       questionList: freezed == questionList
@@ -119,6 +128,10 @@ class __$$QuestionTaskNotifierStateImplCopyWithImpl<$Res>
           ? _value._taskList
           : taskList // ignore: cast_nullable_to_non_nullable
               as List<TaskResponse>?,
+      emptyMessage: freezed == emptyMessage
+          ? _value.emptyMessage
+          : emptyMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -129,7 +142,8 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
   _$QuestionTaskNotifierStateImpl(
       {final List<QuestionResponse>? questionList,
       final List<QuestionResponse>? myQuestionList,
-      final List<TaskResponse>? taskList})
+      final List<TaskResponse>? taskList,
+      this.emptyMessage})
       : _questionList = questionList,
         _myQuestionList = myQuestionList,
         _taskList = taskList;
@@ -165,8 +179,11 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
   }
 
   @override
+  final String? emptyMessage;
+
+  @override
   String toString() {
-    return 'QuestionTaskNotifierState(questionList: $questionList, myQuestionList: $myQuestionList, taskList: $taskList)';
+    return 'QuestionTaskNotifierState(questionList: $questionList, myQuestionList: $myQuestionList, taskList: $taskList, emptyMessage: $emptyMessage)';
   }
 
   @override
@@ -178,7 +195,9 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
                 .equals(other._questionList, _questionList) &&
             const DeepCollectionEquality()
                 .equals(other._myQuestionList, _myQuestionList) &&
-            const DeepCollectionEquality().equals(other._taskList, _taskList));
+            const DeepCollectionEquality().equals(other._taskList, _taskList) &&
+            (identical(other.emptyMessage, emptyMessage) ||
+                other.emptyMessage == emptyMessage));
   }
 
   @override
@@ -186,7 +205,8 @@ class _$QuestionTaskNotifierStateImpl implements _QuestionTaskNotifierState {
       runtimeType,
       const DeepCollectionEquality().hash(_questionList),
       const DeepCollectionEquality().hash(_myQuestionList),
-      const DeepCollectionEquality().hash(_taskList));
+      const DeepCollectionEquality().hash(_taskList),
+      emptyMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +220,8 @@ abstract class _QuestionTaskNotifierState implements QuestionTaskNotifierState {
   factory _QuestionTaskNotifierState(
       {final List<QuestionResponse>? questionList,
       final List<QuestionResponse>? myQuestionList,
-      final List<TaskResponse>? taskList}) = _$QuestionTaskNotifierStateImpl;
+      final List<TaskResponse>? taskList,
+      final String? emptyMessage}) = _$QuestionTaskNotifierStateImpl;
 
   @override
   List<QuestionResponse>? get questionList;
@@ -208,6 +229,8 @@ abstract class _QuestionTaskNotifierState implements QuestionTaskNotifierState {
   List<QuestionResponse>? get myQuestionList;
   @override
   List<TaskResponse>? get taskList;
+  @override
+  String? get emptyMessage;
   @override
   @JsonKey(ignore: true)
   _$$QuestionTaskNotifierStateImplCopyWith<_$QuestionTaskNotifierStateImpl>

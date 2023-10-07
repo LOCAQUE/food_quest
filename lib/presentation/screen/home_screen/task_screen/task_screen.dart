@@ -18,30 +18,33 @@ class TaskScreen extends HookConsumerWidget {
           questionTaskNotifierProvider.select((state) => state.taskList),
         ) ??
         [];
-    print('taskList: $taskList');
+    final emptyMessage = ref.watch(
+      questionTaskNotifierProvider.select((state) => state.emptyMessage),
+    );
 
     if (isLoading) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       );
     }
-
-    if (taskList.isEmpty) {
-      return const SizedBox.shrink();
-    }
     return Scaffold(
       body: ListView.builder(
         itemCount: taskList.length,
         itemBuilder: (context, index) {
           final task = taskList[index].tasks;
-          print('task: $task');
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: TaskComponent(
-              text: task.task,
-              achievement: 4,
-              target: task.targetNumber,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: emptyMessage != null
+                ? Center(
+                    child: Text(
+                      emptyMessage,
+                    ),
+                  )
+                : TaskComponent(
+                    text: task.task,
+                    achievement: 4,
+                    target: task.targetNumber,
+                  ),
           );
         },
       ),
