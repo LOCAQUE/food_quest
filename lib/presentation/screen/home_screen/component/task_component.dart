@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/domain/notifier/button_notifier.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,28 +21,23 @@ class TaskComponent extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDone = achievement == target;
-    var showGif = true;
+    final showGif = ref.watch(showGifProvider);
+
+    final width = MediaQuery.of(context).size.width;
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: SizedBox(
-        width: 310,
-        height: 95,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Stack(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            width: 310,
+            height: 95,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  if (showGif)
-                    SizedBox(
-                      width: 75,
-                      height: 75,
-                      child: Image.asset('assets/images/gif/bestAnswer.gif'),
-                    )
-                  else
-                    const SizedBox(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -51,7 +47,7 @@ class TaskComponent extends HookConsumerWidget {
                           text: '受取',
                           variant: ButtonVariant.outline,
                           onPressed: () {
-                            showGif = true;
+                            ref.read(showGifProvider.notifier).state = true;
                           },
                           size: ButtonSize.small,
                         )
@@ -59,36 +55,46 @@ class TaskComponent extends HookConsumerWidget {
                         const SizedBox(),
                     ],
                   ),
-                ],
-              ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 16, // EXPのゲージを太くします
-                      child: LinearProgressIndicator(
-                        borderRadius: BorderRadius.circular(50),
-                        value: achievement / target,
-                        backgroundColor: Colors.grey[300],
-                        valueColor: const AlwaysStoppedAnimation(
-                          AppColor.primaryColor,
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 16, // EXPのゲージを太くします
+                          child: LinearProgressIndicator(
+                            borderRadius: BorderRadius.circular(50),
+                            value: achievement / target,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation(
+                              AppColor.primaryColor,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Text(
-                    '$achievement / $target',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.white,
-                    ),
+                      Text(
+                        '$achievement / $target',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.white,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+          Positioned(
+            left: width / 2,
+            child: showGif
+                ? SizedBox(
+                    width: 95,
+                    height: 95,
+                    child: Image.asset('assets/images/gif/bestAnswer.gif'),
+                  )
+                : const SizedBox(),
+          ),
+        ],
       ),
     );
   }
