@@ -14,13 +14,15 @@ class TermsOfServiceScreen extends StatelessWidget {
       body: const Column(
         children: [
           SectionWidget(
-              title: '適用',
-              description:
-                  '本規約は、ロカクエ（以下、「本サービス」といいます。）の提供条件及び本サービスの利用に関する当社と登録ユーザーの権利義務関係を規定するものです。'),
+            title: '適用',
+            description:
+                '本規約は、ロカクエ（以下、「本サービス」といいます。）の提供条件及び本サービスの利用に関する当社と登録ユーザーの権利義務関係を規定するものです。',
+          ),
           SectionWidget(
-              title: '定義',
-              description:
-                  '「ユーザー」とは、本サービスの利用を希望する全ての利用者を意味します。「登録ユーザー」とは、ユーザー登録が完了した者を意味します。'),
+            title: '定義',
+            description:
+                '「ユーザー」とは、本サービスの利用を希望する全ての利用者を意味します。「登録ユーザー」とは、ユーザー登録が完了した者を意味します。',
+          ),
           SectionWidget(
             title: 'ユーザー登録',
             description: 'ユーザー登録は、本サービス上で要求される情報を提供し、ユーザー登録を完了するものとします。',
