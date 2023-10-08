@@ -26,8 +26,8 @@ _$UserTaskImpl _$$UserTaskImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       created_at: DateTime.parse(json['created_at'] as String),
       task_id: json['task_id'] as int,
-      achieved_number: json['achieved_number'] as int,
-      user_id: json['user_id'] as int,
+      is_done: json['is_done'] as bool,
+      user_id: json['user_id'] as String,
     );
 
 Map<String, dynamic> _$$UserTaskImplToJson(_$UserTaskImpl instance) =>
@@ -35,16 +35,28 @@ Map<String, dynamic> _$$UserTaskImplToJson(_$UserTaskImpl instance) =>
       'id': instance.id,
       'created_at': instance.created_at.toIso8601String(),
       'task_id': instance.task_id,
-      'achieved_number': instance.achieved_number,
+      'is_done': instance.is_done,
       'user_id': instance.user_id,
     };
 
 _$TaskResponseImpl _$$TaskResponseImplFromJson(Map<String, dynamic> json) =>
     _$TaskResponseImpl(
-      tasks: Task.fromJson(json['tasks'] as Map<String, dynamic>),
+      id: json['id'] as int,
+      created_at: DateTime.parse(json['created_at'] as String),
+      task_id: json['task_id'] as int,
+      is_done: json['is_done'] as bool,
+      user_id: json['user_id'] as String,
+      tasks: json['tasks'] == null
+          ? null
+          : Task.fromJson(json['tasks'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TaskResponseImplToJson(_$TaskResponseImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'created_at': instance.created_at.toIso8601String(),
+      'task_id': instance.task_id,
+      'is_done': instance.is_done,
+      'user_id': instance.user_id,
       'tasks': instance.tasks,
     };
