@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
 
 class PetSelectPage extends HookConsumerWidget {
   const PetSelectPage({super.key});
@@ -66,16 +66,12 @@ class PetSelectPage extends HookConsumerWidget {
                     side: const BorderSide(width: 0.1),
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 20,
-                    horizontal: 24,
-                  ),
                 ),
                 child: Row(
                   children: [
                     Container(
-                      width: 80,
-                      height: 80,
+                      width: 120,
+                      height: 120,
                       color: Colors.black,
                     ),
                     const SizedBox(width: 10),
@@ -107,7 +103,8 @@ class PetSelectPage extends HookConsumerWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (context) => const BottomNavigationScreen(),
+                            builder: (context) =>
+                                const BottomNavigationScreen(),
                           ),
                         );
                       }
