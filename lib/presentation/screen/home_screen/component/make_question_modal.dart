@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -16,18 +18,20 @@ class MakeQuestionModal extends HookConsumerWidget {
     required this.context,
     required this.isQuestion,
     this.content,
+    this.questId,
     super.key,
   });
 
   final BuildContext context;
   final bool isQuestion;
   String? content;
-
+  int? questId;
 
   static Future<void> show({
     required BuildContext context,
     required bool isQuestion,
     String? content,
+    int? questId,
   }) async {
     await showModalBottomSheet<void>(
       isDismissible: false,
@@ -40,6 +44,7 @@ class MakeQuestionModal extends HookConsumerWidget {
         context: context,
         isQuestion: isQuestion,
         content: content,
+        questId: questId,
       ),
     );
   }
@@ -48,6 +53,7 @@ class MakeQuestionModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final questionTaskNotifier =
         ref.watch(questionTaskNotifierProvider.notifier);
+    final answerNotifier = ref.watch(answerNotifierProvider.notifier);
 
     return ListView(
       children: [
@@ -73,7 +79,13 @@ class MakeQuestionModal extends HookConsumerWidget {
                     variant: ButtonVariant.primary,
                     size: ButtonSize.small,
                     onPressed: () async {
-                      await questionTaskNotifier.createQuest().then((value) {
+                      if (isQuestion) {
+                        await questionTaskNotifier.createQuest().then((value) {
+                          Navigator.of(context).pop();
+                        });
+                        return;
+                      }
+                      await answerNotifier.createAnswer(questId: questId!).then((value) {
                         Navigator.of(context).pop();
                       });
                     },
@@ -87,7 +99,9 @@ class MakeQuestionModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最低予算',
                     options: priceList,
-                    controller: questionTaskNotifier.minimumBudgetController,
+                    controller: isQuestion
+                        ? questionTaskNotifier.minimumBudgetController
+                        : answerNotifier.minimumBudgetController,
                   ),
                   const Gap(8),
                   const Text('~'),
@@ -95,7 +109,9 @@ class MakeQuestionModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最大予算',
                     options: priceList,
-                    controller: questionTaskNotifier.maximumBudgetController,
+                    controller: isQuestion
+                        ? questionTaskNotifier.maximumBudgetController
+                        : answerNotifier.maximumBudgetController,
                   ),
                 ],
               ),
@@ -114,7 +130,9 @@ class MakeQuestionModal extends HookConsumerWidget {
                 ),
               const Gap(24),
               TextField(
-                controller: questionTaskNotifier.contentController,
+                controller: isQuestion
+                    ? questionTaskNotifier.contentController
+                    : answerNotifier.contentController,
                 maxLines: 15,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(

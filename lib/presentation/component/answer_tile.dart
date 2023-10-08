@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/domain/entity/answer.dart';
+import 'package:food_quest/domain/entity/user_data.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,11 +9,12 @@ import 'package:food_quest/domain/entity/question.dart';
 
 class AnswerTile extends HookConsumerWidget {
   const AnswerTile({
-    required this.question,
-    super.key,
+    required this.answer,
+    required this.user, super.key,
   });
 
-  final QuestionResponse question;
+  final Answer answer;
+  final UserData user;
 
   @override
   Widget build(
@@ -29,17 +32,17 @@ class AnswerTile extends HookConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              question.users?.name ?? '',
+              user.name,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const Gap(32),
-            Text(question.contents),
+            Text(answer.content),
             const Gap(8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(question.users?.prefecture ?? ''),
-                Text(question.formattedDeadLine),
+                Text(user.name),
+                Text(answer.formattedCreatedAt),
               ],
             ),
           ],

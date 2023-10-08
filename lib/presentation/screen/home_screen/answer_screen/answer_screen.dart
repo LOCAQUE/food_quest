@@ -31,6 +31,16 @@ class AnswerScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final answers = question.answers ?? [];
+
+    if(answers.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: Text('回答がありません'),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -74,9 +84,10 @@ class AnswerScreen extends HookConsumerWidget {
                   ),
                   const Gap(8),
                   //回答
-                  ...List.generate(10, (index) {
+                  ...List.generate(answers.length, (index) {
                     return AnswerTile(
-                      question: question,
+                      user: question.users!,
+                      answer: answers[index],
                     );
                   }),
                 ],
@@ -94,6 +105,7 @@ class AnswerScreen extends HookConsumerWidget {
                   context: context,
                   isQuestion: false,
                   content: question.contents,
+                  questId: question.id,
                 );
               },
             ),
