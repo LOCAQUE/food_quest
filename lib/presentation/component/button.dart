@@ -121,12 +121,12 @@ class BuildOutlineButton extends StatelessWidget {
   });
 
   final String text;
-  final Function onPressed;
+  final dynamic Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: null,
+      onPressed: onPressed,
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(
           AppColor.primaryColor,
