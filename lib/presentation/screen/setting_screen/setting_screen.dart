@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/presentation/screen/setting_screen/component/link_component.dart';
-import 'package:gap/gap.dart';
 
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
+import 'package:food_quest/presentation/screen/setting_screen/component/link_component.dart';
 
 class SettingScreen extends HookConsumerWidget {
   const SettingScreen({super.key});
@@ -19,12 +19,11 @@ class SettingScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('設定', style: TextStyle(fontSize: 20)),
+            const Text('設定', style: TextStyle(fontSize: 20)),
             const Gap(25),
             SizedBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Row(
                     children: [
@@ -32,19 +31,20 @@ class SettingScreen extends HookConsumerWidget {
                       Text(
                         '規約',
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
                   LinkComponent(text: 'プライバシーポリシー', onPressed: () {}),
-                  LinkComponent(text: '利用規約', onPressed: () {})
+                  LinkComponent(text: '利用規約', onPressed: () {}),
                 ],
               ),
             ),
-            Gap(25),
+            const Gap(25),
             SizedBox(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Row(
                     children: [
@@ -52,7 +52,9 @@ class SettingScreen extends HookConsumerWidget {
                       Text(
                         '通知',
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -63,7 +65,6 @@ class SettingScreen extends HookConsumerWidget {
             const Gap(25),
             SizedBox(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Row(
                     children: [
@@ -71,23 +72,24 @@ class SettingScreen extends HookConsumerWidget {
                       Text(
                         'ヘルプ・フィードバック',
                         style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
                   LinkComponent(text: 'お問い合わせ', onPressed: () {}),
-                  LinkComponent(text: 'フィードバック', onPressed: () {})
+                  LinkComponent(text: 'フィードバック', onPressed: () {}),
                 ],
               ),
             ),
-            Gap(35),
+            const Gap(35),
             CustomButton(
               text: 'ログアウト',
               onPressed: () async {
                 await authNotifier.logout();
               },
               variant: ButtonVariant.outline,
-              size: ButtonSize.large,
             ),
           ],
         ),
