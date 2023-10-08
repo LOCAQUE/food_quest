@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AuthNotifierState {
   UserData? get currentUser => throw _privateConstructorUsedError;
+  String? get emailError => throw _privateConstructorUsedError;
+  String? get passwordError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthNotifierStateCopyWith<AuthNotifierState> get copyWith =>
@@ -29,7 +31,7 @@ abstract class $AuthNotifierStateCopyWith<$Res> {
           AuthNotifierState value, $Res Function(AuthNotifierState) then) =
       _$AuthNotifierStateCopyWithImpl<$Res, AuthNotifierState>;
   @useResult
-  $Res call({UserData? currentUser});
+  $Res call({UserData? currentUser, String? emailError, String? passwordError});
 
   $UserDataCopyWith<$Res>? get currentUser;
 }
@@ -48,12 +50,22 @@ class _$AuthNotifierStateCopyWithImpl<$Res, $Val extends AuthNotifierState>
   @override
   $Res call({
     Object? currentUser = freezed,
+    Object? emailError = freezed,
+    Object? passwordError = freezed,
   }) {
     return _then(_value.copyWith(
       currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      emailError: freezed == emailError
+          ? _value.emailError
+          : emailError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      passwordError: freezed == passwordError
+          ? _value.passwordError
+          : passwordError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -78,7 +90,7 @@ abstract class _$$AuthNotifierStateImplCopyWith<$Res>
       __$$AuthNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserData? currentUser});
+  $Res call({UserData? currentUser, String? emailError, String? passwordError});
 
   @override
   $UserDataCopyWith<$Res>? get currentUser;
@@ -96,12 +108,22 @@ class __$$AuthNotifierStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentUser = freezed,
+    Object? emailError = freezed,
+    Object? passwordError = freezed,
   }) {
     return _then(_$AuthNotifierStateImpl(
       currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      emailError: freezed == emailError
+          ? _value.emailError
+          : emailError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      passwordError: freezed == passwordError
+          ? _value.passwordError
+          : passwordError // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -109,14 +131,19 @@ class __$$AuthNotifierStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthNotifierStateImpl implements _AuthNotifierState {
-  _$AuthNotifierStateImpl({this.currentUser});
+  _$AuthNotifierStateImpl(
+      {this.currentUser, this.emailError, this.passwordError});
 
   @override
   final UserData? currentUser;
+  @override
+  final String? emailError;
+  @override
+  final String? passwordError;
 
   @override
   String toString() {
-    return 'AuthNotifierState(currentUser: $currentUser)';
+    return 'AuthNotifierState(currentUser: $currentUser, emailError: $emailError, passwordError: $passwordError)';
   }
 
   @override
@@ -125,11 +152,16 @@ class _$AuthNotifierStateImpl implements _AuthNotifierState {
         (other.runtimeType == runtimeType &&
             other is _$AuthNotifierStateImpl &&
             (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser));
+                other.currentUser == currentUser) &&
+            (identical(other.emailError, emailError) ||
+                other.emailError == emailError) &&
+            (identical(other.passwordError, passwordError) ||
+                other.passwordError == passwordError));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentUser);
+  int get hashCode =>
+      Object.hash(runtimeType, currentUser, emailError, passwordError);
 
   @JsonKey(ignore: true)
   @override
@@ -140,11 +172,17 @@ class _$AuthNotifierStateImpl implements _AuthNotifierState {
 }
 
 abstract class _AuthNotifierState implements AuthNotifierState {
-  factory _AuthNotifierState({final UserData? currentUser}) =
-      _$AuthNotifierStateImpl;
+  factory _AuthNotifierState(
+      {final UserData? currentUser,
+      final String? emailError,
+      final String? passwordError}) = _$AuthNotifierStateImpl;
 
   @override
   UserData? get currentUser;
+  @override
+  String? get emailError;
+  @override
+  String? get passwordError;
   @override
   @JsonKey(ignore: true)
   _$$AuthNotifierStateImplCopyWith<_$AuthNotifierStateImpl> get copyWith =>

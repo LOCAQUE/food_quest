@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/auth_notifier.dart';
-import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
@@ -17,6 +16,8 @@ class SignUpScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authNotifier = ref.watch(authNotifierProvider.notifier);
     final isButtonEnabled = useValueListenable(authNotifier.isFormValid);
+    final emailError = ref.watch(authNotifierProvider).emailError;
+    final passwordError = ref.watch(authNotifierProvider).passwordError;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,6 +56,14 @@ class SignUpScreen extends HookConsumerWidget {
                     hintText: 'emailを入力してください',
                   ),
                 ),
+                if (emailError != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 20),
+                    child: Text(
+                      emailError,
+                      style: const TextStyle(color: Colors.red, fontSize: 12),
+                    ),
+                  ),
                 Padding(
                   padding: const EdgeInsets.only(top: 28),
                   child: CustomTextField(
@@ -64,16 +73,14 @@ class SignUpScreen extends HookConsumerWidget {
                     hintText: 'passwordを入力してください',
                   ),
                 ),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    '8文字以上12文字以下の半角英数字',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColor.textColor,
+                if (passwordError != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 20),
+                    child: Text(
+                      passwordError,
+                      style: const TextStyle(color: Colors.red, fontSize: 12),
                     ),
                   ),
-                ),
                 const Gap(250),
                 // linterによる警告を抑制するために、if文で分岐させています。
                 if (isButtonEnabled)
@@ -81,14 +88,19 @@ class SignUpScreen extends HookConsumerWidget {
                     variant: ButtonVariant.primary,
                     text: 'はじめる',
                     onPressed: () async {
-                      await authNotifier.signUp().then((_) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (context) => const SignUpProfile(),
-                          ),
-                        );
-                      });
+                      if (emailError == null && passwordError == null) {
+                        final isSuccess = await authNotifier.signUp();
+                        if (isSuccess &&
+                            emailError == null &&
+                            passwordError == null) {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute<SignUpProfile>(
+                              builder: (context) => const SignUpProfile(),
+                            ),
+                          );
+                        }
+                      }
                     },
                   )
                 else

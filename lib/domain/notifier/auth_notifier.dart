@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'package:food_quest/domain/entity/error.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
@@ -13,6 +14,8 @@ part 'auth_notifier.freezed.dart';
 class AuthNotifierState with _$AuthNotifierState {
   factory AuthNotifierState({
     UserData? currentUser,
+    String? emailError,
+    String? passwordError,
   }) = _AuthNotifierState;
 }
 
@@ -37,8 +40,14 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
   final ValueNotifier<bool> isFormValid = ValueNotifier<bool>(false);
 
   void _addTextListeners() {
-    emailController.addListener(_validateForm);
-    passwordController.addListener(_validateForm);
+    emailController.addListener(() {
+      _validateForm();
+      resetEmailError(); // メールアドレスが編集されるたびにエラーメッセージをリセット
+    });
+    passwordController.addListener(() {
+      _validateForm();
+      resetPasswordError(); // パスワードが編集されるたびにエラーメッセージをリセット
+    });
   }
 
   void _addFormListeners() {
@@ -56,7 +65,31 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
         nameController.text.isNotEmpty && addressController.text.isNotEmpty;
   }
 
-  Future<void> signUp() async {
+  // メールエラーメッセージをリセットするメソッドを追加
+  void resetEmailError() {
+    if (state.emailError != null) {
+      state = state.copyWith(emailError: null);
+    }
+  }
+
+  // パスワードエラーメッセージをリセットするメソッドを追加
+  void resetPasswordError() {
+    if (state.passwordError != null) {
+      state = state.copyWith(passwordError: null);
+    }
+  }
+
+  Future<bool> signUp() async {
+    final emailError = validateEmail(emailController.text);
+    final passwordError = validatePassword(passwordController.text);
+
+    if (emailError != null || passwordError != null) {
+      debugPrint(emailError);
+      state = state.copyWith(emailError: emailError);
+      state = state.copyWith(passwordError: passwordError);
+      return false; // メールアドレスもしくはパスワードに問題があるため、関数を終了します。
+    }
+
     try {
       //supabaseAuthにユーザー作成
       final authResponse = await client.auth.signUp(
@@ -69,12 +102,19 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
         //登録したユーザーを取得
         final currentUser = await getCurrentUser(uid: authResponse.user!.id);
         state = state.copyWith(currentUser: currentUser);
+        return true;
       }
       //idが帰ってこなければUserDataはnullになる
       //nullの場合HomeScreenでエラーダイアログ出るようにする
-      return;
+      return false;
     } on AuthException catch (e) {
-      debugPrint(e.toString());
+      if (e.message == 'auth/email-already-in-use') {
+        debugPrint('このメールアドレスはすでに使用されています。');
+        state = state.copyWith(emailError: 'このメールアドレスはすでに使用されています。');
+      } else {
+        debugPrint(e.toString());
+      }
+      return false;
     }
   }
 
