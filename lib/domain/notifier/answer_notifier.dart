@@ -13,7 +13,7 @@ part 'answer_notifier.freezed.dart';
 @freezed
 class AnswerNotifierState with _$AnswerNotifierState {
   factory AnswerNotifierState({
-    List<QuestionResponse>? questionList,
+    List<ResponseAnswer>? myAnswerList,
   }) = _AnswerNotifierState;
 }
 
@@ -45,6 +45,22 @@ class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
 
     try {
       await client.from('answers').insert(sendAnswerData);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getMyAnswerList() async {
+    final currentUserId = client.auth.currentUser?.id;
+    try {
+      final response = await client
+          .from('answers')
+          .select<PostgrestList>()
+          .eq('uid', currentUserId);
+
+      final myAnswerList = response.map(ResponseAnswer.fromJson).toList();
+
+      state = state.copyWith(myAnswerList: myAnswerList);
     } catch (e) {
       debugPrint(e.toString());
     }
