@@ -104,6 +104,7 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
       final taskList = response.map(TaskResponse.fromJson).toList();
       state = state.copyWith(taskList: taskList);
+      print(taskList);
       return taskList;
     } catch (e) {
       debugPrint(e.toString());

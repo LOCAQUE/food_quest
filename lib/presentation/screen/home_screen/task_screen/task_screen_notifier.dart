@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -11,6 +12,7 @@ part 'task_screen_notifier.freezed.dart';
 class TaskScreenState with _$TaskScreenState {
   factory TaskScreenState({
     @Default(false) bool isLoading,
+    @Default('') String errorMessage,
   }) = _TaskScreenState;
 }
 
@@ -23,11 +25,32 @@ class TaskScreenNotifier extends StateNotifier<TaskScreenState> {
   TaskScreenNotifier(this.ref) : super(TaskScreenState()) {
     Future.microtask(_init);
   }
+
   final Ref ref;
 
-  void _init() {
-    state = state.copyWith(isLoading: true);
-    ref.watch(questionTaskNotifierProvider.notifier).getTaskList();
-    state = state.copyWith(isLoading: false);
+  void _init() async {
+    await initFunction();
   }
+
+  Future<void> initFunction() async {
+    try {
+      state = state.copyWith(isLoading: true);
+      final taskList =
+          await ref.watch(questionTaskNotifierProvider.notifier).getTaskList();
+      final isTaskListEmpty = taskList?.isEmpty ?? true;
+      final isTaskEmpty = taskList?.first.tasks ?? true;
+
+      if (isTaskListEmpty && isTaskEmpty != false) {
+        state = state.copyWith(errorMessage: 'タスクが取得できませんでした');
+      }
+
+      await ref.watch(questionTaskNotifierProvider.notifier).getAchievements();
+
+      state = state.copyWith(isLoading: false);
+    } catch (e) {
+      debugPrint(e.toString());
+      state = state.copyWith(errorMessage: 'タスクが取得できませんでした');
+    }
+  }
+
 }

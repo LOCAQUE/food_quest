@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TaskScreenState {
   bool get isLoading => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskScreenStateCopyWith<TaskScreenState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $TaskScreenStateCopyWith<$Res> {
           TaskScreenState value, $Res Function(TaskScreenState) then) =
       _$TaskScreenStateCopyWithImpl<$Res, TaskScreenState>;
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, String errorMessage});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$TaskScreenStateCopyWithImpl<$Res, $Val extends TaskScreenState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$TaskScreenStateImplCopyWith<$Res>
       __$$TaskScreenStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, String errorMessage});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$TaskScreenStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? errorMessage = null,
   }) {
     return _then(_$TaskScreenStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -92,15 +103,18 @@ class __$$TaskScreenStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TaskScreenStateImpl implements _TaskScreenState {
-  _$TaskScreenStateImpl({this.isLoading = false});
+  _$TaskScreenStateImpl({this.isLoading = false, this.errorMessage = ''});
 
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final String errorMessage;
 
   @override
   String toString() {
-    return 'TaskScreenState(isLoading: $isLoading)';
+    return 'TaskScreenState(isLoading: $isLoading, errorMessage: $errorMessage)';
   }
 
   @override
@@ -109,11 +123,13 @@ class _$TaskScreenStateImpl implements _TaskScreenState {
         (other.runtimeType == runtimeType &&
             other is _$TaskScreenStateImpl &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading);
+  int get hashCode => Object.hash(runtimeType, isLoading, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -124,10 +140,13 @@ class _$TaskScreenStateImpl implements _TaskScreenState {
 }
 
 abstract class _TaskScreenState implements TaskScreenState {
-  factory _TaskScreenState({final bool isLoading}) = _$TaskScreenStateImpl;
+  factory _TaskScreenState({final bool isLoading, final String errorMessage}) =
+      _$TaskScreenStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  String get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$TaskScreenStateImplCopyWith<_$TaskScreenStateImpl> get copyWith =>
