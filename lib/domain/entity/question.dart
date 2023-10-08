@@ -1,3 +1,4 @@
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
@@ -33,6 +34,7 @@ abstract class QuestionResponse with _$QuestionResponse {
     required int maximumBudget,
     required DateTime deadLine,
     UserData? users,
+    List<Answer>? answers,
   }) = _QuestionResponse;
 
   const QuestionResponse._();
