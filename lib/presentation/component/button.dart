@@ -174,7 +174,7 @@ class BuildOutlineButton extends StatelessWidget {
 
   final String text;
   final double radius;
-  final Function onPressed;
+  final dynamic Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
