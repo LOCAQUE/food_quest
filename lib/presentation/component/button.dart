@@ -8,9 +8,38 @@ enum ButtonVariant {
   disabled,
 }
 
+Color _buttonColor(ButtonVariant style) {
+  switch (style) {
+    case ButtonVariant.primary:
+      return AppColor.primaryColor;
+    case ButtonVariant.outline:
+      return AppColor.primaryColor;
+    case ButtonVariant.disabled:
+      return AppColor.disabledColor;
+  }
+}
+
 enum ButtonSize {
   small,
   large,
+}
+
+double _buttonWidth(ButtonSize style) {
+  switch (style) {
+    case ButtonSize.small:
+      return 80;
+    case ButtonSize.large:
+      return 300;
+  }
+}
+
+double _buttonHeight(ButtonSize style) {
+  switch (style) {
+    case ButtonSize.small:
+      return 25;
+    case ButtonSize.large:
+      return 50;
+  }
 }
 
 enum ButtonRadius {
@@ -46,23 +75,12 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = _buttonRadius(buttonRadius);
+    final width = _buttonWidth(size);
+    final height = _buttonHeight(size);
+
     return SizedBox(
-      width: () {
-        switch (size) {
-          case ButtonSize.small:
-            return 80.0;
-          case ButtonSize.large:
-            return 300.0;
-        }
-      }(),
-      height: () {
-        switch (size) {
-          case ButtonSize.small:
-            return 25.0;
-          case ButtonSize.large:
-            return 50.0;
-        }
-      }(),
+      width: width,
+      height: height,
       child: () {
         switch (variant) {
           case ButtonVariant.primary:
@@ -103,10 +121,11 @@ class BuildPrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.primary);
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: backgroundColor,
         foregroundColor: AppColor.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
@@ -131,10 +150,11 @@ class BuildDisabledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.primary);
     return ElevatedButton(
       onPressed: null,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.disabledColor,
+        backgroundColor: backgroundColor,
         foregroundColor: AppColor.white,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
@@ -158,10 +178,12 @@ class BuildOutlineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.outline);
+
     return OutlinedButton(
       onPressed: null,
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppColor.primaryColor,
+        foregroundColor: backgroundColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
       ),
