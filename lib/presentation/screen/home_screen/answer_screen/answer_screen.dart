@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/entity/question.dart';
-import 'package:food_quest/presentation/component/button.dart';
-import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:gap/gap.dart';
 
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../gen/colors.gen.dart';
-import '../../../component/answer_tile.dart';
-import '../component/make_question_modal.dart';
+import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/component/answer_tile.dart';
+import 'package:food_quest/presentation/component/button.dart';
+import 'package:food_quest/presentation/component/question_tile.dart';
+import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
 
 class AnswerScreen extends HookConsumerWidget {
   const AnswerScreen({required this.question, super.key});
@@ -32,37 +32,37 @@ class AnswerScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        body: Stack(
-      children: [
-        ListView(
-          children: [
-            Column(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12, top: 28),
-                    child: TextButton(
-                      child: const Text(
-                        'キャンセル',
-                        style: TextStyle(color: AppColor.textColor),
+      body: Stack(
+        children: [
+          ListView(
+            children: [
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12, top: 28),
+                      child: TextButton(
+                        child: const Text(
+                          'キャンセル',
+                          style: TextStyle(color: AppColor.textColor),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
                     ),
                   ),
-                ),
-                Gap(8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  //質問
-                  child: QuestionTile(
-                    question: question,
+                  const Gap(8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    //質問
+                    child: QuestionTile(
+                      question: question,
+                    ),
                   ),
-                ),
-                Gap(8),
-                const Align(
+                  const Gap(8),
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -70,19 +70,20 @@ class AnswerScreen extends HookConsumerWidget {
                         '回答',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                    )),
-                Gap(8),
-                //回答
-                ...List.generate(10, (index) {
-                  return AnswerTile(
-                    question: question,
-                  );
-                })
-              ],
-            ),
-          ],
-        ),
-        Positioned(
+                    ),
+                  ),
+                  const Gap(8),
+                  //回答
+                  ...List.generate(10, (index) {
+                    return AnswerTile(
+                      question: question,
+                    );
+                  }),
+                ],
+              ),
+            ],
+          ),
+          Positioned(
             bottom: 24,
             left: MediaQuery.of(context).size.width * 0.13,
             child: CustomButton(
@@ -90,13 +91,15 @@ class AnswerScreen extends HookConsumerWidget {
               text: '回答する',
               onPressed: () {
                 MakeQuestionModal.show(
-                    context: context,
-                    isQuestion: false,
-                    content: question.contents,
+                  context: context,
+                  isQuestion: false,
+                  content: question.contents,
                 );
               },
-            )),
-      ],
-    ));
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,19 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../domain/entity/question.dart';
+import 'package:food_quest/domain/entity/question.dart';
 
 class AnswerTile extends HookConsumerWidget {
   const AnswerTile({
-  required this.question, super.key,
+    required this.question,
+    super.key,
   });
 
   final QuestionResponse question;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref,) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/presentation/screen/home_screen/answer_screen/answer_screen.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
+import 'package:food_quest/presentation/screen/home_screen/answer_screen/answer_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
 import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen_notifier.dart';
 
@@ -46,10 +46,11 @@ class QuestScreen extends HookConsumerWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: QuestionTile(
-                    question: question,
-                    onTap: () {
-                      AnswerScreen(question: question).show(context);
-                    }),
+                  question: question,
+                  onTap: () {
+                    AnswerScreen(question: question).show(context);
+                  },
+                ),
               );
             },
             // itemExtent: 100,

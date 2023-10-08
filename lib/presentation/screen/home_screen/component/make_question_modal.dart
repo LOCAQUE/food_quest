@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,20 +12,23 @@ import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 
 class MakeQuestionModal extends HookConsumerWidget {
-  MakeQuestionModal(
-      {required this.context,
-      required this.isQuestion,
-      this.content,
-      super.key});
+  MakeQuestionModal({
+    required this.context,
+    required this.isQuestion,
+    this.content,
+    super.key,
+  });
 
   final BuildContext context;
   final bool isQuestion;
   String? content;
 
-  static Future<void> show(
-      {required BuildContext context,
-      required bool isQuestion,
-      String? content}) async {
+
+  static Future<void> show({
+    required BuildContext context,
+    required bool isQuestion,
+    String? content,
+  }) async {
     await showModalBottomSheet<void>(
       isDismissible: false,
       enableDrag: false,
@@ -148,18 +151,19 @@ class ExpandableText extends HookConsumerWidget {
               child: Text(
                 '質問内容',
                 style: Theme.of(context).textTheme.headlineLarge,
-              )),
-              Gap(8),
-            Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-            isExpanded.value
-            ? content
-                : (content.length > maxLength
-            ? '${content.substring(0, maxLength)}...'
-                : content),
-            style: Theme.of(context).textTheme.bodyLarge,
+              ),
             ),
+            const Gap(8),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                isExpanded.value
+                    ? content
+                    : (content.length > maxLength
+                        ? '${content.substring(0, maxLength)}...'
+                        : content),
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
             ),
           ],
         ),
@@ -172,7 +176,7 @@ class ExpandableText extends HookConsumerWidget {
                 ? const Icon(Icons.keyboard_arrow_up)
                 : const Icon(Icons.keyboard_arrow_down),
           ),
-        Gap(16),
+        const Gap(16),
       ],
     );
   }

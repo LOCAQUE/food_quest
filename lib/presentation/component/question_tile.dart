@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
 
 class QuestionTile extends StatelessWidget {
   const QuestionTile({
-    required this.question, this.onTap, super.key,
+    required this.question,
+    this.onTap,
+    super.key,
   });
 
   final QuestionResponse question;
