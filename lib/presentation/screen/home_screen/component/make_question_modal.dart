@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/list.dart';
+import 'package:food_quest/domain/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
@@ -11,9 +13,25 @@ import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 
 class MakeQuestionModal extends HookConsumerWidget {
-  const MakeQuestionModal({super.key});
+  MakeQuestionModal({
+    required this.context,
+    required this.isQuestion,
+    this.content,
+    this.questId,
+    super.key,
+  });
 
-  static Future<void> show(BuildContext context) async {
+  final BuildContext context;
+  final bool isQuestion;
+  String? content;
+  int? questId;
+
+  static Future<void> show({
+    required BuildContext context,
+    required bool isQuestion,
+    String? content,
+    int? questId,
+  }) async {
     await showModalBottomSheet<void>(
       isDismissible: false,
       enableDrag: false,
@@ -21,7 +39,12 @@ class MakeQuestionModal extends HookConsumerWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColor.firstColor,
-      builder: (context) => const MakeQuestionModal(),
+      builder: (context) => MakeQuestionModal(
+        context: context,
+        isQuestion: isQuestion,
+        content: content,
+        questId: questId,
+      ),
     );
   }
 
@@ -29,6 +52,8 @@ class MakeQuestionModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final questionTaskNotifier =
         ref.watch(questionTaskNotifierProvider.notifier);
+    final answerNotifier = ref.watch(answerNotifierProvider.notifier);
+
     return ListView(
       children: [
         Padding(
@@ -49,111 +74,128 @@ class MakeQuestionModal extends HookConsumerWidget {
                     },
                   ),
                   CustomButton(
-                    text: '依頼',
+                    text: '受注',
                     variant: ButtonVariant.primary,
                     size: ButtonSize.small,
                     onPressed: () async {
-                      await questionTaskNotifier.createQuest().then((value) {
+                      if (isQuestion) {
+                        await questionTaskNotifier.createQuest().then((value) {
+                          Navigator.of(context).pop();
+                        });
+                        return;
+                      }
+                      await answerNotifier
+                          .createAnswer(questId: questId!)
+                          .then((value) {
                         Navigator.of(context).pop();
                       });
                     },
                   ),
                 ],
               ),
-              const Gap(32),
+              const Gap(24),
+              if (!isQuestion) ExpandableText(content: content ?? ''),
               Row(
                 children: [
-                  Row(
-                    children: [
-                      const Column(
-                        children: [
-                          Gap(23),
-                          Text(
-                            '¥',
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      CustomPicker(
-                        title: '最低予算',
-                        options: priceList,
-                        controller:
-                            questionTaskNotifier.minimumBudgetController,
-                      ),
-                    ],
+                  CustomPicker(
+                    title: '最低予算',
+                    options: priceList,
+                    controller: isQuestion
+                        ? questionTaskNotifier.minimumBudgetController
+                        : answerNotifier.minimumBudgetController,
                   ),
                   const Gap(8),
                   const Text('~'),
                   const Gap(8),
-                  Row(
-                    children: [
-                      const Column(
-                        children: [
-                          Gap(23),
-                          Text(
-                            '¥',
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      CustomPicker(
-                        title: '最大予算',
-                        options: priceList,
-                        controller:
-                            questionTaskNotifier.maximumBudgetController,
-                      ),
-                    ],
+                  CustomPicker(
+                    title: '最大予算',
+                    options: priceList,
+                    controller: isQuestion
+                        ? questionTaskNotifier.maximumBudgetController
+                        : answerNotifier.maximumBudgetController,
                   ),
                 ],
               ),
-              const Gap(16),
-              CustomPicker(
-                title: 'エリア',
-                options: prefectures,
-                controller: questionTaskNotifier.prefectureController,
-              ),
-              const Gap(16),
-              CustomDatePicker(
-                title: '締切日',
-                controller: questionTaskNotifier.deadLineController,
-              ),
-              const Gap(24),
-
-              Container(
-                width: 350, // こちらの値を変更して、希望の幅に設定してください
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      width: 350,
-                      child: Text(
-                        '依頼内容',
-                        style: TextStyle(
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TextField(
-                      controller: questionTaskNotifier.contentController,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none, // 枠線を非表示に
-                        hintText: '依頼内容は具体的に書いてください', // プレースホルダーのテキストを設定
-                      ),
-                      maxLength: 255, // 最大文字数を制限
-                      maxLines: null, // 複数行の入力を許可
-                    ),
-                  ],
+              if (isQuestion) const Gap(16),
+              if (isQuestion)
+                CustomPicker(
+                  title: 'エリア',
+                  options: prefectures,
+                  controller: questionTaskNotifier.prefectureController,
                 ),
+              if (isQuestion) const Gap(16),
+              if (isQuestion)
+                CustomDatePicker(
+                  title: '締切日',
+                  controller: questionTaskNotifier.deadLineController,
+                ),
+              const Gap(24),
+              TextField(
+                controller: isQuestion
+                    ? questionTaskNotifier.contentController
+                    : answerNotifier.contentController,
+                maxLines: 15,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ), // 四角い枠を表示
+                  labelText: '入力してください', // ラベルテキスト
+                ),
+                maxLength: 255, // 最大文字数を制限
               ),
             ],
           ),
         ),
+      ],
+    );
+  }
+}
+
+class ExpandableText extends HookConsumerWidget {
+  const ExpandableText({required this.content, super.key});
+
+  final String content;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isExpanded = useState(false);
+    const maxLength = 80;
+
+    return Column(
+      children: [
+        Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '質問内容',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ),
+            const Gap(8),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                isExpanded.value
+                    ? content
+                    : (content.length > maxLength
+                        ? '${content.substring(0, maxLength)}...'
+                        : content),
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ],
+        ),
+        if (content.length > maxLength)
+          IconButton(
+            onPressed: () {
+              isExpanded.value = !isExpanded.value;
+            },
+            icon: isExpanded.value
+                ? const Icon(Icons.keyboard_arrow_up)
+                : const Icon(Icons.keyboard_arrow_down),
+          ),
+        const Gap(16),
       ],
     );
   }

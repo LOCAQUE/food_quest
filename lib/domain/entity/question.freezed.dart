@@ -254,6 +254,7 @@ mixin _$QuestionResponse {
   int get maximumBudget => throw _privateConstructorUsedError;
   DateTime get deadLine => throw _privateConstructorUsedError;
   UserData? get users => throw _privateConstructorUsedError;
+  List<Answer>? get answers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -275,7 +276,8 @@ abstract class $QuestionResponseCopyWith<$Res> {
       int minimumBudget,
       int maximumBudget,
       DateTime deadLine,
-      UserData? users});
+      UserData? users,
+      List<Answer>? answers});
 
   $UserDataCopyWith<$Res>? get users;
 }
@@ -301,6 +303,7 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
     Object? maximumBudget = null,
     Object? deadLine = null,
     Object? users = freezed,
+    Object? answers = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -335,6 +338,10 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      answers: freezed == answers
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>?,
     ) as $Val);
   }
 
@@ -367,7 +374,8 @@ abstract class _$$QuestionResponseImplCopyWith<$Res>
       int minimumBudget,
       int maximumBudget,
       DateTime deadLine,
-      UserData? users});
+      UserData? users,
+      List<Answer>? answers});
 
   @override
   $UserDataCopyWith<$Res>? get users;
@@ -392,6 +400,7 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
     Object? maximumBudget = null,
     Object? deadLine = null,
     Object? users = freezed,
+    Object? answers = freezed,
   }) {
     return _then(_$QuestionResponseImpl(
       id: null == id
@@ -426,6 +435,10 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as UserData?,
+      answers: freezed == answers
+          ? _value._answers
+          : answers // ignore: cast_nullable_to_non_nullable
+              as List<Answer>?,
     ));
   }
 }
@@ -441,8 +454,10 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       required this.minimumBudget,
       required this.maximumBudget,
       required this.deadLine,
-      this.users})
-      : super._();
+      this.users,
+      final List<Answer>? answers})
+      : _answers = answers,
+        super._();
 
   factory _$QuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionResponseImplFromJson(json);
@@ -463,10 +478,19 @@ class _$QuestionResponseImpl extends _QuestionResponse {
   final DateTime deadLine;
   @override
   final UserData? users;
+  final List<Answer>? _answers;
+  @override
+  List<Answer>? get answers {
+    final value = _answers;
+    if (value == null) return null;
+    if (_answers is EqualUnmodifiableListView) return _answers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, users: $users)';
+    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, users: $users, answers: $answers)';
   }
 
   @override
@@ -486,13 +510,23 @@ class _$QuestionResponseImpl extends _QuestionResponse {
                 other.maximumBudget == maximumBudget) &&
             (identical(other.deadLine, deadLine) ||
                 other.deadLine == deadLine) &&
-            (identical(other.users, users) || other.users == users));
+            (identical(other.users, users) || other.users == users) &&
+            const DeepCollectionEquality().equals(other._answers, _answers));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, contents, userId,
-      minimumBudget, maximumBudget, deadLine, users);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      contents,
+      userId,
+      minimumBudget,
+      maximumBudget,
+      deadLine,
+      users,
+      const DeepCollectionEquality().hash(_answers));
 
   @JsonKey(ignore: true)
   @override
@@ -518,7 +552,8 @@ abstract class _QuestionResponse extends QuestionResponse {
       required final int minimumBudget,
       required final int maximumBudget,
       required final DateTime deadLine,
-      final UserData? users}) = _$QuestionResponseImpl;
+      final UserData? users,
+      final List<Answer>? answers}) = _$QuestionResponseImpl;
   const _QuestionResponse._() : super._();
 
   factory _QuestionResponse.fromJson(Map<String, dynamic> json) =
@@ -540,6 +575,8 @@ abstract class _QuestionResponse extends QuestionResponse {
   DateTime get deadLine;
   @override
   UserData? get users;
+  @override
+  List<Answer>? get answers;
   @override
   @JsonKey(ignore: true)
   _$$QuestionResponseImplCopyWith<_$QuestionResponseImpl> get copyWith =>

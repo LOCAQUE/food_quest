@@ -37,6 +37,9 @@ _$QuestionResponseImpl _$$QuestionResponseImplFromJson(
       users: json['users'] == null
           ? null
           : UserData.fromJson(json['users'] as Map<String, dynamic>),
+      answers: (json['answers'] as List<dynamic>?)
+          ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$QuestionResponseImplToJson(
@@ -50,4 +53,5 @@ Map<String, dynamic> _$$QuestionResponseImplToJson(
       'maximumBudget': instance.maximumBudget,
       'deadLine': instance.deadLine.toIso8601String(),
       'users': instance.users,
+      'answers': instance.answers,
     };

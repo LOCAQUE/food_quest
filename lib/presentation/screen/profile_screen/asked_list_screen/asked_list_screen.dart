@@ -31,11 +31,22 @@ class AskedListScreen extends HookConsumerWidget {
     }
 
     return Scaffold(
-      body: QuestionTiles(
-        questionList: myQuestionList,
-        onTap: () {
-          return;
+      body: ListView.builder(
+        itemCount: myQuestionList.length,
+        itemBuilder: (context, index) {
+          final question = myQuestionList[index];
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+            child: QuestionTile(
+              question: question,
+              onTap: () {
+                return;
+              },
+            ),
+          );
         },
+        // itemExtent: 100,
       ),
     );
   }
