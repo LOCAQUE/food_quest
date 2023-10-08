@@ -50,7 +50,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                     },
                   ),
                   CustomButton(
-                    text: '受注',
+                    text: '依頼',
                     variant: ButtonVariant.primary,
                     size: ButtonSize.small,
                     onPressed: () async {
@@ -64,18 +64,52 @@ class MakeQuestionModal extends HookConsumerWidget {
               const Gap(32),
               Row(
                 children: [
-                  CustomPicker(
-                    title: '最低予算',
-                    options: priceList,
-                    controller: questionTaskNotifier.minimumBudgetController,
+                  Row(
+                    children: [
+                      const Column(
+                        children: [
+                          Gap(23),
+                          Text(
+                            '¥',
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                      CustomPicker(
+                        title: '最低予算',
+                        options: priceList,
+                        controller:
+                            questionTaskNotifier.minimumBudgetController,
+                      ),
+                    ],
                   ),
                   const Gap(8),
                   const Text('~'),
                   const Gap(8),
-                  CustomPicker(
-                    title: '最大予算',
-                    options: priceList,
-                    controller: questionTaskNotifier.maximumBudgetController,
+                  Row(
+                    children: [
+                      const Column(
+                        children: [
+                          Gap(23),
+                          Text(
+                            '¥',
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                      CustomPicker(
+                        title: '最大予算',
+                        options: priceList,
+                        controller:
+                            questionTaskNotifier.maximumBudgetController,
+                      ),
+                    ],
                   ),
                 ],
               ),
