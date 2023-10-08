@@ -33,6 +33,7 @@ class TopScreen extends StatelessWidget {
             CustomButton(
               variant: ButtonVariant.primary,
               text: '新規登録はこちら',
+              buttonRadius: ButtonRadius.square,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -46,6 +47,7 @@ class TopScreen extends StatelessWidget {
             CustomButton(
               text: 'ログイン',
               variant: ButtonVariant.outline,
+              buttonRadius: ButtonRadius.square,
               onPressed: () {
                 Navigator.push(
                   context,
@@ -88,6 +90,7 @@ class TopScreen extends StatelessWidget {
             CustomButton(
               text: 'Googleでログイン',
               variant: ButtonVariant.outline,
+              buttonRadius: ButtonRadius.square,
               onPressed: () {},
             ),
             const Gap(15),
