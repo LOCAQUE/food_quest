@@ -13,3 +13,28 @@ abstract class Task with _$Task {
   }) = _Task;
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }
+
+// supabaseのファンクションが小文字になってしまったので、スネークケースを使用している
+// ignore_for_file: non_constant_identifier_names
+@freezed
+abstract class UserTask with _$UserTask {
+  const factory UserTask({
+    required int id,
+    required DateTime created_at,
+    required int task_id,
+    required int achieved_number,
+    required int user_id,
+  }) = _UserTask;
+  factory UserTask.fromJson(Map<String, dynamic> json) =>
+      _$UserTaskFromJson(json);
+}
+
+@freezed
+abstract class TaskResponse with _$TaskResponse {
+  const factory TaskResponse({required Task tasks}) = _TaskResponse;
+
+  const TaskResponse._();
+
+  factory TaskResponse.fromJson(Map<String, dynamic> json) =>
+      _$TaskResponseFromJson(json);
+}
