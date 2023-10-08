@@ -29,7 +29,6 @@ class MakeQuestionModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final questionTaskNotifier =
         ref.watch(questionTaskNotifierProvider.notifier);
-
     return ListView(
       children: [
         Padding(
