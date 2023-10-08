@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,7 +23,21 @@ class PetScreen extends HookConsumerWidget {
     const heart = 50;
 
     final gif = getGifUrlForPet(Pet.caracter1, level);
-    // final addmonsternotifier = ref.watch(addmonsterNotifierProvider.notifier);
+    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    final monIdState = useState<int?>(null);
+
+    useEffect(
+      () {
+        Future<void> fetchMonId() async {
+          final monData = await monchoicenotifier.getBaseMonster();
+          monIdState.value = monData?.baseMonster; //モンスターのID取得
+        }
+
+        fetchMonId();
+        return null;
+      },
+      [],
+    );
 
     return Scaffold(
       body: Stack(
@@ -139,7 +154,6 @@ class PetScreen extends HookConsumerWidget {
                     ],
                   ),
                 ),
-
                 Center(
                   child: SizedBox(
                     child: Image.asset(gif),
