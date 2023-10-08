@@ -6,6 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/setting_screen/component/link_component.dart';
+import 'package:food_quest/presentation/screen/setting_screen/privacy_screen.dart';
+import 'package:food_quest/presentation/screen/setting_screen/terms_screen.dart';
 
 class SettingScreen extends HookConsumerWidget {
   const SettingScreen({super.key});
@@ -37,8 +39,28 @@ class SettingScreen extends HookConsumerWidget {
                       ),
                     ],
                   ),
-                  LinkComponent(text: 'プライバシーポリシー', onPressed: () {}),
-                  LinkComponent(text: '利用規約', onPressed: () {}),
+                  LinkComponent(
+                    text: 'プライバシーポリシー',
+                    onPressed: () {
+                      // プライバシーポリシー画面へ遷移
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const PrivacyPolicyScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  LinkComponent(
+                    text: '利用規約',
+                    onPressed: () {
+                      // 利用規約画面へ遷移
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const TermsOfServiceScreen(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

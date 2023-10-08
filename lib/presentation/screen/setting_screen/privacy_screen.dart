@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/setting_screen/component/section_component.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
-  const PrivacyPolicyScreen({required Key key}) : super(key: key);
+  const PrivacyPolicyScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('プライバシーポリシー'),
+        title: const Text(
+          'プライバシーポリシー',
+          style: TextStyle(
+            fontSize: 15,
+            color: AppColor.textColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      body: const Column(
-        children: [
+      body: ListView(
+        children: const [
           SectionWidget(
             title: '収集する情報',
             description:

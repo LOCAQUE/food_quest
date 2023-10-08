@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/setting_screen/component/section_component.dart';
 
 class TermsOfServiceScreen extends StatelessWidget {
@@ -9,10 +10,17 @@ class TermsOfServiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('利用規約'),
+        title: const Text(
+          'プライバシーポリシー',
+          style: TextStyle(
+            fontSize: 15,
+            color: AppColor.textColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      body: const Column(
-        children: [
+      body: ListView(
+        children: const [
           SectionWidget(
             title: '適用',
             description:
