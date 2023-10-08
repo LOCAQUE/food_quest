@@ -56,8 +56,6 @@ class AddmonsterNotifier extends StateNotifier<AddmonsterNotifierState> {
         .select<PostgrestList>('baseMonster')
         .eq('userId', userId);
 
-    final result = MonChoiceData.fromJson(response.first);
-    print(result);
-    return result;
+    return MonChoiceData.fromJson(response.first);
   }
 }
