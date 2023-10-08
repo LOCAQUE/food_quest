@@ -125,16 +125,32 @@ class MakeQuestionModal extends HookConsumerWidget {
                 controller: questionTaskNotifier.deadLineController,
               ),
               const Gap(24),
-              TextField(
-                controller: questionTaskNotifier.contentController,
-                maxLines: 15,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ), // 四角い枠を表示
-                  labelText: '入力してください', // ラベルテキスト
+
+              Container(
+                width: 350, // こちらの値を変更して、希望の幅に設定してください
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      width: 350,
+                      child: Text(
+                        '依頼内容',
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    TextField(
+                      controller: questionTaskNotifier.contentController,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none, // 枠線を非表示に
+                        hintText: '依頼内容は具体的に書いてください', // プレースホルダーのテキストを設定
+                      ),
+                      maxLength: 255, // 最大文字数を制限
+                      maxLines: null, // 複数行の入力を許可
+                    ),
+                  ],
                 ),
-                maxLength: 255, // 最大文字数を制限
               ),
             ],
           ),

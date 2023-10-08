@@ -8,7 +8,8 @@ import 'package:food_quest/domain/entity/question.dart';
 class QuestionTiles extends HookConsumerWidget {
   const QuestionTiles({
     required this.questionList,
-    required this.onTap, super.key,
+    required this.onTap,
+    super.key,
   });
 
   final List<QuestionResponse> questionList;
@@ -33,7 +34,9 @@ class QuestionTiles extends HookConsumerWidget {
 
 class QuestionTile extends StatelessWidget {
   const QuestionTile({
-    required this.question, required this.onTap, super.key,
+    required this.question,
+    required this.onTap,
+    super.key,
   });
 
   final QuestionResponse question;
