@@ -1,7 +1,7 @@
-import 'package:food_quest/domain/entity/answer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 
 part 'question.freezed.dart';

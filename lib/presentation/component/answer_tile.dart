@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/entity/answer.dart';
-import 'package:food_quest/domain/entity/user_data.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/domain/entity/answer.dart';
+import 'package:food_quest/domain/entity/user_data.dart';
 
 class AnswerTile extends HookConsumerWidget {
   const AnswerTile({
     required this.answer,
-    required this.user, super.key,
+    required this.user,
+    super.key,
   });
 
   final Answer answer;

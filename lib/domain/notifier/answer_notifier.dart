@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_quest/domain/entity/answer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
@@ -18,15 +18,13 @@ class AnswerNotifierState with _$AnswerNotifierState {
 }
 
 final answerNotifierProvider =
-StateNotifierProvider<AnswerNotifier, AnswerNotifierState>(
-        (ref) {
-      final client = ref.watch(supabaseClientProvider);
-      return AnswerNotifier(client, ref);
-    });
+    StateNotifierProvider<AnswerNotifier, AnswerNotifierState>((ref) {
+  final client = ref.watch(supabaseClientProvider);
+  return AnswerNotifier(client, ref);
+});
 
 class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
-  AnswerNotifier(this.client, this.ref)
-      : super(AnswerNotifierState());
+  AnswerNotifier(this.client, this.ref) : super(AnswerNotifierState());
   final SupabaseClient client;
   final Ref ref;
 
@@ -51,5 +49,4 @@ class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
       debugPrint(e.toString());
     }
   }
-
 }

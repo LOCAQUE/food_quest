@@ -19,8 +19,7 @@ abstract class Answer with _$Answer {
 
   const Answer._();
 
-  factory Answer.fromJson(Map<String, dynamic> json) =>
-      _$AnswerFromJson(json);
+  factory Answer.fromJson(Map<String, dynamic> json) => _$AnswerFromJson(json);
 
   // DateTimeから"yyyy-MM-dd"形式の文字列に変換
   String get formattedCreatedAt => DateFormat('yyyy-MM-dd').format(createdAt);

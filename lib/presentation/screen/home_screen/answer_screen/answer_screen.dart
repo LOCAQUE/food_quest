@@ -33,7 +33,7 @@ class AnswerScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final answers = question.answers ?? [];
 
-    if(answers.isEmpty) {
+    if (answers.isEmpty) {
       return const Scaffold(
         body: Center(
           child: Text('回答がありません'),

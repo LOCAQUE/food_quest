@@ -57,8 +57,10 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
   Future<void> getQuestList() async {
     final currentUserId = client.auth.currentUser?.id;
     try {
-      final response =
-          await client.from('quests').select<PostgrestList>('*, users(*), answers(*)').neq('userId', currentUserId);
+      final response = await client
+          .from('quests')
+          .select<PostgrestList>('*, users(*), answers(*)')
+          .neq('userId', currentUserId);
 
       final questionList = response.map(QuestionResponse.fromJson).toList();
       state = state.copyWith(questionList: questionList);
