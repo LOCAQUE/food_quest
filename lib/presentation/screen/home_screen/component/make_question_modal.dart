@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,9 +12,20 @@ import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 
 class MakeQuestionModal extends HookConsumerWidget {
-  const MakeQuestionModal({super.key});
+  MakeQuestionModal(
+      {required this.context,
+      required this.isQuestion,
+      this.content,
+      super.key});
 
-  static Future<void> show(BuildContext context) async {
+  final BuildContext context;
+  final bool isQuestion;
+  String? content;
+
+  static Future<void> show(
+      {required BuildContext context,
+      required bool isQuestion,
+      String? content}) async {
     await showModalBottomSheet<void>(
       isDismissible: false,
       enableDrag: false,
@@ -21,7 +33,11 @@ class MakeQuestionModal extends HookConsumerWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColor.firstColor,
-      builder: (context) => const MakeQuestionModal(),
+      builder: (context) => MakeQuestionModal(
+        context: context,
+        isQuestion: isQuestion,
+        content: content,
+      ),
     );
   }
 
@@ -61,7 +77,8 @@ class MakeQuestionModal extends HookConsumerWidget {
                   ),
                 ],
               ),
-              const Gap(32),
+              const Gap(24),
+              if (!isQuestion) ExpandableText(content: content ?? ''),
               Row(
                 children: [
                   CustomPicker(
@@ -79,17 +96,19 @@ class MakeQuestionModal extends HookConsumerWidget {
                   ),
                 ],
               ),
-              const Gap(16),
-              CustomPicker(
-                title: 'エリア',
-                options: prefectures,
-                controller: questionTaskNotifier.prefectureController,
-              ),
-              const Gap(16),
-              CustomDatePicker(
-                title: '締切日',
-                controller: questionTaskNotifier.deadLineController,
-              ),
+              if (isQuestion) const Gap(16),
+              if (isQuestion)
+                CustomPicker(
+                  title: 'エリア',
+                  options: prefectures,
+                  controller: questionTaskNotifier.prefectureController,
+                ),
+              if (isQuestion) const Gap(16),
+              if (isQuestion)
+                CustomDatePicker(
+                  title: '締切日',
+                  controller: questionTaskNotifier.deadLineController,
+                ),
               const Gap(24),
               TextField(
                 controller: questionTaskNotifier.contentController,
@@ -105,6 +124,55 @@ class MakeQuestionModal extends HookConsumerWidget {
             ],
           ),
         ),
+      ],
+    );
+  }
+}
+
+class ExpandableText extends HookConsumerWidget {
+  const ExpandableText({required this.content, super.key});
+
+  final String content;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isExpanded = useState(false);
+    const maxLength = 80;
+
+    return Column(
+      children: [
+        Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '質問内容',
+                style: Theme.of(context).textTheme.headlineLarge,
+              )),
+              Gap(8),
+            Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+            isExpanded.value
+            ? content
+                : (content.length > maxLength
+            ? '${content.substring(0, maxLength)}...'
+                : content),
+            style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            ),
+          ],
+        ),
+        if (content.length > maxLength)
+          IconButton(
+            onPressed: () {
+              isExpanded.value = !isExpanded.value;
+            },
+            icon: isExpanded.value
+                ? const Icon(Icons.keyboard_arrow_up)
+                : const Icon(Icons.keyboard_arrow_down),
+          ),
+        Gap(16),
       ],
     );
   }

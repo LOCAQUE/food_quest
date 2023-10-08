@@ -7,7 +7,9 @@ import 'package:food_quest/presentation/component/question_tile.dart';
 import 'package:food_quest/presentation/screen/profile_screen/asked_list_screen/asked_list_screen_notifier.dart';
 
 class AskedListScreen extends HookConsumerWidget {
-  const AskedListScreen({super.key});
+  const AskedListScreen
+
+  ({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,8 +18,8 @@ class AskedListScreen extends HookConsumerWidget {
     );
 
     final myQuestionList = ref.watch(
-          questionTaskNotifierProvider.select((state) => state.myQuestionList),
-        ) ??
+      questionTaskNotifierProvider.select((state) => state.myQuestionList),
+    ) ??
         [];
 
     if (isLoading) {
@@ -31,12 +33,20 @@ class AskedListScreen extends HookConsumerWidget {
     }
 
     return Scaffold(
-      body: QuestionTiles(
-        questionList: myQuestionList,
-        onTap: () {
-          return;
-        }
-      ),
+        body: ListView.builder(
+          itemCount: myQuestionList.length,
+          itemBuilder: (context, index) {
+            final question = myQuestionList[index];
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+              child: QuestionTile(question: question, onTap: () {
+                return;
+              }),
+            );
+          },
+          // itemExtent: 100,
+        ),
     );
   }
 }

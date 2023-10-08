@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/presentation/screen/home_screen/answer_screen/answer_screen.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -37,18 +38,28 @@ class QuestScreen extends HookConsumerWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          QuestionTiles(
-            questionList: questionList,
-            onTap: () {
-              return;
+          ListView.builder(
+            itemCount: questionList.length,
+            itemBuilder: (context, index) {
+              final question = questionList[index];
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                child: QuestionTile(
+                    question: question,
+                    onTap: () {
+                      AnswerScreen(question: question).show(context);
+                    }),
+              );
             },
+            // itemExtent: 100,
           ),
           Positioned(
             bottom: height * 0.15,
             right: width * 0.07,
             child: ElevatedButton(
               onPressed: () {
-                MakeQuestionModal.show(context);
+                MakeQuestionModal.show(context: context, isQuestion: true);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.primaryColor, // ボタンの背景色を赤に設定
