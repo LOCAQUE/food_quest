@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:navigator_scope/navigator_scope.dart';
 
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/blue_screen/blue_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/home_screen.dart';
 import 'package:food_quest/presentation/screen/orange_screen/orange_screen.dart';
@@ -22,10 +23,10 @@ class BottomNavigationScreen extends HookConsumerWidget {
 
     //ボトムバーに並べるアイコンのリスト
     final iconList = <IconData>[
-      Icons.brightness_4,
-      Icons.brightness_5,
-      Icons.brightness_6,
-      Icons.brightness_7,
+      Icons.person,
+      Icons.help,
+      Icons.pets,
+      Icons.settings,
     ];
 
     //真ん中を除くページのリスト
@@ -50,9 +51,10 @@ class BottomNavigationScreen extends HookConsumerWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.primaryColor,
         child: const Icon(
-          Icons.brightness_3,
-          color: Colors.orangeAccent,
+          Icons.list,
+          // color: Colors.orangeAccent,
         ),
         onPressed: () {
           isPushFloating.value = true;

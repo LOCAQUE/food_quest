@@ -35,7 +35,7 @@ class AskedListScreen extends HookConsumerWidget {
         questionList: myQuestionList,
         onTap: () {
           return;
-        }
+        },
       ),
     );
   }
