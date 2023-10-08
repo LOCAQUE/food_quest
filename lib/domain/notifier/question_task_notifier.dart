@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_quest/domain/notifier/answer_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -16,7 +17,9 @@ class QuestionTaskNotifierState with _$QuestionTaskNotifierState {
     List<QuestionResponse>? questionList,
     List<QuestionResponse>? myQuestionList,
     List<TaskResponse>? taskList,
-    String? emptyMessage,
+    @Default(0) int questAchievement,
+    @Default(0) int answerAchievement,
+    @Default(0) int bestAnswerAchievement,
   }) = _QuestionTaskNotifierState;
 }
 
@@ -90,7 +93,7 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
   }
 
   // user_tasksテーブルからcurrentUserIdのtaskを取得
-  Future<void> getTaskList() async {
+  Future<List<TaskResponse>?> getTaskList() async {
     final currentUserId = client.auth.currentUser?.id;
 
     try {
@@ -100,11 +103,36 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
           .eq('user_id', currentUserId);
 
       final taskList = response.map(TaskResponse.fromJson).toList();
-      if (taskList.isEmpty) {
-        state = state.copyWith(emptyMessage: 'タスクをすべて達成しました');
-      } else {
-        state = state.copyWith(taskList: taskList);
-      }
+      state = state.copyWith(taskList: taskList);
+      return taskList;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  //アチーブメントを取得
+  Future<void> getAchievements() async {
+    try {
+      //自分のクエスト取得
+      await getMyQuestList();
+      final questAchievement = state.myQuestionList?.length ?? 0;
+
+      //自分の回答取得
+      await ref.watch(answerNotifierProvider.notifier).getMyAnswerList();
+      final myAnswerList = ref.watch(
+            answerNotifierProvider.select((state) => state.myAnswerList),
+          ) ??
+          [];
+      final bestAnswerAchievement =
+          myAnswerList.where((answer) => answer.bestAnswer == true).length;
+
+      final answerAchievement = myAnswerList.length ?? 0;
+      state = state.copyWith(
+          questAchievement: questAchievement,
+          answerAchievement: answerAchievement,
+          bestAnswerAchievement: bestAnswerAchievement,
+      );
     } catch (e) {
       debugPrint(e.toString());
     }
