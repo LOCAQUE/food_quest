@@ -15,31 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AddmonsterNotifierState {
-  UserData? get currentUser => throw _privateConstructorUsedError;
+mixin _$MonchoiceNotifierState {
   String? get currentUserId => throw _privateConstructorUsedError;
+  MonChoiceData? get monChoideData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AddmonsterNotifierStateCopyWith<AddmonsterNotifierState> get copyWith =>
+  $MonchoiceNotifierStateCopyWith<MonchoiceNotifierState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AddmonsterNotifierStateCopyWith<$Res> {
-  factory $AddmonsterNotifierStateCopyWith(AddmonsterNotifierState value,
-          $Res Function(AddmonsterNotifierState) then) =
-      _$AddmonsterNotifierStateCopyWithImpl<$Res, AddmonsterNotifierState>;
+abstract class $MonchoiceNotifierStateCopyWith<$Res> {
+  factory $MonchoiceNotifierStateCopyWith(MonchoiceNotifierState value,
+          $Res Function(MonchoiceNotifierState) then) =
+      _$MonchoiceNotifierStateCopyWithImpl<$Res, MonchoiceNotifierState>;
   @useResult
-  $Res call({UserData? currentUser, String? currentUserId});
+  $Res call({String? currentUserId, MonChoiceData? monChoideData});
 
-  $UserDataCopyWith<$Res>? get currentUser;
+  $MonChoiceDataCopyWith<$Res>? get monChoideData;
 }
 
 /// @nodoc
-class _$AddmonsterNotifierStateCopyWithImpl<$Res,
-        $Val extends AddmonsterNotifierState>
-    implements $AddmonsterNotifierStateCopyWith<$Res> {
-  _$AddmonsterNotifierStateCopyWithImpl(this._value, this._then);
+class _$MonchoiceNotifierStateCopyWithImpl<$Res,
+        $Val extends MonchoiceNotifierState>
+    implements $MonchoiceNotifierStateCopyWith<$Res> {
+  _$MonchoiceNotifierStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -49,126 +49,126 @@ class _$AddmonsterNotifierStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUser = freezed,
     Object? currentUserId = freezed,
+    Object? monChoideData = freezed,
   }) {
     return _then(_value.copyWith(
-      currentUser: freezed == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
       currentUserId: freezed == currentUserId
           ? _value.currentUserId
           : currentUserId // ignore: cast_nullable_to_non_nullable
               as String?,
+      monChoideData: freezed == monChoideData
+          ? _value.monChoideData
+          : monChoideData // ignore: cast_nullable_to_non_nullable
+              as MonChoiceData?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserDataCopyWith<$Res>? get currentUser {
-    if (_value.currentUser == null) {
+  $MonChoiceDataCopyWith<$Res>? get monChoideData {
+    if (_value.monChoideData == null) {
       return null;
     }
 
-    return $UserDataCopyWith<$Res>(_value.currentUser!, (value) {
-      return _then(_value.copyWith(currentUser: value) as $Val);
+    return $MonChoiceDataCopyWith<$Res>(_value.monChoideData!, (value) {
+      return _then(_value.copyWith(monChoideData: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AddmonsterNotifierStateImplCopyWith<$Res>
-    implements $AddmonsterNotifierStateCopyWith<$Res> {
-  factory _$$AddmonsterNotifierStateImplCopyWith(
-          _$AddmonsterNotifierStateImpl value,
-          $Res Function(_$AddmonsterNotifierStateImpl) then) =
-      __$$AddmonsterNotifierStateImplCopyWithImpl<$Res>;
+abstract class _$$MonchoiceNotifierStateImplCopyWith<$Res>
+    implements $MonchoiceNotifierStateCopyWith<$Res> {
+  factory _$$MonchoiceNotifierStateImplCopyWith(
+          _$MonchoiceNotifierStateImpl value,
+          $Res Function(_$MonchoiceNotifierStateImpl) then) =
+      __$$MonchoiceNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserData? currentUser, String? currentUserId});
+  $Res call({String? currentUserId, MonChoiceData? monChoideData});
 
   @override
-  $UserDataCopyWith<$Res>? get currentUser;
+  $MonChoiceDataCopyWith<$Res>? get monChoideData;
 }
 
 /// @nodoc
-class __$$AddmonsterNotifierStateImplCopyWithImpl<$Res>
-    extends _$AddmonsterNotifierStateCopyWithImpl<$Res,
-        _$AddmonsterNotifierStateImpl>
-    implements _$$AddmonsterNotifierStateImplCopyWith<$Res> {
-  __$$AddmonsterNotifierStateImplCopyWithImpl(
-      _$AddmonsterNotifierStateImpl _value,
-      $Res Function(_$AddmonsterNotifierStateImpl) _then)
+class __$$MonchoiceNotifierStateImplCopyWithImpl<$Res>
+    extends _$MonchoiceNotifierStateCopyWithImpl<$Res,
+        _$MonchoiceNotifierStateImpl>
+    implements _$$MonchoiceNotifierStateImplCopyWith<$Res> {
+  __$$MonchoiceNotifierStateImplCopyWithImpl(
+      _$MonchoiceNotifierStateImpl _value,
+      $Res Function(_$MonchoiceNotifierStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUser = freezed,
     Object? currentUserId = freezed,
+    Object? monChoideData = freezed,
   }) {
-    return _then(_$AddmonsterNotifierStateImpl(
-      currentUser: freezed == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
+    return _then(_$MonchoiceNotifierStateImpl(
       currentUserId: freezed == currentUserId
           ? _value.currentUserId
           : currentUserId // ignore: cast_nullable_to_non_nullable
               as String?,
+      monChoideData: freezed == monChoideData
+          ? _value.monChoideData
+          : monChoideData // ignore: cast_nullable_to_non_nullable
+              as MonChoiceData?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AddmonsterNotifierStateImpl implements _AddmonsterNotifierState {
-  _$AddmonsterNotifierStateImpl({this.currentUser, this.currentUserId});
+class _$MonchoiceNotifierStateImpl implements _MonchoiceNotifierState {
+  _$MonchoiceNotifierStateImpl({this.currentUserId, this.monChoideData});
 
   @override
-  final UserData? currentUser;
-  @override
   final String? currentUserId;
+  @override
+  final MonChoiceData? monChoideData;
 
   @override
   String toString() {
-    return 'AddmonsterNotifierState(currentUser: $currentUser, currentUserId: $currentUserId)';
+    return 'MonchoiceNotifierState(currentUserId: $currentUserId, monChoideData: $monChoideData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddmonsterNotifierStateImpl &&
-            (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser) &&
+            other is _$MonchoiceNotifierStateImpl &&
             (identical(other.currentUserId, currentUserId) ||
-                other.currentUserId == currentUserId));
+                other.currentUserId == currentUserId) &&
+            (identical(other.monChoideData, monChoideData) ||
+                other.monChoideData == monChoideData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentUser, currentUserId);
+  int get hashCode => Object.hash(runtimeType, currentUserId, monChoideData);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddmonsterNotifierStateImplCopyWith<_$AddmonsterNotifierStateImpl>
-      get copyWith => __$$AddmonsterNotifierStateImplCopyWithImpl<
-          _$AddmonsterNotifierStateImpl>(this, _$identity);
+  _$$MonchoiceNotifierStateImplCopyWith<_$MonchoiceNotifierStateImpl>
+      get copyWith => __$$MonchoiceNotifierStateImplCopyWithImpl<
+          _$MonchoiceNotifierStateImpl>(this, _$identity);
 }
 
-abstract class _AddmonsterNotifierState implements AddmonsterNotifierState {
-  factory _AddmonsterNotifierState(
-      {final UserData? currentUser,
-      final String? currentUserId}) = _$AddmonsterNotifierStateImpl;
+abstract class _MonchoiceNotifierState implements MonchoiceNotifierState {
+  factory _MonchoiceNotifierState(
+      {final String? currentUserId,
+      final MonChoiceData? monChoideData}) = _$MonchoiceNotifierStateImpl;
 
-  @override
-  UserData? get currentUser;
   @override
   String? get currentUserId;
   @override
+  MonChoiceData? get monChoideData;
+  @override
   @JsonKey(ignore: true)
-  _$$AddmonsterNotifierStateImplCopyWith<_$AddmonsterNotifierStateImpl>
+  _$$MonchoiceNotifierStateImplCopyWith<_$MonchoiceNotifierStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

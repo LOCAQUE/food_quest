@@ -5,29 +5,28 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/mon_choice_data.dart';
-import 'package:food_quest/domain/entity/user_data.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'mon_choice_notifier.freezed.dart';
 
 @freezed
-class AddmonsterNotifierState with _$AddmonsterNotifierState {
-  factory AddmonsterNotifierState({
-    UserData? currentUser,
+class MonchoiceNotifierState with _$MonchoiceNotifierState {
+  factory MonchoiceNotifierState({
     String? currentUserId,
-  }) = _AddmonsterNotifierState;
+    MonChoiceData? monChoideData,
+  }) = _MonchoiceNotifierState;
 }
 
-final addmonsterNotifierProvider =
-    StateNotifierProvider<AddmonsterNotifier, AddmonsterNotifierState>((ref) {
+final monchoiceNotifierProvider =
+    StateNotifierProvider<MonchoiceNotifier, MonchoiceNotifierState>((ref) {
   final client = ref.watch(supabaseClientProvider);
-  return AddmonsterNotifier(client);
+  return MonchoiceNotifier(client);
 });
 
-class AddmonsterNotifier extends StateNotifier<AddmonsterNotifierState> {
-  AddmonsterNotifier(this.client)
+class MonchoiceNotifier extends StateNotifier<MonchoiceNotifierState> {
+  MonchoiceNotifier(this.client)
       : super(
-          AddmonsterNotifierState(
+          MonchoiceNotifierState(
             currentUserId: client.auth.currentUser?.id,
           ),
         );

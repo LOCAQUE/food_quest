@@ -13,7 +13,7 @@ class PetSelectPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedPet = useState<int?>(null);
 
-    final addmonsternotifier = ref.watch(addmonsterNotifierProvider.notifier);
+    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -99,7 +99,7 @@ class PetSelectPage extends HookConsumerWidget {
               child: ElevatedButton(
                 onPressed: selectedPet.value != null
                     ? () {
-                        addmonsternotifier.addMonster(selectedPet.value!);
+                        monchoicenotifier.addMonster(selectedPet.value!);
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
