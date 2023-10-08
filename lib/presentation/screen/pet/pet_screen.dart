@@ -5,15 +5,43 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
 
+String levelToGifUrl(int lvl) {
+  if (lvl < 2) {
+    return 'assets/gif/a1.gif';
+  } else if (lvl < 5) {
+    return 'assets/gif/a2.gif';
+  } else if (lvl < 10) {
+    return 'assets/gif/a3.gif';
+  } else if (lvl < 15) {
+    return 'assets/gif/a4.gif';
+  } else if (lvl < 29) {
+    return 'assets/gif/a5.gif';
+  } else if (lvl < 42) {
+    return 'assets/gif/a6.gif';
+  } else if (lvl < 52) {
+    return 'assets/gif/a7.gif';
+  } else if (lvl < 79) {
+    return 'assets/gif/a8.gif';
+  } else if (lvl < 100) {
+    return 'assets/gif/a9.gif';
+  } else if (lvl < 120) {
+    return 'assets/gif/a10.gif';
+  } else {
+    return '';
+  }
+}
+
 class PetScreen extends HookConsumerWidget {
   const PetScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const level = 1;
+    const level = 100;
     const maxEXP = 150;
     const exp = 60;
     const heart = 50;
+
+    final gif = levelToGifUrl(level);
 
     return Scaffold(
       body: Stack(
@@ -137,7 +165,7 @@ class PetScreen extends HookConsumerWidget {
           // TO-DO: gif画像に変更する
           Center(
             child: SizedBox(
-              child: Image.asset('assets/images/gif/a10.gif'),
+              child: Image.asset(gif),
             ),
           ),
           // 宝箱の画像
