@@ -74,25 +74,25 @@ class SettingScreen extends HookConsumerWidget {
               ),
             ),
             const Gap(25),
-            SizedBox(
-              child: Column(
-                children: [
-                  const Row(
-                    children: [
-                      Gap(30),
-                      Text(
-                        '通知',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  LinkComponent(text: '通知設定', onPressed: () {}),
-                ],
-              ),
-            ),
+            // SizedBox(
+            //   child: Column(
+            //     children: [
+            //       const Row(
+            //         children: [
+            //           Gap(30),
+            //           Text(
+            //             '通知',
+            //             style: TextStyle(
+            //               fontSize: 15,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       LinkComponent(text: '通知設定', onPressed: () {}),
+            //     ],
+            //   ),
+            // ),
             const Gap(25),
             SizedBox(
               child: Column(
