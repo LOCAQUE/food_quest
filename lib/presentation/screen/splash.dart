@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/foundation/supabase_client_provider.dart';
@@ -48,7 +49,7 @@ class _SplashWidgetState extends ConsumerState<SplashWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffF8F8F7),
       body: Center(
         child: Image.asset('assets/gif/splash.gif'),
       ),
