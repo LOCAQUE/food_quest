@@ -13,6 +13,8 @@ abstract class Answer with _$Answer {
     required String uid,
     required bool bestAnswer,
     required DateTime createdAt,
+    required int minimumBudget,
+    required int maximumBudget,
   }) = _Answer;
 
   const Answer._();
@@ -21,5 +23,22 @@ abstract class Answer with _$Answer {
       _$AnswerFromJson(json);
 
   // DateTimeから"yyyy-MM-dd"形式の文字列に変換
-  String get formattedDeadLine => DateFormat('yyyy-MM-dd').format(createdAt);
+  String get formattedCreatedAt => DateFormat('yyyy-MM-dd').format(createdAt);
+}
+
+@freezed
+abstract class SendAnswer with _$SendAnswer {
+  const factory SendAnswer({
+    required String content,
+    required int questId,
+    required String uid,
+    required bool bestAnswer,
+    required int minimumBudget,
+    required int maximumBudget,
+  }) = _SendAnswer;
+
+  const SendAnswer._();
+
+  factory SendAnswer.fromJson(Map<String, dynamic> json) =>
+      _$SendAnswerFromJson(json);
 }
