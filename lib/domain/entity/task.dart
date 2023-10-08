@@ -11,6 +11,7 @@ abstract class Task with _$Task {
     required DateTime createdAt,
     required String task,
     required int targetNumber,
+    required int categoryNumber,
   }) = _Task;
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }

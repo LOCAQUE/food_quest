@@ -11,6 +11,7 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
       createdAt: DateTime.parse(json['createdAt'] as String),
       task: json['task'] as String,
       targetNumber: json['targetNumber'] as int,
+      categoryNumber: json['categoryNumber'] as int,
     );
 
 Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
       'task': instance.task,
       'targetNumber': instance.targetNumber,
+      'categoryNumber': instance.categoryNumber,
     };
 
 _$UserTaskImpl _$$UserTaskImplFromJson(Map<String, dynamic> json) =>

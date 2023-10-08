@@ -24,6 +24,7 @@ mixin _$Task {
   DateTime get createdAt => throw _privateConstructorUsedError;
   String get task => throw _privateConstructorUsedError;
   int get targetNumber => throw _privateConstructorUsedError;
+  int get categoryNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,12 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
-  $Res call({int id, DateTime createdAt, String task, int targetNumber});
+  $Res call(
+      {int id,
+      DateTime createdAt,
+      String task,
+      int targetNumber,
+      int categoryNumber});
 }
 
 /// @nodoc
@@ -55,6 +61,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? createdAt = null,
     Object? task = null,
     Object? targetNumber = null,
+    Object? categoryNumber = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,6 +80,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.targetNumber
           : targetNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      categoryNumber: null == categoryNumber
+          ? _value.categoryNumber
+          : categoryNumber // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -84,7 +95,12 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$TaskImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, DateTime createdAt, String task, int targetNumber});
+  $Res call(
+      {int id,
+      DateTime createdAt,
+      String task,
+      int targetNumber,
+      int categoryNumber});
 }
 
 /// @nodoc
@@ -101,6 +117,7 @@ class __$$TaskImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? task = null,
     Object? targetNumber = null,
+    Object? categoryNumber = null,
   }) {
     return _then(_$TaskImpl(
       id: null == id
@@ -119,6 +136,10 @@ class __$$TaskImplCopyWithImpl<$Res>
           ? _value.targetNumber
           : targetNumber // ignore: cast_nullable_to_non_nullable
               as int,
+      categoryNumber: null == categoryNumber
+          ? _value.categoryNumber
+          : categoryNumber // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -130,7 +151,8 @@ class _$TaskImpl implements _Task {
       {required this.id,
       required this.createdAt,
       required this.task,
-      required this.targetNumber});
+      required this.targetNumber,
+      required this.categoryNumber});
 
   factory _$TaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskImplFromJson(json);
@@ -143,10 +165,12 @@ class _$TaskImpl implements _Task {
   final String task;
   @override
   final int targetNumber;
+  @override
+  final int categoryNumber;
 
   @override
   String toString() {
-    return 'Task(id: $id, createdAt: $createdAt, task: $task, targetNumber: $targetNumber)';
+    return 'Task(id: $id, createdAt: $createdAt, task: $task, targetNumber: $targetNumber, categoryNumber: $categoryNumber)';
   }
 
   @override
@@ -159,13 +183,15 @@ class _$TaskImpl implements _Task {
                 other.createdAt == createdAt) &&
             (identical(other.task, task) || other.task == task) &&
             (identical(other.targetNumber, targetNumber) ||
-                other.targetNumber == targetNumber));
+                other.targetNumber == targetNumber) &&
+            (identical(other.categoryNumber, categoryNumber) ||
+                other.categoryNumber == categoryNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, createdAt, task, targetNumber);
+  int get hashCode => Object.hash(
+      runtimeType, id, createdAt, task, targetNumber, categoryNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +212,8 @@ abstract class _Task implements Task {
       {required final int id,
       required final DateTime createdAt,
       required final String task,
-      required final int targetNumber}) = _$TaskImpl;
+      required final int targetNumber,
+      required final int categoryNumber}) = _$TaskImpl;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
@@ -198,6 +225,8 @@ abstract class _Task implements Task {
   String get task;
   @override
   int get targetNumber;
+  @override
+  int get categoryNumber;
   @override
   @JsonKey(ignore: true)
   _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>
