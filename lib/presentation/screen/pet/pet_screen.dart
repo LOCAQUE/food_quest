@@ -8,6 +8,9 @@ import 'package:food_quest/domain/entity/pets.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
 
+import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
+
 class PetScreen extends HookConsumerWidget {
   const PetScreen({super.key});
 
@@ -19,6 +22,7 @@ class PetScreen extends HookConsumerWidget {
     const heart = 50;
 
     final gif = getGifUrlForPet(Pet.caracter1, level);
+    // final addmonsternotifier = ref.watch(addmonsterNotifierProvider.notifier);
 
     return Scaffold(
       body: Stack(

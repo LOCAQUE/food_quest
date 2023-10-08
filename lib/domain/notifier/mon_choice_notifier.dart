@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'package:food_quest/domain/entity/mon_choice_data.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
@@ -43,5 +44,20 @@ class AddmonsterNotifier extends StateNotifier<AddmonsterNotifierState> {
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  Future<MonChoiceData?> getBaseMonster() async {
+    // カレントユーザーのIDを確認
+    final userId = state.currentUserId;
+    if (userId == null) return null;
+
+    final response = await client
+        .from('monsters')
+        .select<PostgrestList>('baseMonster')
+        .eq('userId', userId);
+
+    final result = MonChoiceData.fromJson(response.first);
+    print(result);
+    return result;
   }
 }
