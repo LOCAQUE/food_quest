@@ -2,34 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/entity/pets.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
-
-String levelToGifUrl(int lvl) {
-  if (lvl < 2) {
-    return 'assets/gif/a1.gif';
-  } else if (lvl < 5) {
-    return 'assets/gif/a2.gif';
-  } else if (lvl < 10) {
-    return 'assets/gif/a3.gif';
-  } else if (lvl < 15) {
-    return 'assets/gif/a4.gif';
-  } else if (lvl < 29) {
-    return 'assets/gif/a5.gif';
-  } else if (lvl < 42) {
-    return 'assets/gif/a6.gif';
-  } else if (lvl < 52) {
-    return 'assets/gif/a7.gif';
-  } else if (lvl < 79) {
-    return 'assets/gif/a8.gif';
-  } else if (lvl < 100) {
-    return 'assets/gif/a9.gif';
-  } else if (lvl < 120) {
-    return 'assets/gif/a10.gif';
-  } else {
-    return '';
-  }
-}
 
 class PetScreen extends HookConsumerWidget {
   const PetScreen({super.key});
@@ -41,7 +16,7 @@ class PetScreen extends HookConsumerWidget {
     const exp = 60;
     const heart = 50;
 
-    final gif = levelToGifUrl(level);
+    final gif = getGifUrlForPet(Pet.caracter1, level);
 
     return Scaffold(
       body: Stack(
