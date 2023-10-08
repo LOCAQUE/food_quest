@@ -52,16 +52,4 @@ class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
     }
   }
 
-  //ホームの質問一覧
-  Future<void> getQuestList() async {
-    try {
-      final response =
-      await client.from('quests').select<PostgrestList>('*, users(*)');
-
-      final questionList = response.map(QuestionResponse.fromJson).toList();
-      state = state.copyWith(questionList: questionList);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
 }
