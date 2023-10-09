@@ -98,10 +98,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/castle.png
   AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
 
-  /// File path: assets/images/taskClear.gif
-  AssetGenImage get taskClear =>
-      const AssetGenImage('assets/images/taskClear.gif');
-
   /// File path: assets/images/takoyaki1.png
   AssetGenImage get takoyaki1 =>
       const AssetGenImage('assets/images/takoyaki1.png');
