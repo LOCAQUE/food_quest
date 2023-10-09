@@ -138,4 +138,17 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
       debugPrint(e.toString());
     }
   }
+
+  Future<void> updateIsDone(int id) async {
+    try {
+      print('ああ');
+      await client
+          .from('user_tasks')
+          .update({'is_done': true})
+          .eq('id', id);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
 }

@@ -181,7 +181,7 @@ class BuildOutlineButton extends StatelessWidget {
     final backgroundColor = _buttonColor(ButtonVariant.outline);
 
     return OutlinedButton(
-      onPressed: null,
+      onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: backgroundColor,
         shape:
