@@ -9,6 +9,86 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsGifGen {
+  const $AssetsGifGen();
+
+  /// File path: assets/gif/a1.gif
+  AssetGenImage get a1 => const AssetGenImage('assets/gif/a1.gif');
+
+  /// File path: assets/gif/a10.gif
+  AssetGenImage get a10 => const AssetGenImage('assets/gif/a10.gif');
+
+  /// File path: assets/gif/a2.gif
+  AssetGenImage get a2 => const AssetGenImage('assets/gif/a2.gif');
+
+  /// File path: assets/gif/a3.gif
+  AssetGenImage get a3 => const AssetGenImage('assets/gif/a3.gif');
+
+  /// File path: assets/gif/a4.gif
+  AssetGenImage get a4 => const AssetGenImage('assets/gif/a4.gif');
+
+  /// File path: assets/gif/a5.gif
+  AssetGenImage get a5 => const AssetGenImage('assets/gif/a5.gif');
+
+  /// File path: assets/gif/a6.gif
+  AssetGenImage get a6 => const AssetGenImage('assets/gif/a6.gif');
+
+  /// File path: assets/gif/a7.gif
+  AssetGenImage get a7 => const AssetGenImage('assets/gif/a7.gif');
+
+  /// File path: assets/gif/a8.gif
+  AssetGenImage get a8 => const AssetGenImage('assets/gif/a8.gif');
+
+  /// File path: assets/gif/a9.gif
+  AssetGenImage get a9 => const AssetGenImage('assets/gif/a9.gif');
+
+  /// File path: assets/gif/b1.gif
+  AssetGenImage get b1 => const AssetGenImage('assets/gif/b1.gif');
+
+  /// File path: assets/gif/b2.gif
+  AssetGenImage get b2 => const AssetGenImage('assets/gif/b2.gif');
+
+  /// File path: assets/gif/b3.gif
+  AssetGenImage get b3 => const AssetGenImage('assets/gif/b3.gif');
+
+  /// File path: assets/gif/box-open.gif
+  AssetGenImage get boxOpen => const AssetGenImage('assets/gif/box-open.gif');
+
+  /// File path: assets/gif/box.gif
+  AssetGenImage get box => const AssetGenImage('assets/gif/box.gif');
+
+  /// File path: assets/gif/c1.gif
+  AssetGenImage get c1 => const AssetGenImage('assets/gif/c1.gif');
+
+  /// File path: assets/gif/c2.gif
+  AssetGenImage get c2 => const AssetGenImage('assets/gif/c2.gif');
+
+  /// File path: assets/gif/c3.gif
+  AssetGenImage get c3 => const AssetGenImage('assets/gif/c3.gif');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        a1,
+        a10,
+        a2,
+        a3,
+        a4,
+        a5,
+        a6,
+        a7,
+        a8,
+        a9,
+        b1,
+        b2,
+        b3,
+        boxOpen,
+        box,
+        c1,
+        c2,
+        c3
+      ];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -17,24 +97,46 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/castle.png
   AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
+
+  /// File path: assets/images/takoyaki1.png
+  AssetGenImage get takoyaki1 =>
+      const AssetGenImage('assets/images/takoyaki1.png');
+
+  /// File path: assets/images/takoyakiAndkushi.png
+  AssetGenImage get takoyakiAndkushi =>
+      const AssetGenImage('assets/images/takoyakiAndkushi.png');
+
   /// File path: assets/images/taskClear.gif
   AssetGenImage get taskClear =>
       const AssetGenImage('assets/images/taskClear.gif');
 
-
   /// File path: assets/images/test.png
   AssetGenImage get test => const AssetGenImage('assets/images/test.png');
+
+  /// File path: assets/images/tutenkaku.png
+  AssetGenImage get tutenkaku =>
+      const AssetGenImage('assets/images/tutenkaku.png');
 
   /// File path: assets/images/ushi.png
   AssetGenImage get ushi => const AssetGenImage('assets/images/ushi.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [box, castle, test, ushi, taskClear, test];
+  List<AssetGenImage> get values => [
+        box,
+        castle,
+        takoyaki1,
+        takoyakiAndkushi,
+        taskClear,
+        test,
+        tutenkaku,
+        ushi
+      ];
 }
 
 class Assets {
   Assets._();
 
+  static const $AssetsGifGen gif = $AssetsGifGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
