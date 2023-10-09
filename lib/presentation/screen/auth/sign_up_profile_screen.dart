@@ -8,7 +8,7 @@ import 'package:food_quest/domain/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
-import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
+import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
 
 class SignUpProfile extends HookConsumerWidget {
   const SignUpProfile({super.key});
@@ -55,19 +55,16 @@ class SignUpProfile extends HookConsumerWidget {
                   ),
                   const Gap(330),
                   CustomButton(
-                    variant: ButtonVariant.primary,
                     text: 'ペット選択へ',
                     onPressed: () async {
-                      await authNotifier.updateUserData().then((_) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (context) =>
-                                const BottomNavigationScreen(),
-                          ),
-                        );
-                      });
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute<PetSelectPage>(
+                          builder: (context) => const PetSelectPage(),
+                        ),
+                      );
                     },
+                    variant: ButtonVariant.primary,
                   ),
                 ],
               ),

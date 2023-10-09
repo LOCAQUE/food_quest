@@ -61,6 +61,7 @@ class AnswerScreen extends HookConsumerWidget {
                     //質問
                     child: QuestionTile(
                       question: question,
+                      onTap: () {},
                     ),
                   ),
                   const Gap(8),
