@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/answer.dart';
-import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'answer_notifier.freezed.dart';

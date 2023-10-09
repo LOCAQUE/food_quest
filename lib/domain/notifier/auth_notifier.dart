@@ -28,7 +28,6 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
     //   _addTextListeners();
     //   _addFormListeners();
     // });
-
   }
   final SupabaseClient client;
 

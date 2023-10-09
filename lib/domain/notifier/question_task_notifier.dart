@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:food_quest/domain/notifier/answer_notifier.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/entity/task.dart';
+import 'package:food_quest/domain/notifier/answer_notifier.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'question_task_notifier.freezed.dart';
@@ -130,9 +130,9 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
       final answerAchievement = myAnswerList.length ?? 0;
       state = state.copyWith(
-          questAchievement: questAchievement,
-          answerAchievement: answerAchievement,
-          bestAnswerAchievement: bestAnswerAchievement,
+        questAchievement: questAchievement,
+        answerAchievement: answerAchievement,
+        bestAnswerAchievement: bestAnswerAchievement,
       );
     } catch (e) {
       debugPrint(e.toString());
@@ -142,13 +142,9 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
   Future<void> updateIsDone(int id) async {
     try {
       print('ああ');
-      await client
-          .from('user_tasks')
-          .update({'is_done': true})
-          .eq('id', id);
+      await client.from('user_tasks').update({'is_done': true}).eq('id', id);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
-
 }

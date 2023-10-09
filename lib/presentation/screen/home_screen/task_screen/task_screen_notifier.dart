@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -28,7 +29,7 @@ class TaskScreenNotifier extends StateNotifier<TaskScreenState> {
 
   final Ref ref;
 
-  void _init() async {
+  Future<void> _init() async {
     await initFunction();
   }
 
@@ -52,5 +53,4 @@ class TaskScreenNotifier extends StateNotifier<TaskScreenState> {
       state = state.copyWith(errorMessage: 'タスクが取得できませんでした');
     }
   }
-
 }
