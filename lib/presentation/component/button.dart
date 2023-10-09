@@ -99,7 +99,6 @@ class CustomButton extends StatelessWidget {
             return BuildDisabledButton(
               text: text,
               radius: radius,
-              onPressed: onPressed,
             );
         }
       }(),
@@ -139,14 +138,12 @@ class BuildPrimaryButton extends StatelessWidget {
 class BuildDisabledButton extends StatelessWidget {
   const BuildDisabledButton({
     required this.text,
-    required this.onPressed,
     required this.radius,
     super.key,
   });
 
   final String text;
   final double radius;
-  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +178,7 @@ class BuildOutlineButton extends StatelessWidget {
     final backgroundColor = _buttonColor(ButtonVariant.outline);
 
     return OutlinedButton(
-      onPressed: null,
+      onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: backgroundColor,
         shape:
