@@ -75,8 +75,7 @@ class AnswerScreen extends HookConsumerWidget {
                     ),
                   ),
                   const Gap(8),
-                  if(answers.isEmpty)
-                    Center(child: Text('回答がありません')),
+                  if (answers.isEmpty) const Center(child: Text('回答がありません')),
                   //回答
                   if (answers.isNotEmpty)
                     ...List.generate(answers.length, (index) {

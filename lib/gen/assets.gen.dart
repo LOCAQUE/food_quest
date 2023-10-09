@@ -17,10 +17,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/castle.png
   AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
+
   /// File path: assets/images/taskClear.gif
   AssetGenImage get taskClear =>
       const AssetGenImage('assets/images/taskClear.gif');
-
 
   /// File path: assets/images/test.png
   AssetGenImage get test => const AssetGenImage('assets/images/test.png');

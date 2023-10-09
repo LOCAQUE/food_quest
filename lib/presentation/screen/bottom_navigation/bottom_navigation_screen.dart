@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:navigator_scope/navigator_scope.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
+
 import 'package:food_quest/presentation/screen/home_screen/home_screen.dart';
 import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
 import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
