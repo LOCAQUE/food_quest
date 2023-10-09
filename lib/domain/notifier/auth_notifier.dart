@@ -24,7 +24,7 @@ final authNotifierProvider =
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
   AuthNotifier(this.client) : super(AuthNotifierState()) {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _addTextListeners();
       _addFormListeners();
     });

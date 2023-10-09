@@ -5,10 +5,8 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/list.dart';
-
 import 'package:food_quest/domain/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
-
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_date_picker.dart';

@@ -106,8 +106,7 @@ class PetSelectPage extends HookConsumerWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (context) 
-                            => const CompletionPetScreen(),
+                            builder: (context) => const CompletionPetScreen(),
                           ),
                         );
                       }
