@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/entity/pets.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
 
@@ -10,10 +11,12 @@ class PetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const level = 1;
+    const level = 100;
     const maxEXP = 150;
     const exp = 60;
     const heart = 50;
+
+    final gif = getGifUrlForPet(Pet.caracter1, level);
 
     return Scaffold(
       body: Stack(
@@ -137,7 +140,7 @@ class PetScreen extends HookConsumerWidget {
           // TO-DO: gif画像に変更する
           Center(
             child: SizedBox(
-              child: Image.asset('assets/images/gif/a10.gif'),
+              child: Image.asset(gif),
             ),
           ),
           // 宝箱の画像
