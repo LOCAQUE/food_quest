@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,12 +12,24 @@ class PetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const level = 100;
+    const level = 2;
     const maxEXP = 150;
-    const exp = 60;
+    const exp = 100;
     const heart = 50;
 
     final gif = getGifUrlForPet(Pet.caracter1, level);
+    // useStateを使用してboxGifの状態を管理
+    final boxGifPath = useState('assets/gif/box.gif');
+    final boxOpenedGifPath = 'assets/gif/box-open.gif';
+
+    // 宝箱のGIF画像を切り替えるメソッド
+    void toggleBoxGif() {
+      if (boxGifPath.value == 'assets/gif/box.gif') {
+        boxGifPath.value = boxOpenedGifPath;
+      } else {
+        boxGifPath.value = 'assets/gif/box.gif';
+      }
+    }
 
     return Scaffold(
       body: Stack(
@@ -137,7 +150,6 @@ class PetScreen extends HookConsumerWidget {
             ),
           ),
           // キャラクターの画像
-          // TO-DO: gif画像に変更する
           Center(
             child: SizedBox(
               child: Image.asset(gif),
@@ -145,12 +157,13 @@ class PetScreen extends HookConsumerWidget {
           ),
           // 宝箱の画像
           Positioned(
-            left: 25, // 左側からのオフセット
+            left: 18, // 左側からのオフセット
             bottom: 120, // 下側からのオフセット
-            width: 80,
-            height: 80,
+            width: 135,
+            height: 135,
             child: GestureDetector(
               onTap: () {
+                toggleBoxGif();
                 showModalBottomSheet<String>(
                   context: context,
                   isScrollControlled: true,
@@ -162,7 +175,7 @@ class PetScreen extends HookConsumerWidget {
                   },
                 );
               },
-              child: Image.asset('assets/images/box.png'),
+              child: Image.asset(boxGifPath.value),
             ),
           ),
         ],
