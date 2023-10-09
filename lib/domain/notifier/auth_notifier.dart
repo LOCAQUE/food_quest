@@ -24,7 +24,10 @@ final authNotifierProvider =
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
   AuthNotifier(this.client) : super(AuthNotifierState()) {
-    _addTextListeners();
+    // WidgetsBinding.instance!.addPostFrameCallback((_) {
+    //   _addTextListeners();
+    //   _addFormListeners();
+    // });
   }
   final SupabaseClient client;
 
@@ -40,9 +43,19 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
     passwordController.addListener(_validateForm);
   }
 
+  void _addFormListeners() {
+    nameController.addListener(_validateProfileForm);
+    addressController.addListener(_validateProfileForm);
+  }
+
   void _validateForm() {
     isFormValid.value =
         emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+  }
+
+  void _validateProfileForm() {
+    isFormValid.value =
+        nameController.text.isNotEmpty && addressController.text.isNotEmpty;
   }
 
   Future<void> signUp() async {
@@ -108,6 +121,22 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
       debugPrint(e.toString());
     }
     return null;
+  }
+
+  Future<void> signIn() async {
+    try {
+      final authResponse = await client.auth.signInWithPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      if (authResponse.user?.id != null) {
+        final currentUser = await getCurrentUser(uid: authResponse.user!.id);
+        state = state.copyWith(currentUser: currentUser);
+      }
+      return;
+    } on AuthException catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future<void> logout() async {

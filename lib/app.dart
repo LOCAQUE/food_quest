@@ -19,14 +19,17 @@ class App extends HookConsumerWidget {
 
     useEffect(
       () {
-        auth.onAuthStateChange.listen((event) {
-          if (event.event == AuthChangeEvent.signedIn) {
-            isSignIn.value = true;
-            return;
-          } else {
-            isSignIn.value = false;
-            return;
-          }
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          auth.onAuthStateChange.listen((event) {
+            if (event.event == AuthChangeEvent.signedIn) {
+              isSignIn.value = true;
+              return;
+            } else {
+              isSignIn.value = false;
+              return;
+            }
+          });
+          return;
         });
         return null;
       },

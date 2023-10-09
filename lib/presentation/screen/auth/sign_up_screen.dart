@@ -31,76 +31,78 @@ class SignUpScreen extends HookConsumerWidget {
           },
         ),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Gap(10),
-                const Text(
-                  '新規登録',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Gap(10),
-                Padding(
-                  padding: const EdgeInsets.only(top: 28),
-                  child: CustomTextField(
-                    title: 'メールアドレス',
-                    controller: authNotifier.emailController,
-                    hintText: 'emailを入力してください',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 28),
-                  child: CustomTextField(
-                    title: 'パスワード',
-                    isObscure: true,
-                    controller: authNotifier.passwordController,
-                    hintText: 'passwordを入力してください',
-                  ),
-                ),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    '8文字以上12文字以下の半角英数字',
+      body: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Gap(10),
+                  const Text(
+                    '新規登録',
                     style: TextStyle(
-                      fontSize: 12,
-                      color: AppColor.textColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                const Gap(250),
-                // linterによる警告を抑制するために、if文で分岐させています。
-                if (isButtonEnabled)
-                  CustomButton(
-                    variant: ButtonVariant.primary,
-                    text: 'はじめる',
-                    onPressed: () async {
-                      await authNotifier.signUp().then((_) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (context) => const SignUpProfile(),
-                          ),
-                        );
-                      });
-                    },
-                  )
-                else
-                  CustomButton(
-                    text: 'はじめる',
-                    variant: ButtonVariant.disabled,
-                    onPressed: () {},
+                  const Gap(10),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 28),
+                    child: CustomTextField(
+                      title: 'メールアドレス',
+                      controller: authNotifier.emailController,
+                      hintText: 'emailを入力してください',
+                    ),
                   ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 28),
+                    child: CustomTextField(
+                      title: 'パスワード',
+                      isObscure: true,
+                      controller: authNotifier.passwordController,
+                      hintText: 'passwordを入力してください',
+                    ),
+                  ),
+                  const Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '8文字以上12文字以下の半角英数字',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColor.textColor,
+                      ),
+                    ),
+                  ),
+                  const Gap(250),
+                  // linterによる警告を抑制するために、if文で分岐させています。
+                  if (true)
+                    CustomButton(
+                      variant: ButtonVariant.primary,
+                      text: '次へ',
+                      onPressed: () async {
+                        await authNotifier.signUp().then((_) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (context) => const SignUpProfile(),
+                            ),
+                          );
+                        });
+                      },
+                    )
+                  else
+                    CustomButton(
+                      text: 'はじめる',
+                      variant: ButtonVariant.disabled,
+                      onPressed: () {},
+                    ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
