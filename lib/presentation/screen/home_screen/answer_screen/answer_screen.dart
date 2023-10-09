@@ -61,6 +61,7 @@ class AnswerScreen extends HookConsumerWidget {
                     //質問
                     child: QuestionTile(
                       question: question,
+                      onTap: () {},
                     ),
                   ),
                   const Gap(8),
@@ -75,8 +76,7 @@ class AnswerScreen extends HookConsumerWidget {
                     ),
                   ),
                   const Gap(8),
-                  if(answers.isEmpty)
-                    Center(child: Text('回答がありません')),
+                  if (answers.isEmpty) const Center(child: Text('回答がありません')),
                   //回答
                   if (answers.isNotEmpty)
                     ...List.generate(answers.length, (index) {

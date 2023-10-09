@@ -24,10 +24,10 @@ final authNotifierProvider =
 
 class AuthNotifier extends StateNotifier<AuthNotifierState> {
   AuthNotifier(this.client) : super(AuthNotifierState()) {
-    // WidgetsBinding.instance!.addPostFrameCallback((_) {
-    //   _addTextListeners();
-    //   _addFormListeners();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _addTextListeners();
+      _addFormListeners();
+    });
   }
   final SupabaseClient client;
 

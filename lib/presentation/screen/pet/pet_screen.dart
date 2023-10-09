@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/pets.dart';
+import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
 
@@ -17,6 +19,21 @@ class PetScreen extends HookConsumerWidget {
     const heart = 50;
 
     final gif = getGifUrlForPet(Pet.caracter1, level);
+    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    final monIdState = useState<int?>(null);
+
+    useEffect(
+      () {
+        Future<void> fetchMonId() async {
+          final monData = await monchoicenotifier.getBaseMonster();
+          monIdState.value = monData?.baseMonster; //モンスターのID取得
+        }
+
+        fetchMonId();
+        return null;
+      },
+      [],
+    );
 
     return Scaffold(
       body: Stack(
@@ -133,38 +150,34 @@ class PetScreen extends HookConsumerWidget {
                     ],
                   ),
                 ),
+                Center(
+                  child: SizedBox(
+                    child: Image.asset(gif),
+                  ),
+                ),
+                // 宝箱の画像
+                Positioned(
+                  left: 25, // 左側からのオフセット
+                  bottom: 120, // 下側からのオフセット
+                  width: 80,
+                  height: 80,
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet<String>(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return const FractionallySizedBox(
+                            heightFactor: 0.3,
+                            child: ItemsModalSheet(),
+                          );
+                        },
+                      );
+                    },
+                    child: Image.asset('assets/images/box.png'),
+                  ),
+                ),
               ],
-            ),
-          ),
-          // キャラクターの画像
-          // TO-DO: gif画像に変更する
-          Center(
-            child: SizedBox(
-              height: 600,
-              width: 600,
-              child: Image.asset(gif),
-            ),
-          ),
-          // 宝箱の画像
-          Positioned(
-            left: 25, // 左側からのオフセット
-            bottom: 120, // 下側からのオフセット
-            width: 80,
-            height: 80,
-            child: GestureDetector(
-              onTap: () {
-                showModalBottomSheet<String>(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return const FractionallySizedBox(
-                      heightFactor: 0.3,
-                      child: ItemsModalSheet(),
-                    );
-                  },
-                );
-              },
-              child: Image.asset('assets/images/box.png'),
             ),
           ),
         ],
