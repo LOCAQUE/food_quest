@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AnswerNotifierState {
   List<ResponseAnswer>? get myAnswerList => throw _privateConstructorUsedError;
+  String? get currentUserId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnswerNotifierStateCopyWith<AnswerNotifierState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $AnswerNotifierStateCopyWith<$Res> {
           AnswerNotifierState value, $Res Function(AnswerNotifierState) then) =
       _$AnswerNotifierStateCopyWithImpl<$Res, AnswerNotifierState>;
   @useResult
-  $Res call({List<ResponseAnswer>? myAnswerList});
+  $Res call({List<ResponseAnswer>? myAnswerList, String? currentUserId});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$AnswerNotifierStateCopyWithImpl<$Res, $Val extends AnswerNotifierState>
   @override
   $Res call({
     Object? myAnswerList = freezed,
+    Object? currentUserId = freezed,
   }) {
     return _then(_value.copyWith(
       myAnswerList: freezed == myAnswerList
           ? _value.myAnswerList
           : myAnswerList // ignore: cast_nullable_to_non_nullable
               as List<ResponseAnswer>?,
+      currentUserId: freezed == currentUserId
+          ? _value.currentUserId
+          : currentUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$AnswerNotifierStateImplCopyWith<$Res>
       __$$AnswerNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ResponseAnswer>? myAnswerList});
+  $Res call({List<ResponseAnswer>? myAnswerList, String? currentUserId});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$AnswerNotifierStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? myAnswerList = freezed,
+    Object? currentUserId = freezed,
   }) {
     return _then(_$AnswerNotifierStateImpl(
       myAnswerList: freezed == myAnswerList
           ? _value._myAnswerList
           : myAnswerList // ignore: cast_nullable_to_non_nullable
               as List<ResponseAnswer>?,
+      currentUserId: freezed == currentUserId
+          ? _value.currentUserId
+          : currentUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -92,7 +103,8 @@ class __$$AnswerNotifierStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
-  _$AnswerNotifierStateImpl({final List<ResponseAnswer>? myAnswerList})
+  _$AnswerNotifierStateImpl(
+      {final List<ResponseAnswer>? myAnswerList, this.currentUserId})
       : _myAnswerList = myAnswerList;
 
   final List<ResponseAnswer>? _myAnswerList;
@@ -106,8 +118,11 @@ class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
   }
 
   @override
+  final String? currentUserId;
+
+  @override
   String toString() {
-    return 'AnswerNotifierState(myAnswerList: $myAnswerList)';
+    return 'AnswerNotifierState(myAnswerList: $myAnswerList, currentUserId: $currentUserId)';
   }
 
   @override
@@ -116,12 +131,14 @@ class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
         (other.runtimeType == runtimeType &&
             other is _$AnswerNotifierStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._myAnswerList, _myAnswerList));
+                .equals(other._myAnswerList, _myAnswerList) &&
+            (identical(other.currentUserId, currentUserId) ||
+                other.currentUserId == currentUserId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_myAnswerList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_myAnswerList), currentUserId);
 
   @JsonKey(ignore: true)
   @override
@@ -132,11 +149,14 @@ class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
 }
 
 abstract class _AnswerNotifierState implements AnswerNotifierState {
-  factory _AnswerNotifierState({final List<ResponseAnswer>? myAnswerList}) =
-      _$AnswerNotifierStateImpl;
+  factory _AnswerNotifierState(
+      {final List<ResponseAnswer>? myAnswerList,
+      final String? currentUserId}) = _$AnswerNotifierStateImpl;
 
   @override
   List<ResponseAnswer>? get myAnswerList;
+  @override
+  String? get currentUserId;
   @override
   @JsonKey(ignore: true)
   _$$AnswerNotifierStateImplCopyWith<_$AnswerNotifierStateImpl> get copyWith =>

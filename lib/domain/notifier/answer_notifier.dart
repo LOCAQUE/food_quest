@@ -13,6 +13,7 @@ part 'answer_notifier.freezed.dart';
 class AnswerNotifierState with _$AnswerNotifierState {
   factory AnswerNotifierState({
     List<ResponseAnswer>? myAnswerList,
+    String? currentUserId,
   }) = _AnswerNotifierState;
 }
 
@@ -23,7 +24,10 @@ final answerNotifierProvider =
 });
 
 class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
-  AnswerNotifier(this.client, this.ref) : super(AnswerNotifierState());
+  AnswerNotifier(this.client, this.ref)
+      : super(AnswerNotifierState(
+          currentUserId: client.auth.currentUser?.id,
+        ));
   final SupabaseClient client;
   final Ref ref;
 
