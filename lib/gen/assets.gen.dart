@@ -51,6 +51,12 @@ class $AssetsGifGen {
   /// File path: assets/gif/b3.gif
   AssetGenImage get b3 => const AssetGenImage('assets/gif/b3.gif');
 
+  /// File path: assets/gif/box-open.gif
+  AssetGenImage get boxOpen => const AssetGenImage('assets/gif/box-open.gif');
+
+  /// File path: assets/gif/box.gif
+  AssetGenImage get box => const AssetGenImage('assets/gif/box.gif');
+
   /// File path: assets/gif/c1.gif
   AssetGenImage get c1 => const AssetGenImage('assets/gif/c1.gif');
 
@@ -61,8 +67,26 @@ class $AssetsGifGen {
   AssetGenImage get c3 => const AssetGenImage('assets/gif/c3.gif');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [a1, a10, a2, a3, a4, a5, a6, a7, a8, a9, b1, b2, b3, c1, c2, c3];
+  List<AssetGenImage> get values => [
+        a1,
+        a10,
+        a2,
+        a3,
+        a4,
+        a5,
+        a6,
+        a7,
+        a8,
+        a9,
+        b1,
+        b2,
+        b3,
+        boxOpen,
+        box,
+        c1,
+        c2,
+        c3
+      ];
 }
 
 class $AssetsImagesGen {
@@ -86,6 +110,10 @@ class $AssetsImagesGen {
   AssetGenImage get takoyakiAndkushi =>
       const AssetGenImage('assets/images/takoyakiAndkushi.png');
 
+  /// File path: assets/images/taskClear.gif
+  AssetGenImage get taskClear =>
+      const AssetGenImage('assets/images/taskClear.gif');
+
   /// File path: assets/images/test.png
   AssetGenImage get test => const AssetGenImage('assets/images/test.png');
 
@@ -102,10 +130,10 @@ class $AssetsImagesGen {
         castle,
         takoyaki1,
         takoyakiAndkushi,
+        taskClear,
         test,
         tutenkaku,
-        ushi,
-        taskClear
+        ushi
       ];
 }
 
