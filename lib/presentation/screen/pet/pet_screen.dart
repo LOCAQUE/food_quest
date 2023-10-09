@@ -140,6 +140,8 @@ class PetScreen extends HookConsumerWidget {
           // TO-DO: gif画像に変更する
           Center(
             child: SizedBox(
+              height: 600,
+              width: 600,
               child: Image.asset(gif),
             ),
           ),
