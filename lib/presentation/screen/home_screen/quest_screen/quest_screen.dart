@@ -60,7 +60,10 @@ class QuestScreen extends HookConsumerWidget {
             right: width * 0.07,
             child: ElevatedButton(
               onPressed: () {
-                MakeQuestionModal.show(context: context, isQuestion: true);
+                MakeQuestionModal.show(
+                  context: context,
+                  isQuestion: true,
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.primaryColor, // ボタンの背景色を赤に設定
