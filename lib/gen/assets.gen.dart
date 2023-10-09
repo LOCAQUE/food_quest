@@ -12,15 +12,24 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/box.png
+  AssetGenImage get box => const AssetGenImage('assets/images/box.png');
+
+  /// File path: assets/images/castle.png
+  AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
   /// File path: assets/images/taskClear.gif
   AssetGenImage get taskClear =>
       const AssetGenImage('assets/images/taskClear.gif');
 
+
   /// File path: assets/images/test.png
   AssetGenImage get test => const AssetGenImage('assets/images/test.png');
 
+  /// File path: assets/images/ushi.png
+  AssetGenImage get ushi => const AssetGenImage('assets/images/ushi.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [taskClear, test];
+  List<AssetGenImage> get values => [box, castle, test, ushi, taskClear, test];
 }
 
 class Assets {
