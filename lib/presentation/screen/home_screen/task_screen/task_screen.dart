@@ -18,8 +18,20 @@ class TaskScreen extends HookConsumerWidget {
           questionTaskNotifierProvider.select((state) => state.taskList),
         ) ??
         [];
-    final emptyMessage = ref.watch(
-      questionTaskNotifierProvider.select((state) => state.emptyMessage),
+
+    final questAchievement = ref.watch(
+      questionTaskNotifierProvider.select((state) => state.questAchievement),
+    );
+    final answerAchievement = ref.watch(
+      questionTaskNotifierProvider.select((state) => state.answerAchievement),
+    );
+    final bestAnswerAchievement = ref.watch(
+      questionTaskNotifierProvider
+          .select((state) => state.bestAnswerAchievement),
+    );
+
+    final errorMessage = ref.watch(
+      taskScreenNotifierProvider.select((state) => state.errorMessage),
     );
 
     if (isLoading) {
@@ -27,19 +39,20 @@ class TaskScreen extends HookConsumerWidget {
         body: Center(child: CircularProgressIndicator()),
       );
     }
+
     return Scaffold(
       body: ListView.builder(
         itemCount: taskList.length,
         itemBuilder: (context, index) {
-          final task = taskList[index].tasks;
+          final taskUser = taskList[index];
+          final tasks = taskList[index].tasks;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: emptyMessage != null
-                ? Text(emptyMessage)
+            child: errorMessage != ''
+                ? Text(errorMessage)
                 : TaskComponent(
-                    text: task.task,
-                    achievement: 4,
-                    target: task.targetNumber,
+                    tasks: tasks!,
+                    taskUser: taskUser,
                   ),
           );
         },

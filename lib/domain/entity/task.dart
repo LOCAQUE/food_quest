@@ -10,6 +10,7 @@ abstract class Task with _$Task {
     required DateTime createdAt,
     required String task,
     required int targetNumber,
+    required int categoryNumber,
   }) = _Task;
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 }
@@ -22,8 +23,8 @@ abstract class UserTask with _$UserTask {
     required int id,
     required DateTime created_at,
     required int task_id,
-    required int achieved_number,
-    required int user_id,
+    required bool is_done,
+    required String user_id,
   }) = _UserTask;
   factory UserTask.fromJson(Map<String, dynamic> json) =>
       _$UserTaskFromJson(json);
@@ -31,7 +32,14 @@ abstract class UserTask with _$UserTask {
 
 @freezed
 abstract class TaskResponse with _$TaskResponse {
-  const factory TaskResponse({required Task tasks}) = _TaskResponse;
+  const factory TaskResponse({
+    required int id,
+    required DateTime created_at,
+    required int task_id,
+    required bool is_done,
+    required String user_id,
+    Task? tasks,
+  }) = _TaskResponse;
 
   const TaskResponse._();
 

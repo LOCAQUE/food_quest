@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AnswerNotifierState {
-  List<QuestionResponse>? get questionList =>
-      throw _privateConstructorUsedError;
+  List<ResponseAnswer>? get myAnswerList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AnswerNotifierStateCopyWith<AnswerNotifierState> get copyWith =>
@@ -30,7 +29,7 @@ abstract class $AnswerNotifierStateCopyWith<$Res> {
           AnswerNotifierState value, $Res Function(AnswerNotifierState) then) =
       _$AnswerNotifierStateCopyWithImpl<$Res, AnswerNotifierState>;
   @useResult
-  $Res call({List<QuestionResponse>? questionList});
+  $Res call({List<ResponseAnswer>? myAnswerList});
 }
 
 /// @nodoc
@@ -46,13 +45,13 @@ class _$AnswerNotifierStateCopyWithImpl<$Res, $Val extends AnswerNotifierState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionList = freezed,
+    Object? myAnswerList = freezed,
   }) {
     return _then(_value.copyWith(
-      questionList: freezed == questionList
-          ? _value.questionList
-          : questionList // ignore: cast_nullable_to_non_nullable
-              as List<QuestionResponse>?,
+      myAnswerList: freezed == myAnswerList
+          ? _value.myAnswerList
+          : myAnswerList // ignore: cast_nullable_to_non_nullable
+              as List<ResponseAnswer>?,
     ) as $Val);
   }
 }
@@ -65,7 +64,7 @@ abstract class _$$AnswerNotifierStateImplCopyWith<$Res>
       __$$AnswerNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<QuestionResponse>? questionList});
+  $Res call({List<ResponseAnswer>? myAnswerList});
 }
 
 /// @nodoc
@@ -79,13 +78,13 @@ class __$$AnswerNotifierStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionList = freezed,
+    Object? myAnswerList = freezed,
   }) {
     return _then(_$AnswerNotifierStateImpl(
-      questionList: freezed == questionList
-          ? _value._questionList
-          : questionList // ignore: cast_nullable_to_non_nullable
-              as List<QuestionResponse>?,
+      myAnswerList: freezed == myAnswerList
+          ? _value._myAnswerList
+          : myAnswerList // ignore: cast_nullable_to_non_nullable
+              as List<ResponseAnswer>?,
     ));
   }
 }
@@ -93,22 +92,22 @@ class __$$AnswerNotifierStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
-  _$AnswerNotifierStateImpl({final List<QuestionResponse>? questionList})
-      : _questionList = questionList;
+  _$AnswerNotifierStateImpl({final List<ResponseAnswer>? myAnswerList})
+      : _myAnswerList = myAnswerList;
 
-  final List<QuestionResponse>? _questionList;
+  final List<ResponseAnswer>? _myAnswerList;
   @override
-  List<QuestionResponse>? get questionList {
-    final value = _questionList;
+  List<ResponseAnswer>? get myAnswerList {
+    final value = _myAnswerList;
     if (value == null) return null;
-    if (_questionList is EqualUnmodifiableListView) return _questionList;
+    if (_myAnswerList is EqualUnmodifiableListView) return _myAnswerList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'AnswerNotifierState(questionList: $questionList)';
+    return 'AnswerNotifierState(myAnswerList: $myAnswerList)';
   }
 
   @override
@@ -117,12 +116,12 @@ class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
         (other.runtimeType == runtimeType &&
             other is _$AnswerNotifierStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._questionList, _questionList));
+                .equals(other._myAnswerList, _myAnswerList));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_questionList));
+      runtimeType, const DeepCollectionEquality().hash(_myAnswerList));
 
   @JsonKey(ignore: true)
   @override
@@ -133,11 +132,11 @@ class _$AnswerNotifierStateImpl implements _AnswerNotifierState {
 }
 
 abstract class _AnswerNotifierState implements AnswerNotifierState {
-  factory _AnswerNotifierState({final List<QuestionResponse>? questionList}) =
+  factory _AnswerNotifierState({final List<ResponseAnswer>? myAnswerList}) =
       _$AnswerNotifierStateImpl;
 
   @override
-  List<QuestionResponse>? get questionList;
+  List<ResponseAnswer>? get myAnswerList;
   @override
   @JsonKey(ignore: true)
   _$$AnswerNotifierStateImplCopyWith<_$AnswerNotifierStateImpl> get copyWith =>

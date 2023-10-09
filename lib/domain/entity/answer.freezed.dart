@@ -542,3 +542,291 @@ abstract class _SendAnswer extends SendAnswer {
   _$$SendAnswerImplCopyWith<_$SendAnswerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ResponseAnswer _$ResponseAnswerFromJson(Map<String, dynamic> json) {
+  return _ResponseAnswer.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ResponseAnswer {
+  int get id => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  int get questId => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
+  bool get bestAnswer => throw _privateConstructorUsedError;
+  int get minimumBudget => throw _privateConstructorUsedError;
+  int get maximumBudget => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResponseAnswerCopyWith<ResponseAnswer> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResponseAnswerCopyWith<$Res> {
+  factory $ResponseAnswerCopyWith(
+          ResponseAnswer value, $Res Function(ResponseAnswer) then) =
+      _$ResponseAnswerCopyWithImpl<$Res, ResponseAnswer>;
+  @useResult
+  $Res call(
+      {int id,
+      DateTime createdAt,
+      String content,
+      int questId,
+      String uid,
+      bool bestAnswer,
+      int minimumBudget,
+      int maximumBudget});
+}
+
+/// @nodoc
+class _$ResponseAnswerCopyWithImpl<$Res, $Val extends ResponseAnswer>
+    implements $ResponseAnswerCopyWith<$Res> {
+  _$ResponseAnswerCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? content = null,
+    Object? questId = null,
+    Object? uid = null,
+    Object? bestAnswer = null,
+    Object? minimumBudget = null,
+    Object? maximumBudget = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      questId: null == questId
+          ? _value.questId
+          : questId // ignore: cast_nullable_to_non_nullable
+              as int,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      bestAnswer: null == bestAnswer
+          ? _value.bestAnswer
+          : bestAnswer // ignore: cast_nullable_to_non_nullable
+              as bool,
+      minimumBudget: null == minimumBudget
+          ? _value.minimumBudget
+          : minimumBudget // ignore: cast_nullable_to_non_nullable
+              as int,
+      maximumBudget: null == maximumBudget
+          ? _value.maximumBudget
+          : maximumBudget // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ResponseAnswerImplCopyWith<$Res>
+    implements $ResponseAnswerCopyWith<$Res> {
+  factory _$$ResponseAnswerImplCopyWith(_$ResponseAnswerImpl value,
+          $Res Function(_$ResponseAnswerImpl) then) =
+      __$$ResponseAnswerImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      DateTime createdAt,
+      String content,
+      int questId,
+      String uid,
+      bool bestAnswer,
+      int minimumBudget,
+      int maximumBudget});
+}
+
+/// @nodoc
+class __$$ResponseAnswerImplCopyWithImpl<$Res>
+    extends _$ResponseAnswerCopyWithImpl<$Res, _$ResponseAnswerImpl>
+    implements _$$ResponseAnswerImplCopyWith<$Res> {
+  __$$ResponseAnswerImplCopyWithImpl(
+      _$ResponseAnswerImpl _value, $Res Function(_$ResponseAnswerImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? createdAt = null,
+    Object? content = null,
+    Object? questId = null,
+    Object? uid = null,
+    Object? bestAnswer = null,
+    Object? minimumBudget = null,
+    Object? maximumBudget = null,
+  }) {
+    return _then(_$ResponseAnswerImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      questId: null == questId
+          ? _value.questId
+          : questId // ignore: cast_nullable_to_non_nullable
+              as int,
+      uid: null == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+      bestAnswer: null == bestAnswer
+          ? _value.bestAnswer
+          : bestAnswer // ignore: cast_nullable_to_non_nullable
+              as bool,
+      minimumBudget: null == minimumBudget
+          ? _value.minimumBudget
+          : minimumBudget // ignore: cast_nullable_to_non_nullable
+              as int,
+      maximumBudget: null == maximumBudget
+          ? _value.maximumBudget
+          : maximumBudget // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ResponseAnswerImpl extends _ResponseAnswer {
+  const _$ResponseAnswerImpl(
+      {required this.id,
+      required this.createdAt,
+      required this.content,
+      required this.questId,
+      required this.uid,
+      required this.bestAnswer,
+      required this.minimumBudget,
+      required this.maximumBudget})
+      : super._();
+
+  factory _$ResponseAnswerImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ResponseAnswerImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final DateTime createdAt;
+  @override
+  final String content;
+  @override
+  final int questId;
+  @override
+  final String uid;
+  @override
+  final bool bestAnswer;
+  @override
+  final int minimumBudget;
+  @override
+  final int maximumBudget;
+
+  @override
+  String toString() {
+    return 'ResponseAnswer(id: $id, createdAt: $createdAt, content: $content, questId: $questId, uid: $uid, bestAnswer: $bestAnswer, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResponseAnswerImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.questId, questId) || other.questId == questId) &&
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.bestAnswer, bestAnswer) ||
+                other.bestAnswer == bestAnswer) &&
+            (identical(other.minimumBudget, minimumBudget) ||
+                other.minimumBudget == minimumBudget) &&
+            (identical(other.maximumBudget, maximumBudget) ||
+                other.maximumBudget == maximumBudget));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, createdAt, content, questId,
+      uid, bestAnswer, minimumBudget, maximumBudget);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResponseAnswerImplCopyWith<_$ResponseAnswerImpl> get copyWith =>
+      __$$ResponseAnswerImplCopyWithImpl<_$ResponseAnswerImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ResponseAnswerImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ResponseAnswer extends ResponseAnswer {
+  const factory _ResponseAnswer(
+      {required final int id,
+      required final DateTime createdAt,
+      required final String content,
+      required final int questId,
+      required final String uid,
+      required final bool bestAnswer,
+      required final int minimumBudget,
+      required final int maximumBudget}) = _$ResponseAnswerImpl;
+  const _ResponseAnswer._() : super._();
+
+  factory _ResponseAnswer.fromJson(Map<String, dynamic> json) =
+      _$ResponseAnswerImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  DateTime get createdAt;
+  @override
+  String get content;
+  @override
+  int get questId;
+  @override
+  String get uid;
+  @override
+  bool get bestAnswer;
+  @override
+  int get minimumBudget;
+  @override
+  int get maximumBudget;
+  @override
+  @JsonKey(ignore: true)
+  _$$ResponseAnswerImplCopyWith<_$ResponseAnswerImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

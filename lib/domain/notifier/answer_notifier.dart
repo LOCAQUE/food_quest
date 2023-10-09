@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/answer.dart';
-import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'answer_notifier.freezed.dart';
@@ -13,7 +12,7 @@ part 'answer_notifier.freezed.dart';
 @freezed
 class AnswerNotifierState with _$AnswerNotifierState {
   factory AnswerNotifierState({
-    List<QuestionResponse>? questionList,
+    List<ResponseAnswer>? myAnswerList,
   }) = _AnswerNotifierState;
 }
 
@@ -45,6 +44,22 @@ class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
 
     try {
       await client.from('answers').insert(sendAnswerData);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getMyAnswerList() async {
+    final currentUserId = client.auth.currentUser?.id;
+    try {
+      final response = await client
+          .from('answers')
+          .select<PostgrestList>()
+          .eq('uid', currentUserId);
+
+      final myAnswerList = response.map(ResponseAnswer.fromJson).toList();
+
+      state = state.copyWith(myAnswerList: myAnswerList);
     } catch (e) {
       debugPrint(e.toString());
     }

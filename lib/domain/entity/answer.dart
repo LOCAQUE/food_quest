@@ -41,3 +41,22 @@ abstract class SendAnswer with _$SendAnswer {
   factory SendAnswer.fromJson(Map<String, dynamic> json) =>
       _$SendAnswerFromJson(json);
 }
+
+@freezed
+abstract class ResponseAnswer with _$ResponseAnswer {
+  const factory ResponseAnswer({
+    required int id,
+    required DateTime createdAt,
+    required String content,
+    required int questId,
+    required String uid,
+    required bool bestAnswer,
+    required int minimumBudget,
+    required int maximumBudget,
+  }) = _ResponseAnswer;
+
+  const ResponseAnswer._();
+
+  factory ResponseAnswer.fromJson(Map<String, dynamic> json) =>
+      _$ResponseAnswerFromJson(json);
+}
