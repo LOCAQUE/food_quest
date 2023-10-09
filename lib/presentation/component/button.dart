@@ -139,13 +139,11 @@ class BuildDisabledButton extends StatelessWidget {
   const BuildDisabledButton({
     required this.text,
     required this.radius,
-    required this.onPressed,
     super.key,
   });
 
   final String text;
   final double radius;
-  final dynamic Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
