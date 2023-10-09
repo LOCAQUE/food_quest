@@ -15,21 +15,13 @@ class TopScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E0),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // TO-DO: タイトルの修正
-            const Text(
-              'ロカクエ',
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const Gap(260),
+            Image.asset('assets/images/logo.png'),
+            const Gap(110),
             CustomButton(
               variant: ButtonVariant.primary,
               text: '新規登録はこちら',
