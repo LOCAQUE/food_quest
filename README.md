@@ -1,4 +1,3 @@
-
 # 導入
 
 **install flutter**
@@ -38,13 +37,15 @@ dart pub global activate flutter_gen
 ```
 
 # GithubActions
-.github->workflowの中に ios自動ビルド android自動ビルド リントテスト の三つのactionsを設定しました。
+
+.github->workflow の中に ios 自動ビルド android 自動ビルド リントテスト の三つの actions を設定しました。
 発火タイミングはプルリクエストやプルリクエストにコミットした時です。
 
 # 使用方法
 
 Makefile を使用しているので、以下のコマンドを実行することで、必要なコマンドを実行できます。
-## 実装後、make formatを必ずかけること。
+
+## 実装後、make format を必ずかけること。
 
 ```bash
 # example
@@ -90,8 +91,10 @@ make builder
 └── README.md
 └──.env
 ```
-## .envファイルを tenpei-peso からもらってください。
-.envに外部に流出してはいけない情報を記入しているのでgitignoreしています。
+
+## .env ファイルを tenpei-peso からもらってください。
+
+.env に外部に流出してはいけない情報を記入しているので gitignore しています。
 
 # 実装方針
 
@@ -169,6 +172,7 @@ flutter_gen を利用しているので、以下のコマンドを実行する�
 ```bash
 make builder
 ```
+
 3. 使い方
 
 記法
@@ -181,3 +185,10 @@ Widget build(BuildContext context) {
 }
 
 ```
+
+// Notion、Discord と連携できるかのお試しです
+
+## 外部ツールとの連携
+
+1. Notion
+2. Discord
