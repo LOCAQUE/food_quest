@@ -192,3 +192,4 @@ Widget build(BuildContext context) {
 
 1. Notion
 2. Discord
+   push, プルリクエスト作成時、レビュー時に Discord 内へ通知が行きます
