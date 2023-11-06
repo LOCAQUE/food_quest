@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -10,6 +11,7 @@ import 'package:food_quest/presentation/screen/setting_screen/component/link_com
 import 'package:food_quest/presentation/screen/setting_screen/privacy_screen.dart';
 import 'package:food_quest/presentation/screen/setting_screen/terms_screen.dart';
 
+@RoutePage()
 class SettingScreen extends HookConsumerWidget {
   const SettingScreen({super.key});
 
