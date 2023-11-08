@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,6 +8,7 @@ import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
 
+@RoutePage()
 class CompletionPetScreen extends HookConsumerWidget {
   const CompletionPetScreen({super.key});
 
@@ -72,15 +75,8 @@ class CompletionPetScreen extends HookConsumerWidget {
             child: CustomButton(
               text: 'ロカクエをはじめる',
               variant: ButtonVariant.primary,
-              onPressed: () async {
-                await monchoicenotifier.getBaseMonster().then((_) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => const BottomNavigationScreen(),
-                    ),
-                  );
-                });
+              onPressed: (){
+                context.pushRoute(const BottomNavigationRoute());
               },
             ),
           ),

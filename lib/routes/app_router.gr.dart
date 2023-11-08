@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    BottomNavigationRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BottomNavigationRouterScreen(),
+      );
+    },
     BottomNavigationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +31,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ComingSoonScreen(),
+      );
+    },
+    CompletionPetRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompletionPetScreen(),
       );
     },
     PetRoute.name: (routeData) {
@@ -39,13 +51,57 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
+    SelectPetRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectPetScreen(),
+      );
+    },
     SettingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SettingScreen(),
       );
     },
+    SignUpProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignUpProfileScreen(),
+      );
+    },
+    SignUpRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignUpScreen(),
+      );
+    },
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashScreen(),
+      );
+    },
+    TopRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TopScreen(),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [BottomNavigationRouterScreen]
+class BottomNavigationRouterRoute extends PageRouteInfo<void> {
+  const BottomNavigationRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          BottomNavigationRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BottomNavigationRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -72,6 +128,20 @@ class ComingSoonRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ComingSoonRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompletionPetScreen]
+class CompletionPetRoute extends PageRouteInfo<void> {
+  const CompletionPetRoute({List<PageRouteInfo>? children})
+      : super(
+          CompletionPetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompletionPetRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -105,6 +175,20 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SelectPetScreen]
+class SelectPetRoute extends PageRouteInfo<void> {
+  const SelectPetRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectPetRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectPetRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SettingScreen]
 class SettingRoute extends PageRouteInfo<void> {
   const SettingRoute({List<PageRouteInfo>? children})
@@ -114,6 +198,62 @@ class SettingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignUpProfileScreen]
+class SignUpProfileRoute extends PageRouteInfo<void> {
+  const SignUpProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          SignUpProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignUpProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignUpScreen]
+class SignUpRoute extends PageRouteInfo<void> {
+  const SignUpRoute({List<PageRouteInfo>? children})
+      : super(
+          SignUpRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignUpRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TopScreen]
+class TopRoute extends PageRouteInfo<void> {
+  const TopRoute({List<PageRouteInfo>? children})
+      : super(
+          TopRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TopRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

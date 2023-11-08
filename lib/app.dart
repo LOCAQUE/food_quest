@@ -10,15 +10,15 @@ import 'package:food_quest/theme.dart';
 class App extends HookConsumerWidget {
   App({super.key});
 
-  final _appRouter = AppRouter();
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(appRouterProvider);
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'beta',
       theme: customTheme(),
-      routerConfig: _appRouter.config(
+      routerConfig: router.config(
         navigatorObservers: () => [AutoRouteObserver()],
       ),
     );

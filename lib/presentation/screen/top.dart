@@ -1,14 +1,16 @@
 // アプリ起動時のトップ画面
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 import 'package:gap/gap.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
-import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
 
+@RoutePage()
 class TopScreen extends StatelessWidget {
   const TopScreen({super.key});
 
@@ -27,12 +29,7 @@ class TopScreen extends StatelessWidget {
               text: '新規登録はこちら',
               buttonRadius: ButtonRadius.square,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<SignUpScreen>(
-                    builder: (context) => const SignUpScreen(),
-                  ),
-                );
+                context.pushRoute(const SignUpRoute());
               },
             ),
             const Gap(30),
