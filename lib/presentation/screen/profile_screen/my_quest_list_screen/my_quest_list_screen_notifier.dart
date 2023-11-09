@@ -15,7 +15,8 @@ class MyQuestListScreenState with _$MyQuestListScreenState {
 }
 
 final myQuestListScreenNotifierProvider =
-    StateNotifierProvider<MyQuestListScreenNotifier, MyQuestListScreenState>((ref) {
+    StateNotifierProvider<MyQuestListScreenNotifier, MyQuestListScreenState>(
+        (ref) {
   return MyQuestListScreenNotifier(ref);
 });
 

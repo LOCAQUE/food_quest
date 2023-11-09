@@ -26,7 +26,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           SectionWidget(
             title: '収集する情報',
             description:
-                'ロカクエは、ユーザー登録、サービスの利用、アンケートへの回答など、サービス提供に関連して以下の情報を収集します。\n\n・ユーザー名\n・メールアドレス\n・ニックネーム',
+                'ロカクエは、ユーザー登録、サービスの利用、アンケートへの回答など、サービス提供に関連して以下の情報を収集します。\n・ユーザー名\n・メールアドレス\n・ニックネーム',
           ),
           SectionWidget(
             title: '情報の利用目的',

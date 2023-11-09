@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/routes/app_router.dart';
 
@@ -13,7 +12,7 @@ class CompletionPetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    // final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
     return Scaffold(
       body: Column(
         children: [
