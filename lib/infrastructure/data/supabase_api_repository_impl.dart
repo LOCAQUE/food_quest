@@ -25,4 +25,21 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<QuestionResponse>?> getQuestList() async {
+    final currentId = supabaseClient.auth.currentUser?.id;
+
+    try {
+      final response = await supabaseClient
+          .from('quests')
+          .select<PostgrestList>('*, users(*), answers(*)')
+          .neq('userId', currentId);
+
+      final questList = response.map(QuestionResponse.fromJson).toList();
+      return questList;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
