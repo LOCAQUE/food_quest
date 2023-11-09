@@ -63,33 +63,41 @@ make builder
 # ディレクトリ構成
 
 ```
-├── lib/
-│   ├── foundation/ (基盤系のインスタンスまとめ)
-│   │   └── supabase/
-│   │   └── supabase_auth.dart
-│   ├── domain/ (DB アクセス関連)
-│   │   ├── entity/
-│   │   │   ├── xxx_entity.dart
-│   │   ├── notifier/ (stateとロジックを管理し、DBアクセスを実行するとこ)
-│   │   │   ├── xxx_notifier.dart
-│   ├── presentation/ (UI 層)
-│   │   ├── component/ (全ての screen で使用するコンポーネント)
-│   │   ├── screen/
-│   │   └── xxx/
-│   │       └── component/ (この screen で使用するコンポーネント)
-│   │           └── xxx_screen.dart
-│   ├── route
-│   │   └── auto_route.dart
-│   ├── hooks
-│   │   └── use_xxx.dart
-│   ├── theme/
-│   │   └── xxx.dart
-│   └── main.dart
-├── pubspec.lock
-├── pubspec.yaml
-├── DOCUMENT.md
-└── README.md
-└──.env
+.
+├── domain
+│   ├── application (infrastructureに依存し、独自の処理を記述する)
+│   │   ├── my_quest
+│   │   │   ├── notifier (取得、stateを変更させる処理のみを書く)
+│   │   │   │   ├── my_quest_notifier.dart
+│   │   │   └── usecase (notifierで取得したデータを色々いじれる場所 UIからはusecaseを呼び出す)
+│   ├── entity (データのモデル)
+│   │   ├── answer.dart
+│   └── repositories (抽象クラス)
+│       └── api_repository.dart
+├── foundation
+│   └── supabase_client_provider.dart
+├── gen
+│   ├── assets.gen.dart
+│   └── colors.gen.dart
+├── infrastructure (APIなど外部DBなどの実行ファイル)
+│   ├── data (ネットワークを使用する)
+│   │   └── supabase_api_repository_impl.dart
+│   └── local (ローカル)
+├── presentation
+│   ├── component
+│   │   ├── button.dart
+│   └── screen
+│       ├── quest_screen
+│       │   ├── component
+│       │   │   └── task_component.dart
+│       │   ├── quest_list_screen
+│       │   │   └── quest_screen.dart
+│       └── top.dart
+├── routes　(app_router)
+│   ├── app_router.dart
+├── app.dart
+├── main.dart
+└── theme.dart
 ```
 
 ## .env ファイルを tenpei-peso からもらってください。
@@ -97,6 +105,19 @@ make builder
 .env に外部に流出してはいけない情報を記入しているので gitignore しています。
 
 # 実装方針
+### APIを使用した処理の記述方法
+1. repositoryに関数名を記述
+2. infrastructureに実際の処理を記述
+3. 2で記述した処理をnotifierでref.watchで受け取る。
+4. riverpod_generatorを使用し、providerを自動作成
+5. UIで作成したproviderを受け取る
+6. 非同期処理やstreamの返り値を持つproviderはasyncValueとなり、whenなどが使える
+7. whenを使用しUIを構築する
+
+### 画面遷移について
+https://zenn.dev/flutteruniv_dev/articles/20230427-095829-flutter-auto-route#%E3%82%82%E3%81%A3%E3%81%A8-auto_route-%E3%82%92%E6%B4%BB%E7%94%A8%E3%81%97%E3%81%9F%E3%81%84
+https://zenn.dev/ncdc/articles/flutter_auto_route#using-part-builder
+上記のURLを参考にする
 
 ## 画像の利用
 
