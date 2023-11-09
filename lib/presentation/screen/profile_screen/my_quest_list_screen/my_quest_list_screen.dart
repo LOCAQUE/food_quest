@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
 import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/presentation/component/error_dialog.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
 import 'package:food_quest/routes/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class MyQuestListScreen extends HookConsumerWidget {
   const MyQuestListScreen({super.key});
@@ -21,14 +25,20 @@ class MyQuestListScreen extends HookConsumerWidget {
         myQuestList.value = list;
       },
       loading: () {
-        return const Center(child: CircularProgressIndicator());
+        return const LoadingWidget();
       },
       error: (error, stackTrace) {
-        return const Center(child: Text('エラーが発生しました'));
+        //スナックバー表示
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.error(
+            message: error.toString(),
+          ),
+        );
       },
     );
 
-    if(myQuestList.value!.isEmpty) {
+    if (myQuestList.value!.isEmpty) {
       return const Center(child: Text('質問がありません'));
     }
 
@@ -43,8 +53,7 @@ class MyQuestListScreen extends HookConsumerWidget {
             child: QuestionTile(
               question: question!,
               onTap: () {
-                context.pushRoute(
-                  QuestDetailRoute(question: question));
+                context.pushRoute(QuestDetailRoute(question: question));
               },
             ),
           );
