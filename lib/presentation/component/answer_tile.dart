@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/notifier/answer_notifier.dart';
+
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
-
-import 'button.dart';
+import 'package:food_quest/domain/notifier/answer_notifier.dart';
+import 'package:food_quest/presentation/component/button.dart';
 
 class AnswerTile extends HookConsumerWidget {
   const AnswerTile({
@@ -23,7 +23,6 @@ class AnswerTile extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-
     final currentUserId = ref.watch(
       answerNotifierProvider.select((state) => state.currentUserId),
     );
@@ -44,14 +43,13 @@ class AnswerTile extends HookConsumerWidget {
                   user.name,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                if(currentUserId == user.id)
+                if (currentUserId == user.id)
                   CustomButton(
                     text: 'BA',
                     variant: ButtonVariant.outline,
-                    onPressed: () async {
-                    },
+                    onPressed: () async {},
                     size: ButtonSize.small,
-                  )
+                  ),
               ],
             ),
             const Gap(32),

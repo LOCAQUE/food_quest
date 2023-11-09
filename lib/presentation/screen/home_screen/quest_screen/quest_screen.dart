@@ -56,7 +56,7 @@ class QuestScreen extends HookConsumerWidget {
             // itemExtent: 100,
           ),
           Positioned(
-            bottom: height * 0.15,
+            bottom: height * 0.05,
             right: width * 0.07,
             child: ElevatedButton(
               onPressed: () {

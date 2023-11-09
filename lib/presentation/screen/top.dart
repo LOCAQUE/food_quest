@@ -1,14 +1,14 @@
 // アプリ起動時のトップ画面
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/routes/app_router.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:gap/gap.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class TopScreen extends StatelessWidget {

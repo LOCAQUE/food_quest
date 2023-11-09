@@ -7,8 +7,8 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
-import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class AppColor {
   AppColor._();
@@ -17,7 +17,7 @@ class AppColor {
   static const Color accentColor = Color(0xFF6D8B74);
 
   /// Color: #FFF5E0
-  static const Color backgroundColor = Color(0xFFFFF5E0);
+  static const Color backgroundColor = Color.fromARGB(255, 252, 252, 252);
 
   /// Color: #8E8E93
   static const Color disabledColor = Color(0xFF8E8E93);

@@ -4,9 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
+import 'package:food_quest/presentation/screen/home_screen/answer_screen/answer_screen.dart';
 import 'package:food_quest/presentation/screen/profile_screen/asked_list_screen/asked_list_screen_notifier.dart';
-
-import '../../home_screen/answer_screen/answer_screen.dart';
 
 class AskedListScreen extends HookConsumerWidget {
   const AskedListScreen({super.key});

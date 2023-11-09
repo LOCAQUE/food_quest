@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -7,6 +8,7 @@ import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen.dart';
 import 'package:food_quest/presentation/screen/home_screen/task_screen/task_screen.dart';
 
+@RoutePage()
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 

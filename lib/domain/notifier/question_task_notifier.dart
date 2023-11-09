@@ -104,7 +104,6 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
       final taskList = response.map(TaskResponse.fromJson).toList();
       state = state.copyWith(taskList: taskList);
-      print(taskList);
       return taskList;
     } catch (e) {
       debugPrint(e.toString());
@@ -128,7 +127,7 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
       final bestAnswerAchievement =
           myAnswerList.where((answer) => answer.bestAnswer == true).length;
 
-      final answerAchievement = myAnswerList.length ?? 0;
+      final answerAchievement = myAnswerList.length;
       state = state.copyWith(
         questAchievement: questAchievement,
         answerAchievement: answerAchievement,
@@ -141,7 +140,6 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
   Future<void> updateIsDone(int id) async {
     try {
-      print('ああ');
       await client.from('user_tasks').update({'is_done': true}).eq('id', id);
     } catch (e) {
       debugPrint(e.toString());

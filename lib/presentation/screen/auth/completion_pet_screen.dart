@@ -1,12 +1,11 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/routes/app_router.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
-import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class CompletionPetScreen extends HookConsumerWidget {
@@ -75,7 +74,7 @@ class CompletionPetScreen extends HookConsumerWidget {
             child: CustomButton(
               text: 'ロカクエをはじめる',
               variant: ButtonVariant.primary,
-              onPressed: (){
+              onPressed: () {
                 context.pushRoute(const BottomNavigationRoute());
               },
             ),

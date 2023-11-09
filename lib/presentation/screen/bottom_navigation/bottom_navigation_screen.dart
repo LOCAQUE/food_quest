@@ -1,8 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import 'package:food_quest/routes/app_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
+import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class BottomNavigationRouterScreen extends AutoRouter {
@@ -15,18 +17,11 @@ class BottomNavigationScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //ボトムバーに並べるアイコンのリスト
-    final iconList = <IconData>[
-      Icons.person,
-      Icons.help,
-      Icons.pets,
-      Icons.settings,
-    ];
-
     //真ん中を除くページのリスト
     final pageList = [
       const ProfileRoute(),
       const ComingSoonRoute(),
+      const HomeRoute(),
       const PetRoute(),
       const SettingRoute(),
     ];
@@ -34,39 +29,41 @@ class BottomNavigationScreen extends HookConsumerWidget {
     return AutoTabsScaffold(
       routes: pageList,
       bottomNavigationBuilder: (_, tabsRouter) {
-        return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Colors.grey,
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey, width: 0.1),
+          ),
+          child: SalomonBottomBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: tabsRouter.setActiveIndex,
+            items: [
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.person),
+                title: const Text('ツアー'),
+                selectedColor: Colors.orange,
               ),
-              label: 'プロフィール',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.grey,
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.help),
+                title: const Text('people'),
+                selectedColor: Colors.orange,
               ),
-              label: 'comming',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.abc,
-                color: Colors.grey,
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.abc),
+                title: const Text('Home'),
+                selectedColor: Colors.orange,
               ),
-              label: 'ペット',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.grey,
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.pets),
+                title: const Text('Search'),
+                selectedColor: Colors.orange,
               ),
-              label: '設定',
-            ),
-          ],
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.settings),
+                title: const Text('Profile'),
+                selectedColor: Colors.orange,
+              ),
+            ],
+          ),
         );
       },
     );
