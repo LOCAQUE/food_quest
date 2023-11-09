@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CreateAnsweredScreen extends StatelessWidget {
-  const CreateAnsweredScreen({super.key});
+class AnsweredQuestListScreen extends StatelessWidget {
+  const AnsweredQuestListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class CreateAnsweredScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '回答画面',
+              '自分が回答した質問一覧画面',
             ),
           ],
         ),

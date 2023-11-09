@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/presentation/screen/profile_screen/my_quest_list_screen/my_quest_list_screen_notifier.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/home_screen/answer_screen/answer_screen.dart';
-import 'package:food_quest/presentation/screen/profile_screen/asked_list_screen/asked_list_screen_notifier.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_detail_screen.dart';
 
-class AskedListScreen extends HookConsumerWidget {
-  const AskedListScreen({super.key});
+class MyQuestListScreen extends HookConsumerWidget {
+  const MyQuestListScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(
-      askedListScreenNotifierProvider.select((state) => state.isLoading),
+      myQuestListScreenNotifierProvider.select((state) => state.isLoading),
     );
 
     final myQuestionList = ref.watch(
@@ -42,7 +42,7 @@ class AskedListScreen extends HookConsumerWidget {
             child: QuestionTile(
               question: question,
               onTap: () {
-                AnswerScreen(question: question).show(context);
+                QuestDetailScreen(question: question).show(context);
               },
             ),
           );

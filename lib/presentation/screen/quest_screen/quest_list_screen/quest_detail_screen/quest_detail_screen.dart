@@ -8,10 +8,10 @@ import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/answer_tile.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
+import 'package:food_quest/presentation/screen/quest_screen/component/make_question_modal.dart';
 
-class AnswerScreen extends HookConsumerWidget {
-  const AnswerScreen({required this.question, super.key});
+class QuestDetailScreen extends HookConsumerWidget {
+  const QuestDetailScreen({required this.question, super.key});
 
   final QuestionResponse question;
 
@@ -23,7 +23,7 @@ class AnswerScreen extends HookConsumerWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColor.secondColor,
-      builder: (context) => AnswerScreen(
+      builder: (context) => QuestDetailScreen(
         question: question,
       ),
     );

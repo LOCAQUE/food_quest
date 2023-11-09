@@ -5,22 +5,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 
-part 'asked_list_screen_notifier.freezed.dart';
+part 'my_quest_list_screen_notifier.freezed.dart';
 
 @freezed
-class AskedListScreenState with _$AskedListScreenState {
-  factory AskedListScreenState({
+class MyQuestListScreenState with _$MyQuestListScreenState {
+  factory MyQuestListScreenState({
     @Default(false) bool isLoading,
-  }) = _AskedListScreenState;
+  }) = _MyQuestListScreenState;
 }
 
-final askedListScreenNotifierProvider =
-    StateNotifierProvider<AskedListScreenNotifier, AskedListScreenState>((ref) {
-  return AskedListScreenNotifier(ref);
+final myQuestListScreenNotifierProvider =
+    StateNotifierProvider<MyQuestListScreenNotifier, MyQuestListScreenState>((ref) {
+  return MyQuestListScreenNotifier(ref);
 });
 
-class AskedListScreenNotifier extends StateNotifier<AskedListScreenState> {
-  AskedListScreenNotifier(this.ref) : super(AskedListScreenState()) {
+class MyQuestListScreenNotifier extends StateNotifier<MyQuestListScreenState> {
+  MyQuestListScreenNotifier(this.ref) : super(MyQuestListScreenState()) {
     Future.microtask(_init);
   }
   final Ref ref;

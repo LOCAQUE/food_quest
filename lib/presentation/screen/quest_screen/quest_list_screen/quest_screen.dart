@@ -5,9 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/home_screen/answer_screen/answer_screen.dart';
-import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
-import 'package:food_quest/presentation/screen/home_screen/quest_screen/quest_screen_notifier.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_detail_screen.dart';
+import 'package:food_quest/presentation/screen/quest_screen/component/make_question_modal.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_screen_notifier.dart';
 
 class QuestScreen extends HookConsumerWidget {
   const QuestScreen({super.key});
@@ -48,7 +48,7 @@ class QuestScreen extends HookConsumerWidget {
                 child: QuestionTile(
                   question: question,
                   onTap: () {
-                    AnswerScreen(question: question).show(context);
+                    QuestDetailScreen(question: question).show(context);
                   },
                 ),
               );
