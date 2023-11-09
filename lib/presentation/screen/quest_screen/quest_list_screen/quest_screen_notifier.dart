@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:food_quest/domain/notifier/question_task_notifier.dart';
+import 'package:food_quest/domain/application/notifier/question_task_notifier.dart';
 
 part 'quest_screen_notifier.freezed.dart';
 

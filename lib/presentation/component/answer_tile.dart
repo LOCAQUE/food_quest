@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
-import 'package:food_quest/domain/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 
 class AnswerTile extends HookConsumerWidget {

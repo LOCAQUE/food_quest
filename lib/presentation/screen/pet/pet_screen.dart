@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/pets.dart';
-import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
 

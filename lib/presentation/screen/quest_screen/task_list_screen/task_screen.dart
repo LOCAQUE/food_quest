@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/notifier/question_task_notifier.dart';
+import 'package:food_quest/domain/application/notifier/question_task_notifier.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/task_component.dart';
 import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen_notifier.dart';
 

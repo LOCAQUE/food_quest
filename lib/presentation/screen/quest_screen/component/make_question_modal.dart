@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/list.dart';
-import 'package:food_quest/domain/notifier/answer_notifier.dart';
-import 'package:food_quest/domain/notifier/question_task_notifier.dart';
+import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/application/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_date_picker.dart';
@@ -84,6 +85,8 @@ class MakeQuestionModal extends HookConsumerWidget {
                         await questionTaskNotifier.createQuest().then((value) {
                           Navigator.of(context).pop();
                         });
+                        // providerを強制破棄させる
+                        ref.refresh(myQuestNotifierProvider);
                         return;
                       }
                       await answerNotifier
