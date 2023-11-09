@@ -8,7 +8,7 @@ ThemeData customTheme() {
   return base.copyWith(
     primaryColor: AppColor.secondColor,
     cardColor: Colors.white,
-    scaffoldBackgroundColor: AppColor.backgroundColor,
+    scaffoldBackgroundColor: const Color.fromARGB(255, 252, 252, 252),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColor.backgroundColor,
     ),

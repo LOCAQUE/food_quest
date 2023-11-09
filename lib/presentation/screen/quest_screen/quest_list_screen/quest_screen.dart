@@ -1,14 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/notifier/question_task_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_detail_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/make_question_modal.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_screen_notifier.dart';
 
+@RoutePage()
+class QuestAutoRouterScreen extends AutoRouter {
+  const QuestAutoRouterScreen({super.key});
+}
+
+@RoutePage()
 class QuestScreen extends HookConsumerWidget {
   const QuestScreen({super.key});
 
@@ -48,7 +55,7 @@ class QuestScreen extends HookConsumerWidget {
                 child: QuestionTile(
                   question: question,
                   onTap: () {
-                    QuestDetailScreen(question: question).show(context);
+                    context.pushRoute(QuestDetailRoute(question: question));
                   },
                 ),
               );

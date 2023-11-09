@@ -42,7 +42,7 @@ class MyQuestListScreen extends HookConsumerWidget {
             child: QuestionTile(
               question: question,
               onTap: () {
-                QuestDetailScreen(question: question).show(context);
+                QuestDetailScreen(question: question);
               },
             ),
           );

@@ -39,12 +39,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CompletionPetScreen(),
       );
     },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
     PetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -55,6 +49,40 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ProfileScreen(),
+      );
+    },
+    QuestAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const QuestAutoRouterScreen(),
+      );
+    },
+    QuestDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<QuestDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: QuestDetailScreen(
+          question: args.question,
+          key: args.key,
+        ),
+      );
+    },
+    QuestHomeAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const QuestHomeAutoRouterScreen(),
+      );
+    },
+    QuestHomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const QuestHomeScreen(),
+      );
+    },
+    QuestRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const QuestScreen(),
       );
     },
     SelectPetRoute.name: (routeData) {
@@ -85,6 +113,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashScreen(),
+      );
+    },
+    TaskRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TaskScreen(),
       );
     },
     TopRoute.name: (routeData) {
@@ -153,20 +187,6 @@ class CompletionPetRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [PetScreen]
 class PetRoute extends PageRouteInfo<void> {
   const PetRoute({List<PageRouteInfo>? children})
@@ -190,6 +210,100 @@ class ProfileRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [QuestAutoRouterScreen]
+class QuestAutoRouterRoute extends PageRouteInfo<void> {
+  const QuestAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          QuestAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [QuestDetailScreen]
+class QuestDetailRoute extends PageRouteInfo<QuestDetailRouteArgs> {
+  QuestDetailRoute({
+    required QuestionResponse question,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          QuestDetailRoute.name,
+          args: QuestDetailRouteArgs(
+            question: question,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestDetailRoute';
+
+  static const PageInfo<QuestDetailRouteArgs> page =
+      PageInfo<QuestDetailRouteArgs>(name);
+}
+
+class QuestDetailRouteArgs {
+  const QuestDetailRouteArgs({
+    required this.question,
+    this.key,
+  });
+
+  final QuestionResponse question;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QuestDetailRouteArgs{question: $question, key: $key}';
+  }
+}
+
+/// generated route for
+/// [QuestHomeAutoRouterScreen]
+class QuestHomeAutoRouterRoute extends PageRouteInfo<void> {
+  const QuestHomeAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          QuestHomeAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestHomeAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [QuestHomeScreen]
+class QuestHomeRoute extends PageRouteInfo<void> {
+  const QuestHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          QuestHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestHomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [QuestScreen]
+class QuestRoute extends PageRouteInfo<void> {
+  const QuestRoute({List<PageRouteInfo>? children})
+      : super(
+          QuestRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -260,6 +374,20 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TaskScreen]
+class TaskRoute extends PageRouteInfo<void> {
+  const TaskRoute({List<PageRouteInfo>? children})
+      : super(
+          TaskRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TaskRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

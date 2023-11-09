@@ -21,7 +21,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
     final pageList = [
       const ProfileRoute(),
       const ComingSoonRoute(),
-      const HomeRoute(),
+      const QuestHomeRoute(),
       const PetRoute(),
       const SettingRoute(),
     ];

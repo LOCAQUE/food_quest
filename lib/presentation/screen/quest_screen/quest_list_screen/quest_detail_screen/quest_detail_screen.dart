@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';
@@ -10,25 +11,12 @@ import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/make_question_modal.dart';
 
+@RoutePage()
 class QuestDetailScreen extends HookConsumerWidget {
   const QuestDetailScreen({required this.question, super.key});
 
   final QuestionResponse question;
-
-  Future<void> show(BuildContext context) async {
-    await showModalBottomSheet<void>(
-      isDismissible: false,
-      enableDrag: false,
-      useRootNavigator: true,
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: AppColor.secondColor,
-      builder: (context) => QuestDetailScreen(
-        question: question,
-      ),
-    );
-  }
-
+  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final answers = question.answers ?? [];

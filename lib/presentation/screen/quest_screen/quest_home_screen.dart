@@ -9,8 +9,13 @@ import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/qu
 import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen.dart';
 
 @RoutePage()
-class HomeScreen extends HookConsumerWidget {
-  const HomeScreen({super.key});
+class QuestHomeAutoRouterScreen extends AutoRouter {
+  const QuestHomeAutoRouterScreen({super.key});
+}
+
+@RoutePage()
+class QuestHomeScreen extends HookConsumerWidget {
+  const QuestHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
