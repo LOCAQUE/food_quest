@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,26 +9,13 @@ import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/answer_tile.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/home_screen/component/make_question_modal.dart';
+import 'package:food_quest/presentation/screen/quest_screen/component/make_question_modal.dart';
 
-class AnswerScreen extends HookConsumerWidget {
-  const AnswerScreen({required this.question, super.key});
+@RoutePage()
+class QuestDetailScreen extends HookConsumerWidget {
+  const QuestDetailScreen({required this.question, super.key});
 
   final QuestionResponse question;
-
-  Future<void> show(BuildContext context) async {
-    await showModalBottomSheet<void>(
-      isDismissible: false,
-      enableDrag: false,
-      useRootNavigator: true,
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: AppColor.secondColor,
-      builder: (context) => AnswerScreen(
-        question: question,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

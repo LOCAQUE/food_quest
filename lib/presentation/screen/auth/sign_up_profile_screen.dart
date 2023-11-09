@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,8 +11,9 @@ import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
 
-class SignUpProfile extends HookConsumerWidget {
-  const SignUpProfile({super.key});
+@RoutePage()
+class SignUpProfileScreen extends HookConsumerWidget {
+  const SignUpProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,8 +61,8 @@ class SignUpProfile extends HookConsumerWidget {
                     onPressed: () async {
                       await Navigator.push(
                         context,
-                        MaterialPageRoute<PetSelectPage>(
-                          builder: (context) => const PetSelectPage(),
+                        MaterialPageRoute<SelectPetScreen>(
+                          builder: (context) => const SelectPetScreen(),
                         ),
                       );
                     },

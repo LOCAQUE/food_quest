@@ -60,9 +60,12 @@ class $AssetsGifGen {
   /// File path: assets/gif/c3.gif
   AssetGenImage get c3 => const AssetGenImage('assets/gif/c3.gif');
 
+  /// File path: assets/gif/splash.gif
+  AssetGenImage get splash => const AssetGenImage('assets/gif/splash.gif');
+
   /// List of all assets
   List<AssetGenImage> get values =>
-      [a1, a10, a2, a3, a4, a5, a6, a7, a8, a9, b1, b2, b3, c1, c2, c3];
+      [a1, a10, a2, a3, a4, a5, a6, a7, a8, a9, b1, b2, b3, c1, c2, c3, splash];
 }
 
 class $AssetsImagesGen {
@@ -73,6 +76,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/castle.png
   AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
+
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// File path: assets/images/taskClear.gif
   AssetGenImage get taskClear =>
@@ -85,7 +91,7 @@ class $AssetsImagesGen {
   AssetGenImage get ushi => const AssetGenImage('assets/images/ushi.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [box, castle, taskClear, test, ushi];
+  List<AssetGenImage> get values => [box, castle, logo, taskClear, test, ushi];
 }
 
 class Assets {

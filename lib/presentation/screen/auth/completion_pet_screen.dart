@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
-import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
+import 'package:food_quest/routes/app_router.dart';
 
+@RoutePage()
 class CompletionPetScreen extends HookConsumerWidget {
   const CompletionPetScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    // final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
     return Scaffold(
       body: Column(
         children: [
@@ -72,15 +73,8 @@ class CompletionPetScreen extends HookConsumerWidget {
             child: CustomButton(
               text: 'ロカクエをはじめる',
               variant: ButtonVariant.primary,
-              onPressed: () async {
-                await monchoicenotifier.getBaseMonster().then((_) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => const BottomNavigationScreen(),
-                    ),
-                  );
-                });
+              onPressed: () {
+                context.pushRoute(const BottomNavigationRoute());
               },
             ),
           ),

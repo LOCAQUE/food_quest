@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,6 +11,7 @@ import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 
+@RoutePage()
 class SignUpScreen extends HookConsumerWidget {
   const SignUpScreen({super.key});
 
@@ -27,7 +29,7 @@ class SignUpScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            context.router.pop();
           },
         ),
       ),
@@ -86,7 +88,7 @@ class SignUpScreen extends HookConsumerWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (context) => const SignUpProfile(),
+                              builder: (context) => const SignUpProfileScreen(),
                             ),
                           );
                         });

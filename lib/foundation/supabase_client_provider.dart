@@ -10,3 +10,8 @@ final supabaseAuthProvider = Provider<supabase_flutter.GoTrueClient>((ref) {
   final supabase = ref.watch(supabaseClientProvider);
   return supabase.auth;
 });
+
+final supabaseCurrentUser = Provider((ref) {
+  final auth = ref.watch(supabaseAuthProvider);
+  return auth.currentUser;
+});

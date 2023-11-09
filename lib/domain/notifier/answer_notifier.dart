@@ -25,9 +25,11 @@ final answerNotifierProvider =
 
 class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
   AnswerNotifier(this.client, this.ref)
-      : super(AnswerNotifierState(
-          currentUserId: client.auth.currentUser?.id,
-        ));
+      : super(
+          AnswerNotifierState(
+            currentUserId: client.auth.currentUser?.id,
+          ),
+        );
   final SupabaseClient client;
   final Ref ref;
 

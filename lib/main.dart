@@ -8,7 +8,11 @@ import 'package:food_quest/app.dart';
 
 void main() async {
   await mainInitialize();
-  runApp(const ProviderScope(child: App()));
+  runApp(
+    const ProviderScope(
+      child: App(),
+    ),
+  );
 }
 
 Future<void> mainInitialize() async {

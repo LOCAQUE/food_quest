@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/splash.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:food_quest/theme.dart';
 
 class App extends HookConsumerWidget {
@@ -10,11 +11,15 @@ class App extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    final router = ref.watch(appRouterProvider);
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'beta',
       theme: customTheme(),
-      home: const SplashWidget(),
+      routerConfig: router.config(
+        navigatorObservers: () => [AutoRouteObserver()],
+      ),
     );
   }
 }
