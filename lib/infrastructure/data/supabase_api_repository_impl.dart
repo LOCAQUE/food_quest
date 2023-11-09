@@ -1,7 +1,7 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/repositories/api_repository.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 //supabaseのAPIの実際の処理を書く
 class SupabaseApiRepositoryImpl implements ApiRepository {

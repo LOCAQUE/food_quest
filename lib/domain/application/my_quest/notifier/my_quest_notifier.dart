@@ -1,6 +1,7 @@
-import 'package:food_quest/domain/repositories/api_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/domain/repositories/api_repository.dart';
 
 part 'my_quest_notifier.g.dart';
 
