@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
@@ -19,21 +18,23 @@ class QuestHomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
+    return Scaffold(
       body: DefaultTabController(
         length: 2,
         child: Column(
           children: [
-            Gap(50),
-            TabBar(
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              indicatorColor: AppColor.primaryColor,
-              tabs: [
-                Tab(text: 'Quest'),
-                Tab(text: 'Task'),
-              ],
+            const TopBarWIdget(),
+            Ink(
+              color: Colors.white,
+              child: const TabBar(
+                indicatorColor: AppColor.primaryColor,
+                tabs: [
+                  Tab(text: '大阪'),
+                  Tab(text: '東京'),
+                ],
+              ),
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 children: [
                   QuestScreen(),
@@ -43,6 +44,66 @@ class QuestHomeScreen extends HookConsumerWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TopBarWIdget extends StatelessWidget {
+  const TopBarWIdget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      padding: const EdgeInsets.only(
+        left: 24,
+        right: 16,
+        bottom: 12,
+      ),
+      color: Colors.white,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Quest',
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.notifications,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  // 通知アイコンがタップされた時の処理
+                },
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.task,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  // 通知アイコンがタップされた時の処理
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.location_on,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  // 地域選択アイコンがタップされた時の処理
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

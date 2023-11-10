@@ -34,6 +34,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
             border: Border.all(color: Colors.grey, width: 0.1),
           ),
           child: SalomonBottomBar(
+            backgroundColor: Colors.white,
             currentIndex: tabsRouter.activeIndex,
             onTap: tabsRouter.setActiveIndex,
             items: [
