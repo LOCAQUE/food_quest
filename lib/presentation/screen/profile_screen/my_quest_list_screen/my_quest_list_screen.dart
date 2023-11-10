@@ -1,48 +1,60 @@
+// ignore_for_file: cascade_invocations
+
 import 'package:flutter/material.dart';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-import 'package:food_quest/domain/notifier/question_task_notifier.dart';
+import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
+import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/profile_screen/my_quest_list_screen/my_quest_list_screen_notifier.dart';
-import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_detail_screen.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 class MyQuestListScreen extends HookConsumerWidget {
   const MyQuestListScreen({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(
-      myQuestListScreenNotifierProvider.select((state) => state.isLoading),
+    final myQuestList = useState<List<QuestionResponse>?>([]);
+    final myQuestNotifier = ref.watch(myQuestNotifierProvider);
+
+    myQuestNotifier.when(
+      data: (list) {
+        myQuestList.value = list;
+      },
+      loading: () {
+        return const LoadingWidget();
+      },
+      error: (error, stackTrace) {
+        //スナックバー表示
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.error(
+            message: error.toString(),
+          ),
+        );
+      },
     );
 
-    final myQuestionList = ref.watch(
-          questionTaskNotifierProvider.select((state) => state.myQuestionList),
-        ) ??
-        [];
-
-    if (isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
-    if (myQuestionList.isEmpty) {
-      return const SizedBox.shrink();
+    if (myQuestList.value!.isEmpty) {
+      return const Center(child: Text('質問がありません'));
     }
 
     return Scaffold(
       body: ListView.builder(
-        itemCount: myQuestionList.length,
+        itemCount: myQuestList.value?.length,
         itemBuilder: (context, index) {
-          final question = myQuestionList[index];
+          final question = myQuestList.value?[index];
 
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
             child: QuestionTile(
-              question: question,
+              question: question!,
               onTap: () {
-                QuestDetailScreen(question: question);
+                context.pushRoute(QuestDetailRoute(question: question));
               },
             ),
           );

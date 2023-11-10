@@ -38,7 +38,7 @@ class QuestDetailScreen extends HookConsumerWidget {
                           style: TextStyle(color: AppColor.textColor),
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
+                          context.popRoute();
                         },
                       ),
                     ),

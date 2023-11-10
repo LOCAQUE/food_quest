@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/entity/task.dart';
-import 'package:food_quest/domain/notifier/answer_notifier.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'question_task_notifier.freezed.dart';
@@ -54,22 +54,6 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
 
     try {
       await client.from('quests').insert(sendQuestionData);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  //ホームの質問一覧
-  Future<void> getQuestList() async {
-    final currentUserId = client.auth.currentUser?.id;
-    try {
-      final response = await client
-          .from('quests')
-          .select<PostgrestList>('*, users(*), answers(*)')
-          .neq('userId', currentUserId);
-
-      final questionList = response.map(QuestionResponse.fromJson).toList();
-      state = state.copyWith(questionList: questionList);
     } catch (e) {
       debugPrint(e.toString());
     }

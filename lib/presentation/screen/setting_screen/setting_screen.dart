@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:food_quest/domain/notifier/auth_notifier.dart';
+import 'package:food_quest/domain/application/notifier/auth_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/setting_screen/component/link_component.dart';
 import 'package:food_quest/presentation/screen/setting_screen/privacy_screen.dart';
