@@ -85,6 +85,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const QuestScreen(),
       );
     },
+    QuestSelectPrefectureRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const QuestSelectPrefectureScreen(),
+      );
+    },
     SelectPetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -304,6 +310,20 @@ class QuestRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'QuestRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [QuestSelectPrefectureScreen]
+class QuestSelectPrefectureRoute extends PageRouteInfo<void> {
+  const QuestSelectPrefectureRoute({List<PageRouteInfo>? children})
+      : super(
+          QuestSelectPrefectureRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestSelectPrefectureRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

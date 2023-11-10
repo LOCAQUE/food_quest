@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_select_prefecture/quest_select_prefecture_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -54,7 +55,13 @@ class AppRouter extends _$AppRouter {
             initial: true,
           ),
           AutoRoute(page: ComingSoonRoute.page),
-          AutoRoute(page: QuestHomeRoute.page),
+          AutoRoute(
+            page: QuestHomeAutoRouterRoute.page,
+            children: [
+              AutoRoute(page: QuestHomeRoute.page, initial: true),
+              AutoRoute(page: QuestSelectPrefectureRoute.page),
+            ],
+          ),
           AutoRoute(page: PetRoute.page),
           AutoRoute(page: SettingRoute.page),
         ],
