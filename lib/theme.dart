@@ -10,7 +10,13 @@ ThemeData customTheme() {
     cardColor: Colors.white,
     scaffoldBackgroundColor: const Color.fromARGB(255, 248, 248, 248),
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: Colors.white,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: AppColor.textColor,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColor.secondColor,
