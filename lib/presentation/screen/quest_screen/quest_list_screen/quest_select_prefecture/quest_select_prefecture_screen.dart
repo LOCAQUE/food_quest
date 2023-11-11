@@ -1,14 +1,14 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/app.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
 import 'package:food_quest/domain/application/select_prefecture/usecase/select_prefecture_usecase_notifier.dart';
 import 'package:food_quest/domain/entity/list.dart';
-import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/explanation_guide_widget.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/prefecture_selector.dart';
-import 'package:gap/gap.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
 class QuestSelectPrefectureScreen extends HookConsumerWidget {
@@ -19,7 +19,6 @@ class QuestSelectPrefectureScreen extends HookConsumerWidget {
     final usecaseNotifier =
         ref.watch(selectPrefectureUsecaseNotifierProvider.notifier);
 
-    final selectPrefecture = ref.watch(selectPrefectureNotifierProvider);
     final selectPrefectureUsecase =
         ref.watch(selectPrefectureUsecaseNotifierProvider);
 

@@ -1,4 +1,5 @@
 // 説明ガイド
+
 import 'package:flutter/material.dart';
 
 class ExplanationGuideWidget extends StatelessWidget {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:food_quest/domain/application/select_prefecture/usecase/select_prefecture_usecase_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 地域ごとに都道府県を表示する
 class RegionSection extends StatelessWidget {
@@ -30,7 +32,9 @@ class RegionSection extends StatelessWidget {
             spacing: 16,
             runSpacing: 16,
             children: prefectures.map((prefecture) {
-              return PrefectureBadge(prefecture: prefecture,);
+              return PrefectureBadge(
+                prefecture: prefecture,
+              );
             }).toList(),
           ),
         ),

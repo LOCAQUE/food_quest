@@ -1,5 +1,7 @@
-import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
+
 part 'select_prefecture_usecase_notifier.g.dart';
 
 // 選択中の都道府県
