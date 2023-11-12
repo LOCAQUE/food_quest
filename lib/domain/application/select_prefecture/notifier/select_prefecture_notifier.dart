@@ -1,6 +1,7 @@
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:food_quest/domain/entity/constants/shared_prefrences_key_list.dart';
 import 'package:food_quest/domain/repositories/shared_preferences_repository.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'select_prefecture_notifier.g.dart';
 

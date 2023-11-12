@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:food_quest/domain/repositories/shared_preferences_repository.dart';
 
 //sharedPreferencesの実際の処理を書く
@@ -14,7 +15,7 @@ class SharedPreferencesRepositoryImpl implements SharedPreferencesRepository {
   }) async {
     await client.setStringList(key, prefectures);
   }
-  
+
   @override
   Future<List<String>?> getSelectedPrefecture({
     required String key,
