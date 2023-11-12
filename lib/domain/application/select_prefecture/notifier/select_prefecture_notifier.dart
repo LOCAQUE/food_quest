@@ -14,3 +14,4 @@ class SelectPrefectureNotifier extends _$SelectPrefectureNotifier {
     state = prefectureList;
   }
 }
+//TODO: sheard_preferencesを使って選択した都道府県を保存する

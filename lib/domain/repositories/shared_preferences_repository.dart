@@ -8,8 +8,9 @@ final sharedPreferencesRepositoryProvider =
   final provider = ref.watch(sharedPreferencesClientProvider);
 
   final client = provider.value;
-  //ここを書き換えると、別の実装に差し替えられる
   return SharedPreferencesRepositoryImpl(client!);
 });
 
-abstract class SharedPreferencesRepository {}
+abstract class SharedPreferencesRepository {
+  
+}

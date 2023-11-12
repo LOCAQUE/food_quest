@@ -49,3 +49,27 @@ class QuestHomeScreen extends HookConsumerWidget {
     );
   }
 }
+//TODO: 都道府県でソートしたクエスト一覧をグループ分けし、QuestScreenをmapでソートした数だけ作成する
+
+// final prefectures = ['大阪府','東京都','神奈川県'];
+
+// // 都道府県別に質問をマップで保持する
+// final questionsByPrefecture = <String, List<Question>>{};
+
+// // 都道府県名をIN句に展開
+// final prefectureNames = prefectures.map((name) => "'$name'").join(',');
+
+// // クエリを実行  
+// final res = await supabase
+//   .from('questions')
+//   .select()
+//   .in('prefecture', [prefectureNames])
+//   .execute();
+
+// // 結果を都道府県別にグループ化
+// for (final question in res.data ?? []) {
+//   final prefecture = question['prefecture'];
+//   questionsByPrefecture.putIfAbsent(prefecture, () => []).add(question); 
+// }
+
+// print(questionsByPrefecture);

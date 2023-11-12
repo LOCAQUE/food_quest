@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
 import 'package:food_quest/domain/application/select_prefecture/usecase/select_prefecture_usecase_notifier.dart';
-import 'package:food_quest/domain/entity/list.dart';
+import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/explanation_guide_widget.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/prefecture_selector.dart';
 
