@@ -1,3 +1,5 @@
+import 'package:food_quest/domain/entity/constants/shared_prefrences_key_list.dart';
+import 'package:food_quest/domain/repositories/shared_preferences_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'select_prefecture_notifier.g.dart';
@@ -6,12 +8,32 @@ part 'select_prefecture_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class SelectPrefectureNotifier extends _$SelectPrefectureNotifier {
   @override
-  List<String> build() {
-    return [];
+  Future<List<String>?> build() async {
+    final sharedPreferencesRepository =
+        ref.watch(sharedPreferencesRepositoryProvider);
+
+    final selectedPrefectureList = await sharedPreferencesRepository
+        .getSelectedPrefecture(key: selectedPrefecturesKey);
+    return selectedPrefectureList;
   }
 
-  void updatePrefecture({required List<String> prefectureList}) {
-    state = prefectureList;
+  Future<void> updatePrefecture({required List<String> prefectureList}) async {
+    final sharedPreferencesRepository =
+        ref.watch(sharedPreferencesRepositoryProvider);
+
+    //端末に保存する
+    await sharedPreferencesRepository.setSelectedPrefecture(
+      key: selectedPrefecturesKey,
+      prefectures: prefectureList,
+    );
+
+    //stateを更新する
+    final selectedPrefectureList = AsyncValue.data(
+      await sharedPreferencesRepository.getSelectedPrefecture(
+        key: selectedPrefecturesKey,
+      ),
+    );
+
+    state = selectedPrefectureList;
   }
 }
-//TODO: sheard_preferencesを使って選択した都道府県を保存する

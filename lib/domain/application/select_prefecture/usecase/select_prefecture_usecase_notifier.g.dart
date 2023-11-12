@@ -7,7 +7,7 @@ part of 'select_prefecture_usecase_notifier.dart';
 // **************************************************************************
 
 String _$selectPrefectureUsecaseNotifierHash() =>
-    r'61007dcbc34ee2607827728db579e297de68ae4e';
+    r'b4417121b0e0c042e7a477fcea76d6f52d267ada';
 
 /// See also [SelectPrefectureUsecaseNotifier].
 @ProviderFor(SelectPrefectureUsecaseNotifier)

@@ -6,5 +6,20 @@ class SharedPreferencesRepositoryImpl implements SharedPreferencesRepository {
   SharedPreferencesRepositoryImpl(this.client);
 
   final SharedPreferences client;
+
+  @override
+  Future<void> setSelectedPrefecture({
+    required List<String> prefectures,
+    required String key,
+  }) async {
+    await client.setStringList(key, prefectures);
+  }
   
+  @override
+  Future<List<String>?> getSelectedPrefecture({
+    required String key,
+  }) async {
+    final selectedPrefectureList = client.getStringList(key) ?? [];
+    return selectedPrefectureList;
+  }
 }

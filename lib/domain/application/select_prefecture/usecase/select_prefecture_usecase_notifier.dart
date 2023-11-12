@@ -11,7 +11,7 @@ class SelectPrefectureUsecaseNotifier
   @override
   List<String> build() {
     final selectedPrefectureList = ref.watch(selectPrefectureNotifierProvider);
-    return selectedPrefectureList;
+    return selectedPrefectureList.value ?? [];
   }
 
   void togglePrefecture({
