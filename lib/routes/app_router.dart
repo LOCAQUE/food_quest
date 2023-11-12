@@ -15,6 +15,7 @@ import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dar
 import 'package:food_quest/presentation/screen/quest_screen/quest_home_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_detail_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_screen.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_select_prefecture/quest_select_prefecture_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen.dart';
 import 'package:food_quest/presentation/screen/setting_screen/setting_screen.dart';
 import 'package:food_quest/presentation/screen/top.dart';
@@ -54,7 +55,13 @@ class AppRouter extends _$AppRouter {
             initial: true,
           ),
           AutoRoute(page: ComingSoonRoute.page),
-          AutoRoute(page: QuestHomeRoute.page),
+          AutoRoute(
+            page: QuestHomeAutoRouterRoute.page,
+            children: [
+              AutoRoute(page: QuestHomeRoute.page, initial: true),
+              AutoRoute(page: QuestSelectPrefectureRoute.page),
+            ],
+          ),
           AutoRoute(page: PetRoute.page),
           AutoRoute(page: SettingRoute.page),
         ],
