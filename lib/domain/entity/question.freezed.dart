@@ -25,6 +25,7 @@ mixin _$Question {
   int get minimumBudget => throw _privateConstructorUsedError;
   int get maximumBudget => throw _privateConstructorUsedError;
   DateTime get deadLine => throw _privateConstructorUsedError;
+  String get prefecture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $QuestionCopyWith<$Res> {
       String userId,
       int minimumBudget,
       int maximumBudget,
-      DateTime deadLine});
+      DateTime deadLine,
+      String prefecture});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
     Object? minimumBudget = null,
     Object? maximumBudget = null,
     Object? deadLine = null,
+    Object? prefecture = null,
   }) {
     return _then(_value.copyWith(
       contents: null == contents
@@ -85,6 +88,10 @@ class _$QuestionCopyWithImpl<$Res, $Val extends Question>
           ? _value.deadLine
           : deadLine // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -102,7 +109,8 @@ abstract class _$$QuestionImplCopyWith<$Res>
       String userId,
       int minimumBudget,
       int maximumBudget,
-      DateTime deadLine});
+      DateTime deadLine,
+      String prefecture});
 }
 
 /// @nodoc
@@ -121,6 +129,7 @@ class __$$QuestionImplCopyWithImpl<$Res>
     Object? minimumBudget = null,
     Object? maximumBudget = null,
     Object? deadLine = null,
+    Object? prefecture = null,
   }) {
     return _then(_$QuestionImpl(
       contents: null == contents
@@ -143,6 +152,10 @@ class __$$QuestionImplCopyWithImpl<$Res>
           ? _value.deadLine
           : deadLine // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -155,7 +168,8 @@ class _$QuestionImpl extends _Question {
       required this.userId,
       required this.minimumBudget,
       required this.maximumBudget,
-      required this.deadLine})
+      required this.deadLine,
+      required this.prefecture})
       : super._();
 
   factory _$QuestionImpl.fromJson(Map<String, dynamic> json) =>
@@ -171,10 +185,12 @@ class _$QuestionImpl extends _Question {
   final int maximumBudget;
   @override
   final DateTime deadLine;
+  @override
+  final String prefecture;
 
   @override
   String toString() {
-    return 'Question(contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine)';
+    return 'Question(contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, prefecture: $prefecture)';
   }
 
   @override
@@ -190,13 +206,15 @@ class _$QuestionImpl extends _Question {
             (identical(other.maximumBudget, maximumBudget) ||
                 other.maximumBudget == maximumBudget) &&
             (identical(other.deadLine, deadLine) ||
-                other.deadLine == deadLine));
+                other.deadLine == deadLine) &&
+            (identical(other.prefecture, prefecture) ||
+                other.prefecture == prefecture));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, contents, userId, minimumBudget, maximumBudget, deadLine);
+  int get hashCode => Object.hash(runtimeType, contents, userId, minimumBudget,
+      maximumBudget, deadLine, prefecture);
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +236,8 @@ abstract class _Question extends Question {
       required final String userId,
       required final int minimumBudget,
       required final int maximumBudget,
-      required final DateTime deadLine}) = _$QuestionImpl;
+      required final DateTime deadLine,
+      required final String prefecture}) = _$QuestionImpl;
   const _Question._() : super._();
 
   factory _Question.fromJson(Map<String, dynamic> json) =
@@ -234,6 +253,8 @@ abstract class _Question extends Question {
   int get maximumBudget;
   @override
   DateTime get deadLine;
+  @override
+  String get prefecture;
   @override
   @JsonKey(ignore: true)
   _$$QuestionImplCopyWith<_$QuestionImpl> get copyWith =>
@@ -253,6 +274,7 @@ mixin _$QuestionResponse {
   int get minimumBudget => throw _privateConstructorUsedError;
   int get maximumBudget => throw _privateConstructorUsedError;
   DateTime get deadLine => throw _privateConstructorUsedError;
+  String get prefecture => throw _privateConstructorUsedError;
   UserData? get users => throw _privateConstructorUsedError;
   List<Answer>? get answers => throw _privateConstructorUsedError;
 
@@ -276,6 +298,7 @@ abstract class $QuestionResponseCopyWith<$Res> {
       int minimumBudget,
       int maximumBudget,
       DateTime deadLine,
+      String prefecture,
       UserData? users,
       List<Answer>? answers});
 
@@ -302,6 +325,7 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
     Object? minimumBudget = null,
     Object? maximumBudget = null,
     Object? deadLine = null,
+    Object? prefecture = null,
     Object? users = freezed,
     Object? answers = freezed,
   }) {
@@ -334,6 +358,10 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
           ? _value.deadLine
           : deadLine // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
       users: freezed == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
@@ -374,6 +402,7 @@ abstract class _$$QuestionResponseImplCopyWith<$Res>
       int minimumBudget,
       int maximumBudget,
       DateTime deadLine,
+      String prefecture,
       UserData? users,
       List<Answer>? answers});
 
@@ -399,6 +428,7 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
     Object? minimumBudget = null,
     Object? maximumBudget = null,
     Object? deadLine = null,
+    Object? prefecture = null,
     Object? users = freezed,
     Object? answers = freezed,
   }) {
@@ -431,6 +461,10 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
           ? _value.deadLine
           : deadLine // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      prefecture: null == prefecture
+          ? _value.prefecture
+          : prefecture // ignore: cast_nullable_to_non_nullable
+              as String,
       users: freezed == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
@@ -454,6 +488,7 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       required this.minimumBudget,
       required this.maximumBudget,
       required this.deadLine,
+      required this.prefecture,
       this.users,
       final List<Answer>? answers})
       : _answers = answers,
@@ -477,6 +512,8 @@ class _$QuestionResponseImpl extends _QuestionResponse {
   @override
   final DateTime deadLine;
   @override
+  final String prefecture;
+  @override
   final UserData? users;
   final List<Answer>? _answers;
   @override
@@ -490,7 +527,7 @@ class _$QuestionResponseImpl extends _QuestionResponse {
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, users: $users, answers: $answers)';
+    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, prefecture: $prefecture, users: $users, answers: $answers)';
   }
 
   @override
@@ -510,6 +547,8 @@ class _$QuestionResponseImpl extends _QuestionResponse {
                 other.maximumBudget == maximumBudget) &&
             (identical(other.deadLine, deadLine) ||
                 other.deadLine == deadLine) &&
+            (identical(other.prefecture, prefecture) ||
+                other.prefecture == prefecture) &&
             (identical(other.users, users) || other.users == users) &&
             const DeepCollectionEquality().equals(other._answers, _answers));
   }
@@ -525,6 +564,7 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       minimumBudget,
       maximumBudget,
       deadLine,
+      prefecture,
       users,
       const DeepCollectionEquality().hash(_answers));
 
@@ -552,6 +592,7 @@ abstract class _QuestionResponse extends QuestionResponse {
       required final int minimumBudget,
       required final int maximumBudget,
       required final DateTime deadLine,
+      required final String prefecture,
       final UserData? users,
       final List<Answer>? answers}) = _$QuestionResponseImpl;
   const _QuestionResponse._() : super._();
@@ -573,6 +614,8 @@ abstract class _QuestionResponse extends QuestionResponse {
   int get maximumBudget;
   @override
   DateTime get deadLine;
+  @override
+  String get prefecture;
   @override
   UserData? get users;
   @override

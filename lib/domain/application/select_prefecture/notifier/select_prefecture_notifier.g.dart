@@ -7,7 +7,7 @@ part of 'select_prefecture_notifier.dart';
 // **************************************************************************
 
 String _$selectPrefectureNotifierHash() =>
-    r'9374fbf62b66a25bea4025be57e3f133b0290920';
+    r'a0bd230338322acd876c83a3a0c50afbe8412670';
 
 /// See also [SelectPrefectureNotifier].
 @ProviderFor(SelectPrefectureNotifier)

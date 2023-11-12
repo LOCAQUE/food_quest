@@ -15,6 +15,7 @@ abstract class Question with _$Question {
     required int minimumBudget,
     required int maximumBudget,
     required DateTime deadLine,
+    required String prefecture,
   }) = _Question;
 
   const Question._();
@@ -33,6 +34,7 @@ abstract class QuestionResponse with _$QuestionResponse {
     required int minimumBudget,
     required int maximumBudget,
     required DateTime deadLine,
+    required String prefecture,
     UserData? users,
     List<Answer>? answers,
   }) = _QuestionResponse;
