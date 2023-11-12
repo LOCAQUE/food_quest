@@ -1,3 +1,4 @@
+import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -10,6 +11,9 @@ class QuestListNotifier extends _$QuestListNotifier {
   @override
   Future<List<QuestionResponse>?> build() {
     final repository = ref.read(apiRepositoryProvider);
-    return repository.getQuestList();
+    final selectedPrefectures = ref.watch(selectPrefectureNotifierProvider);
+    return repository.getQuestList(
+      selectedPrefectures: selectedPrefectures.value,
+    );
   }
 }

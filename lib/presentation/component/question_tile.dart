@@ -66,7 +66,7 @@ class QuestionTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(question.users?.prefecture ?? ''),
+                  Text(question.prefecture),
                   Text(question.formattedDeadLine),
                 ],
               ),

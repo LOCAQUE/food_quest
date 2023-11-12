@@ -15,5 +15,7 @@ abstract class ApiRepository {
   //自分のクエスト一覧を取得する
   Future<List<QuestionResponse>?> getMyQuestList();
   //ホームのクエスト一覧
-  Future<List<QuestionResponse>?> getQuestList();
+  Future<List<QuestionResponse>?> getQuestList({
+    required List<String>? selectedPrefectures,
+  });
 }

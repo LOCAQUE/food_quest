@@ -27,7 +27,9 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<List<QuestionResponse>?> getQuestList() async {
+  Future<List<QuestionResponse>?> getQuestList({
+    required List<String>? selectedPrefectures,
+  }) async {
     final currentId = supabaseClient.auth.currentUser?.id;
 
     try {
