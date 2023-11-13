@@ -23,7 +23,7 @@ abstract class SharedPreferencesRepository {
   });
 
   //選択した都道府県を取得する
-  Future<List<String>?> getSelectedPrefecture({
+  Future<List<String>> getSelectedPrefecture({
     required String key,
   });
 }

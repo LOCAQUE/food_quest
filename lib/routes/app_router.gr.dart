@@ -80,9 +80,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     QuestRoute.name: (routeData) {
+      final args = routeData.argsAs<QuestRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const QuestScreen(),
+        child: QuestScreen(
+          questions: args.questions,
+          key: args.key,
+        ),
       );
     },
     QuestSelectPrefectureRoute.name: (routeData) {
@@ -302,16 +306,39 @@ class QuestHomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [QuestScreen]
-class QuestRoute extends PageRouteInfo<void> {
-  const QuestRoute({List<PageRouteInfo>? children})
-      : super(
+class QuestRoute extends PageRouteInfo<QuestRouteArgs> {
+  QuestRoute({
+    required List<QuestionResponse> questions,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           QuestRoute.name,
+          args: QuestRouteArgs(
+            questions: questions,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'QuestRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<QuestRouteArgs> page = PageInfo<QuestRouteArgs>(name);
+}
+
+class QuestRouteArgs {
+  const QuestRouteArgs({
+    required this.questions,
+    this.key,
+  });
+
+  final List<QuestionResponse> questions;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QuestRouteArgs{questions: $questions, key: $key}';
+  }
 }
 
 /// generated route for

@@ -65,7 +65,7 @@ class PrefectureBadge extends HookConsumerWidget {
       isSelected.value = true;
     }
 
-    return InkWell(
+    return GestureDetector(
       onTap: usecaseNotifier.isNumberOfSelectedOverThree && !isSelected.value
           ? null
           : () {

@@ -12,6 +12,7 @@ class QuestListNotifier extends _$QuestListNotifier {
   Future<List<QuestionResponse>?> build() {
     final repository = ref.read(apiRepositoryProvider);
     final selectedPrefectures = ref.watch(selectPrefectureNotifierProvider);
+
     return repository.getQuestList(
       selectedPrefectures: selectedPrefectures.value,
     );

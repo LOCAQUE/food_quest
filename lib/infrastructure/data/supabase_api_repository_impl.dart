@@ -1,3 +1,6 @@
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -35,7 +38,9 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
     try {
       final response = await supabaseClient
           .from('quests')
-          .select<PostgrestList>('*, users(*), answers(*)')
+          .select<PostgrestList>(
+              '*, users(*), answers(*)')
+          .in_('prefecture', selectedPrefectures!)
           .neq('userId', currentId);
 
       final questList = response.map(QuestionResponse.fromJson).toList();
