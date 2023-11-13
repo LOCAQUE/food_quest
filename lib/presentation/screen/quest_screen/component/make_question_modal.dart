@@ -54,8 +54,6 @@ class MakeQuestionModal extends HookConsumerWidget {
     final questionTaskNotifier =
         ref.watch(questionTaskNotifierProvider.notifier);
     final answerNotifier = ref.watch(answerNotifierProvider.notifier);
-    // final makeQuestionNotifier =
-    //     ref.watch(makeQuestionNotifierProvider.notifier);
 
     return ListView(
       children: [

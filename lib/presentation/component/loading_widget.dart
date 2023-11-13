@@ -9,13 +9,11 @@ class LoadingWidget extends HookConsumerWidget {
   const LoadingWidget({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: LoadingAnimationWidget.inkDrop(
           color: AppColor.primaryColor,
           size: 200,
         ),
-      ),
-    );
+      );
   }
 }

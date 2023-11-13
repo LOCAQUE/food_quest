@@ -17,7 +17,7 @@ class SharedPreferencesRepositoryImpl implements SharedPreferencesRepository {
   }
 
   @override
-  Future<List<String>?> getSelectedPrefecture({
+  Future<List<String>> getSelectedPrefecture({
     required String key,
   }) async {
     final selectedPrefectureList = client.getStringList(key) ?? [];

@@ -1,12 +1,18 @@
+// ignore_for_file: cascade_invocations
+
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/quest_list/usecase/group_prefecture_usecase.dart';
+import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
+import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/quest_appbar.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_screen.dart';
-import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen.dart';
 
 @RoutePage()
 class QuestHomeAutoRouterScreen extends AutoRouter {
@@ -19,27 +25,59 @@ class QuestHomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final questListByPrefecture =
+        useState<Map<String, List<QuestionResponse>>>({});
+
+    final selectedPrefecture = useState<List<String>>([]);
+
+    final selectPrefectureProvider =
+        ref.watch(selectPrefectureNotifierProvider);
+
+    final questListByPrefectureProvider =
+        ref.watch(groupePrefectureUsecaseProvider);
+
+    questListByPrefectureProvider.when(
+      data: (data) => questListByPrefecture.value = data,
+      loading: () => const LoadingWidget(),
+      error: (error, stackTrace) => Exception(error),
+    );
+
+    selectPrefectureProvider.when(
+      data: (data) => selectedPrefecture.value = data,
+      loading: () => const LoadingWidget(),
+      error: (error, stackTrace) => Exception(error),
+    );
+
     return Scaffold(
       body: DefaultTabController(
-        length: 2,
+        length: selectedPrefecture.value.length,
         child: Column(
           children: [
             const TopBarWIdget(),
             Ink(
               color: Colors.white,
-              child: const TabBar(
+              child: TabBar(
                 indicatorColor: AppColor.primaryColor,
                 tabs: [
-                  Tab(text: '大阪'),
-                  Tab(text: '東京'),
+                  ...selectedPrefecture.value.map((prefecture) {
+                    return Tab(
+                      child: Text(
+                        prefecture,
+                        style: const TextStyle(color: AppColor.textColor),
+                      ),
+                    );
+                  }),
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
               child: TabBarView(
                 children: [
-                  QuestScreen(),
-                  TaskScreen(),
+                  ...selectedPrefecture.value.map((prefecture) {
+                    return QuestScreen(
+                      questions: questListByPrefecture.value[prefecture] ?? [],
+                    );
+                  }),
                 ],
               ),
             ),
@@ -49,27 +87,3 @@ class QuestHomeScreen extends HookConsumerWidget {
     );
   }
 }
-//TODO: 都道府県でソートしたクエスト一覧をグループ分けし、QuestScreenをmapでソートした数だけ作成する
-
-// final prefectures = ['大阪府','東京都','神奈川県'];
-
-// // 都道府県別に質問をマップで保持する
-// final questionsByPrefecture = <String, List<Question>>{};
-
-// // 都道府県名をIN句に展開
-// final prefectureNames = prefectures.map((name) => "'$name'").join(',');
-
-// // クエリを実行
-// final res = await supabase
-//   .from('questions')
-//   .select()
-//   .in('prefecture', [prefectureNames])
-//   .execute();
-
-// // 結果を都道府県別にグループ化
-// for (final question in res.data ?? []) {
-//   final prefecture = question['prefecture'];
-//   questionsByPrefecture.putIfAbsent(prefecture, () => []).add(question);
-// }
-
-// print(questionsByPrefecture);

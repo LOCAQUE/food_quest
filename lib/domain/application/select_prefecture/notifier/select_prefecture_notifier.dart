@@ -9,13 +9,13 @@ part 'select_prefecture_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class SelectPrefectureNotifier extends _$SelectPrefectureNotifier {
   @override
-  Future<List<String>?> build() async {
+  Future<List<String>> build() async {
     final sharedPreferencesRepository =
         ref.watch(sharedPreferencesRepositoryProvider);
 
     final selectedPrefectureList = await sharedPreferencesRepository
         .getSelectedPrefecture(key: selectedPrefecturesKey);
-    return selectedPrefectureList;
+    return selectedPrefectureList ?? [];
   }
 
   Future<void> updatePrefecture({required List<String> prefectureList}) async {

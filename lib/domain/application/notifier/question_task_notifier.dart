@@ -50,6 +50,7 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
       minimumBudget: int.parse(minimumBudgetController.text),
       maximumBudget: int.parse(maximumBudgetController.text),
       deadLine: DateTime.parse(deadLineController.text),
+      prefecture: prefectureController.text,
     );
 
     try {
