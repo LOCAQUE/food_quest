@@ -17,7 +17,7 @@ class AnswerNotifierState with _$AnswerNotifierState {
   }) = _AnswerNotifierState;
 }
 
-final answerNotifierProvider =
+final answersNotifierProvider =
     StateNotifierProvider<AnswerNotifier, AnswerNotifierState>((ref) {
   final client = ref.watch(supabaseClientProvider);
   return AnswerNotifier(client, ref);
@@ -32,28 +32,6 @@ class AnswerNotifier extends StateNotifier<AnswerNotifierState> {
         );
   final SupabaseClient client;
   final Ref ref;
-
-  final TextEditingController contentController = TextEditingController();
-  final TextEditingController minimumBudgetController = TextEditingController();
-  final TextEditingController maximumBudgetController = TextEditingController();
-
-  Future<void> createAnswer({required int questId}) async {
-    final currentUserId = client.auth.currentUser?.id;
-    final sendAnswerData = SendAnswer(
-      content: contentController.text,
-      uid: currentUserId!,
-      minimumBudget: int.parse(minimumBudgetController.text),
-      maximumBudget: int.parse(maximumBudgetController.text),
-      bestAnswer: false,
-      questId: questId,
-    );
-
-    try {
-      await client.from('answers').insert(sendAnswerData);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
 
   Future<void> getMyAnswerList() async {
     final currentUserId = client.auth.currentUser?.id;

@@ -7,7 +7,7 @@ part of 'group_prefecture_usecase.dart';
 // **************************************************************************
 
 String _$groupePrefectureUsecaseHash() =>
-    r'cc5aff32033ec2a0cf5b02fcdad16544ff1a3aab';
+    r'97ad72f73a90910038987cd75dca0ebe8afcee02';
 
 /// See also [GroupePrefectureUsecase].
 @ProviderFor(GroupePrefectureUsecase)
