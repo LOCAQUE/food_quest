@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
@@ -44,7 +44,10 @@ class MakeAnswerModal extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final answerNotifier = ref.watch(answerNotifierProvider.notifier);
+    final answerNotifier = ref.watch(answerNotiierProvider.notifier);
+    final answerContent = useTextEditingController();
+    final minimumBudget = useTextEditingController();
+    final maximumBudget = useTextEditingController();
 
     return ListView(
       children: [
@@ -71,7 +74,12 @@ class MakeAnswerModal extends HookConsumerWidget {
                     size: ButtonSize.small,
                     onPressed: () async {
                       await answerNotifier
-                          .createAnswer(questId: questId!)
+                          .createAnswer(
+                        questId: questId!,
+                        answerContent: answerContent.text,
+                        minimumBudget: minimumBudget.text,
+                        maximumBudget: maximumBudget.text,
+                      )
                           .then((value) {
                         Navigator.of(context).pop();
                       });
@@ -86,7 +94,7 @@ class MakeAnswerModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最低予算',
                     options: priceList,
-                    controller: answerNotifier.minimumBudgetController,
+                    controller: minimumBudget,
                   ),
                   const Gap(8),
                   const Text('~'),
@@ -94,13 +102,13 @@ class MakeAnswerModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最大予算',
                     options: priceList,
-                    controller: answerNotifier.maximumBudgetController,
+                    controller: maximumBudget,
                   ),
                 ],
               ),
               const Gap(24),
               TextField(
-                controller: answerNotifier.contentController,
+                controller: answerContent,
                 maxLines: 15,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
