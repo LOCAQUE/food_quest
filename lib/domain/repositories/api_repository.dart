@@ -18,4 +18,11 @@ abstract class ApiRepository {
   Future<List<QuestionResponse>?> getQuestList({
     required List<String>? selectedPrefectures,
   });
+  //回答を作成する
+  Future<void> createAnswer({
+    required int questId,
+    required String answerContent,
+    required String minimumBudget,
+    required String maximumBudget,
+  });
 }
