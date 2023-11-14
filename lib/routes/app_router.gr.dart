@@ -39,6 +39,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CompletionPetScreen(),
       );
     },
+    MakeAnswerRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MakeAnswerScreen(),
+      );
+    },
     PetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -192,6 +198,20 @@ class CompletionPetRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CompletionPetRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MakeAnswerScreen]
+class MakeAnswerRoute extends PageRouteInfo<void> {
+  const MakeAnswerRoute({List<PageRouteInfo>? children})
+      : super(
+          MakeAnswerRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MakeAnswerRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
