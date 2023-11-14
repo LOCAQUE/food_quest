@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'answer_notifier.dart';
+part of 'filter_chip_list.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$answerNotiierHash() => r'8b067934fc896db0150758cb4f683c403af82b33';
+String _$filterChipListHash() => r'f5a023c39dabd1178b3f7d2babd1fd3ca14de95e';
 
-/// See also [AnswerNotiier].
-@ProviderFor(AnswerNotiier)
-final answerNotiierProvider =
-    AutoDisposeNotifierProvider<AnswerNotiier, String>.internal(
-  AnswerNotiier.new,
-  name: r'answerNotiierProvider',
+/// See also [FilterChipList].
+@ProviderFor(FilterChipList)
+final filterChipListProvider =
+    AutoDisposeNotifierProvider<FilterChipList, List<String>>.internal(
+  FilterChipList.new,
+  name: r'filterChipListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$answerNotiierHash,
+      : _$filterChipListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AnswerNotiier = AutoDisposeNotifier<String>;
+typedef _$FilterChipList = AutoDisposeNotifier<List<String>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

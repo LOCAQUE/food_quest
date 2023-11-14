@@ -71,3 +71,9 @@ List<String> priceList = List.generate(
   96,
   (index) => (index * 500 + 500).toString(),
 );
+
+//クエスト,回答画面のチップリスト
+final List<String> questChipList = [
+  '予算',
+  '画像',
+];
