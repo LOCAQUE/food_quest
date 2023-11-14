@@ -4,32 +4,26 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
 import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
-import 'package:food_quest/domain/application/notifier/question_task_notifier.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
-import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
 
-class MakeQuestionModal extends HookConsumerWidget {
-  MakeQuestionModal({
+class MakeAnswerModal extends HookConsumerWidget {
+  MakeAnswerModal({
     required this.context,
-    required this.isQuestion,
     this.content,
     this.questId,
     super.key,
   });
 
   final BuildContext context;
-  final bool isQuestion;
-  String? content;
-  int? questId;
+  final String? content;
+  final int? questId;
 
   static Future<void> show({
     required BuildContext context,
-    required bool isQuestion,
     String? content,
     int? questId,
   }) async {
@@ -40,9 +34,8 @@ class MakeQuestionModal extends HookConsumerWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColor.firstColor,
-      builder: (context) => MakeQuestionModal(
+      builder: (context) => MakeAnswerModal(
         context: context,
-        isQuestion: isQuestion,
         content: content,
         questId: questId,
       ),
@@ -51,8 +44,6 @@ class MakeQuestionModal extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final questionTaskNotifier =
-        ref.watch(questionTaskNotifierProvider.notifier);
     final answerNotifier = ref.watch(answerNotifierProvider.notifier);
 
     return ListView(
@@ -79,14 +70,6 @@ class MakeQuestionModal extends HookConsumerWidget {
                     variant: ButtonVariant.primary,
                     size: ButtonSize.small,
                     onPressed: () async {
-                      if (isQuestion) {
-                        await questionTaskNotifier.createQuest().then((value) {
-                          Navigator.of(context).pop();
-                        });
-                        // providerを強制破棄させる
-                        ref.refresh(myQuestNotifierProvider);
-                        return;
-                      }
                       await answerNotifier
                           .createAnswer(questId: questId!)
                           .then((value) {
@@ -97,15 +80,13 @@ class MakeQuestionModal extends HookConsumerWidget {
                 ],
               ),
               const Gap(24),
-              if (!isQuestion) ExpandableText(content: content ?? ''),
+              ExpandableText(content: content ?? ''),
               Row(
                 children: [
                   CustomPicker(
                     title: '最低予算',
                     options: priceList,
-                    controller: isQuestion
-                        ? questionTaskNotifier.minimumBudgetController
-                        : answerNotifier.minimumBudgetController,
+                    controller: answerNotifier.minimumBudgetController,
                   ),
                   const Gap(8),
                   const Text('~'),
@@ -113,30 +94,13 @@ class MakeQuestionModal extends HookConsumerWidget {
                   CustomPicker(
                     title: '最大予算',
                     options: priceList,
-                    controller: isQuestion
-                        ? questionTaskNotifier.maximumBudgetController
-                        : answerNotifier.maximumBudgetController,
+                    controller: answerNotifier.maximumBudgetController,
                   ),
                 ],
               ),
-              if (isQuestion) const Gap(16),
-              if (isQuestion)
-                CustomPicker(
-                  title: 'エリア',
-                  options: prefectures,
-                  controller: questionTaskNotifier.prefectureController,
-                ),
-              if (isQuestion) const Gap(16),
-              if (isQuestion)
-                CustomDatePicker(
-                  title: '締切日',
-                  controller: questionTaskNotifier.deadLineController,
-                ),
               const Gap(24),
               TextField(
-                controller: isQuestion
-                    ? questionTaskNotifier.contentController
-                    : answerNotifier.contentController,
+                controller: answerNotifier.contentController,
                 maxLines: 15,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(

@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
-import 'package:food_quest/presentation/screen/quest_screen/component/make_question_modal.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/make_question_modal.dart';
 import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
@@ -58,7 +58,6 @@ class QuestScreen extends HookConsumerWidget {
               onPressed: () {
                 MakeQuestionModal.show(
                   context: context,
-                  isQuestion: true,
                 );
               },
               style: ElevatedButton.styleFrom(
