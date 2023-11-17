@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: cascade_invocations
 
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter/material.dart';
+import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
+
+import 'package:food_quest/presentation/component/filter_chip.dart';
+import 'package:food_quest/presentation/component/image_selector.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
-import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/application/notifier/question_task_notifier.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
@@ -36,7 +39,7 @@ class MakeQuestionModal extends HookConsumerWidget {
       useRootNavigator: true,
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColor.firstColor,
+      backgroundColor: Colors.white,
       builder: (context) => MakeQuestionModal(
         context: context,
         content: content,
@@ -49,6 +52,7 @@ class MakeQuestionModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final questionTaskNotifier =
         ref.watch(questionTaskNotifierProvider.notifier);
+    final filterChipList = ref.watch(filterChipListProvider);
 
     return ListView(
       children: [
@@ -84,20 +88,16 @@ class MakeQuestionModal extends HookConsumerWidget {
                   ),
                 ],
               ),
-              const Gap(24),
+              const Gap(16),
               Row(
                 children: [
-                  CustomPicker(
-                      title: '最低予算',
-                      options: priceList,
-                      controller: questionTaskNotifier.minimumBudgetController),
-                  const Gap(8),
-                  const Text('~'),
-                  const Gap(8),
-                  CustomPicker(
-                      title: '最大予算',
-                      options: priceList,
-                      controller: questionTaskNotifier.maximumBudgetController),
+                  Wrap(
+                    spacing: 8,
+                    children: [
+                      ...questChipList
+                          .map((title) => FliterChipWidget(title: title)),
+                    ],
+                  ),
                 ],
               ),
               const Gap(16),
@@ -111,7 +111,10 @@ class MakeQuestionModal extends HookConsumerWidget {
                 title: '締切日',
                 controller: questionTaskNotifier.deadLineController,
               ),
-              const Gap(24),
+              const Gap(16),
+              if (filterChipList.contains('予算')) const BadgetWidget(),
+              if (filterChipList.contains('画像')) const ImageSelectWidget(),
+              const Gap(8),
               TextField(
                 controller: questionTaskNotifier.contentController,
                 maxLines: 15,
@@ -125,6 +128,37 @@ class MakeQuestionModal extends HookConsumerWidget {
               ),
             ],
           ),
+        ),
+      ],
+    );
+  }
+}
+
+//予算
+class BadgetWidget extends HookConsumerWidget {
+  const BadgetWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final questionTaskNotifier =
+        ref.read(questionTaskNotifierProvider.notifier);
+
+    return Row(
+      children: [
+        CustomPicker(
+          title: '最低予算',
+          options: priceList,
+          controller: questionTaskNotifier.minimumBudgetController,
+        ),
+        const Gap(8),
+        const Text('~'),
+        const Gap(8),
+        CustomPicker(
+          title: '最大予算',
+          options: priceList,
+          controller: questionTaskNotifier.maximumBudgetController,
         ),
       ],
     );

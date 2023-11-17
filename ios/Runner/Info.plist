@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Required to access the photo library for new posts.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Required to use the camera for taking photos and posting new content.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Required for microphone access to enable voice recognition for new posts.</string>
 </dict>
 </plist>

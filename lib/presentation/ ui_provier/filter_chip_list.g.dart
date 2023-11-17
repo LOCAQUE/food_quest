@@ -6,7 +6,7 @@ part of 'filter_chip_list.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$filterChipListHash() => r'f5a023c39dabd1178b3f7d2babd1fd3ca14de95e';
+String _$filterChipListHash() => r'98d01024008fa6ac8b4eedc28f4c87783264ff71';
 
 /// See also [FilterChipList].
 @ProviderFor(FilterChipList)

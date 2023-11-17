@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
+import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
+import 'package:food_quest/presentation/component/filter_chip.dart';
+import 'package:food_quest/presentation/component/image_selector.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -45,6 +49,7 @@ class MakeAnswerModal extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final answerNotifier = ref.watch(answerNotiierProvider.notifier);
+    final filterChipList = ref.watch(filterChipListProvider);
     final answerContent = useTextEditingController();
     final minimumBudget = useTextEditingController();
     final maximumBudget = useTextEditingController();
@@ -83,30 +88,52 @@ class MakeAnswerModal extends HookConsumerWidget {
                           .then((value) {
                         Navigator.of(context).pop();
                       });
+                      // providerを強制破棄させる
+                      ref.refresh(questListNotifierProvider);
+                      return;
                     },
                   ),
                 ],
               ),
-              const Gap(24),
-              ExpandableText(content: content ?? ''),
+              const Gap(16),
               Row(
                 children: [
-                  CustomPicker(
-                    title: '最低予算',
-                    options: priceList,
-                    controller: minimumBudget,
-                  ),
-                  const Gap(8),
-                  const Text('~'),
-                  const Gap(8),
-                  CustomPicker(
-                    title: '最大予算',
-                    options: priceList,
-                    controller: maximumBudget,
+                  Wrap(
+                    spacing: 8,
+                    children: [
+                      ...questChipList
+                          .map((title) => FliterChipWidget(title: title)),
+                    ],
                   ),
                 ],
               ),
-              const Gap(24),
+              const Gap(16),
+              ExpandableText(content: content ?? ''),
+              if (filterChipList.contains('予算'))
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        CustomPicker(
+                          title: '最低予算',
+                          options: priceList,
+                          controller: minimumBudget,
+                        ),
+                        const Gap(8),
+                        const Text('~'),
+                        const Gap(8),
+                        CustomPicker(
+                          title: '最大予算',
+                          options: priceList,
+                          controller: maximumBudget,
+                        ),
+                      ],
+                    ),
+                    const Gap(8),
+                  ],
+                ),
+              if (filterChipList.contains('画像')) const ImageSelectWidget(),
+              const Gap(8),
               TextField(
                 controller: answerContent,
                 maxLines: 15,
@@ -170,7 +197,7 @@ class ExpandableText extends HookConsumerWidget {
                 ? const Icon(Icons.keyboard_arrow_up)
                 : const Icon(Icons.keyboard_arrow_down),
           ),
-        const Gap(16),
+        const Gap(20),
       ],
     );
   }
