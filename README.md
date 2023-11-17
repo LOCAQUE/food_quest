@@ -83,7 +83,7 @@ make builder
 │   ├── data (ネットワークを使用する)
 │   │   └── supabase_api_repository_impl.dart
 │   └── local (ローカル)
-├── presentation
+├── presentation (UI)
 │   ├── component
 │   │   ├── button.dart
 │   └── screen
