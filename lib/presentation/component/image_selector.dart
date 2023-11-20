@@ -26,37 +26,33 @@ class ImageSelectWidget extends HookConsumerWidget {
       loading: () => const LoadingWidget(),
       error: (e, s) => Exception(e),
     );
-    return Column(
-      children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              if (imageList.value.isNotEmpty) ...[
-                for (var i = 0; i < imageList.value.length; i++)
-                  ImageView(image: imageList.value[i], index: i),
-              ],
-              ImageSelecterButton(
-                onTap: () async {
-                  await notifier.pickImageForlibrary(context: context);
-                },
-                icon: const Icon(
-                  Icons.photo_library,
-                ),
-              ),
-              ImageSelecterButton(
-                onTap: () async {
-                  await notifier.pickImageForCamera();
-                },
-                icon: const Icon(
-                  Icons.camera_alt,
-                ),
-              ),
-            ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          if (imageList.value.isNotEmpty) ...[
+            for (var i = 0; i < imageList.value.length; i++)
+              ImageView(image: imageList.value[i], index: i),
+          ],
+          ImageSelecterButton(
+            onTap: () async {
+              await notifier.pickImageForlibrary(context: context);
+            },
+            icon: const Icon(
+              Icons.photo_library,
+            ),
           ),
-        ),
-        const Gap(8),
-      ],
+          ImageSelecterButton(
+            onTap: () async {
+              await notifier.pickImageForCamera();
+            },
+            icon: const Icon(
+              Icons.camera_alt,
+            ),
+          ),
+          const Gap(8),
+        ],
+      ),
     );
   }
 }
@@ -77,8 +73,8 @@ class ImageSelecterButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: SizedBox(
-        height: 100,
-        width: 100,
+        height: 80,
+        width: 80,
         child: ElevatedButton(
           onPressed: onTap,
           style: ElevatedButton.styleFrom(
@@ -118,8 +114,8 @@ class ImageView extends HookConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4),
           child: SizedBox(
-            height: 100,
-            width: 100,
+            height: 80,
+            width: 80,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.file(

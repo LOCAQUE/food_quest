@@ -1,6 +1,9 @@
 // ignore_for_file: cascade_invocations
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
 
 import 'package:food_quest/presentation/component/filter_chip.dart';
@@ -53,83 +56,129 @@ class MakeQuestionModal extends HookConsumerWidget {
     final questionTaskNotifier =
         ref.watch(questionTaskNotifierProvider.notifier);
     final filterChipList = ref.watch(filterChipListProvider);
+    final isKeyboard = useState(false);
+    final textFieldScrollController = useScrollController();
 
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-          child: Column(
-            children: [
-              //閉じるボタン
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    child: const Text(
-                      'キャンセル',
-                      style: TextStyle(color: AppColor.textColor),
+    useEffect(
+      () {
+        final keyboard = KeyboardVisibilityController();
+        // キーボードの表示を監視
+        final keyboardSubscription = keyboard.onChange.listen((visible) {
+          if (!visible) {
+            FocusScope.of(context).unfocus();
+            isKeyboard.value = false;
+          } else {
+            isKeyboard.value = true;
+          }
+        });
+        return keyboardSubscription.cancel;
+      },
+      const [],
+    );
+
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              controller: textFieldScrollController,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //閉じるボタン
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          child: const Text(
+                            'キャンセル',
+                            style: TextStyle(color: AppColor.textColor),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        CustomButton(
+                          text: '受注',
+                          variant: ButtonVariant.primary,
+                          size: ButtonSize.small,
+                          onPressed: () async {
+                            await questionTaskNotifier
+                                .createQuest()
+                                .then((value) {
+                              Navigator.of(context).pop();
+                            });
+                            // providerを強制破棄させる
+                            ref.refresh(myQuestNotifierProvider);
+                          },
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  CustomButton(
-                    text: '受注',
-                    variant: ButtonVariant.primary,
-                    size: ButtonSize.small,
-                    onPressed: () async {
-                      await questionTaskNotifier.createQuest().then((value) {
-                        Navigator.of(context).pop();
-                      });
-                      // providerを強制破棄させる
-                      ref.refresh(myQuestNotifierProvider);
-                      return;
-                    },
-                  ),
-                ],
-              ),
-              const Gap(16),
-              Row(
-                children: [
-                  Wrap(
-                    spacing: 8,
-                    children: [
-                      ...questChipList
-                          .map((title) => FliterChipWidget(title: title)),
-                    ],
-                  ),
-                ],
-              ),
-              const Gap(16),
-              CustomPicker(
-                title: 'エリア',
-                options: prefectures,
-                controller: questionTaskNotifier.prefectureController,
-              ),
-              const Gap(16),
-              CustomDatePicker(
-                title: '締切日',
-                controller: questionTaskNotifier.deadLineController,
-              ),
-              const Gap(16),
-              if (filterChipList.contains('予算')) const BadgetWidget(),
-              if (filterChipList.contains('画像')) const ImageSelectWidget(),
-              const Gap(8),
-              TextField(
-                controller: questionTaskNotifier.contentController,
-                maxLines: 15,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ), // 四角い枠を表示
-                  labelText: '入力してください', // ラベルテキスト
+                    const Gap(16),
+                    Row(
+                      children: [
+                        Wrap(
+                          spacing: 8,
+                          children: [
+                            ...questChipList
+                                .map((title) => FliterChipWidget(title: title)),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const Gap(16),
+                    CustomPicker(
+                      title: 'エリア',
+                      options: prefectures,
+                      controller: questionTaskNotifier.prefectureController,
+                    ),
+                    const Gap(16),
+                    CustomDatePicker(
+                      title: '締切日',
+                      controller: questionTaskNotifier.deadLineController,
+                    ),
+                    const Gap(16),
+                    if (filterChipList.contains('予算')) const BadgetWidget(),
+                    const Gap(8),
+                    TextField(
+                      controller: questionTaskNotifier.contentController,
+                      maxLines: 12,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: '回答内容を入力してください',
+                      ),
+                      maxLength: 255,
+                      onChanged: (value) {
+                        // TextFieldの位置を最下部に移動させる
+                        SchedulerBinding.instance.addPostFrameCallback((_) {
+                          textFieldScrollController.jumpTo(
+                            textFieldScrollController.position.maxScrollExtent,
+                          );
+                        });
+                      },
+                    ),
+                    const Gap(16),
+                    if (filterChipList.contains('画像') && !isKeyboard.value)
+                      const ImageSelectWidget(),
+                  ],
                 ),
-                maxLength: 255, // 最大文字数を制限
               ),
-            ],
-          ),
+            ),
+            if (filterChipList.contains('画像') && isKeyboard.value)
+              const Positioned(
+                bottom: 8,
+                left: 8,
+                child: ImageSelectWidget(),
+              ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
