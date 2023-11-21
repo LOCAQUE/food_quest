@@ -104,9 +104,9 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
       final questAchievement = state.myQuestionList?.length ?? 0;
 
       //自分の回答取得
-      await ref.watch(answerNotifierProvider.notifier).getMyAnswerList();
+      await ref.watch(answersNotifierProvider.notifier).getMyAnswerList();
       final myAnswerList = ref.watch(
-            answerNotifierProvider.select((state) => state.myAnswerList),
+            answersNotifierProvider.select((state) => state.myAnswerList),
           ) ??
           [];
       final bestAnswerAchievement =

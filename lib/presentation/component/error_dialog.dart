@@ -5,16 +5,22 @@ import 'package:auto_route/auto_route.dart';
 //まだ完成してない
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog({
+    required this.title,
     super.key,
   });
 
+  final String title;
+
   static Future<void> show(
     BuildContext context,
+    String title,
   ) async {
     await showDialog<SimpleDialog>(
       context: context,
       builder: (context) {
-        return const ErrorDialog();
+        return ErrorDialog(
+          title: title,
+        );
       },
     );
   }
@@ -24,24 +30,26 @@ class ErrorDialog extends StatelessWidget {
     return SimpleDialog(
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       children: [
         Stack(
           children: [
             Container(
-              width: 200,
               height: 200,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
               color: Colors.white,
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(child: Text('エラーが発生しました')),
+                  Text(title, style: Theme.of(context).textTheme.bodyLarge,),
                 ],
               ),
             ),
             Positioned(
-              top: 10,
+              top: 6,
               right: 10,
               child: InkWell(
                 onTap: () {

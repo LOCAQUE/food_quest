@@ -22,6 +22,8 @@ dependencies:
   riverpod_annotation: ^2.1.6
   freezed: ^2.4.3
   flutter_datetime_picker_plus: ^2.1.0
+  flutter_keyboard_visibility: ^5.4.1
+
 
   # Tools
   import_sorter: ^4.6.0
@@ -46,6 +48,9 @@ dependencies:
 
   # リンク
   url_launcher: ^6.1.14
+
+  # 画像選択
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:

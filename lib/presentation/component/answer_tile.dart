@@ -24,7 +24,7 @@ class AnswerTile extends HookConsumerWidget {
     WidgetRef ref,
   ) {
     final currentUserId = ref.watch(
-      answerNotifierProvider.select((state) => state.currentUserId),
+      answersNotifierProvider.select((state) => state.currentUserId),
     );
     return Card(
       shape: RoundedRectangleBorder(

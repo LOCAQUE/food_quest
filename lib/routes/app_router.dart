@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/make_answer_modal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -58,7 +59,12 @@ class AppRouter extends _$AppRouter {
           AutoRoute(
             page: QuestHomeAutoRouterRoute.page,
             children: [
-              AutoRoute(page: QuestHomeRoute.page, initial: true),
+              AutoRoute(page: QuestHomeAutoRouterRoute.page,
+                children: [
+                  AutoRoute(page: QuestHomeRoute.page),
+                  AutoRoute(page: QuestDetailRoute.page),
+                ],
+                ),
               AutoRoute(page: QuestSelectPrefectureRoute.page),
             ],
           ),
@@ -67,7 +73,6 @@ class AppRouter extends _$AppRouter {
         ],
       ),
       //ボトムバーをはずしたい場合はこちら
-      AutoRoute(page: QuestDetailRoute.page),
     ];
   }
 }
