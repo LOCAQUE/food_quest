@@ -17,4 +17,28 @@ class QuestListNotifier extends _$QuestListNotifier {
       selectedPrefectures: selectedPrefectures.value,
     );
   }
+
+  Future<void> createQuest({
+    required String content,
+    required String deadLine,
+    required String prefecture,
+    required String minimumBudget,
+    required String maximumBudget,
+  }) async {
+    try {
+      final repository = ref.read(apiRepositoryProvider);
+
+      state = const AsyncValue.loading();
+      await repository.createQuest(
+        content: content,
+        deadLine: deadLine,
+        prefecture: prefecture,
+        minimumBudget: minimumBudget,
+        maximumBudget: maximumBudget,
+      );
+    } catch (e, stackTrace) {
+      state = AsyncValue.error(e, stackTrace);
+      Exception(e);
+    }
+  }
 }
