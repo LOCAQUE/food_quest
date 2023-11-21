@@ -73,4 +73,30 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> createQuest({
+    required String content,
+    required String deadLine,
+    required String prefecture,
+    required String minimumBudget,
+    required String maximumBudget,
+  }) async {
+    final currentId = supabaseClient.auth.currentUser?.id;
+
+    final sendQuestData = Question(
+      contents: content,
+      deadLine: DateTime.parse(deadLine),
+      prefecture: prefecture,
+      userId: currentId!,
+      minimumBudget: int.parse(minimumBudget),
+      maximumBudget: int.parse(maximumBudget),
+    );
+
+    try {
+      await supabaseClient.from('quests').insert(sendQuestData);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

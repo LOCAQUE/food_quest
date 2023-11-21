@@ -25,4 +25,12 @@ abstract class ApiRepository {
     required String minimumBudget,
     required String maximumBudget,
   });
+  //クエストを作成する
+  Future<void> createQuest({
+    required String content,
+    required String deadLine,
+    required String prefecture,
+    required String minimumBudget,
+    required String maximumBudget,
+  });
 }
