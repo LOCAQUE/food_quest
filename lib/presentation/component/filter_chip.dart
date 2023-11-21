@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FliterChipWidget extends HookConsumerWidget {
   const FliterChipWidget({

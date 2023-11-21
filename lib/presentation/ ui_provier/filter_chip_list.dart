@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'filter_chip_list.g.dart';
 
 @riverpod

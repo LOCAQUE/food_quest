@@ -2,26 +2,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
-import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
-import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
-
-import 'package:food_quest/presentation/component/filter_chip.dart';
-import 'package:food_quest/presentation/component/image_selector.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
+import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
+import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
+import 'package:food_quest/presentation/component/filter_chip.dart';
+import 'package:food_quest/presentation/component/image_selector.dart';
 
 class MakeQuestionModal extends HookConsumerWidget {
-  MakeQuestionModal({
+  const MakeQuestionModal({
     required this.context,
     this.content,
     this.questId,
@@ -117,6 +117,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                           size: ButtonSize.small,
                           onPressed: () async {
                             await usecase.uploadImage();
+
                             /// 変える
                             await notifier
                                 .createQuest(

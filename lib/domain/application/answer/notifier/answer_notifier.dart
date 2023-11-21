@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/repositories/api_repository.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:food_quest/domain/repositories/api_repository.dart';
+
 part 'answer_notifier.g.dart';
 
 @riverpod

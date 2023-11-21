@@ -10,10 +10,10 @@ class LoadingWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
-        child: LoadingAnimationWidget.inkDrop(
-          color: AppColor.primaryColor,
-          size: 200,
-        ),
-      );
+      child: LoadingAnimationWidget.inkDrop(
+        color: AppColor.primaryColor,
+        size: 200,
+      ),
+    );
   }
 }
