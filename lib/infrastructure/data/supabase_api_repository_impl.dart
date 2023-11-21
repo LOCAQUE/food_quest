@@ -1,6 +1,9 @@
 // ignore_for_file: lines_longer_than_80_chars
 
+import 'dart:io';
+
 import 'package:food_quest/domain/entity/answer.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -95,6 +98,35 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
     try {
       await supabaseClient.from('quests').insert(sendQuestData);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<String>> uploadImage({
+    required List<XFile> selectedImage,
+  }) async {
+    try {
+      final currentId = supabaseClient.auth.currentUser?.id;
+
+      final imagePaths = <String>[];
+
+      for (final image in selectedImage) {
+        //storageに画像をアップロードする
+        final path = File(image.path);
+        await supabaseClient.storage
+            .from('locaque')
+            .upload('$currentId/${image.name}', path);
+        //storageのURLを取得する
+        final imageUrl = supabaseClient.storage
+            .from('locaque')
+            .getPublicUrl('$currentId/${image.name}');
+
+        imagePaths.add(imageUrl);
+      }
+
+      return imagePaths;
     } catch (e) {
       rethrow;
     }

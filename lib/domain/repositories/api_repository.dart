@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 import 'package:food_quest/infrastructure/data/supabase_api_repository_impl.dart';
+import 'package:image_picker/image_picker.dart';
 
 final apiRepositoryProvider = Provider<ApiRepository>((ref) {
   //clientをDIする
@@ -32,5 +33,9 @@ abstract class ApiRepository {
     required String prefecture,
     required String minimumBudget,
     required String maximumBudget,
+  });
+  //画像をストレージにアップロードする
+  Future<List<String>> uploadImage({
+    required List<XFile> selectedImage,
   });
 }

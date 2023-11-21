@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
+import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
 import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
 
 import 'package:food_quest/presentation/component/filter_chip.dart';
@@ -60,6 +61,7 @@ class MakeQuestionModal extends HookConsumerWidget {
     final prefecture = useTextEditingController();
 
     final notifier = ref.watch(questListNotifierProvider.notifier);
+    final usecase = ref.watch(uploadImageUsecaseProvider.notifier);
     final filterChipList = ref.watch(filterChipListProvider);
     final isKeyboard = useState(false);
     final textFieldScrollController = useScrollController();
@@ -114,6 +116,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                           variant: ButtonVariant.primary,
                           size: ButtonSize.small,
                           onPressed: () async {
+                            await usecase.uploadImage();
                             /// 変える
                             await notifier
                                 .createQuest(
