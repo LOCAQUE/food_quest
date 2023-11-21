@@ -6,7 +6,7 @@ part of 'quest_list_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questListNotifierHash() => r'58b241ba1e39172198c7a07d66e4467c99eb9dc8';
+String _$questListNotifierHash() => r'8f767d1ec03c52e3e1be2fe455c15acc7d3d9987';
 
 /// See also [QuestListNotifier].
 @ProviderFor(QuestListNotifier)

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -27,8 +28,9 @@ class QuestListNotifier extends _$QuestListNotifier {
   }) async {
     try {
       final repository = ref.read(apiRepositoryProvider);
-
       state = const AsyncValue.loading();
+
+      //クエストを作成する
       await repository.createQuest(
         content: content,
         deadLine: deadLine,
@@ -36,9 +38,8 @@ class QuestListNotifier extends _$QuestListNotifier {
         minimumBudget: minimumBudget,
         maximumBudget: maximumBudget,
       );
-    } catch (e, stackTrace) {
-      state = AsyncValue.error(e, stackTrace);
-      Exception(e);
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }

@@ -31,7 +31,7 @@ class PickImageNotifier extends _$PickImageNotifier {
         state = AsyncValue.data(pickedFiles);
       }
     } catch (e) {
-      Exception(e);
+      debugPrint(e.toString());
     }
   }
 
