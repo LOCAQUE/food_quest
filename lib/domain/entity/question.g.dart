@@ -43,6 +43,9 @@ _$QuestionResponseImpl _$$QuestionResponseImplFromJson(
       answers: (json['answers'] as List<dynamic>?)
           ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
           .toList(),
+      questImages: (json['questImages'] as List<dynamic>?)
+          ?.map((e) => QuestImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$QuestionResponseImplToJson(
@@ -58,4 +61,5 @@ Map<String, dynamic> _$$QuestionResponseImplToJson(
       'prefecture': instance.prefecture,
       'users': instance.users,
       'answers': instance.answers,
+      'questImages': instance.questImages,
     };

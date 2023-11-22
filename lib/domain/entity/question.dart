@@ -1,3 +1,4 @@
+import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
@@ -37,6 +38,7 @@ abstract class QuestionResponse with _$QuestionResponse {
     required String prefecture,
     UserData? users,
     List<Answer>? answers,
+    List<QuestImage>? questImages,
   }) = _QuestionResponse;
 
   const QuestionResponse._();
