@@ -7,7 +7,7 @@ part of 'upload_image_usecase.dart';
 // **************************************************************************
 
 String _$uploadImageUsecaseHash() =>
-    r'76cb769f38527ee5135173e0c9e9ea1426bded26';
+    r'd743f90e012fec6aadff60504d5059bd98f93bfe';
 
 /// See also [UploadImageUsecase].
 @ProviderFor(UploadImageUsecase)
