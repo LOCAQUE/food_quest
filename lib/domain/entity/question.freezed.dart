@@ -277,6 +277,8 @@ mixin _$QuestionResponse {
   String get prefecture => throw _privateConstructorUsedError;
   UserData? get users => throw _privateConstructorUsedError;
   List<Answer>? get answers => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quest_images')
+  List<QuestImage> get questImages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -300,7 +302,8 @@ abstract class $QuestionResponseCopyWith<$Res> {
       DateTime deadLine,
       String prefecture,
       UserData? users,
-      List<Answer>? answers});
+      List<Answer>? answers,
+      @JsonKey(name: 'quest_images') List<QuestImage> questImages});
 
   $UserDataCopyWith<$Res>? get users;
 }
@@ -328,6 +331,7 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
     Object? prefecture = null,
     Object? users = freezed,
     Object? answers = freezed,
+    Object? questImages = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -370,6 +374,10 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
           ? _value.answers
           : answers // ignore: cast_nullable_to_non_nullable
               as List<Answer>?,
+      questImages: null == questImages
+          ? _value.questImages
+          : questImages // ignore: cast_nullable_to_non_nullable
+              as List<QuestImage>,
     ) as $Val);
   }
 
@@ -404,7 +412,8 @@ abstract class _$$QuestionResponseImplCopyWith<$Res>
       DateTime deadLine,
       String prefecture,
       UserData? users,
-      List<Answer>? answers});
+      List<Answer>? answers,
+      @JsonKey(name: 'quest_images') List<QuestImage> questImages});
 
   @override
   $UserDataCopyWith<$Res>? get users;
@@ -431,6 +440,7 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
     Object? prefecture = null,
     Object? users = freezed,
     Object? answers = freezed,
+    Object? questImages = null,
   }) {
     return _then(_$QuestionResponseImpl(
       id: null == id
@@ -473,6 +483,10 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
           ? _value._answers
           : answers // ignore: cast_nullable_to_non_nullable
               as List<Answer>?,
+      questImages: null == questImages
+          ? _value._questImages
+          : questImages // ignore: cast_nullable_to_non_nullable
+              as List<QuestImage>,
     ));
   }
 }
@@ -490,8 +504,11 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       required this.deadLine,
       required this.prefecture,
       this.users,
-      final List<Answer>? answers})
+      final List<Answer>? answers,
+      @JsonKey(name: 'quest_images')
+      final List<QuestImage> questImages = const []})
       : _answers = answers,
+        _questImages = questImages,
         super._();
 
   factory _$QuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -525,9 +542,18 @@ class _$QuestionResponseImpl extends _QuestionResponse {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<QuestImage> _questImages;
+  @override
+  @JsonKey(name: 'quest_images')
+  List<QuestImage> get questImages {
+    if (_questImages is EqualUnmodifiableListView) return _questImages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questImages);
+  }
+
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, prefecture: $prefecture, users: $users, answers: $answers)';
+    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, prefecture: $prefecture, users: $users, answers: $answers, questImages: $questImages)';
   }
 
   @override
@@ -550,7 +576,9 @@ class _$QuestionResponseImpl extends _QuestionResponse {
             (identical(other.prefecture, prefecture) ||
                 other.prefecture == prefecture) &&
             (identical(other.users, users) || other.users == users) &&
-            const DeepCollectionEquality().equals(other._answers, _answers));
+            const DeepCollectionEquality().equals(other._answers, _answers) &&
+            const DeepCollectionEquality()
+                .equals(other._questImages, _questImages));
   }
 
   @JsonKey(ignore: true)
@@ -566,7 +594,8 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       deadLine,
       prefecture,
       users,
-      const DeepCollectionEquality().hash(_answers));
+      const DeepCollectionEquality().hash(_answers),
+      const DeepCollectionEquality().hash(_questImages));
 
   @JsonKey(ignore: true)
   @override
@@ -585,16 +614,18 @@ class _$QuestionResponseImpl extends _QuestionResponse {
 
 abstract class _QuestionResponse extends QuestionResponse {
   const factory _QuestionResponse(
-      {required final int id,
-      required final DateTime createdAt,
-      required final String contents,
-      required final String userId,
-      required final int minimumBudget,
-      required final int maximumBudget,
-      required final DateTime deadLine,
-      required final String prefecture,
-      final UserData? users,
-      final List<Answer>? answers}) = _$QuestionResponseImpl;
+          {required final int id,
+          required final DateTime createdAt,
+          required final String contents,
+          required final String userId,
+          required final int minimumBudget,
+          required final int maximumBudget,
+          required final DateTime deadLine,
+          required final String prefecture,
+          final UserData? users,
+          final List<Answer>? answers,
+          @JsonKey(name: 'quest_images') final List<QuestImage> questImages}) =
+      _$QuestionResponseImpl;
   const _QuestionResponse._() : super._();
 
   factory _QuestionResponse.fromJson(Map<String, dynamic> json) =
@@ -620,6 +651,9 @@ abstract class _QuestionResponse extends QuestionResponse {
   UserData? get users;
   @override
   List<Answer>? get answers;
+  @override
+  @JsonKey(name: 'quest_images')
+  List<QuestImage> get questImages;
   @override
   @JsonKey(ignore: true)
   _$$QuestionResponseImplCopyWith<_$QuestionResponseImpl> get copyWith =>

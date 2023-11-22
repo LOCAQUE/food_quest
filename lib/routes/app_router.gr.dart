@@ -79,6 +79,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const QuestHomeScreen(),
       );
     },
+    QuestImageDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<QuestImageDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: QuestImageDetailScreen(
+          tag: args.tag,
+          imageUrl: args.imageUrl,
+          key: args.key,
+        ),
+      );
+    },
     QuestRoute.name: (routeData) {
       final args = routeData.argsAs<QuestRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -302,6 +313,49 @@ class QuestHomeRoute extends PageRouteInfo<void> {
   static const String name = 'QuestHomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [QuestImageDetailScreen]
+class QuestImageDetailRoute extends PageRouteInfo<QuestImageDetailRouteArgs> {
+  QuestImageDetailRoute({
+    required String tag,
+    required String imageUrl,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          QuestImageDetailRoute.name,
+          args: QuestImageDetailRouteArgs(
+            tag: tag,
+            imageUrl: imageUrl,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestImageDetailRoute';
+
+  static const PageInfo<QuestImageDetailRouteArgs> page =
+      PageInfo<QuestImageDetailRouteArgs>(name);
+}
+
+class QuestImageDetailRouteArgs {
+  const QuestImageDetailRouteArgs({
+    required this.tag,
+    required this.imageUrl,
+    this.key,
+  });
+
+  final String tag;
+
+  final String imageUrl;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QuestImageDetailRouteArgs{tag: $tag, imageUrl: $imageUrl, key: $key}';
+  }
 }
 
 /// generated route for

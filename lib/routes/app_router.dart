@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_image_detail_screen.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -72,6 +73,7 @@ class AppRouter extends _$AppRouter {
           AutoRoute(page: SettingRoute.page),
         ],
       ),
+      AutoRoute(page: QuestImageDetailRoute.page),
       //ボトムバーをはずしたい場合はこちら
     ];
   }

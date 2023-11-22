@@ -1,4 +1,6 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:food_quest/presentation/component/swiper_image.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -60,6 +62,10 @@ class QuestionTile extends StatelessWidget {
                 question.users?.name ?? '',
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
+              if (question.questImages.isNotEmpty)
+                Center(
+                  child: QuestSwiper(question: question),
+                ),
               const Gap(32),
               Text(question.contents),
               const Gap(8),
@@ -73,6 +79,34 @@ class QuestionTile extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class QuestSwiper extends StatelessWidget {
+  const QuestSwiper({
+    required this.question,
+    super.key,
+  });
+
+  final QuestionResponse question;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          final questImage = question.questImages[index];
+          return SwiperImage(
+            imageUrl: questImage.imageUrl,
+            tag: '${question.id}-$index',
+          );
+        },
+        itemCount: question.questImages.length,
+        pagination: const SwiperPagination(),
       ),
     );
   }
