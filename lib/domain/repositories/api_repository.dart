@@ -27,7 +27,7 @@ abstract class ApiRepository {
     required String maximumBudget,
   });
   //クエストを作成する
-  Future<void> createQuest({
+  Future<int> createQuest({
     required String content,
     required String deadLine,
     required String prefecture,
@@ -37,5 +37,10 @@ abstract class ApiRepository {
   //画像をストレージにアップロードする
   Future<List<String>> uploadImage({
     required List<XFile> selectedImage,
+  });
+  //クエストに画像を紐付ける
+  Future<void> createQuestImage({
+    required int questId,
+    required List<String> imageUrls,
   });
 }

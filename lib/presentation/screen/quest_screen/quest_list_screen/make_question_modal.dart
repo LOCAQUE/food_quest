@@ -24,18 +24,15 @@ class MakeQuestionModal extends HookConsumerWidget {
   const MakeQuestionModal({
     required this.context,
     this.content,
-    this.questId,
     super.key,
   });
 
   final BuildContext context;
   final String? content;
-  final int? questId;
 
   static Future<void> show({
     required BuildContext context,
     String? content,
-    int? questId,
   }) async {
     await showModalBottomSheet<void>(
       isDismissible: false,
@@ -47,7 +44,6 @@ class MakeQuestionModal extends HookConsumerWidget {
       builder: (context) => MakeQuestionModal(
         context: context,
         content: content,
-        questId: questId,
       ),
     );
   }
@@ -116,9 +112,9 @@ class MakeQuestionModal extends HookConsumerWidget {
                           variant: ButtonVariant.primary,
                           size: ButtonSize.small,
                           onPressed: () async {
+                            // 画像をアップロード
                             await usecase.uploadImage();
-
-                            /// 変える
+                            // クエストを作成
                             await notifier
                                 .createQuest(
                               content: content.text,

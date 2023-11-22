@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/domain/application/pick_image/notifier/pick_image_notifier.dart';
+import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -29,15 +32,22 @@ class QuestListNotifier extends _$QuestListNotifier {
   }) async {
     try {
       final repository = ref.read(apiRepositoryProvider);
+      final imageUrls = await ref.read(uploadImageUsecaseProvider.future);
       state = const AsyncValue.loading();
 
       //クエストを作成する
-      await repository.createQuest(
+      final questId = await repository.createQuest(
         content: content,
         deadLine: deadLine,
         prefecture: prefecture,
         minimumBudget: minimumBudget,
         maximumBudget: maximumBudget,
+      );
+
+      //クエストに画像を紐付ける
+      await repository.createQuestImage(
+        questId: questId,
+        imageUrls: imageUrls,
       );
     } catch (e) {
       debugPrint(e.toString());
