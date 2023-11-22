@@ -60,6 +60,7 @@ class QuestionTile extends StatelessWidget {
                 question.users?.name ?? '',
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
+              
               const Gap(32),
               Text(question.contents),
               const Gap(8),

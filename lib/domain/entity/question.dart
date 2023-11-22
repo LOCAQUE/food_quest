@@ -38,7 +38,7 @@ abstract class QuestionResponse with _$QuestionResponse {
     required String prefecture,
     UserData? users,
     List<Answer>? answers,
-    List<QuestImage>? questImages,
+    @JsonKey(name: 'quest_images') @Default([]) List<QuestImage> questImages,
   }) = _QuestionResponse;
 
   const QuestionResponse._();

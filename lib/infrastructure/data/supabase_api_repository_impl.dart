@@ -25,7 +25,7 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
     try {
       final response = await supabaseClient
           .from('quests')
-          .select<PostgrestList>('*, users(*)')
+          .select<PostgrestList>('*, users(*), quest_images(*)')
           .eq('userId', currentId);
 
       final myQuestList = response.map(QuestionResponse.fromJson).toList();
@@ -44,7 +44,7 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
     try {
       final response = await supabaseClient
           .from('quests')
-          .select<PostgrestList>('*, users(*), answers(*)')
+          .select<PostgrestList>('*, users(*), answers(*), quest_images(*)')
           .in_('prefecture', selectedPrefectures!)
           .neq('userId', currentId);
 
