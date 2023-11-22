@@ -6,7 +6,7 @@ part of 'pick_image_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pickImageNotifierHash() => r'690e7889def808e1763c058ba205c4773cc80536';
+String _$pickImageNotifierHash() => r'9b964c01009a0f4e3837084635fa15bbc35b867e';
 
 /// See also [PickImageNotifier].
 @ProviderFor(PickImageNotifier)

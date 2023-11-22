@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'quest_list_notifier.dart';
+part of 'upload_image_usecase.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questListNotifierHash() => r'efdfe8890c0dd8049e5f421744b3adca6ba2951f';
+String _$uploadImageUsecaseHash() =>
+    r'd743f90e012fec6aadff60504d5059bd98f93bfe';
 
-/// See also [QuestListNotifier].
-@ProviderFor(QuestListNotifier)
-final questListNotifierProvider =
-    AsyncNotifierProvider<QuestListNotifier, List<QuestionResponse>?>.internal(
-  QuestListNotifier.new,
-  name: r'questListNotifierProvider',
+/// See also [UploadImageUsecase].
+@ProviderFor(UploadImageUsecase)
+final uploadImageUsecaseProvider =
+    AutoDisposeAsyncNotifierProvider<UploadImageUsecase, List<String>>.internal(
+  UploadImageUsecase.new,
+  name: r'uploadImageUsecaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$questListNotifierHash,
+      : _$uploadImageUsecaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$QuestListNotifier = AsyncNotifier<List<QuestionResponse>?>;
+typedef _$UploadImageUsecase = AutoDisposeAsyncNotifier<List<String>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -3,21 +3,21 @@ import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
-import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
-import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
-import 'package:food_quest/presentation/component/filter_chip.dart';
-import 'package:food_quest/presentation/component/image_selector.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
+import 'package:food_quest/presentation/component/filter_chip.dart';
+import 'package:food_quest/presentation/component/image_selector.dart';
 
 class MakeAnswerModal extends HookConsumerWidget {
-  MakeAnswerModal({
+  const MakeAnswerModal({
     required this.context,
     this.content,
     this.questId,

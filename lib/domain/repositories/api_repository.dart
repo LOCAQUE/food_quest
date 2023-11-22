@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
@@ -24,5 +25,22 @@ abstract class ApiRepository {
     required String answerContent,
     required String minimumBudget,
     required String maximumBudget,
+  });
+  //クエストを作成する
+  Future<int> createQuest({
+    required String content,
+    required String deadLine,
+    required String prefecture,
+    required String minimumBudget,
+    required String maximumBudget,
+  });
+  //画像をストレージにアップロードする
+  Future<List<String>> uploadImage({
+    required List<XFile> selectedImage,
+  });
+  //クエストに画像を紐付ける
+  Future<void> createQuestImage({
+    required int questId,
+    required List<String> imageUrls,
   });
 }

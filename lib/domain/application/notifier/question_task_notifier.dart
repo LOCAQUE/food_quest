@@ -36,30 +36,6 @@ class QuestionTaskNotifier extends StateNotifier<QuestionTaskNotifierState> {
   final SupabaseClient client;
   final Ref ref;
 
-  final TextEditingController contentController = TextEditingController();
-  final TextEditingController minimumBudgetController = TextEditingController();
-  final TextEditingController maximumBudgetController = TextEditingController();
-  final TextEditingController deadLineController = TextEditingController();
-  final TextEditingController prefectureController = TextEditingController();
-
-  Future<void> createQuest() async {
-    final currentUserId = client.auth.currentUser?.id;
-    final sendQuestionData = Question(
-      contents: contentController.text,
-      userId: currentUserId!,
-      minimumBudget: int.parse(minimumBudgetController.text),
-      maximumBudget: int.parse(maximumBudgetController.text),
-      deadLine: DateTime.parse(deadLineController.text),
-      prefecture: prefectureController.text,
-    );
-
-    try {
-      await client.from('quests').insert(sendQuestionData);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
   //自分の回答一覧
   Future<void> getMyQuestList() async {
     final currentUserId = client.auth.currentUser?.id;

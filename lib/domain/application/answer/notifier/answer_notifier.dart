@@ -1,5 +1,9 @@
-import 'package:food_quest/domain/repositories/api_repository.dart';
+import 'package:flutter/material.dart';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:food_quest/domain/repositories/api_repository.dart';
+
 part 'answer_notifier.g.dart';
 
 @riverpod
@@ -15,13 +19,17 @@ class AnswerNotiier extends _$AnswerNotiier {
     required String minimumBudget,
     required String maximumBudget,
   }) async {
-    final repository = ref.read(apiRepositoryProvider);
+    try {
+      final repository = ref.read(apiRepositoryProvider);
 
-    return repository.createAnswer(
-      questId: questId,
-      answerContent: answerContent,
-      minimumBudget: minimumBudget,
-      maximumBudget: maximumBudget,
-    );
+      await repository.createAnswer(
+        questId: questId,
+        answerContent: answerContent,
+        minimumBudget: minimumBudget,
+        maximumBudget: maximumBudget,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
