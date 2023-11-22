@@ -1,7 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/presentation/component/swiper_image.dart';
 
 import 'package:gap/gap.dart';
@@ -102,7 +100,10 @@ class QuestSwiper extends StatelessWidget {
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
           final questImage = question.questImages[index];
-          return SwiperImage(imageUrl: questImage.imageUrl);
+          return SwiperImage(
+            imageUrl: questImage.imageUrl,
+            tag: '${question.id}-$index',
+          );
         },
         itemCount: question.questImages.length,
         pagination: const SwiperPagination(),
