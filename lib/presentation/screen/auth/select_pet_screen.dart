@@ -5,9 +5,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/auth/completion_pet_screen.dart';
-
-import '../../component/button.dart';
 
 @RoutePage()
 class SelectPetScreen extends HookConsumerWidget {
@@ -68,39 +67,40 @@ class SelectPetScreen extends HookConsumerWidget {
                   shape: RoundedRectangleBorder(
                     side: const BorderSide(width: 0.1),
                     borderRadius: BorderRadius.circular(20),
-                  
                   ),
                   padding: EdgeInsets.zero, // Paddingをゼロに設定
                 ),
                 child: Row(
                   children: [
                     SizedBox(
-                      child: Image.asset('assets/images/pet${index + 1}.png',
-                      height: 110,
-                      width: 120,),
+                      child: Image.asset(
+                        'assets/images/pet${index + 1}.png',
+                        height: 110,
+                        width: 120,
+                      ),
                     ),
-                    const SizedBox(width: 30,height: 90),
+                    const SizedBox(width: 30, height: 90),
                     Row(
                       children: [
-                          Column(
-                            children: [
-                              Text(
-                                'モンスター${index + 1}',
-                                style:const TextStyle(
-                                  color: Colors.black,
-                                ),
+                        Column(
+                          children: [
+                            Text(
+                              'モンスター${index + 1}',
+                              style: const TextStyle(
+                                color: Colors.black,
                               ),
-                              Text(
-                                attributes[index],
-                                style:const TextStyle(
-                                  color: Colors.black,
-                                ),
-                                ),
-                            ],
-                          ),
+                            ),
+                            Text(
+                              attributes[index],
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                    const SizedBox(width: 80,height: 50),
+                    const SizedBox(width: 80, height: 50),
                     if (selectedPet.value == index)
                       const Positioned(
                         child: Icon(
@@ -112,24 +112,26 @@ class SelectPetScreen extends HookConsumerWidget {
                 ),
               ),
             );
-
           }),
           const SizedBox(height: 140),
           Center(
             child: SizedBox(
               width: 250, // ボタンの横幅を調整
               child: CustomButton(
-                    text: '次へ',
-                    onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute<SelectPetScreen>(
-                          builder: (context) => const CompletionPetScreen(),
-                        ),
-                      );
-                    },
-                    variant: ButtonVariant.primary,
-                  ),
+                text: '次へ',
+                onPressed: () async {
+                  await monchoicenotifier.addMonster(selectedPet.value!);
+                  if (context.mounted) {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute<SelectPetScreen>(
+                        builder: (context) => const CompletionPetScreen(),
+                      ),
+                    );
+                  }
+                },
+                variant: ButtonVariant.primary,
+              ),
             ),
           ),
         ],
