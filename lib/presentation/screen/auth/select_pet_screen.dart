@@ -15,7 +15,6 @@ class SelectPetScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedPet = useState<int?>(null);
-
     final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
     return Scaffold(
       body: Column(
@@ -102,12 +101,16 @@ class SelectPetScreen extends HookConsumerWidget {
                     ),
                     const SizedBox(width: 80, height: 50),
                     if (selectedPet.value == index)
-                      const Positioned(
-                        child: Icon(
-                          Icons.check_circle,
-                          color: Colors.orange,
-                        ),
+                      const Stack(
+                        children: [
+                          Icon(
+                            Icons.check_circle,
+                            color: Colors.orange,
+                          ),
+                          // その他の子ウィジェット...
+                        ],
                       ),
+
                   ],
                 ),
               ),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/routes/app_router.dart';
+
+import 'package:food_quest/domain/entity/mon_choice_data.dart';
 
 @RoutePage()
 class CompletionPetScreen extends HookConsumerWidget {
@@ -12,7 +16,25 @@ class CompletionPetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    MonChoiceData? monNum;
+
+    useEffect((){
+      monchoicenotifier.getBaseMonster().then(
+        (value) => monNum = value,
+        );
+      return null;
+    }, [],);
+
+
+    String getImagePath(int? basemonster){
+      switch(basemonster){
+        case 0: return 'assets/images/monster/monster1.png';
+        case 1: return 'assets/images/monster/monster2.png';
+        case 2: return 'assets/images/monster/monster3.png';
+        default: return 'assets/images/test.png';
+      }
+    }
     return Scaffold(
       body: Column(
         children: [
@@ -30,9 +52,8 @@ class CompletionPetScreen extends HookConsumerWidget {
                       icon: const Icon(Icons.arrow_back_ios),
                       onPressed: () => Navigator.pop(context),
                     ),
-                    const SizedBox(width: 5),
                     const Text(
-                      'Back',
+                      '選び直す',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -45,23 +66,60 @@ class CompletionPetScreen extends HookConsumerWidget {
           ),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   '君に決めた！',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 45,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 80),
-                Image.asset(
-                  'assets/images/test.png',
-                  height: 300,
-                  width: 300,
+                const SizedBox(height: 20),
+                const Text(
+                  '名前をつけてあげよう',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const Text(
-                  'たくさんクエストをクリアして\n(モンスター名)を育てよう！',
+                  'この子の名前になるよ',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Image.asset(
+                    getImagePath(monNum?.baseMonster),
+                    height: 300,
+                    width: 300,
+                  ),
+                SizedBox(
+                  width: 280,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      filled: true, 
+                      fillColor: Colors.white, 
+                      hintText: 'デフォルト名',
+                      hintStyle: const TextStyle(color: Colors.grey), 
+                      suffixIcon: const Icon(Icons.edit, color: Colors.grey), 
+                      border: OutlineInputBorder( 
+                        borderRadius: BorderRadius.circular(10), 
+                        borderSide: BorderSide.none, 
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const SizedBox(height: 20),
+                const Text(
+                  '経験値を得ることで',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+                const Text(
+                  '成長しいろいろな姿になります',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
@@ -69,9 +127,9 @@ class CompletionPetScreen extends HookConsumerWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(100),
+            padding:const EdgeInsets.only(bottom: 100),
             child: CustomButton(
-              text: 'ロカクエをはじめる',
+              text: 'はじめる',
               variant: ButtonVariant.primary,
               onPressed: () {
                 context.pushRoute(const BottomNavigationRoute());

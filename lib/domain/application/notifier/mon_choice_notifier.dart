@@ -20,25 +20,27 @@ class MonchoiceNotifierState with _$MonchoiceNotifierState {
 final monchoiceNotifierProvider =
     StateNotifierProvider<MonchoiceNotifier, MonchoiceNotifierState>((ref) {
   final client = ref.watch(supabaseClientProvider);
-  return MonchoiceNotifier(client);
+  return MonchoiceNotifier(client,ref);
 });
 
 class MonchoiceNotifier extends StateNotifier<MonchoiceNotifierState> {
-  MonchoiceNotifier(this.client)
+  MonchoiceNotifier(this.client,this.ref)
       : super(
           MonchoiceNotifierState(
             currentUserId: client.auth.currentUser?.id,
           ),
         );
   final SupabaseClient client;
+  final Ref ref;
 
   Future<void> addMonster(int selectedPet) async {
+    final userId = client.auth.currentUser?.id;
+
     try {
       await client.from('monsters').insert({
-        'userId': state.currentUserId,
-        'baseMonster': selectedPet,
+        'baseMonster': userId,
         'experience': 0,
-        'createdAt': DateTime.now().toUtc().toIso8601String(),
+        'monName': 'デフォルト',
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -47,14 +49,18 @@ class MonchoiceNotifier extends StateNotifier<MonchoiceNotifierState> {
 
   Future<MonChoiceData?> getBaseMonster() async {
     // カレントユーザーのIDを確認
-    final userId = state.currentUserId;
-    if (userId == null) return null;
+    final userId = client.auth.currentUser?.id;
 
-    final response = await client
-        .from('monsters')
-        .select<PostgrestList>('baseMonster')
-        .eq('userId', userId);
-
-    return MonChoiceData.fromJson(response.first);
+    try {
+      final response = await client
+          .from('monsters')
+          .select<PostgrestList>('baseMonster')
+          .eq('userId', userId);
+      return MonChoiceData.fromJson(response.first);
+      
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
   }
 }
