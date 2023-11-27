@@ -80,6 +80,15 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
+  /// File path: assets/images/pet1.png
+  AssetGenImage get pet1 => const AssetGenImage('assets/images/pet1.png');
+
+  /// File path: assets/images/pet2.png
+  AssetGenImage get pet2 => const AssetGenImage('assets/images/pet2.png');
+
+  /// File path: assets/images/pet3.png
+  AssetGenImage get pet3 => const AssetGenImage('assets/images/pet3.png');
+
   /// File path: assets/images/taskClear.gif
   AssetGenImage get taskClear =>
       const AssetGenImage('assets/images/taskClear.gif');
@@ -91,7 +100,8 @@ class $AssetsImagesGen {
   AssetGenImage get ushi => const AssetGenImage('assets/images/ushi.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [box, castle, logo, taskClear, test, ushi];
+  List<AssetGenImage> get values =>
+      [box, castle, logo, pet1, pet2, pet3, taskClear, test, ushi];
 }
 
 class Assets {

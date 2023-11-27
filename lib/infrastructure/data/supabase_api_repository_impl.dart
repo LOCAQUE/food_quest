@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:food_quest/domain/entity/mon_choice_data.dart';
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
 import 'package:image_picker/image_picker.dart';
@@ -160,6 +161,44 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
         await supabaseClient.from('quest_images').insert(sendQuestImageData);
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> addMonster(int selectedPet) async {
+     //UUIDを生成する
+    final userId = supabaseClient.auth.currentUser?.id;
+
+    try {
+      print("-----------------");
+      print("B");
+
+      print(userId);
+      print("-----------------");
+      await supabaseClient.from('monsters').insert({
+        'baseMonster': "$selectedPet",
+        'userId': userId,
+        'experience': 0,
+        'monName': 'デフォルト',
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<MonChoiceData?> getBaseMonster() async {
+    // カレントユーザーのIDを確認
+    final userId = supabaseClient.auth.currentUser?.id;
+
+    try {
+      final response = await supabaseClient
+          .from('monsters')
+          .select<PostgrestList>('baseMonster')
+          .eq('userId', userId);
+      return MonChoiceData.fromJson(response.first);
     } catch (e) {
       rethrow;
     }

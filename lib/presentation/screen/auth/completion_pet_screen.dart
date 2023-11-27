@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/domain/repositories/api_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/presentation/component/button.dart';
@@ -16,22 +16,25 @@ class CompletionPetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
     MonChoiceData? monNum;
 
     useEffect((){
-      monchoicenotifier.getBaseMonster().then(
+      final repository = ref.read(apiRepositoryProvider);
+      repository.getBaseMonster().then(
         (value) => monNum = value,
         );
       return null;
     }, [],);
+    print("-------------------");
+    print(monNum?.baseMonster);
+    print(monNum);
 
 
     String getImagePath(int? basemonster){
       switch(basemonster){
-        case 0: return 'assets/images/monster/monster1.png';
-        case 1: return 'assets/images/monster/monster2.png';
-        case 2: return 'assets/images/monster/monster3.png';
+        case 0: return 'assets/images/pet1.png';
+        case 1: return 'assets/images/pet2.png';
+        case 2: return 'assets/images/pet3.png';
         default: return 'assets/images/test.png';
       }
     }

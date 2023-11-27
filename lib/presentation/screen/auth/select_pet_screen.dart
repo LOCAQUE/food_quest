@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/screen/auth/completion_pet_screen.dart';
 
@@ -15,7 +15,7 @@ class SelectPetScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedPet = useState<int?>(null);
-    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    final monchoiceNotifier = ref.watch(monchoiceNotifierProvider.notifier);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -107,10 +107,8 @@ class SelectPetScreen extends HookConsumerWidget {
                             Icons.check_circle,
                             color: Colors.orange,
                           ),
-                          // その他の子ウィジェット...
                         ],
                       ),
-
                   ],
                 ),
               ),
@@ -123,9 +121,9 @@ class SelectPetScreen extends HookConsumerWidget {
               child: CustomButton(
                 text: '次へ',
                 onPressed: () async {
-                  await monchoicenotifier.addMonster(selectedPet.value!);
-                  if (context.mounted) {
-                    await Navigator.push(
+                  await monchoiceNotifier.addMonster(selectedPet.value!);
+                  if(context.mounted){
+                     await Navigator.push(
                       context,
                       MaterialPageRoute<SelectPetScreen>(
                         builder: (context) => const CompletionPetScreen(),

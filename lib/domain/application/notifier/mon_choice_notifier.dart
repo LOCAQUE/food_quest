@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_quest/domain/repositories/api_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:food_quest/domain/entity/mon_choice_data.dart';
-import 'package:food_quest/foundation/supabase_client_provider.dart';
 
 part 'mon_choice_notifier.freezed.dart';
+part 'mon_choice_notifier.g.dart';
 
 @freezed
 class MonchoiceNotifierState with _$MonchoiceNotifierState {
@@ -17,47 +16,29 @@ class MonchoiceNotifierState with _$MonchoiceNotifierState {
   }) = _MonchoiceNotifierState;
 }
 
-final monchoiceNotifierProvider =
-    StateNotifierProvider<MonchoiceNotifier, MonchoiceNotifierState>((ref) {
-  final client = ref.watch(supabaseClientProvider);
-  return MonchoiceNotifier(client,ref);
-});
+@riverpod
+class MonchoiceNotifier extends _$MonchoiceNotifier {
+  @override
+  MonchoiceNotifierState? build() {
+    return null;
+  }
 
-class MonchoiceNotifier extends StateNotifier<MonchoiceNotifierState> {
-  MonchoiceNotifier(this.client,this.ref)
-      : super(
-          MonchoiceNotifierState(
-            currentUserId: client.auth.currentUser?.id,
-          ),
-        );
-  final SupabaseClient client;
-  final Ref ref;
-
-  Future<void> addMonster(int selectedPet) async {
-    final userId = client.auth.currentUser?.id;
-
+  Future<void> addMonster(int selectedPet) 
+    async {
     try {
-      await client.from('monsters').insert({
-        'baseMonster': userId,
-        'experience': 0,
-        'monName': 'デフォルト',
-      });
+      final repository = ref.read(apiRepositoryProvider);
+      await repository.addMonster(selectedPet);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
-
-  Future<MonChoiceData?> getBaseMonster() async {
-    // カレントユーザーのIDを確認
-    final userId = client.auth.currentUser?.id;
-
+  
+  Future<MonChoiceData?> getBaseMonster() 
+    async {
     try {
-      final response = await client
-          .from('monsters')
-          .select<PostgrestList>('baseMonster')
-          .eq('userId', userId);
-      return MonChoiceData.fromJson(response.first);
-      
+      final repository = ref.read(apiRepositoryProvider);
+      await repository.getBaseMonster(
+      );
     } catch (e) {
       debugPrint(e.toString());
     }
