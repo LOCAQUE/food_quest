@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/entity/mon_choice_data.dart';
-import 'package:food_quest/domain/repositories/api_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
@@ -26,12 +24,7 @@ class PetScreen extends HookConsumerWidget {
     final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
     MonChoiceData? monNum;
 
-    useEffect((){
-      monchoicenotifier.getBaseMonster().then(
-        (value) => monNum = value,
-        );
-      return null;
-    }, [],);
+
 
     return Scaffold(
       body: Stack(

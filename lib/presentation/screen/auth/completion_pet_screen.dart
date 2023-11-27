@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_quest/domain/repositories/api_repository.dart';
+import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/routes/app_router.dart';
 
 import 'package:food_quest/domain/entity/mon_choice_data.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 @RoutePage()
 class CompletionPetScreen extends HookConsumerWidget {
@@ -16,18 +19,48 @@ class CompletionPetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    MonChoiceData? monNum;
+    final monchoicenotifier = ref.watch(monchoiceNotifierProvider);
+    final monNum = useState<MonChoiceData?>(null);
 
-    useEffect((){
-      final repository = ref.read(apiRepositoryProvider);
-      repository.getBaseMonster().then(
-        (value) => monNum = value,
+    monchoicenotifier.when(
+      data: (value) {
+        monNum.value = value;
+      },
+      loading: () {
+        return const LoadingWidget();
+      },
+      error: (error, stackTrace) {
+        //スナックバー表示
+        showTopSnackBar(
+          Overlay.of(context),
+          CustomSnackBar.error(
+            message: error.toString(),
+          ),
         );
-      return null;
-    }, [],);
-    print("-------------------");
-    print(monNum?.baseMonster);
-    print(monNum);
+      },
+    );
+
+    //     myQuestNotifier.when(
+    //   data: (list) {
+    //     myQuestList.value = list;
+    //   },
+    //   loading: () {
+    //     return const LoadingWidget();
+    //   },
+    //   error: (error, stackTrace) {
+    //     //スナックバー表示
+    //     showTopSnackBar(
+    //       Overlay.of(context),
+    //       CustomSnackBar.error(
+    //         message: error.toString(),
+    //       ),
+    //     );
+    //   },
+    // );
+
+
+
+
 
 
     String getImagePath(int? basemonster){
@@ -94,7 +127,7 @@ class CompletionPetScreen extends HookConsumerWidget {
                 ),
                 const SizedBox(height: 10),
                 Image.asset(
-                    getImagePath(monNum?.baseMonster),
+                    getImagePath(monNum.value?.baseMonster),
                     height: 300,
                     width: 300,
                   ),
