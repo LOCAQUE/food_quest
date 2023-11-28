@@ -27,10 +27,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const BottomNavigationScreen(),
       );
     },
-    ComingSoonRoute.name: (routeData) {
+    CommingSoonRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ComingSoonScreen(),
+        child: const CommingSoonScreen(),
       );
     },
     CompletionPetRoute.name: (routeData) {
@@ -180,15 +180,15 @@ class BottomNavigationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ComingSoonScreen]
-class ComingSoonRoute extends PageRouteInfo<void> {
-  const ComingSoonRoute({List<PageRouteInfo>? children})
+/// [CommingSoonScreen]
+class CommingSoonRoute extends PageRouteInfo<void> {
+  const CommingSoonRoute({List<PageRouteInfo>? children})
       : super(
-          ComingSoonRoute.name,
+          CommingSoonRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ComingSoonRoute';
+  static const String name = 'CommingSoonRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
