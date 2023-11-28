@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/presentation/component/button.dart';
-import 'package:food_quest/presentation/screen/auth/completion_pet_screen.dart';
 
 @RoutePage()
 class SelectPetScreen extends HookConsumerWidget {
@@ -14,8 +14,7 @@ class SelectPetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedPet = useState<int?>(null);
-    final monchoiceNotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    final selectedPet = useState<int>(0);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -121,15 +120,12 @@ class SelectPetScreen extends HookConsumerWidget {
               child: CustomButton(
                 text: '次へ',
                 onPressed: () async {
-                  await monchoiceNotifier.addMonster(selectedPet.value!);
-                  if(context.mounted){
-                     await Navigator.push(
-                      context,
-                      MaterialPageRoute<SelectPetScreen>(
-                        builder: (context) => const CompletionPetScreen(),
-                      ),
-                    );
-                  }
+                  //onPress内はref.readにする
+                  //get以外の関数はnotifierを使い、build直下では呼び出さない
+                  await ref
+                      .read(monchoiceNotifierProvider.notifier)
+                      .addMonster(selectedPet.value);
+                  await context.pushRoute(const CompletionPetRoute());
                 },
                 variant: ButtonVariant.primary,
               ),

@@ -19,58 +19,42 @@ class CompletionPetScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final monchoicenotifier = ref.watch(monchoiceNotifierProvider);
     final monNum = useState<MonChoiceData?>(null);
 
-    monchoicenotifier.when(
-      data: (value) {
-        monNum.value = value;
-      },
-      loading: () {
-        return const LoadingWidget();
-      },
-      error: (error, stackTrace) {
-        //スナックバー表示
-        showTopSnackBar(
-          Overlay.of(context),
-          CustomSnackBar.error(
-            message: error.toString(),
-          ),
-        );
-      },
-    );
+    ref.watch(monchoiceNotifierProvider).when(
+              data: (value) {
+                monNum.value = value;
+              },
+              loading: () {
+                return const LoadingWidget();
+              },
+              error: (error, stackTrace) {
+                //スナックバー表示
+                showTopSnackBar(
+                  Overlay.of(context),
+                  CustomSnackBar.error(
+                    message: error.toString(),
+                  ),
+                );
+              },
+            );
 
-    //     myQuestNotifier.when(
-    //   data: (list) {
-    //     myQuestList.value = list;
-    //   },
-    //   loading: () {
-    //     return const LoadingWidget();
-    //   },
-    //   error: (error, stackTrace) {
-    //     //スナックバー表示
-    //     showTopSnackBar(
-    //       Overlay.of(context),
-    //       CustomSnackBar.error(
-    //         message: error.toString(),
-    //       ),
-    //     );
-    //   },
-    // );
-
-
-
-
-
-
-    String getImagePath(int? basemonster){
-      switch(basemonster){
-        case 0: return 'assets/images/pet1.png';
-        case 1: return 'assets/images/pet2.png';
-        case 2: return 'assets/images/pet3.png';
-        default: return 'assets/images/test.png';
+    String getImagePath(int? basemonster) {
+      if (basemonster == null) {
+        return 'assets/images/test.png';
+      }
+      switch (basemonster) {
+        case 0:
+          return 'assets/images/pet1.png';
+        case 1:
+          return 'assets/images/pet2.png';
+        case 2:
+          return 'assets/images/pet3.png';
+        default:
+          return 'assets/images/test.png';
       }
     }
+
     return Scaffold(
       body: Column(
         children: [
@@ -127,22 +111,22 @@ class CompletionPetScreen extends HookConsumerWidget {
                 ),
                 const SizedBox(height: 10),
                 Image.asset(
-                    getImagePath(monNum.value?.baseMonster),
-                    height: 300,
-                    width: 300,
-                  ),
+                  getImagePath(monNum.value?.baseMonster),
+                  height: 300,
+                  width: 300,
+                ),
                 SizedBox(
                   width: 280,
                   child: TextFormField(
                     decoration: InputDecoration(
-                      filled: true, 
-                      fillColor: Colors.white, 
+                      filled: true,
+                      fillColor: Colors.white,
                       hintText: 'デフォルト名',
-                      hintStyle: const TextStyle(color: Colors.grey), 
-                      suffixIcon: const Icon(Icons.edit, color: Colors.grey), 
-                      border: OutlineInputBorder( 
-                        borderRadius: BorderRadius.circular(10), 
-                        borderSide: BorderSide.none, 
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      suffixIcon: const Icon(Icons.edit, color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none,
                       ),
                     ),
                   ),
@@ -163,7 +147,7 @@ class CompletionPetScreen extends HookConsumerWidget {
             ),
           ),
           Padding(
-            padding:const EdgeInsets.only(bottom: 100),
+            padding: const EdgeInsets.only(bottom: 100),
             child: CustomButton(
               text: 'はじめる',
               variant: ButtonVariant.primary,
