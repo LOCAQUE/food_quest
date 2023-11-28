@@ -168,15 +168,9 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
   @override
   Future<void> addMonster(int selectedPet) async {
-     //UUIDを生成する
     final userId = supabaseClient.auth.currentUser?.id;
 
     try {
-      print("-----------------");
-      print("B");
-
-      print(userId);
-      print("-----------------");
       await supabaseClient.from('monsters').insert({
         'baseMonster': "$selectedPet",
         'userId': userId,
@@ -192,13 +186,13 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
   Future<MonChoiceData?> getBaseMonster() async {
     // カレントユーザーのIDを確認
     final userId = supabaseClient.auth.currentUser?.id;
-
     try {
       final response = await supabaseClient
           .from('monsters')
           .select<PostgrestList>('baseMonster')
           .eq('userId', userId);
-      return MonChoiceData.fromJson(response.first);
+      final deta = MonChoiceData.fromJson(response.first);
+      return deta;
     } catch (e) {
       rethrow;
     }
