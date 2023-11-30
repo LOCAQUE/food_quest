@@ -77,6 +77,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/castle.png
   AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
 
+  /// File path: assets/images/header.jpeg
+  AssetGenImage get header => const AssetGenImage('assets/images/header.jpeg');
+
+  /// File path: assets/images/header2.jpeg
+  AssetGenImage get header2 =>
+      const AssetGenImage('assets/images/header2.jpeg');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
@@ -91,7 +98,8 @@ class $AssetsImagesGen {
   AssetGenImage get ushi => const AssetGenImage('assets/images/ushi.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [box, castle, logo, taskClear, test, ushi];
+  List<AssetGenImage> get values =>
+      [box, castle, header, header2, logo, taskClear, test, ushi];
 }
 
 class Assets {
