@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/domain/entity/answer.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,8 +10,8 @@ part 'answer_notifier.g.dart';
 @riverpod
 class AnswerNotiier extends _$AnswerNotiier {
   @override
-  String build() {
-    return '';
+  Future<List<Answer>?> build() {
+    return Future.value(<Answer>[]);
   }
 
   Future<void> createAnswer({
@@ -30,6 +31,19 @@ class AnswerNotiier extends _$AnswerNotiier {
       );
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  Future<void> getAnswerList({required int questId}) async {
+    try {
+      final repository = ref.read(apiRepositoryProvider);
+
+      state = const AsyncValue.loading();
+      final answerList = await repository.getAnswerList(questId: questId);
+      state = AsyncValue.data(answerList);
+    } catch (e, stackTrace) {
+      debugPrint(e.toString());
+      state = AsyncValue.error(e, stackTrace);
     }
   }
 }
