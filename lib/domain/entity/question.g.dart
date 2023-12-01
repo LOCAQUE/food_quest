@@ -40,9 +40,6 @@ _$QuestionResponseImpl _$$QuestionResponseImplFromJson(
       users: json['users'] == null
           ? null
           : UserData.fromJson(json['users'] as Map<String, dynamic>),
-      answers: (json['answers'] as List<dynamic>?)
-          ?.map((e) => Answer.fromJson(e as Map<String, dynamic>))
-          .toList(),
       questImages: (json['quest_images'] as List<dynamic>?)
               ?.map((e) => QuestImage.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -61,6 +58,5 @@ Map<String, dynamic> _$$QuestionResponseImplToJson(
       'deadLine': instance.deadLine.toIso8601String(),
       'prefecture': instance.prefecture,
       'users': instance.users,
-      'answers': instance.answers,
       'quest_images': instance.questImages,
     };
