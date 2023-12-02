@@ -100,7 +100,11 @@ class QuestCard extends StatelessWidget {
                     ],
                   ),
                 ),
-              Text(question.contents),
+              Text(
+                question.contents,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
               const Gap(12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
