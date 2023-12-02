@@ -22,9 +22,9 @@ class SignInScreen extends HookConsumerWidget {
     final isButtonEnabled = useValueListenable(authNotifier.isFormValid);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E0),
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFF5E0),
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(

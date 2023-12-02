@@ -23,7 +23,9 @@ class SignUpScreen extends HookConsumerWidget {
     final isButtonEnabled = useValueListenable(authNotifier.isFormValid);
 
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
