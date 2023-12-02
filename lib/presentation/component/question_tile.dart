@@ -50,7 +50,7 @@ class QuestionTile extends StatelessWidget {
       onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(24),
         ),
         color: Colors.white,
         child: Padding(
@@ -58,22 +58,75 @@ class QuestionTile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                question.users?.name ?? '',
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              if (question.questImages.isNotEmpty)
-                Center(
-                  child: QuestSwiper(question: question),
-                ),
-              const Gap(32),
-              Text(question.contents),
-              const Gap(8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(question.prefecture),
-                  Text(question.formattedDeadLine),
+                  // TODO: ユーザアイコンに変更する
+                  Row(
+                    children: [
+                      Container(
+                        width: 32,
+                        height: 32,
+                        decoration: const BoxDecoration(
+                          color: Colors.grey,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const Gap(4),
+                      // TODO: ユーザ名を表示する
+                      // Text(question.users?.name ?? '名無し'),
+                      const Text(
+                        '名無し',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  const Row(
+                    children: [
+                      Icon(Icons.timer, size: 16, color: Colors.grey),
+                      Gap(4),
+                      Text('2d17h'),
+                    ],
+                  ),
+                ],
+              ),
+              const Gap(12),
+              if (question.questImages.isNotEmpty)
+                Center(
+                  child: Column(
+                    children: [
+                      QuestSwiper(question: question),
+                      const Gap(12),
+                    ],
+                  ),
+                ),
+              Text(question.contents),
+              const Gap(12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      Icon(Icons.chat_bubble, size: 16, color: Colors.grey),
+                      Gap(4),
+                      // TODO: コメント数を表示する
+                      Text('10'),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.bookmark, size: 16, color: Colors.grey),
+                      const Gap(8),
+                      Row(
+                        children: [
+                          Image.asset('assets/images/point.png', width: 16),
+                          Gap(4),
+                          // TODO: ポイント数を表示する
+                          Text('50'),
+                        ],
+                      ),
+                    ],
+                  )
                 ],
               ),
             ],
