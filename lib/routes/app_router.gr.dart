@@ -34,9 +34,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     CompletionPetRoute.name: (routeData) {
+      final args = routeData.argsAs<CompletionPetRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CompletionPetScreen(),
+        child: CompletionPetScreen(
+          selectedPet: args.selectedPet,
+          key: args.key,
+        ),
       );
     },
     MapAutoRouterRoute.name: (routeData) {
@@ -230,16 +234,40 @@ class CommingSoonRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CompletionPetScreen]
-class CompletionPetRoute extends PageRouteInfo<void> {
-  const CompletionPetRoute({List<PageRouteInfo>? children})
-      : super(
+class CompletionPetRoute extends PageRouteInfo<CompletionPetRouteArgs> {
+  CompletionPetRoute({
+    required int selectedPet,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           CompletionPetRoute.name,
+          args: CompletionPetRouteArgs(
+            selectedPet: selectedPet,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CompletionPetRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CompletionPetRouteArgs> page =
+      PageInfo<CompletionPetRouteArgs>(name);
+}
+
+class CompletionPetRouteArgs {
+  const CompletionPetRouteArgs({
+    required this.selectedPet,
+    this.key,
+  });
+
+  final int selectedPet;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CompletionPetRouteArgs{selectedPet: $selectedPet, key: $key}';
+  }
 }
 
 /// generated route for
