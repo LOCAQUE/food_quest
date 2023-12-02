@@ -108,7 +108,7 @@ class SignUpScreen extends HookConsumerWidget {
                     )
                   else
                     CustomButton(
-                      text: 'はじめる',
+                      text: '次へ',
                       variant: ButtonVariant.disabled,
                       onPressed: () {},
                     ),
