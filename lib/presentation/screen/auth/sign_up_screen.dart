@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
-import 'package:food_quest/presentation/screen/top.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,8 +10,7 @@ import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
-
-import '../../../routes/app_router.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class SignUpScreen extends HookConsumerWidget {
@@ -51,19 +48,21 @@ class SignUpScreen extends HookConsumerWidget {
                     clipBehavior: Clip.none,
                     children: [
                       Align(
-                        alignment: Alignment(-0.5, 0),
-                        child: Container(
-                            width: 160,
-                            height: 160,
-                            child: Image.asset('assets/images/logo.png')),
+                        alignment: const Alignment(-0.5, 0),
+                        child: SizedBox(
+                          width: 160,
+                          height: 160,
+                          child: Image.asset('assets/images/logo.png'),
+                        ),
                       ),
                       const Positioned(
-                          top: 80,
-                          left: 155,
-                          child: Text(
-                            'へようこそ',
-                            style: TextStyle(fontSize: 20),
-                          ))
+                        top: 80,
+                        left: 155,
+                        child: Text(
+                          'へようこそ',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
 
@@ -120,11 +119,12 @@ class SignUpScreen extends HookConsumerWidget {
                     ),
                   const Gap(20),
                   CustomButton(
-                      text: 'アカウントをお持ちの方はこちら',
-                      variant: ButtonVariant.text,
-                      onPressed: () {
-                        context.pushRoute(const SignInRoute());
-                      })
+                    text: 'アカウントをお持ちの方はこちら',
+                    variant: ButtonVariant.text,
+                    onPressed: () {
+                      context.pushRoute(const SignInRoute());
+                    },
+                  ),
                 ],
               ),
             ),
