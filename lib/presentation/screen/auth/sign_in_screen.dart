@@ -32,12 +32,7 @@ class SignInScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (context) => const TopScreen(),
-              ),
-            );
+            context.pushRoute(const TopRoute());
           },
         ),
       ),
@@ -108,12 +103,7 @@ class SignInScreen extends HookConsumerWidget {
                     text: 'はじめての方はこちら',
                     variant: ButtonVariant.text,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (context) => const SignUpScreen(),
-                        ),
-                      );
+                      context.pushRoute(const SignUpRoute());
                     })
               ],
             ),

@@ -13,6 +13,8 @@ import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 
+import '../../../routes/app_router.dart';
+
 @RoutePage()
 class SignUpScreen extends HookConsumerWidget {
   const SignUpScreen({super.key});
@@ -33,12 +35,7 @@ class SignUpScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (context) => const TopScreen(),
-              ),
-            );
+            context.pushRoute(const TopRoute());
           },
         ),
       ),
@@ -126,12 +123,7 @@ class SignUpScreen extends HookConsumerWidget {
                       text: 'アカウントをお持ちの方はこちら',
                       variant: ButtonVariant.text,
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (context) => const SignInScreen(),
-                          ),
-                        );
+                        context.pushRoute(const SignInRoute());
                       })
                 ],
               ),

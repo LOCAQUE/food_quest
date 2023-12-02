@@ -35,12 +35,7 @@ class TopScreen extends StatelessWidget {
               text: 'ログイン',
               variant: ButtonVariant.secondary,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<SignInScreen>(
-                    builder: (context) => const SignInScreen(),
-                  ),
-                );
+                context.pushRoute(const SignInRoute());
               },
             ),
           ],
