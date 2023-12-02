@@ -16,7 +16,7 @@ class ProfileScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(
       body: DefaultTabController(
-        length: 2,
+        length: 1,
         child: Column(
           children: [
             Gap(50),
@@ -24,14 +24,12 @@ class ProfileScreen extends HookConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: 50),
               indicatorColor: AppColor.primaryColor,
               tabs: [
-                Tab(text: '自分の質問'),
                 Tab(text: '回答した質問'),
               ],
             ),
             Expanded(
               child: TabBarView(
                 children: [
-                  MyQuestListScreen(),
                   AnsweredQuestListScreen(),
                 ],
               ),

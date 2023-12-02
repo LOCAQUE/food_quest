@@ -45,7 +45,7 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
     try {
       final response = await supabaseClient
           .from('quests')
-          .select<PostgrestList>('*, users(*), answers(*), quest_images(*)')
+          .select<PostgrestList>('*, users(*), quest_images(*)')
           .in_('prefecture', selectedPrefectures!)
           .neq('userId', currentId);
 
@@ -161,6 +161,21 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
         await supabaseClient.from('quest_images').insert(sendQuestImageData);
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Answer>?> getAnswerList({required int questId}) async {
+    try {
+      final response = await supabaseClient
+          .from('answers')
+          .select<PostgrestList>()
+          .eq('questId', questId);
+
+      final answerList = response.map(Answer.fromJson).toList();
+      return answerList;
     } catch (e) {
       rethrow;
     }

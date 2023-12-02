@@ -1,3 +1,4 @@
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/mon_choice_data.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -44,6 +45,9 @@ abstract class ApiRepository {
     required int questId,
     required List<String> imageUrls,
   });
+
+  //回答一覧を取得する
+  Future<List<Answer>?> getAnswerList({required int questId});
   //選択したモンスターを登録する
   Future<void> addMonster(int selectedPet);
   //選択しているモンスター情報を取得する

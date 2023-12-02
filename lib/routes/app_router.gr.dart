@@ -27,16 +27,34 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const BottomNavigationScreen(),
       );
     },
-    ComingSoonRoute.name: (routeData) {
+    CommingSoonRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ComingSoonScreen(),
+        child: const CommingSoonScreen(),
       );
     },
     CompletionPetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const CompletionPetScreen(),
+      );
+    },
+    MapAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MapAutoRouterScreen(),
+      );
+    },
+    MapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MapScreen(),
+      );
+    },
+    MapSearchRoute.name: (routeData) {
+      return AutoRoutePage<Location?>(
+        routeData: routeData,
+        child: const MapSearchScreen(),
       );
     },
     PetRoute.name: (routeData) {
@@ -104,6 +122,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const QuestSelectPrefectureScreen(),
+      );
+    },
+    RecommendedSpotsAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecommendedSpotsAutoRouterScreen(),
+      );
+    },
+    RecommendedSpotsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecommendedSpotsScreen(),
       );
     },
     SelectPetRoute.name: (routeData) {
@@ -180,15 +210,15 @@ class BottomNavigationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ComingSoonScreen]
-class ComingSoonRoute extends PageRouteInfo<void> {
-  const ComingSoonRoute({List<PageRouteInfo>? children})
+/// [CommingSoonScreen]
+class CommingSoonRoute extends PageRouteInfo<void> {
+  const CommingSoonRoute({List<PageRouteInfo>? children})
       : super(
-          ComingSoonRoute.name,
+          CommingSoonRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ComingSoonRoute';
+  static const String name = 'CommingSoonRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -203,6 +233,48 @@ class CompletionPetRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CompletionPetRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MapAutoRouterScreen]
+class MapAutoRouterRoute extends PageRouteInfo<void> {
+  const MapAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          MapAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MapAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MapScreen]
+class MapRoute extends PageRouteInfo<void> {
+  const MapRoute({List<PageRouteInfo>? children})
+      : super(
+          MapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MapRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MapSearchScreen]
+class MapSearchRoute extends PageRouteInfo<void> {
+  const MapSearchRoute({List<PageRouteInfo>? children})
+      : super(
+          MapSearchRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MapSearchRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -405,6 +477,34 @@ class QuestSelectPrefectureRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'QuestSelectPrefectureRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RecommendedSpotsAutoRouterScreen]
+class RecommendedSpotsAutoRouterRoute extends PageRouteInfo<void> {
+  const RecommendedSpotsAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          RecommendedSpotsAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecommendedSpotsAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RecommendedSpotsScreen]
+class RecommendedSpotsRoute extends PageRouteInfo<void> {
+  const RecommendedSpotsRoute({List<PageRouteInfo>? children})
+      : super(
+          RecommendedSpotsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecommendedSpotsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

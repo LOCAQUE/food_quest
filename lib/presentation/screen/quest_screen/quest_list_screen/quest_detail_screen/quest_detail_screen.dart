@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -18,7 +21,31 @@ class QuestDetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final answers = question.answers ?? [];
+    final answers = useState<List<Answer>?>([]);
+    useEffect(
+      () {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref
+              .read(answerNotiierProvider.notifier)
+              .getAnswerList(questId: question.id);
+        });
+        return null;
+      },
+      const [],
+    );
+
+    ref.watch(answerNotiierProvider).when(
+      data: (value) {
+        print(value);
+        answers.value = value;
+      },
+      loading: () {
+        debugPrint('loading');
+      },
+      error: (error, stackTrace) {
+        debugPrint(error.toString());
+      },
+    );
 
     return Scaffold(
       body: ListView(
@@ -61,13 +88,13 @@ class QuestDetailScreen extends HookConsumerWidget {
                 ),
               ),
               const Gap(8),
-              if (answers.isEmpty) const Center(child: Text('回答がありません')),
+              if (answers.value!.isEmpty) const Center(child: Text('回答がありません')),
               //回答
-              if (answers.isNotEmpty)
-                ...List.generate(answers.length, (index) {
+              if (answers.value!.isNotEmpty)
+                ...List.generate(answers.value!.length, (index) {
                   return AnswerTile(
                     user: question.users!,
-                    answer: answers[index],
+                    answer: answers.value![index],
                   );
                 }),
             ],

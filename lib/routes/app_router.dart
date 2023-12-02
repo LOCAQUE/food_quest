@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/presentation/screen/comming_soon_screen/comming_soon_screen.dart';
+import 'package:food_quest/presentation/screen/recommended_spots_screen/map_screen/map_screen.dart';
+import 'package:food_quest/presentation/screen/recommended_spots_screen/map_screen/map_search_screen.dart';
+import 'package:food_quest/presentation/screen/recommended_spots_screen/recommended_spots_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_image_detail_screen.dart';
+import 'package:google_place/google_place.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
@@ -10,7 +15,6 @@ import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
 import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
-import 'package:food_quest/presentation/screen/comming_soon_screen.dart';
 import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
 import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_home_screen.dart';
@@ -52,29 +56,29 @@ class AppRouter extends _$AppRouter {
         page: BottomNavigationRoute.page,
         children: [
           AutoRoute(
-            page: ProfileRoute.page,
+            page: RecommendedSpotsAutoRouterRoute.page,
             initial: true,
+            children: [
+              AutoRoute(page: RecommendedSpotsRoute.page, initial: true),
+              AutoRoute(page: MapRoute.page),
+            ],
           ),
-          AutoRoute(page: ComingSoonRoute.page),
+          AutoRoute(page: CommingSoonRoute.page),
           AutoRoute(
             page: QuestHomeAutoRouterRoute.page,
             children: [
-              AutoRoute(
-                page: QuestHomeAutoRouterRoute.page,
-                children: [
-                  AutoRoute(page: QuestHomeRoute.page),
-                  AutoRoute(page: QuestDetailRoute.page),
-                ],
-              ),
-              AutoRoute(page: QuestSelectPrefectureRoute.page),
+              AutoRoute(page: QuestHomeRoute.page, initial: true),
+              AutoRoute(page: QuestDetailRoute.page),
             ],
           ),
           AutoRoute(page: PetRoute.page),
           AutoRoute(page: SettingRoute.page),
         ],
       ),
-      AutoRoute(page: QuestImageDetailRoute.page),
       //ボトムバーをはずしたい場合はこちら
+      AutoRoute(page: QuestSelectPrefectureRoute.page),
+      AutoRoute(page: QuestImageDetailRoute.page),
+      AutoRoute(page: MapSearchRoute.page),
     ];
   }
 }

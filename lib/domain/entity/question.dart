@@ -37,7 +37,6 @@ abstract class QuestionResponse with _$QuestionResponse {
     required DateTime deadLine,
     required String prefecture,
     UserData? users,
-    List<Answer>? answers,
     @JsonKey(name: 'quest_images') @Default([]) List<QuestImage> questImages,
   }) = _QuestionResponse;
 

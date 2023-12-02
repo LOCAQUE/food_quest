@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'answer_notifier.dart';
+part of 'place_detail_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$answerNotiierHash() => r'9e161ac4c71fc5e6c3347a99d54e17878c2fad19';
+String _$placeDetailNotifierHash() =>
+    r'e416b9bbf51840a930e041c114952c6f86108e1c';
 
-/// See also [AnswerNotiier].
-@ProviderFor(AnswerNotiier)
-final answerNotiierProvider =
-    AutoDisposeAsyncNotifierProvider<AnswerNotiier, List<Answer>?>.internal(
-  AnswerNotiier.new,
-  name: r'answerNotiierProvider',
+/// See also [PlaceDetailNotifier].
+@ProviderFor(PlaceDetailNotifier)
+final placeDetailNotifierProvider = AutoDisposeAsyncNotifierProvider<
+    PlaceDetailNotifier, DetailsResponse?>.internal(
+  PlaceDetailNotifier.new,
+  name: r'placeDetailNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$answerNotiierHash,
+      : _$placeDetailNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AnswerNotiier = AutoDisposeAsyncNotifier<List<Answer>?>;
+typedef _$PlaceDetailNotifier = AutoDisposeAsyncNotifier<DetailsResponse?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

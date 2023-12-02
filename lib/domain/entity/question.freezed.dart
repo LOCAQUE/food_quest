@@ -276,7 +276,6 @@ mixin _$QuestionResponse {
   DateTime get deadLine => throw _privateConstructorUsedError;
   String get prefecture => throw _privateConstructorUsedError;
   UserData? get users => throw _privateConstructorUsedError;
-  List<Answer>? get answers => throw _privateConstructorUsedError;
   @JsonKey(name: 'quest_images')
   List<QuestImage> get questImages => throw _privateConstructorUsedError;
 
@@ -302,7 +301,6 @@ abstract class $QuestionResponseCopyWith<$Res> {
       DateTime deadLine,
       String prefecture,
       UserData? users,
-      List<Answer>? answers,
       @JsonKey(name: 'quest_images') List<QuestImage> questImages});
 
   $UserDataCopyWith<$Res>? get users;
@@ -330,7 +328,6 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
     Object? deadLine = null,
     Object? prefecture = null,
     Object? users = freezed,
-    Object? answers = freezed,
     Object? questImages = null,
   }) {
     return _then(_value.copyWith(
@@ -370,10 +367,6 @@ class _$QuestionResponseCopyWithImpl<$Res, $Val extends QuestionResponse>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as UserData?,
-      answers: freezed == answers
-          ? _value.answers
-          : answers // ignore: cast_nullable_to_non_nullable
-              as List<Answer>?,
       questImages: null == questImages
           ? _value.questImages
           : questImages // ignore: cast_nullable_to_non_nullable
@@ -412,7 +405,6 @@ abstract class _$$QuestionResponseImplCopyWith<$Res>
       DateTime deadLine,
       String prefecture,
       UserData? users,
-      List<Answer>? answers,
       @JsonKey(name: 'quest_images') List<QuestImage> questImages});
 
   @override
@@ -439,7 +431,6 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
     Object? deadLine = null,
     Object? prefecture = null,
     Object? users = freezed,
-    Object? answers = freezed,
     Object? questImages = null,
   }) {
     return _then(_$QuestionResponseImpl(
@@ -479,10 +470,6 @@ class __$$QuestionResponseImplCopyWithImpl<$Res>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as UserData?,
-      answers: freezed == answers
-          ? _value._answers
-          : answers // ignore: cast_nullable_to_non_nullable
-              as List<Answer>?,
       questImages: null == questImages
           ? _value._questImages
           : questImages // ignore: cast_nullable_to_non_nullable
@@ -504,11 +491,9 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       required this.deadLine,
       required this.prefecture,
       this.users,
-      final List<Answer>? answers,
       @JsonKey(name: 'quest_images')
       final List<QuestImage> questImages = const []})
-      : _answers = answers,
-        _questImages = questImages,
+      : _questImages = questImages,
         super._();
 
   factory _$QuestionResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -532,16 +517,6 @@ class _$QuestionResponseImpl extends _QuestionResponse {
   final String prefecture;
   @override
   final UserData? users;
-  final List<Answer>? _answers;
-  @override
-  List<Answer>? get answers {
-    final value = _answers;
-    if (value == null) return null;
-    if (_answers is EqualUnmodifiableListView) return _answers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   final List<QuestImage> _questImages;
   @override
   @JsonKey(name: 'quest_images')
@@ -553,7 +528,7 @@ class _$QuestionResponseImpl extends _QuestionResponse {
 
   @override
   String toString() {
-    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, prefecture: $prefecture, users: $users, answers: $answers, questImages: $questImages)';
+    return 'QuestionResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, minimumBudget: $minimumBudget, maximumBudget: $maximumBudget, deadLine: $deadLine, prefecture: $prefecture, users: $users, questImages: $questImages)';
   }
 
   @override
@@ -576,7 +551,6 @@ class _$QuestionResponseImpl extends _QuestionResponse {
             (identical(other.prefecture, prefecture) ||
                 other.prefecture == prefecture) &&
             (identical(other.users, users) || other.users == users) &&
-            const DeepCollectionEquality().equals(other._answers, _answers) &&
             const DeepCollectionEquality()
                 .equals(other._questImages, _questImages));
   }
@@ -594,7 +568,6 @@ class _$QuestionResponseImpl extends _QuestionResponse {
       deadLine,
       prefecture,
       users,
-      const DeepCollectionEquality().hash(_answers),
       const DeepCollectionEquality().hash(_questImages));
 
   @JsonKey(ignore: true)
@@ -623,7 +596,6 @@ abstract class _QuestionResponse extends QuestionResponse {
           required final DateTime deadLine,
           required final String prefecture,
           final UserData? users,
-          final List<Answer>? answers,
           @JsonKey(name: 'quest_images') final List<QuestImage> questImages}) =
       _$QuestionResponseImpl;
   const _QuestionResponse._() : super._();
@@ -649,8 +621,6 @@ abstract class _QuestionResponse extends QuestionResponse {
   String get prefecture;
   @override
   UserData? get users;
-  @override
-  List<Answer>? get answers;
   @override
   @JsonKey(name: 'quest_images')
   List<QuestImage> get questImages;
