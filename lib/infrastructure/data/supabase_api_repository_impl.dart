@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:food_quest/domain/entity/monster.dart';
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
 import 'package:image_picker/image_picker.dart';
@@ -175,6 +176,45 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
       final answerList = response.map(Answer.fromJson).toList();
       return answerList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> crateMonster({
+    required int baseMonster,
+    required int experience,
+    required String monName,
+  }) async {
+    final currentId = supabaseClient.auth.currentUser?.id;
+
+    final sendMonsterData = Monster(
+      baseMonster: baseMonster,
+      experience: experience,
+      monName: monName,
+      userId: currentId!,
+    );
+
+    try {
+      await supabaseClient.from('monsters').insert(sendMonsterData);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Monster?> getMonster() async {
+    final currentId = supabaseClient.auth.currentUser?.id;
+
+    try {
+      final response = await supabaseClient
+          .from('monsters')
+          .select<PostgrestList>()
+          .eq('userId', currentId);
+
+      final monster = response.map(Monster.fromJson).toList().first;
+      return monster;
     } catch (e) {
       rethrow;
     }
