@@ -39,23 +39,35 @@ class SignUpScreen extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(40),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Gap(10),
-                  const Text(
-                    '新規登録',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Align(
+                        alignment: Alignment(-0.5, 0),
+                        child: Container(
+                            width: 160,
+                            height: 160,
+                            child: Image.asset('assets/images/logo.png')),
+                      ),
+                      const Positioned(
+                          top: 80,
+                          left: 155,
+                          child: Text(
+                            'へようこそ',
+                            style: TextStyle(fontSize: 20),
+                          ))
+                    ],
                   ),
+
                   const Gap(10),
                   Padding(
                     padding: const EdgeInsets.only(top: 28),
                     child: CustomTextField(
                       title: 'メールアドレス',
                       controller: authNotifier.emailController,
-                      hintText: 'emailを入力してください',
+                      hintText: 'メールアドレスを入力してください',
                     ),
                   ),
                   Padding(
@@ -64,7 +76,7 @@ class SignUpScreen extends HookConsumerWidget {
                       title: 'パスワード',
                       isObscure: true,
                       controller: authNotifier.passwordController,
-                      hintText: 'passwordを入力してください',
+                      hintText: 'パスワードを入力してください',
                     ),
                   ),
                   const Align(
@@ -77,7 +89,7 @@ class SignUpScreen extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  const Gap(250),
+                  const Gap(200),
                   // linterによる警告を抑制するために、if文で分岐させています。
                   if (isButtonEnabled)
                     CustomButton(
