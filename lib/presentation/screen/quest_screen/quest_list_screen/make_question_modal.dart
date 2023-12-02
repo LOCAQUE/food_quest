@@ -51,8 +51,8 @@ class MakeQuestionModal extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final content = useTextEditingController();
-    final minimumBudget = useTextEditingController();
-    final maximumBudget = useTextEditingController();
+    final minimumBudget = useTextEditingController(text: '0');
+    final maximumBudget = useTextEditingController(text: '0');
     final deadLine = useTextEditingController();
     final prefecture = useTextEditingController();
 

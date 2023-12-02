@@ -52,8 +52,8 @@ class MakeAnswerModal extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final filterChipList = ref.watch(filterChipListProvider);
     final answerContent = useTextEditingController();
-    final minimumBudget = useTextEditingController();
-    final maximumBudget = useTextEditingController();
+    final minimumBudget = useTextEditingController(text: '0');
+    final maximumBudget = useTextEditingController(text: '0');
     final isKeyboard = useState(false);
     final textFieldScrollController = useScrollController();
 
