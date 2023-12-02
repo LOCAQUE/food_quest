@@ -47,4 +47,7 @@ abstract class ApiRepository {
 
   //回答一覧を取得する
   Future<List<Answer>?> getAnswerList({required int questId});
+
+  //ベストアンサーにする
+  Future<void> updateBestAnswer({required int answerId});
 }

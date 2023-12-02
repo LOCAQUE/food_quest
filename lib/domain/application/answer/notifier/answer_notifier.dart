@@ -46,4 +46,14 @@ class AnswerNotiier extends _$AnswerNotiier {
       state = AsyncValue.error(e, stackTrace);
     }
   }
+
+  Future<void> updateBestAnswer({required int answerId}) async {
+    try {
+      final repository = ref.read(apiRepositoryProvider);
+      await repository.updateBestAnswer(answerId: answerId);
+    } catch (e, stackTrace) {
+      debugPrint(e.toString());
+      state = AsyncValue.error(e, stackTrace);
+    }
+  }
 }

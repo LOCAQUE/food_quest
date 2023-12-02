@@ -101,10 +101,15 @@ class QuestDetailScreen extends HookConsumerWidget {
               //回答
               if (answers.value!.isNotEmpty)
                 ...List.generate(answers.value!.length, (index) {
+                  //回答のベストアンサーがあるかどうか
+                  final isContainBestAnswer =
+                      answers.value!.any((answer) => answer.bestAnswer);
+
                   return AnswerTile(
                     user: question.users!,
                     answer: answers.value![index],
                     isMyQuest: isMyQuest,
+                    isContainBestAnswer: isContainBestAnswer,
                   );
                 }),
             ],

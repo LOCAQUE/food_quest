@@ -171,10 +171,22 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
       final response = await supabaseClient
           .from('answers')
           .select<PostgrestList>()
-          .eq('questId', questId);
+          .eq('questId', questId)
+          .order('id', ascending: true);
 
       final answerList = response.map(Answer.fromJson).toList();
       return answerList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateBestAnswer({required int answerId}) async {
+    try {
+      await supabaseClient
+          .from('answers')
+          .update({'bestAnswer': true}).eq('id', answerId);
     } catch (e) {
       rethrow;
     }
