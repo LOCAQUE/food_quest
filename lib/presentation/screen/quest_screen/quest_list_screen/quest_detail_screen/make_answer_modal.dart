@@ -50,7 +50,6 @@ class MakeAnswerModal extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final answerNotifier = ref.watch(answerNotiierProvider.notifier);
     final filterChipList = ref.watch(filterChipListProvider);
     final answerContent = useTextEditingController();
     final minimumBudget = useTextEditingController();
@@ -108,18 +107,21 @@ class MakeAnswerModal extends HookConsumerWidget {
                           variant: ButtonVariant.primary,
                           size: ButtonSize.small,
                           onPressed: () async {
-                            await answerNotifier
+                            await ref
+                                .read(answerNotiierProvider.notifier)
                                 .createAnswer(
-                              questId: questId!,
-                              answerContent: answerContent.text,
-                              minimumBudget: minimumBudget.text,
-                              maximumBudget: maximumBudget.text,
-                            )
+                                  questId: questId!,
+                                  answerContent: answerContent.text,
+                                  minimumBudget: minimumBudget.text,
+                                  maximumBudget: maximumBudget.text,
+                                )
                                 .then((value) {
                               Navigator.of(context).pop();
                             });
-                            // providerを強制破棄させる
-                            ref.refresh(questListNotifierProvider);
+                            // 再取得
+                            await ref
+                                .read(answerNotiierProvider.notifier)
+                                .getAnswerList(questId: questId!);
                             return;
                           },
                         ),
