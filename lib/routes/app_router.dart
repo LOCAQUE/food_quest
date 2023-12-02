@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:food_quest/presentation/screen/comming_soon_screen/comming_soon_screen.dart';
+import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 import 'package:food_quest/presentation/screen/recommended_spots_screen/map_screen/map_screen.dart';
 import 'package:food_quest/presentation/screen/recommended_spots_screen/map_screen/map_search_screen.dart';
 import 'package:food_quest/presentation/screen/recommended_spots_screen/recommended_spots_screen.dart';
@@ -63,7 +63,13 @@ class AppRouter extends _$AppRouter {
               AutoRoute(page: MapRoute.page),
             ],
           ),
-          AutoRoute(page: CommingSoonRoute.page),
+          AutoRoute(
+            page: ProfileAutoRouterRoute.page,
+            children: [
+              AutoRoute(page: ProfileRoute.page, initial: true),
+              AutoRoute(page: QuestDetailRoute.page),
+            ],
+          ),
           AutoRoute(
             page: QuestHomeAutoRouterRoute.page,
             children: [
