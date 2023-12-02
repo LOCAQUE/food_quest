@@ -68,9 +68,6 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
       //idが帰ってきたらidを使用してDBにユーザー作成する
       if (authResponse.user?.id != null) {
         await createUserData(uid: authResponse.user!.id);
-        //登録したユーザーを取得
-        final currentUser = await getCurrentUser(uid: authResponse.user!.id);
-        state = state.copyWith(currentUser: currentUser);
       }
       //idが帰ってこなければUserDataはnullになる
       //nullの場合HomeScreenでエラーダイアログ出るようにする
@@ -112,27 +109,12 @@ class AuthNotifier extends StateNotifier<AuthNotifierState> {
     }
   }
 
-  Future<UserData?> getCurrentUser({required String uid}) async {
-    try {
-      final response =
-          await client.from('users').select<PostgrestList>().eq('id', uid);
-      return UserData.fromJson(response.first);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    return null;
-  }
-
   Future<void> signIn() async {
     try {
-      final authResponse = await client.auth.signInWithPassword(
+      await client.auth.signInWithPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-      if (authResponse.user?.id != null) {
-        final currentUser = await getCurrentUser(uid: authResponse.user!.id);
-        state = state.copyWith(currentUser: currentUser);
-      }
       return;
     } on AuthException catch (e) {
       debugPrint(e.toString());
