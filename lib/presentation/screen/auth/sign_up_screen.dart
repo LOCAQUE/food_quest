@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -85,11 +86,8 @@ class SignUpScreen extends HookConsumerWidget {
                       text: 'はじめる',
                       onPressed: () async {
                         await authNotifier.signUp().then((_) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (context) => const SignUpProfileScreen(),
-                            ),
+                          context.pushRoute(
+                            QuestSelectPrefectureRoute(isSignUp: true),
                           );
                         });
                       },

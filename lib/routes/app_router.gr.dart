@@ -119,9 +119,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     QuestSelectPrefectureRoute.name: (routeData) {
+      final args = routeData.argsAs<QuestSelectPrefectureRouteArgs>(
+          orElse: () => const QuestSelectPrefectureRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const QuestSelectPrefectureScreen(),
+        child: QuestSelectPrefectureScreen(
+          isSignUp: args.isSignUp,
+          key: args.key,
+        ),
       );
     },
     RecommendedSpotsAutoRouterRoute.name: (routeData) {
@@ -469,16 +474,41 @@ class QuestRouteArgs {
 
 /// generated route for
 /// [QuestSelectPrefectureScreen]
-class QuestSelectPrefectureRoute extends PageRouteInfo<void> {
-  const QuestSelectPrefectureRoute({List<PageRouteInfo>? children})
-      : super(
+class QuestSelectPrefectureRoute
+    extends PageRouteInfo<QuestSelectPrefectureRouteArgs> {
+  QuestSelectPrefectureRoute({
+    bool? isSignUp,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           QuestSelectPrefectureRoute.name,
+          args: QuestSelectPrefectureRouteArgs(
+            isSignUp: isSignUp,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'QuestSelectPrefectureRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<QuestSelectPrefectureRouteArgs> page =
+      PageInfo<QuestSelectPrefectureRouteArgs>(name);
+}
+
+class QuestSelectPrefectureRouteArgs {
+  const QuestSelectPrefectureRouteArgs({
+    this.isSignUp,
+    this.key,
+  });
+
+  final bool? isSignUp;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QuestSelectPrefectureRouteArgs{isSignUp: $isSignUp, key: $key}';
+  }
 }
 
 /// generated route for

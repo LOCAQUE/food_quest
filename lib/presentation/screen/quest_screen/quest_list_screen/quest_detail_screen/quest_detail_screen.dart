@@ -36,7 +36,6 @@ class QuestDetailScreen extends HookConsumerWidget {
 
     ref.watch(answerNotiierProvider).when(
       data: (value) {
-        print(value);
         answers.value = value;
       },
       loading: () {
