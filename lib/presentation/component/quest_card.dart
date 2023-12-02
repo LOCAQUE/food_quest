@@ -26,7 +26,7 @@ class QuestionTiles extends HookConsumerWidget {
 
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-          child: QuestionTile(question: question, onTap: onTap),
+          child: QuestCard(question: question, onTap: onTap),
         );
       },
       // itemExtent: 100,
@@ -34,8 +34,8 @@ class QuestionTiles extends HookConsumerWidget {
   }
 }
 
-class QuestionTile extends StatelessWidget {
-  const QuestionTile({
+class QuestCard extends StatelessWidget {
+  const QuestCard({
     required this.question,
     required this.onTap,
     super.key,

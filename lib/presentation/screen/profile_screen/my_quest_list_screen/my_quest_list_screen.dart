@@ -11,7 +11,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/presentation/component/loading_widget.dart';
-import 'package:food_quest/presentation/component/question_tile.dart';
+import 'package:food_quest/presentation/component/quest_card.dart';
 import 'package:food_quest/routes/app_router.dart';
 
 class MyQuestListScreen extends HookConsumerWidget {
@@ -51,7 +51,7 @@ class MyQuestListScreen extends HookConsumerWidget {
 
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-            child: QuestionTile(
+            child: QuestCard(
               question: question!,
               onTap: () {
                 context.pushRoute(QuestDetailRoute(question: question));

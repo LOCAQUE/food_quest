@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/gen/colors.gen.dart';
-import 'package:food_quest/presentation/component/question_tile.dart';
+import 'package:food_quest/presentation/component/quest_card.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/make_question_modal.dart';
 import 'package:food_quest/routes/app_router.dart';
 
@@ -41,7 +41,7 @@ class QuestScreen extends HookConsumerWidget {
 
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                child: QuestionTile(
+                child: QuestCard(
                   question: question,
                   onTap: () {
                     context.pushRoute(QuestDetailRoute(question: question));
