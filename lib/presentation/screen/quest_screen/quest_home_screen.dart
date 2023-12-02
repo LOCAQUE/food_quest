@@ -25,32 +25,35 @@ class QuestHomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final questListByPrefecture =
-        useState<Map<String, List<QuestionResponse>>>({});
+    final questListState = useState<Map<String, List<QuestionResponse>>>({});
 
-    final selectedPrefecture = useState<List<String>>([]);
+    final prefecturesState = useState<List<String>>([]);
 
-    final selectPrefectureProvider =
-        ref.watch(selectPrefectureNotifierProvider);
+    final prefectures = ref.watch(selectPrefectureNotifierProvider);
 
-    final questListByPrefectureProvider =
-        ref.watch(groupePrefectureUsecaseProvider);
+    final questList = ref.watch(groupePrefectureUsecaseProvider);
 
-    questListByPrefectureProvider.when(
-      data: (data) => questListByPrefecture.value = data,
-      loading: () => const LoadingWidget(),
-      error: (error, stackTrace) => Exception(error),
-    );
+    if (questList is AsyncError || prefectures is AsyncError) {
+      final questListError = questList is AsyncError
+          ? (questList as AsyncError).error.toString()
+          : '';
+      final prefecturesError = prefectures is AsyncError
+          ? (prefectures as AsyncError).error.toString()
+          : '';
+      print('Error: $questListError $prefecturesError');
+      return Text('Error: $questListError $prefecturesError');
+    }
 
-    selectPrefectureProvider.when(
-      data: (data) => selectedPrefecture.value = data,
-      loading: () => const LoadingWidget(),
-      error: (error, stackTrace) => Exception(error),
-    );
+    if (questList is AsyncLoading || prefectures is AsyncLoading) {
+      return const LoadingWidget();
+    }
+
+    questListState.value = questList.value!;
+    prefecturesState.value = prefectures.value!;
 
     return Scaffold(
       body: DefaultTabController(
-        length: selectedPrefecture.value.length,
+        length: prefecturesState.value.length,
         child: Column(
           children: [
             const TopBarWIdget(),
@@ -59,7 +62,7 @@ class QuestHomeScreen extends HookConsumerWidget {
               child: TabBar(
                 indicatorColor: AppColor.primaryColor,
                 tabs: [
-                  ...selectedPrefecture.value.map((prefecture) {
+                  ...prefecturesState.value.map((prefecture) {
                     return Tab(
                       child: Text(
                         prefecture,
@@ -73,9 +76,9 @@ class QuestHomeScreen extends HookConsumerWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  ...selectedPrefecture.value.map((prefecture) {
+                  ...prefecturesState.value.map((prefecture) {
                     return QuestScreen(
-                      questions: questListByPrefecture.value[prefecture] ?? [],
+                      questions: questListState.value[prefecture] ?? [],
                     );
                   }),
                 ],

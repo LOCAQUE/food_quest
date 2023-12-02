@@ -10,7 +10,6 @@ import 'package:food_quest/domain/application/notifier/auth_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
-import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 
 @RoutePage()
 class SignUpScreen extends HookConsumerWidget {
