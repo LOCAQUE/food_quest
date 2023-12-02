@@ -6,6 +6,7 @@ enum ButtonVariant {
   primary,
   outline,
   disabled,
+  secondary,
 }
 
 Color _buttonColor(ButtonVariant style) {
@@ -16,6 +17,8 @@ Color _buttonColor(ButtonVariant style) {
       return AppColor.primaryColor;
     case ButtonVariant.disabled:
       return AppColor.disabledColor;
+    case ButtonVariant.secondary:
+      return AppColor.white;
   }
 }
 
@@ -52,7 +55,7 @@ double _buttonRadius(ButtonRadius style) {
     case ButtonRadius.square:
       return 10;
     case ButtonRadius.full:
-      return 100;
+      return 999;
   }
 }
 
@@ -99,6 +102,12 @@ class CustomButton extends StatelessWidget {
             return BuildDisabledButton(
               text: text,
               radius: radius,
+            );
+          case ButtonVariant.secondary:
+            return BuildSecondaryButton(
+              text: text,
+              radius: radius,
+              onPressed: onPressed,
             );
         }
       }(),
@@ -181,6 +190,35 @@ class BuildOutlineButton extends StatelessWidget {
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         foregroundColor: backgroundColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+      ),
+      child: Text(text),
+    );
+  }
+}
+
+class BuildSecondaryButton extends StatelessWidget {
+  const BuildSecondaryButton({
+    required this.text,
+    required this.onPressed,
+    required this.radius,
+    super.key,
+  });
+
+  final String text;
+  final double radius;
+  final dynamic Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.secondary);
+
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        foregroundColor: AppColor.primaryColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
       ),

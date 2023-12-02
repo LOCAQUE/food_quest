@@ -13,27 +13,13 @@ import 'package:flutter/material.dart';
 class AppColor {
   AppColor._();
 
-  /// Color: #6D8B74
   static const Color accentColor = Color(0xFF6D8B74);
-
-  /// Color: #FFF5E0
-  static const Color backgroundColor = Color(0xFFFFF5E0);
-
-  /// Color: #8E8E93
-  static const Color disabledColor = Color(0xFF8E8E93);
-
-  /// Color: #FAF9F4
+  static const Color backgroundColor = Color(0xFFFDFDFD);
+  static const Color disabledColor = Color(0xFFB3B1AE);
   static const Color firstColor = Color(0xFFFAF9F4);
-
-  /// Color: #EE7D50
-  static const Color primaryColor = Color(0xFFEE7D50);
-
-  /// Color: #D0C9C0
-  static const Color secondColor = Color(0xFFD0C9C0);
-
-  /// Color: #4d4d4d
+  static const Color primaryColor = Color(0xFFEE8902);
+  static const Color secondColor = white;
   static const Color textColor = Color(0xFF4D4D4D);
-
-  /// Color: #FFFFFF
   static const Color white = Color(0xFFFFFFFF);
+  static const Color danger = Color(0xFFFF2D55);
 }
