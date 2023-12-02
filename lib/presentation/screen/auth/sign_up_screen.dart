@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
+import 'package:food_quest/presentation/screen/top.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,7 +31,12 @@ class SignUpScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            context.router.pop();
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (context) => const TopScreen(),
+              ),
+            );
           },
         ),
       ),
@@ -89,12 +96,12 @@ class SignUpScreen extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  const Gap(200),
+                  const Gap(140),
                   // linterによる警告を抑制するために、if文で分岐させています。
                   if (isButtonEnabled)
                     CustomButton(
                       variant: ButtonVariant.primary,
-                      text: 'はじめる',
+                      text: '次へ',
                       onPressed: () async {
                         await authNotifier.signUp().then((_) {
                           Navigator.push(
@@ -112,6 +119,18 @@ class SignUpScreen extends HookConsumerWidget {
                       variant: ButtonVariant.disabled,
                       onPressed: () {},
                     ),
+                  const Gap(20),
+                  CustomButton(
+                      text: 'アカウントをお持ちの方はこちら',
+                      variant: ButtonVariant.text,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (context) => const SignInScreen(),
+                          ),
+                        );
+                      })
                 ],
               ),
             ),

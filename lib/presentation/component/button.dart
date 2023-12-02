@@ -7,6 +7,7 @@ enum ButtonVariant {
   outline,
   disabled,
   secondary,
+  text,
 }
 
 enum ButtonSize { small, large, extraSmall }
@@ -31,6 +32,8 @@ Color _buttonColor(ButtonVariant style) {
       return AppColor.disabledColor;
     case ButtonVariant.secondary:
       return AppColor.white;
+    case ButtonVariant.text:
+      return Colors.transparent;
   }
 }
 
@@ -143,6 +146,13 @@ class CustomButton extends StatelessWidget {
               textSize: textSize,
               radius: radius,
               shadow: buttonShadow,
+              onPressed: onPressed,
+            );
+          case ButtonVariant.text:
+            return BuildTextButton(
+              text: text,
+              textSize: textSize,
+              radius: radius,
               onPressed: onPressed,
             );
         }
@@ -280,6 +290,37 @@ class BuildSecondaryButton extends StatelessWidget {
         elevation: shadow
             ? _buttonShadow(ButtonShadow.shadow)
             : _buttonShadow(ButtonShadow.noShadow),
+      ),
+      child: Text(text, style: TextStyle(fontSize: textSize)),
+    );
+  }
+}
+
+class BuildTextButton extends StatelessWidget {
+  const BuildTextButton({
+    required this.text,
+    required this.textSize,
+    required this.onPressed,
+    required this.radius,
+    super.key,
+  });
+
+  final String text;
+  final double textSize;
+  final double radius;
+  final dynamic Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.text);
+
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        backgroundColor: backgroundColor,
+        foregroundColor: AppColor.textColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
       ),
       child: Text(text, style: TextStyle(fontSize: textSize)),
     );

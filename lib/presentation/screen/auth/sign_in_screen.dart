@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
+import 'package:food_quest/presentation/screen/top.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -30,7 +32,12 @@ class SignInScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (context) => const TopScreen(),
+              ),
+            );
           },
         ),
       ),
@@ -77,7 +84,7 @@ class SignInScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const Gap(330),
+                const Gap(290),
                 // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
                 if (isButtonEnabled)
                   CustomButton(
@@ -95,6 +102,19 @@ class SignInScreen extends HookConsumerWidget {
                     variant: ButtonVariant.disabled,
                     onPressed: () {},
                   ),
+
+                const Gap(20),
+                CustomButton(
+                    text: 'はじめての方はこちら',
+                    variant: ButtonVariant.text,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => const SignUpScreen(),
+                        ),
+                      );
+                    })
               ],
             ),
           ),
