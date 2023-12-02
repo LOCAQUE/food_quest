@@ -119,7 +119,7 @@ class QuestCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.bookmark, size: 16, color: Colors.grey),
+                      BookmarkIconWidget(),
                       const Gap(8),
                       Row(
                         children: [
@@ -165,6 +165,33 @@ class QuestSwiper extends StatelessWidget {
         itemCount: question.questImages.length,
         pagination: const SwiperPagination(),
       ),
+    );
+  }
+}
+
+class BookmarkIconWidget extends StatefulWidget {
+  @override
+  _BookmarkIconWidgetState createState() => _BookmarkIconWidgetState();
+}
+
+class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
+  bool isBookmarked = false; // ブックマークの状態を追跡するフラグ
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(),
+      icon: Icon(
+        Icons.bookmark,
+        size: 16,
+        color: isBookmarked ? Colors.blue : Colors.grey, // 条件によって色を変更
+      ),
+      onPressed: () {
+        setState(() {
+          isBookmarked = !isBookmarked; // ブックマークの状態を切り替える
+        });
+      },
     );
   }
 }
