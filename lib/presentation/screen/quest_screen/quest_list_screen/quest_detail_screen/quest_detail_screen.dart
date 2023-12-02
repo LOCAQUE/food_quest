@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/entity/answer.dart';
+import 'package:food_quest/foundation/supabase_client_provider.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,7 +23,12 @@ class QuestDetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = useState<bool>(false);
     final answers = useState<List<Answer>?>([]);
+    final answerNotifier = ref.watch(answerNotiierProvider);
+    final currentUserId = ref.read(supabaseCurrentUser)!.id;
+    final isMyQuest = question.isMyQuest(currentUserId: currentUserId);
+
     useEffect(
       () {
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -34,13 +41,13 @@ class QuestDetailScreen extends HookConsumerWidget {
       const [],
     );
 
-    ref.watch(answerNotiierProvider).when(
+    answerNotifier.when(
       data: (value) {
-        print(value);
         answers.value = value;
+        isLoading.value = false;
       },
       loading: () {
-        debugPrint('loading');
+        isLoading.value = true;
       },
       error: (error, stackTrace) {
         debugPrint(error.toString());
@@ -89,12 +96,15 @@ class QuestDetailScreen extends HookConsumerWidget {
               ),
               const Gap(8),
               if (answers.value!.isEmpty) const Center(child: Text('回答がありません')),
+              if (isLoading.value) const LoadingWidget(),
+
               //回答
               if (answers.value!.isNotEmpty)
                 ...List.generate(answers.value!.length, (index) {
                   return AnswerTile(
                     user: question.users!,
                     answer: answers.value![index],
+                    isMyQuest: isMyQuest,
                   );
                 }),
             ],

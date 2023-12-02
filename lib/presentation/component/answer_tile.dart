@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:food_quest/foundation/supabase_client_provider.dart';
+import 'package:food_quest/gen/colors.gen.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/application/notifier/answer_notifier.dart';
 import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
-import 'package:food_quest/presentation/component/button.dart';
 
 class AnswerTile extends HookConsumerWidget {
   const AnswerTile({
     required this.answer,
     required this.user,
+    required this.isMyQuest,
     super.key,
   });
 
   final Answer answer;
   final UserData user;
+  final bool isMyQuest;
 
   @override
   Widget build(
     BuildContext context,
     WidgetRef ref,
   ) {
-    final currentUserId = ref.watch(
-      answersNotifierProvider.select((state) => state.currentUserId),
-    );
+    final isMyAnswer = answer.uid == ref.read(supabaseCurrentUser)!.id;
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -43,12 +44,23 @@ class AnswerTile extends HookConsumerWidget {
                   user.name,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                if (currentUserId == user.id)
-                  CustomButton(
-                    text: 'BA',
-                    variant: ButtonVariant.outline,
-                    onPressed: () async {},
-                    size: ButtonSize.small,
+                // 自分のクエストの場合かつ自分の答じゃない場合
+                if (isMyQuest && !isMyAnswer)
+                  ElevatedButton(
+                    onPressed: (){
+                      
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.primaryColor,
+                      foregroundColor: AppColor.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text(
+                      'ベストアンサー',
+                      style: TextStyle(fontSize: 12),
+                    ),
                   ),
               ],
             ),

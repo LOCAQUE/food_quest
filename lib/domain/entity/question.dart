@@ -2,7 +2,6 @@ import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
-import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 
 part 'question.freezed.dart';
@@ -47,4 +46,9 @@ abstract class QuestionResponse with _$QuestionResponse {
 
   // DateTimeから"yyyy-MM-dd"形式の文字列に変換
   String get formattedDeadLine => DateFormat('yyyy-MM-dd').format(deadLine);
+
+  //自分のクエストかどうか
+  bool isMyQuest({required String currentUserId}) {
+    return currentUserId == userId; 
+  }
 }

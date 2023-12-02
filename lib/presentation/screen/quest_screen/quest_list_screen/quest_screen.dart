@@ -44,7 +44,11 @@ class QuestScreen extends HookConsumerWidget {
                 child: QuestionTile(
                   question: question,
                   onTap: () {
-                    context.pushRoute(QuestDetailRoute(question: question));
+                    context.pushRoute(
+                      QuestDetailRoute(
+                        question: question,
+                      ),
+                    );
                   },
                 ),
               );
