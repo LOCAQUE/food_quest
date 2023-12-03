@@ -11,6 +11,7 @@ import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/routes/app_router.dart';
 
+@RoutePage()
 class SignInScreen extends HookConsumerWidget {
   const SignInScreen({super.key});
 
@@ -20,9 +21,9 @@ class SignInScreen extends HookConsumerWidget {
     final isButtonEnabled = useValueListenable(authNotifier.isFormValid);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5E0),
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFF5E0),
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -30,7 +31,7 @@ class SignInScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            context.pushRoute(const TopRoute());
           },
         ),
       ),
@@ -77,7 +78,7 @@ class SignInScreen extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                const Gap(330),
+                const Gap(290),
                 // メールアドレスとパスワードが入力されていない場合はボタンを押せないようにする
                 if (isButtonEnabled)
                   CustomButton(
@@ -95,6 +96,15 @@ class SignInScreen extends HookConsumerWidget {
                     variant: ButtonVariant.disabled,
                     onPressed: () {},
                   ),
+
+                const Gap(20),
+                CustomButton(
+                  text: 'はじめての方はこちら',
+                  variant: ButtonVariant.text,
+                  onPressed: () {
+                    context.pushRoute(const SignUpRoute());
+                  },
+                ),
               ],
             ),
           ),

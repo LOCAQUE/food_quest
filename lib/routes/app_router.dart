@@ -12,11 +12,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/presentation/screen/auth/completion_pet_screen.dart';
 import 'package:food_quest/presentation/screen/auth/select_pet_screen.dart';
+import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
 import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
 import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
-import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_home_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/quest_detail_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_screen.dart';
@@ -47,6 +47,7 @@ class AppRouter extends _$AppRouter {
       AutoRoute(
         page: TopRoute.page,
       ),
+      AutoRoute(page: SignInRoute.page),
       AutoRoute(page: SignUpRoute.page),
       AutoRoute(page: SignUpProfileRoute.page),
       AutoRoute(page: SelectPetRoute.page),

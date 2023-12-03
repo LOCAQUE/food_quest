@@ -1,8 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/application/google_map/auto_complete_search/notifier/auto_complete_search_notifier.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:food_quest/domain/application/google_map/auto_complete_search/notifier/auto_complete_search_notifier.dart';
 
 class SearchHeader extends HookConsumerWidget {
   const SearchHeader({

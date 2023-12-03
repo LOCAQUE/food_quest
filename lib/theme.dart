@@ -20,8 +20,6 @@ ThemeData customTheme() {
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: AppColor.secondColor,
-      selectionColor: AppColor.firstColor,
-      selectionHandleColor: AppColor.firstColor,
     ),
     textTheme: _buildStaffTextTheme(base.textTheme),
     primaryTextTheme: _buildStaffTextTheme(base.primaryTextTheme),
