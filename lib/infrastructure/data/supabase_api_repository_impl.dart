@@ -1,10 +1,7 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'dart:io';
 
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
-import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen_notifier.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -12,6 +9,8 @@ import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/repositories/api_repository.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../domain/entity/task.dart';
 
 //supabaseのAPIの実際の処理を書く
 class SupabaseApiRepositoryImpl implements ApiRepository {
@@ -182,7 +181,7 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<List<TaskScreenResponse>?> getTaskList() async {
+  Future<List<Task>?> getTaskList() async {
     //将来的にはユーザごとに達成状況を取得しないといけないから必要
     //final currentId = supabaseClient.auth.currentUser?.id;
 
@@ -191,7 +190,7 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
           .from('tasks')
           .select<PostgrestList>();
 
-      final taskList = response.map(TaskScreenResponse.fromJson).toList();
+      final taskList = response.map(Task.fromJson).toList();
       return taskList;
     } catch (e) {
       rethrow;
