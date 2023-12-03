@@ -1,4 +1,5 @@
 import 'package:food_quest/domain/entity/answer.dart';
+import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -47,4 +48,7 @@ abstract class ApiRepository {
 
   //回答一覧を取得する
   Future<List<Answer>?> getAnswerList({required int questId});
+
+  //タスク一覧を取得する
+  Future<List<TaskScreenResponse>?> getTaskList();
 }

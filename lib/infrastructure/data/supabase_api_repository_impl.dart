@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
+import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen_notifier.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -179,4 +180,22 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<TaskScreenResponse>?> getTaskList() async {
+    //将来的にはユーザごとに達成状況を取得しないといけないから必要
+    //final currentId = supabaseClient.auth.currentUser?.id;
+
+    try {
+      final response = await supabaseClient
+          .from('tasks')
+          .select<PostgrestList>();
+
+      final taskList = response.map(TaskScreenResponse.fromJson).toList();
+      return taskList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 }
