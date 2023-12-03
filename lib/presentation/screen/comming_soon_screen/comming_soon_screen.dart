@@ -1,11 +1,13 @@
 // comming sooonの画面
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/gen/colors.gen.dart';
-import 'package:food_quest/presentation/screen/profile_screen/my_quest_list_screen/my_quest_list_screen.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/screen/profile_screen/my_quest_list_screen/my_quest_list_screen.dart';
 
 @RoutePage()
 class CommingSoonScreen extends HookConsumerWidget {
@@ -67,7 +69,7 @@ class HeaderTag extends StatelessWidget {
             ),
             Tab(
               text: 'レビュー',
-            )
+            ),
           ],
         ),
       ),
@@ -150,7 +152,7 @@ class HeaderContents extends StatelessWidget {
                     ),
                   ),
                 ),
-                Gap(16),
+                const Gap(16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -163,7 +165,7 @@ class HeaderContents extends StatelessWidget {
                         Text(
                           'ツアー',
                           style: Theme.of(context).textTheme.labelMedium,
-                        )
+                        ),
                       ],
                     ),
                     Column(
@@ -175,7 +177,7 @@ class HeaderContents extends StatelessWidget {
                         Text(
                           'ツアー',
                           style: Theme.of(context).textTheme.labelMedium,
-                        )
+                        ),
                       ],
                     ),
                     Column(
@@ -187,7 +189,7 @@ class HeaderContents extends StatelessWidget {
                         Text(
                           'ツアー',
                           style: Theme.of(context).textTheme.labelMedium,
-                        )
+                        ),
                       ],
                     ),
                     Column(
@@ -199,9 +201,9 @@ class HeaderContents extends StatelessWidget {
                         Text(
                           'ツアー',
                           style: Theme.of(context).textTheme.labelMedium,
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
                 const Gap(16),
@@ -273,9 +275,14 @@ class _StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
-        color: const Color.fromARGB(255, 248, 248, 248), child: tabBar);
+      color: const Color.fromARGB(255, 248, 248, 248),
+      child: tabBar,
+    );
   }
 
   @override

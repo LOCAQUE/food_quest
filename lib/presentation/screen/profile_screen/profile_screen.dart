@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/profile_screen/answerd_quest_list_screen/answered_list_screen.dart';
-import 'package:food_quest/presentation/screen/profile_screen/my_quest_list_screen/my_quest_list_screen.dart';
 
 @RoutePage()
 class ProfileScreen extends HookConsumerWidget {

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
-import 'package:food_quest/domain/entity/answer.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/answer_tile.dart';

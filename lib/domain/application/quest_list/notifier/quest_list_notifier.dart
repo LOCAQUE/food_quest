@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/domain/application/pick_image/notifier/pick_image_notifier.dart';
-import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
 import 'package:food_quest/domain/application/select_prefecture/notifier/select_prefecture_notifier.dart';
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/domain/repositories/api_repository.dart';
