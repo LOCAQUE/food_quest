@@ -12,12 +12,12 @@ import 'package:food_quest/presentation/component/button.dart';
 class TaskComponent extends HookConsumerWidget {
   const TaskComponent({
     required this.tasks,
-    required this.taskUser,
+    required this.taskResponse,
     super.key,
   });
 
-  final Task tasks;
-  final TaskResponse taskUser;
+  final Task? tasks;
+  final int? taskResponse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,16 +37,16 @@ class TaskComponent extends HookConsumerWidget {
     final currentAchievement = useState(0);
     final isPushButton = useState(false);
 
-    switch (tasks.categoryNumber) {
+    switch (tasks?.categoryNumber) {
       case 0:
         currentAchievement.value = questAchievement;
-        isDone.value = tasks.targetNumber == questAchievement;
+        isDone.value = tasks?.targetNumber == questAchievement;
       case 1:
         currentAchievement.value = answerAchievement;
-        isDone.value = tasks.targetNumber == answerAchievement;
+        isDone.value = tasks?.targetNumber == answerAchievement;
       case 2:
         currentAchievement.value = bestAnswerAchievement;
-        isDone.value = tasks.targetNumber == bestAnswerAchievement;
+        isDone.value = tasks?.targetNumber == bestAnswerAchievement;
       default:
         // カテゴリー番号が0、1、2以外の場合のデフォルトの処理
         isDone.value = false; // または適切な初期値を設定
@@ -68,14 +68,14 @@ class TaskComponent extends HookConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(tasks.task),
+                      Text(tasks!.task),
                       if (isDone.value)
                         CustomButton(
                           text: '受取',
                           variant: ButtonVariant.outline,
                           onPressed: () async {
                             isPushButton.value = true;
-                            await questNotifier.updateIsDone(taskUser.id);
+                            await questNotifier.updateIsDone(taskResponse!);
                           },
                           size: ButtonSize.small,
                         )
@@ -94,7 +94,7 @@ class TaskComponent extends HookConsumerWidget {
                               child: LinearProgressIndicator(
                                 borderRadius: BorderRadius.circular(50),
                                 value: currentAchievement.value /
-                                    tasks.targetNumber,
+                                    tasks!.targetNumber,
                                 backgroundColor: Colors.grey[300],
                                 valueColor: const AlwaysStoppedAnimation(
                                   AppColor.primaryColor,
@@ -105,7 +105,7 @@ class TaskComponent extends HookConsumerWidget {
                         ],
                       ),
                       Text(
-                        '${currentAchievement.value} / ${tasks.targetNumber}',
+                        '${currentAchievement.value} / ${tasks?.targetNumber}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColor.white,

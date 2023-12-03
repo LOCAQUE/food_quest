@@ -184,7 +184,6 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
   Future<List<Task>?> getTaskList() async {
     //将来的にはユーザごとに達成状況を取得しないといけないから必要
     //final currentId = supabaseClient.auth.currentUser?.id;
-
     try {
       final response = await supabaseClient
           .from('tasks')

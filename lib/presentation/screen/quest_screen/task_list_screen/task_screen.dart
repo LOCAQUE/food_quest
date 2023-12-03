@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/entity/task.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/application/notifier/question_task_notifier.dart';
 import 'package:food_quest/presentation/screen/quest_screen/component/task_component.dart';
 import 'package:food_quest/presentation/screen/quest_screen/task_list_screen/task_screen_notifier.dart';
 
@@ -13,37 +15,28 @@ class TaskScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(
-      taskScreenNotifierProvider.select((state) => state.isLoading),
-    );
-    final taskList = ref.watch(
-          questionTaskNotifierProvider.select((state) => state.taskList),
-        ) ??
-        [];
+    final taskList =
+        useState<List<Task>?>([]);
+    
+    final taskListProvider = ref.watch(taskScreenNotifierProvider);
 
-    final errorMessage = ref.watch(
-      taskScreenNotifierProvider.select((state) => state.errorMessage),
+    taskListProvider.when(
+      data: (data) => taskList.value = data?.cast<Task>(),
+      loading: () => const LoadingWidget(),
+      error: (error, stackTrace) => Exception(error),
     );
-
-    if (isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
 
     return Scaffold(
       body: ListView.builder(
-        itemCount: taskList.length,
+        itemCount: taskList.value?.length,
         itemBuilder: (context, index) {
-          final taskUser = taskList[index];
-          final tasks = taskList[index].tasks;
+        final taskId = taskList.value?[index].id;
+        final tasks = taskList.value?[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: errorMessage != ''
-                ? Text(errorMessage)
-                : TaskComponent(
-                    tasks: tasks!,
-                    taskUser: taskUser,
+            child: TaskComponent(
+                    tasks: tasks,
+                    taskResponse: taskId,
                   ),
           );
         },
