@@ -27,19 +27,49 @@ class TaskScreen extends HookConsumerWidget {
     );
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: taskList.value?.length,
-        itemBuilder: (context, index) {
-        final taskId = taskList.value?[index].id;
-        final tasks = taskList.value?[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: TaskComponent(
-                    tasks: tasks,
-                    taskResponse: taskId,
-                  ),
-          );
-        },
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 60,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 15,
+              ),
+              IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.pop(context),
+                iconSize: 15,
+              ),
+              const Text(
+                'Task',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const Divider(
+                color: Colors.black,
+                height: 1,
+                thickness: 0.1,
+              ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: taskList.value?.length,
+              itemBuilder: (context, index) {
+              final taskId = taskList.value?[index].id;
+              final tasks = taskList.value?[index];
+                return TaskComponent(
+                        tasks: tasks,
+                        taskResponse: taskId,
+                      );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

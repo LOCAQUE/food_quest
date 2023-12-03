@@ -54,14 +54,20 @@ class TaskComponent extends HookConsumerWidget {
     }
 
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+        ),
+        margin: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * 0.06,
+            vertical: MediaQuery.of(context).size.height * 0.01,
+            ),//カードの間隔
       child: Stack(
         children: [
           SizedBox(
-            width: 310,
-            height: 95,
+            width: 350, // EXPのゲージを長くする
+            height: 120, // カードの高さを長くする
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -118,7 +124,7 @@ class TaskComponent extends HookConsumerWidget {
             ),
           ),
           Positioned(
-            left: MediaQuery.of(context).size.width * 0.7,
+            left: MediaQuery.of(context).size.width * 0.5,
             child: isPushButton.value
                 ? SizedBox(
                     width: 95,
