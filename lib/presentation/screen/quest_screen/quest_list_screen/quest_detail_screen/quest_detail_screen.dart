@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
-import 'package:food_quest/domain/entity/answer.dart';
-import 'package:food_quest/foundation/supabase_client_provider.dart';
-import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
+import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/foundation/supabase_client_provider.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/answer_tile.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/presentation/component/question_tile.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/make_answer_modal.dart';
 

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
+
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/user_data.dart';
 
@@ -48,6 +49,6 @@ abstract class QuestionResponse with _$QuestionResponse {
 
   //自分のクエストかどうか
   bool isMyQuest({required String currentUserId}) {
-    return currentUserId == userId; 
+    return currentUserId == userId;
   }
 }
