@@ -6,6 +6,20 @@ enum ButtonVariant {
   primary,
   outline,
   disabled,
+  secondary,
+  text,
+}
+
+enum ButtonSize { small, large, extraSmall }
+
+enum ButtonRadius {
+  square,
+  full,
+}
+
+enum ButtonShadow {
+  shadow,
+  noShadow,
 }
 
 Color _buttonColor(ButtonVariant style) {
@@ -16,16 +30,17 @@ Color _buttonColor(ButtonVariant style) {
       return AppColor.primaryColor;
     case ButtonVariant.disabled:
       return AppColor.disabledColor;
+    case ButtonVariant.secondary:
+      return AppColor.white;
+    case ButtonVariant.text:
+      return Colors.transparent;
   }
-}
-
-enum ButtonSize {
-  small,
-  large,
 }
 
 double _buttonWidth(ButtonSize style) {
   switch (style) {
+    case ButtonSize.extraSmall:
+      return 58;
     case ButtonSize.small:
       return 80;
     case ButtonSize.large:
@@ -35,6 +50,8 @@ double _buttonWidth(ButtonSize style) {
 
 double _buttonHeight(ButtonSize style) {
   switch (style) {
+    case ButtonSize.extraSmall:
+      return 16;
     case ButtonSize.small:
       return 25;
     case ButtonSize.large:
@@ -42,17 +59,32 @@ double _buttonHeight(ButtonSize style) {
   }
 }
 
-enum ButtonRadius {
-  square,
-  full,
-}
-
 double _buttonRadius(ButtonRadius style) {
   switch (style) {
     case ButtonRadius.square:
       return 10;
     case ButtonRadius.full:
-      return 100;
+      return 999;
+  }
+}
+
+double _buttonTextSize(ButtonSize style) {
+  switch (style) {
+    case ButtonSize.extraSmall:
+      return 10;
+    case ButtonSize.small:
+      return 12;
+    case ButtonSize.large:
+      return 17;
+  }
+}
+
+double _buttonShadow(ButtonShadow style) {
+  switch (style) {
+    case ButtonShadow.shadow:
+      return 3;
+    case ButtonShadow.noShadow:
+      return 0;
   }
 }
 
@@ -63,6 +95,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.size = ButtonSize.large,
     this.buttonRadius = ButtonRadius.full,
+    this.buttonShadow = true,
     super.key,
   });
 
@@ -70,6 +103,7 @@ class CustomButton extends StatelessWidget {
   final ButtonSize size;
   final ButtonVariant variant;
   final ButtonRadius buttonRadius;
+  final bool buttonShadow;
   final dynamic Function() onPressed;
 
   @override
@@ -77,6 +111,7 @@ class CustomButton extends StatelessWidget {
     final radius = _buttonRadius(buttonRadius);
     final width = _buttonWidth(size);
     final height = _buttonHeight(size);
+    final textSize = _buttonTextSize(size);
 
     return SizedBox(
       width: width,
@@ -86,19 +121,39 @@ class CustomButton extends StatelessWidget {
           case ButtonVariant.primary:
             return BuildPrimaryButton(
               text: text,
+              textSize: textSize,
               radius: radius,
+              shadow: buttonShadow,
               onPressed: onPressed,
             );
           case ButtonVariant.outline:
             return BuildOutlineButton(
               text: text,
+              textSize: textSize,
               radius: radius,
               onPressed: onPressed,
             );
           case ButtonVariant.disabled:
             return BuildDisabledButton(
               text: text,
+              textSize: textSize,
               radius: radius,
+              shadow: buttonShadow,
+            );
+          case ButtonVariant.secondary:
+            return BuildSecondaryButton(
+              text: text,
+              textSize: textSize,
+              radius: radius,
+              shadow: buttonShadow,
+              onPressed: onPressed,
+            );
+          case ButtonVariant.text:
+            return BuildTextButton(
+              text: text,
+              textSize: textSize,
+              radius: radius,
+              onPressed: onPressed,
             );
         }
       }(),
@@ -109,13 +164,17 @@ class CustomButton extends StatelessWidget {
 class BuildPrimaryButton extends StatelessWidget {
   const BuildPrimaryButton({
     required this.text,
+    required this.textSize,
     required this.onPressed,
     required this.radius,
+    required this.shadow,
     super.key,
   });
 
   final String text;
+  final double textSize;
   final double radius;
+  final bool shadow;
   final dynamic Function() onPressed;
 
   @override
@@ -129,8 +188,11 @@ class BuildPrimaryButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
+        elevation: shadow
+            ? _buttonShadow(ButtonShadow.shadow)
+            : _buttonShadow(ButtonShadow.noShadow),
       ),
-      child: Text(text),
+      child: Text(text, style: TextStyle(fontSize: textSize)),
     );
   }
 }
@@ -138,12 +200,16 @@ class BuildPrimaryButton extends StatelessWidget {
 class BuildDisabledButton extends StatelessWidget {
   const BuildDisabledButton({
     required this.text,
+    required this.textSize,
     required this.radius,
+    required this.shadow,
     super.key,
   });
 
   final String text;
+  final double textSize;
   final double radius;
+  final bool shadow;
 
   @override
   Widget build(BuildContext context) {
@@ -155,8 +221,11 @@ class BuildDisabledButton extends StatelessWidget {
         foregroundColor: AppColor.white,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+        elevation: shadow
+            ? _buttonShadow(ButtonShadow.shadow)
+            : _buttonShadow(ButtonShadow.noShadow),
       ),
-      child: Text(text),
+      child: Text(text, style: TextStyle(fontSize: textSize)),
     );
   }
 }
@@ -164,12 +233,14 @@ class BuildDisabledButton extends StatelessWidget {
 class BuildOutlineButton extends StatelessWidget {
   const BuildOutlineButton({
     required this.text,
+    required this.textSize,
     required this.onPressed,
     required this.radius,
     super.key,
   });
 
   final String text;
+  final double textSize;
   final double radius;
   final dynamic Function() onPressed;
 
@@ -184,7 +255,74 @@ class BuildOutlineButton extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
       ),
-      child: Text(text),
+      child: Text(text, style: TextStyle(fontSize: textSize)),
+    );
+  }
+}
+
+class BuildSecondaryButton extends StatelessWidget {
+  const BuildSecondaryButton({
+    required this.text,
+    required this.textSize,
+    required this.onPressed,
+    required this.radius,
+    required this.shadow,
+    super.key,
+  });
+
+  final String text;
+  final double textSize;
+  final double radius;
+  final bool shadow;
+  final dynamic Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.secondary);
+
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: backgroundColor,
+        foregroundColor: AppColor.primaryColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+        elevation: shadow
+            ? _buttonShadow(ButtonShadow.shadow)
+            : _buttonShadow(ButtonShadow.noShadow),
+      ),
+      child: Text(text, style: TextStyle(fontSize: textSize)),
+    );
+  }
+}
+
+class BuildTextButton extends StatelessWidget {
+  const BuildTextButton({
+    required this.text,
+    required this.textSize,
+    required this.onPressed,
+    required this.radius,
+    super.key,
+  });
+
+  final String text;
+  final double textSize;
+  final double radius;
+  final dynamic Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final backgroundColor = _buttonColor(ButtonVariant.text);
+
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        backgroundColor: backgroundColor,
+        foregroundColor: AppColor.textColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+      ),
+      child: Text(text, style: TextStyle(fontSize: textSize)),
     );
   }
 }

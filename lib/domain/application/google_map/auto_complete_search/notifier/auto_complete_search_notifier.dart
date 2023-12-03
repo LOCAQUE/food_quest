@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_quest/foundation/google_place_client.dart';
+
 import 'package:google_place/google_place.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:food_quest/foundation/google_place_client.dart';
+
 part 'auto_complete_search_notifier.g.dart';
 
 // googleマップの検索で候補地のリストを取得する

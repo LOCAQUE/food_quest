@@ -10,6 +10,7 @@ import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
+import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class SignUpScreen extends HookConsumerWidget {
@@ -21,7 +22,9 @@ class SignUpScreen extends HookConsumerWidget {
     final isButtonEnabled = useValueListenable(authNotifier.isFormValid);
 
     return Scaffold(
+      backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColor.backgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -29,7 +32,7 @@ class SignUpScreen extends HookConsumerWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            context.router.pop();
+            context.pushRoute(const TopRoute());
           },
         ),
       ),
@@ -39,23 +42,37 @@ class SignUpScreen extends HookConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(40),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Gap(10),
-                  const Text(
-                    '新規登録',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Align(
+                        alignment: const Alignment(-0.5, 0),
+                        child: SizedBox(
+                          width: 160,
+                          height: 160,
+                          child: Image.asset('assets/images/logo.png'),
+                        ),
+                      ),
+                      const Positioned(
+                        top: 80,
+                        left: 155,
+                        child: Text(
+                          'へようこそ',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ],
                   ),
+
                   const Gap(10),
                   Padding(
                     padding: const EdgeInsets.only(top: 28),
                     child: CustomTextField(
                       title: 'メールアドレス',
                       controller: authNotifier.emailController,
-                      hintText: 'emailを入力してください',
+                      hintText: 'メールアドレスを入力してください',
                     ),
                   ),
                   Padding(
@@ -64,7 +81,7 @@ class SignUpScreen extends HookConsumerWidget {
                       title: 'パスワード',
                       isObscure: true,
                       controller: authNotifier.passwordController,
-                      hintText: 'passwordを入力してください',
+                      hintText: 'パスワードを入力してください',
                     ),
                   ),
                   const Align(
@@ -77,12 +94,12 @@ class SignUpScreen extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  const Gap(250),
+                  const Gap(140),
                   // linterによる警告を抑制するために、if文で分岐させています。
                   if (isButtonEnabled)
                     CustomButton(
                       variant: ButtonVariant.primary,
-                      text: 'はじめる',
+                      text: '次へ',
                       onPressed: () async {
                         await authNotifier.signUp().then((_) {
                           Navigator.push(
@@ -96,10 +113,18 @@ class SignUpScreen extends HookConsumerWidget {
                     )
                   else
                     CustomButton(
-                      text: 'はじめる',
+                      text: '次へ',
                       variant: ButtonVariant.disabled,
                       onPressed: () {},
                     ),
+                  const Gap(20),
+                  CustomButton(
+                    text: 'アカウントをお持ちの方はこちら',
+                    variant: ButtonVariant.text,
+                    onPressed: () {
+                      context.pushRoute(const SignInRoute());
+                    },
+                  ),
                 ],
               ),
             ),

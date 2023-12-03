@@ -1,11 +1,11 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:food_quest/presentation/component/swiper_image.dart';
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
+import 'package:food_quest/presentation/component/swiper_image.dart';
 
 class QuestionTiles extends HookConsumerWidget {
   const QuestionTiles({

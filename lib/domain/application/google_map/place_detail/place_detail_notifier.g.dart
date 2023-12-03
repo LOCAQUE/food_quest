@@ -7,7 +7,7 @@ part of 'place_detail_notifier.dart';
 // **************************************************************************
 
 String _$placeDetailNotifierHash() =>
-    r'e416b9bbf51840a930e041c114952c6f86108e1c';
+    r'30bfee5642af7dab06490121e837e15b316b2325';
 
 /// See also [PlaceDetailNotifier].
 @ProviderFor(PlaceDetailNotifier)

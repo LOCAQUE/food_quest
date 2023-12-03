@@ -16,23 +16,23 @@ class AppColor {
   /// Color: #6D8B74
   static const Color accentColor = Color(0xFF6D8B74);
 
-  /// Color: #FFF5E0
-  static const Color backgroundColor = Color(0xFFFFF5E0);
+  /// Color: #FDFDFD
+  static const Color backgroundColor = Color(0xFFFDFDFD);
 
-  /// Color: #8E8E93
-  static const Color disabledColor = Color(0xFF8E8E93);
+  /// Color: #FF2D55
+  static const Color danger = Color(0xFFFF2D55);
 
-  /// Color: #FAF9F4
-  static const Color firstColor = Color(0xFFFAF9F4);
+  /// Color: #B3B1AE
+  static const Color disabledColor = Color(0xFFB3B1AE);
 
-  /// Color: #EE7D50
-  static const Color primaryColor = Color(0xFFEE7D50);
+  /// Color: #EE8902
+  static const Color primaryColor = Color(0xFFEE8902);
 
-  /// Color: #D0C9C0
-  static const Color secondColor = Color(0xFFD0C9C0);
+  /// Color: #FFFFFF
+  static const Color secondColor = Color(0xFFFFFFFF);
 
-  /// Color: #4d4d4d
-  static const Color textColor = Color(0xFF4D4D4D);
+  /// Color: #191815
+  static const Color textColor = Color(0xFF191815);
 
   /// Color: #FFFFFF
   static const Color white = Color(0xFFFFFFFF);
