@@ -34,13 +34,12 @@ class AnswerNotiier extends _$AnswerNotiier {
     }
   }
 
-  Future<void> getAnswerList({required int questId}) async {
+  Future<List<Answer>?> getAnswerList({required int questId}) async {
     try {
       final repository = ref.read(apiRepositoryProvider);
 
-      state = const AsyncValue.loading();
       final answerList = await repository.getAnswerList(questId: questId);
-      state = AsyncValue.data(answerList);
+      return answerList;
     } catch (e, stackTrace) {
       debugPrint(e.toString());
       state = AsyncValue.error(e, stackTrace);
