@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -9,8 +10,6 @@ import 'package:food_quest/domain/application/notifier/auth_notifier.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/button.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
-import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
-import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class SignUpScreen extends HookConsumerWidget {
@@ -102,11 +101,8 @@ class SignUpScreen extends HookConsumerWidget {
                       text: '次へ',
                       onPressed: () async {
                         await authNotifier.signUp().then((_) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (context) => const SignUpProfileScreen(),
-                            ),
+                          context.pushRoute(
+                            QuestSelectPrefectureRoute(isSignUp: true),
                           );
                         });
                       },

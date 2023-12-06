@@ -12,7 +12,7 @@ class LoadingWidget extends HookConsumerWidget {
     return Center(
       child: LoadingAnimationWidget.inkDrop(
         color: AppColor.primaryColor,
-        size: 200,
+        size: 50,
       ),
     );
   }
