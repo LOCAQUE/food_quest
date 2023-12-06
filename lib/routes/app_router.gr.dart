@@ -34,9 +34,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     CompletionPetRoute.name: (routeData) {
+      final args = routeData.argsAs<CompletionPetRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const CompletionPetScreen(),
+        child: CompletionPetScreen(
+          selectedPet: args.selectedPet,
+          key: args.key,
+        ),
       );
     },
     MapAutoRouterRoute.name: (routeData) {
@@ -119,9 +123,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     QuestSelectPrefectureRoute.name: (routeData) {
+      final args = routeData.argsAs<QuestSelectPrefectureRouteArgs>(
+          orElse: () => const QuestSelectPrefectureRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const QuestSelectPrefectureScreen(),
+        child: QuestSelectPrefectureScreen(
+          isSignUp: args.isSignUp,
+          key: args.key,
+        ),
       );
     },
     RecommendedSpotsAutoRouterRoute.name: (routeData) {
@@ -146,6 +155,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SettingScreen(),
+      );
+    },
+    SignInRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignInScreen(),
       );
     },
     SignUpProfileRoute.name: (routeData) {
@@ -225,16 +240,40 @@ class CommingSoonRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CompletionPetScreen]
-class CompletionPetRoute extends PageRouteInfo<void> {
-  const CompletionPetRoute({List<PageRouteInfo>? children})
-      : super(
+class CompletionPetRoute extends PageRouteInfo<CompletionPetRouteArgs> {
+  CompletionPetRoute({
+    required int selectedPet,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           CompletionPetRoute.name,
+          args: CompletionPetRouteArgs(
+            selectedPet: selectedPet,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CompletionPetRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CompletionPetRouteArgs> page =
+      PageInfo<CompletionPetRouteArgs>(name);
+}
+
+class CompletionPetRouteArgs {
+  const CompletionPetRouteArgs({
+    required this.selectedPet,
+    this.key,
+  });
+
+  final int selectedPet;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CompletionPetRouteArgs{selectedPet: $selectedPet, key: $key}';
+  }
 }
 
 /// generated route for
@@ -469,16 +508,41 @@ class QuestRouteArgs {
 
 /// generated route for
 /// [QuestSelectPrefectureScreen]
-class QuestSelectPrefectureRoute extends PageRouteInfo<void> {
-  const QuestSelectPrefectureRoute({List<PageRouteInfo>? children})
-      : super(
+class QuestSelectPrefectureRoute
+    extends PageRouteInfo<QuestSelectPrefectureRouteArgs> {
+  QuestSelectPrefectureRoute({
+    bool? isSignUp,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           QuestSelectPrefectureRoute.name,
+          args: QuestSelectPrefectureRouteArgs(
+            isSignUp: isSignUp,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'QuestSelectPrefectureRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<QuestSelectPrefectureRouteArgs> page =
+      PageInfo<QuestSelectPrefectureRouteArgs>(name);
+}
+
+class QuestSelectPrefectureRouteArgs {
+  const QuestSelectPrefectureRouteArgs({
+    this.isSignUp,
+    this.key,
+  });
+
+  final bool? isSignUp;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'QuestSelectPrefectureRouteArgs{isSignUp: $isSignUp, key: $key}';
+  }
 }
 
 /// generated route for
@@ -533,6 +597,20 @@ class SettingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignInScreen]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+      : super(
+          SignInRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignInRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

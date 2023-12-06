@@ -1,7 +1,7 @@
 import 'package:food_quest/domain/entity/answer.dart';
+import 'package:food_quest/domain/entity/monster.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:food_quest/domain/entity/question.dart';
 import 'package:food_quest/foundation/supabase_client_provider.dart';
 import 'package:food_quest/infrastructure/data/supabase_api_repository_impl.dart';
@@ -47,4 +47,14 @@ abstract class ApiRepository {
 
   //回答一覧を取得する
   Future<List<Answer>?> getAnswerList({required int questId});
-}
+
+  //モンスターを作成する
+  Future<void> crateMonster({
+    required int baseMonster,
+    required int experience,
+    required String monName,
+  });
+
+  //選択しているモンスター情報を取得する
+  Future<Monster?> getMonster();
+} 

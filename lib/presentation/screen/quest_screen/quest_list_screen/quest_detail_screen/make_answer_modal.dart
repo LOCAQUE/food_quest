@@ -7,7 +7,6 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/application/answer/notifier/answer_notifier.dart';
-import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
@@ -39,7 +38,7 @@ class MakeAnswerModal extends HookConsumerWidget {
       useRootNavigator: true,
       context: context,
       isScrollControlled: true,
-      backgroundColor: AppColor.firstColor,
+      // backgroundColor: AppColor.firstColor,
       builder: (context) => MakeAnswerModal(
         context: context,
         content: content,

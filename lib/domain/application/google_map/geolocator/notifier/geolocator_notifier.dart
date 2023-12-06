@@ -1,5 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'geolocator_notifier.g.dart';
 
 // パーミッションを表示し、現在の位置情報を取得する

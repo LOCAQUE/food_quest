@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,7 +13,10 @@ import 'package:food_quest/presentation/screen/quest_screen/component/prefecture
 
 @RoutePage()
 class QuestSelectPrefectureScreen extends HookConsumerWidget {
-  const QuestSelectPrefectureScreen({super.key});
+  const QuestSelectPrefectureScreen({this.isSignUp, super.key});
+
+  final bool? isSignUp;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(selectPrefectureNotifierProvider.notifier);
@@ -61,11 +65,18 @@ class QuestSelectPrefectureScreen extends HookConsumerWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                 child: ElevatedButton(
-                  onPressed: () {
-                    notifier.updatePrefecture(
-                      prefectureList: selectPrefectureUsecase,
-                    );
-                    context.router.pop();
+                  onPressed: () async {
+                    if (isSignUp != null && isSignUp!) {
+                      await notifier.updatePrefecture(
+                        prefectureList: selectPrefectureUsecase,
+                      );
+                      await context.pushRoute(const SignUpProfileRoute());
+                    } else {
+                      await notifier.updatePrefecture(
+                        prefectureList: selectPrefectureUsecase,
+                      );
+                      await context.router.pop();
+                    }
                   },
                   child: Text(
                     '選択する(${selectPrefectureUsecase.length}件)',

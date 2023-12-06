@@ -1,6 +1,8 @@
-import 'package:food_quest/foundation/google_place_client.dart';
 import 'package:google_place/google_place.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'package:food_quest/foundation/google_place_client.dart';
+
 part 'place_detail_notifier.g.dart';
 
 @riverpod
@@ -25,5 +27,6 @@ class PlaceDetailNotifier extends _$PlaceDetailNotifier {
     } catch (e, stackTrace) {
       state = AsyncValue.error(e, stackTrace);
     }
+    return null;
   }
 }
