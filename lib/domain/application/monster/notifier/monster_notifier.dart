@@ -21,7 +21,7 @@ class MonsterNotifier extends _$MonsterNotifier {
       final repository = ref.read(apiRepositoryProvider);
       state = const AsyncValue.loading();
 
-      await repository.crateMonster(
+      await repository.createMonster(
         baseMonster: baseMonster,
         experience: experience,
         monName: monName,

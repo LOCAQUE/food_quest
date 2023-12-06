@@ -52,7 +52,7 @@ abstract class ApiRepository {
   Future<void> updateBestAnswer({required int answerId});
 
   //モンスターを作成する
-  Future<void> crateMonster({
+  Future<void> createMonster({
     required int baseMonster,
     required int experience,
     required String monName,
