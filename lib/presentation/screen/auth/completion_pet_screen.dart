@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/domain/application/monster/notifier/monster_notifier.dart';
+import 'package:food_quest/presentation/%20ui_provier/select_monster_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/presentation/component/button.dart';
@@ -8,11 +10,15 @@ import 'package:food_quest/routes/app_router.dart';
 
 @RoutePage()
 class CompletionPetScreen extends HookConsumerWidget {
-  const CompletionPetScreen({super.key});
+  const CompletionPetScreen({required this.selectedPet, super.key});
+
+  final int selectedPet;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    final imagePath =
+        ref.watch(selectMonsterImageProvider(selectedPet: selectedPet));
+
     return Scaffold(
       body: Column(
         children: [
@@ -56,7 +62,7 @@ class CompletionPetScreen extends HookConsumerWidget {
                 ),
                 const SizedBox(height: 80),
                 Image.asset(
-                  'assets/images/test.png',
+                  imagePath,
                   height: 300,
                   width: 300,
                 ),
@@ -73,8 +79,13 @@ class CompletionPetScreen extends HookConsumerWidget {
             child: CustomButton(
               text: 'ロカクエをはじめる',
               variant: ButtonVariant.primary,
-              onPressed: () {
-                context.pushRoute(const BottomNavigationRoute());
+              onPressed: () async {
+                await ref.read(monsterNotifierProvider.notifier).createMonster(
+                      baseMonster: selectedPet,
+                      experience: 0,
+                      monName: 'モンスター',
+                    );
+                await context.pushRoute(const BottomNavigationRoute());
               },
             ),
           ),

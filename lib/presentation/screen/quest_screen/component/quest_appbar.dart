@@ -53,7 +53,7 @@ class TopBarWIdget extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 onPressed: () {
-                  context.router.push(const QuestSelectPrefectureRoute());
+                  context.router.push(QuestSelectPrefectureRoute());
                 },
               ),
             ],

@@ -12,7 +12,7 @@ import 'package:food_quest/foundation/supabase_client_provider.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/answer_tile.dart';
 import 'package:food_quest/presentation/component/loading_widget.dart';
-import 'package:food_quest/presentation/component/question_tile.dart';
+import 'package:food_quest/presentation/component/quest_card.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_list_screen/quest_detail_screen/make_answer_modal.dart';
 
 @RoutePage()
@@ -72,7 +72,7 @@ class QuestDetailScreen extends HookConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 //質問
-                child: QuestionTile(
+                child: QuestCard(
                   question: question,
                   onTap: () {},
                 ),
