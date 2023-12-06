@@ -11,7 +11,6 @@ import 'package:food_quest/presentation/screen/auth/sign_in_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_profile_screen.dart';
 import 'package:food_quest/presentation/screen/auth/sign_up_screen.dart';
 import 'package:food_quest/presentation/screen/bottom_navigation/bottom_navigation_screen.dart';
-import 'package:food_quest/presentation/screen/comming_soon_screen/comming_soon_screen.dart';
 import 'package:food_quest/presentation/screen/pet/pet_screen.dart';
 import 'package:food_quest/presentation/screen/profile_screen/profile_screen.dart';
 import 'package:food_quest/presentation/screen/quest_screen/quest_home_screen.dart';
@@ -65,7 +64,13 @@ class AppRouter extends _$AppRouter {
               AutoRoute(page: MapRoute.page),
             ],
           ),
-          AutoRoute(page: CommingSoonRoute.page),
+          AutoRoute(
+            page: ProfileAutoRouterRoute.page,
+            children: [
+              AutoRoute(page: ProfileRoute.page, initial: true),
+              AutoRoute(page: QuestDetailRoute.page),
+            ],
+          ),
           AutoRoute(
             page: QuestHomeAutoRouterRoute.page,
             children: [

@@ -20,7 +20,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
     //真ん中を除くページのリスト
     final pageList = [
       const RecommendedSpotsRoute(),
-      const CommingSoonRoute(),
+      const ProfileRoute(),
       const QuestHomeRoute(),
       const PetRoute(),
       const SettingRoute(),

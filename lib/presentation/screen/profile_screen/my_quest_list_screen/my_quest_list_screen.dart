@@ -54,7 +54,11 @@ class MyQuestListScreen extends HookConsumerWidget {
             child: QuestCard(
               question: question!,
               onTap: () {
-                context.pushRoute(QuestDetailRoute(question: question));
+                context.pushRoute(
+                  QuestDetailRoute(
+                    question: question,
+                  ),
+                );
               },
             ),
           );

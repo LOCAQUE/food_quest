@@ -48,6 +48,9 @@ abstract class ApiRepository {
   //回答一覧を取得する
   Future<List<Answer>?> getAnswerList({required int questId});
 
+  //ベストアンサーにする
+  Future<void> updateBestAnswer({required int answerId});
+
   //モンスターを作成する
   Future<void> crateMonster({
     required int baseMonster,
@@ -55,6 +58,6 @@ abstract class ApiRepository {
     required String monName,
   });
 
-  //選択しているモンスター情報を取得する
+  //モンスター情報を取得する
   Future<Monster?> getMonster();
 } 

@@ -46,4 +46,9 @@ abstract class QuestionResponse with _$QuestionResponse {
 
   // DateTimeから"yyyy-MM-dd"形式の文字列に変換
   String get formattedDeadLine => DateFormat('yyyy-MM-dd').format(deadLine);
+
+  //自分のクエストかどうか
+  bool isMyQuest({required String currentUserId}) {
+    return currentUserId == userId;
+  }
 }
