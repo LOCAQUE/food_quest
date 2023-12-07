@@ -77,3 +77,9 @@ final List<String> questChipList = [
   '予算',
   '画像',
 ];
+
+//翻訳する国選択
+final List<String> translateCountryList = [
+  '英語',
+  '日本語',
+];

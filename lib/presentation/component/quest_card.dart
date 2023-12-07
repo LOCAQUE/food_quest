@@ -1,13 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/entity/constants/list.dart';
+import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/swiper_image.dart';
+import 'package:food_quest/presentation/component/translation_selector.dart';
 
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:food_quest/domain/entity/question.dart';
+import 'package:speech_balloon/speech_balloon.dart';
 
 class QuestionTiles extends HookConsumerWidget {
   const QuestionTiles({
@@ -36,7 +40,7 @@ class QuestionTiles extends HookConsumerWidget {
   }
 }
 
-class QuestCard extends StatelessWidget {
+class QuestCard extends HookConsumerWidget {
   const QuestCard({
     required this.question,
     required this.onTap,
@@ -47,101 +51,166 @@ class QuestCard extends StatelessWidget {
   final GestureTapCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isShowTranslateDialog = useState(false);
+    final translatedContent = useState<String?>(null);
+
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
+        children: [
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // TODO: ユーザアイコンに変更する
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Center(
-                        child: CircleAvatar(
-                          radius: 24,
-                          backgroundImage: Image.asset(
-                            'assets/images/monster_a_1.png',
-                          ).image,
-                        ),
-                      ),
-                      const Gap(12),
-                      Text(
-                        question.users?.name ?? '名無し',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  const Row(
-                    children: [
-                      Icon(Icons.timer, size: 16, color: Colors.grey),
-                      Gap(4),
-                      Text('2d17h'),
-                    ],
-                  ),
-                ],
-              ),
-              const Gap(12),
-              if (question.questImages.isNotEmpty)
-                Center(
-                  child: Column(
-                    children: [
-                      QuestSwiper(question: question),
-                      const Gap(12),
-                    ],
-                  ),
-                ),
-              Text(
-                question.contents,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-              ),
-              const Gap(16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Row(
-                    children: [
-                      Icon(Icons.chat_bubble, size: 20, color: Colors.grey),
-                      Gap(4),
-                      // TODO: コメント数を表示する
-                      Text('10'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const _TranslationIconWidget(),
-                      const Gap(8),
-                      const _BookmarkIconWidget(),
-                      const Gap(8),
+                      // TODO: ユーザアイコンに変更する
                       Row(
                         children: [
-                          SizedBox(
-                              child: Image.asset(
-                            'assets/images/point.png',
-                            fit: BoxFit.cover,
-                          )),
+                          Center(
+                            child: CircleAvatar(
+                              radius: 24,
+                              backgroundImage: Image.asset(
+                                'assets/images/monster_a_1.png',
+                              ).image,
+                            ),
+                          ),
+                          const Gap(12),
+                          Text(
+                            question.users?.name ?? '名無し',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ],
+                      ),
+                      const Row(
+                        children: [
+                          Icon(Icons.timer, size: 16, color: Colors.grey),
                           Gap(4),
-                          // TODO: ポイント数を表示する
-                          Text('50'),
+                          Text('2d17h'),
                         ],
                       ),
                     ],
-                  )
+                  ),
+                  const Gap(12),
+                  if (question.questImages.isNotEmpty)
+                    Center(
+                      child: Column(
+                        children: [
+                          QuestSwiper(question: question),
+                          const Gap(12),
+                        ],
+                      ),
+                    ),
+                  Text(
+                    translatedContent.value ?? question.contents,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                  const Gap(16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.chat_bubble, size: 20, color: Colors.grey),
+                          Gap(4),
+                          // TODO: コメント数を表示する
+                          Text('10'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          _TranslationIconWidget(
+                            isShowTranslateDialog: isShowTranslateDialog,
+                          ),
+                          const Gap(8),
+                          const _BookmarkIconWidget(),
+                          const Gap(8),
+                          Row(
+                            children: [
+                              SizedBox(
+                                  child: Image.asset(
+                                'assets/images/point.png',
+                                fit: BoxFit.cover,
+                              )),
+                              Gap(4),
+                              // TODO: ポイント数を表示する
+                              Text('50'),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+          if (isShowTranslateDialog.value)
+            Positioned(
+              bottom: MediaQuery.of(context).size.height * 0.06,
+              right: MediaQuery.of(context).size.width * 0.05,
+              child: TranslationDialog(
+                isShowTranslateDialog: isShowTranslateDialog,
+                translatedContent: translatedContent,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class TranslationDialog extends HookConsumerWidget {
+  const TranslationDialog({
+    required this.isShowTranslateDialog,
+    required this.translatedContent,
+    super.key,
+  });
+
+  final ValueNotifier<bool> isShowTranslateDialog;
+  final ValueNotifier<String?> translatedContent;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    //翻訳元の国
+    final fromCountry = useTextEditingController();
+    //翻訳先の国
+    final toCountry = useTextEditingController();
+
+    return SpeechBalloon(
+      borderColor: AppColor.primaryColor,
+      height: 52,
+      width: MediaQuery.of(context).size.width * 0.6,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TranslationSelector(
+            options: translateCountryList,
+            controller: fromCountry,
+          ),
+          const Icon(
+            Icons.swap_horiz,
+          ),
+          TranslationSelector(
+            options: translateCountryList,
+            controller: toCountry,
+          ),
+          TextButton(
+            onPressed: () {
+              isShowTranslateDialog.value = false;
+            },
+            child: const Text('翻訳'),
+          ),
+        ],
       ),
     );
   }
@@ -203,7 +272,10 @@ class _BookmarkIconWidget extends HookConsumerWidget {
 }
 
 class _TranslationIconWidget extends HookConsumerWidget {
-  const _TranslationIconWidget();
+  const _TranslationIconWidget({required this.isShowTranslateDialog});
+
+  final ValueNotifier<bool> isShowTranslateDialog;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
@@ -215,7 +287,7 @@ class _TranslationIconWidget extends HookConsumerWidget {
         color: Colors.blue,
       ),
       onPressed: () {
-        
+        isShowTranslateDialog.value = !isShowTranslateDialog.value;
       },
     );
   }
