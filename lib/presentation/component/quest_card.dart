@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/presentation/component/swiper_image.dart';
 
 import 'package:gap/gap.dart';
@@ -64,20 +66,18 @@ class QuestCard extends StatelessWidget {
                   // TODO: ユーザアイコンに変更する
                   Row(
                     children: [
-                      Container(
-                        width: 32,
-                        height: 32,
-                        decoration: const BoxDecoration(
-                          color: Colors.grey,
-                          shape: BoxShape.circle,
+                      Center(
+                        child: CircleAvatar(
+                          radius: 24,
+                          backgroundImage: Image.asset(
+                            'assets/images/monster_a_1.png',
+                          ).image,
                         ),
                       ),
-                      const Gap(4),
-                      // TODO: ユーザ名を表示する
-                      // Text(question.users?.name ?? '名無し'),
-                      const Text(
-                        '名無し',
-                        style: TextStyle(fontSize: 14),
+                      const Gap(12),
+                      Text(
+                        question.users?.name ?? '名無し',
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ],
                   ),
@@ -105,13 +105,13 @@ class QuestCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
-              const Gap(12),
+              const Gap(16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Row(
                     children: [
-                      Icon(Icons.chat_bubble, size: 16, color: Colors.grey),
+                      Icon(Icons.chat_bubble, size: 20, color: Colors.grey),
                       Gap(4),
                       // TODO: コメント数を表示する
                       Text('10'),
@@ -119,11 +119,17 @@ class QuestCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      BookmarkIconWidget(),
+                      const _TranslationIconWidget(),
+                      const Gap(8),
+                      const _BookmarkIconWidget(),
                       const Gap(8),
                       Row(
                         children: [
-                          Image.asset('assets/images/point.png', width: 16),
+                          SizedBox(
+                              child: Image.asset(
+                            'assets/images/point.png',
+                            fit: BoxFit.cover,
+                          )),
                           Gap(4),
                           // TODO: ポイント数を表示する
                           Text('50'),
@@ -169,28 +175,47 @@ class QuestSwiper extends StatelessWidget {
   }
 }
 
-class BookmarkIconWidget extends StatefulWidget {
+class _BookmarkIconWidget extends HookConsumerWidget {
+  const _BookmarkIconWidget();
   @override
-  _BookmarkIconWidgetState createState() => _BookmarkIconWidgetState();
-}
-
-class _BookmarkIconWidgetState extends State<BookmarkIconWidget> {
-  bool isBookmarked = false; // ブックマークの状態を追跡するフラグ
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isBookmarked = useState(false);
     return IconButton(
       padding: EdgeInsets.zero,
       constraints: const BoxConstraints(),
       icon: Icon(
         Icons.bookmark,
-        size: 16,
-        color: isBookmarked ? Colors.blue : Colors.grey, // 条件によって色を変更
+        size: 24,
+        color: isBookmarked.value ? Colors.blue : Colors.grey,
       ),
       onPressed: () {
-        setState(() {
-          isBookmarked = !isBookmarked; // ブックマークの状態を切り替える
-        });
+        //TODO valueNotifierをquestCardに渡して詳細と一覧の状態共有する。
+        if (isBookmarked.value) {
+          isBookmarked.value = false;
+          //削除
+        } else {
+          isBookmarked.value = true;
+          //登録
+        }
+      },
+    );
+  }
+}
+
+class _TranslationIconWidget extends HookConsumerWidget {
+  const _TranslationIconWidget();
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return IconButton(
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(),
+      icon: const Icon(
+        Icons.translate,
+        size: 24,
+        color: Colors.blue,
+      ),
+      onPressed: () {
+        
       },
     );
   }
