@@ -99,6 +99,9 @@ class $AssetsImagesGen {
   AssetGenImage get monsterC1 =>
       const AssetGenImage('assets/images/monster_c_1.png');
 
+  /// File path: assets/images/point.png
+  AssetGenImage get point => const AssetGenImage('assets/images/point.png');
+
   /// File path: assets/images/taskClear.gif
   AssetGenImage get taskClear =>
       const AssetGenImage('assets/images/taskClear.gif');
@@ -119,6 +122,7 @@ class $AssetsImagesGen {
         monsterA1,
         monsterB1,
         monsterC1,
+        point,
         taskClear,
         test,
         ushi

@@ -6,7 +6,7 @@ part of 'answer_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$answerNotiierHash() => r'2be41ec5244c9d26483fb062e1c60b1136b4942b';
+String _$answerNotiierHash() => r'13d872cabbf68671bc308caa96e82358c0763615';
 
 /// See also [AnswerNotiier].
 @ProviderFor(AnswerNotiier)
