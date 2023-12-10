@@ -23,7 +23,6 @@ class BottomNavigationScreen extends HookConsumerWidget {
       const ProfileRoute(),
       const QuestHomeRoute(),
       const PetRoute(),
-      const SettingRoute(),
     ];
 
     return AutoTabsScaffold(
@@ -39,28 +38,27 @@ class BottomNavigationScreen extends HookConsumerWidget {
             onTap: tabsRouter.setActiveIndex,
             items: [
               SalomonBottomBarItem(
-                icon: const Icon(Icons.person),
+                icon: const Icon(Icons.local_library_outlined),
+                activeIcon: const Icon(Icons.local_library),
                 title: const Text('ツアー'),
                 selectedColor: Colors.orange,
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.help),
-                title: const Text('people'),
+                icon: const Icon(Icons.person_outline),
+                activeIcon: const Icon(Icons.person),
+                title: const Text('プロフィール'),
                 selectedColor: Colors.orange,
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.abc),
-                title: const Text('Home'),
+                icon: const Icon(Icons.checklist_outlined),
+                activeIcon: const Icon(Icons.checklist),
+                title: const Text('クエスト'),
                 selectedColor: Colors.orange,
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.pets),
-                title: const Text('Search'),
-                selectedColor: Colors.orange,
-              ),
-              SalomonBottomBarItem(
-                icon: const Icon(Icons.settings),
-                title: const Text('Profile'),
+                icon: const Icon(Icons.pets_outlined),
+                activeIcon: const Icon(Icons.pets),
+                title: const Text('キャラクター'),
                 selectedColor: Colors.orange,
               ),
             ],
