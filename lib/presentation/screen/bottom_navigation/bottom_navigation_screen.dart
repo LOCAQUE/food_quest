@@ -23,7 +23,7 @@ class BottomNavigationScreen extends HookConsumerWidget {
       const ProfileRoute(),
       const QuestHomeRoute(),
       const PetRoute(),
-      const SettingRoute(),
+      const TourHomeRoute(),
     ];
 
     return AutoTabsScaffold(

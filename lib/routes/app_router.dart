@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/presentation/screen/tour/tour_home_screen.dart';
 import 'package:google_place/google_place.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -79,7 +80,9 @@ class AppRouter extends _$AppRouter {
             ],
           ),
           AutoRoute(page: PetRoute.page),
-          AutoRoute(page: SettingRoute.page),
+          AutoRoute(page: TourHomeAutoRouterRoute.page, children: [
+            AutoRoute(page: TourHomeRoute.page, initial: true),
+          ]),
         ],
       ),
       //ボトムバーをはずしたい場合はこちら

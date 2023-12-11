@@ -193,6 +193,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const TopScreen(),
       );
     },
+    TourHomeAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TourHomeAutoRouterScreen(),
+      );
+    },
+    TourHomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TourHomeScreen(),
+      );
+    },
   };
 }
 
@@ -681,6 +693,34 @@ class TopRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'TopRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourHomeAutoRouterScreen]
+class TourHomeAutoRouterRoute extends PageRouteInfo<void> {
+  const TourHomeAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          TourHomeAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TourHomeAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourHomeScreen]
+class TourHomeRoute extends PageRouteInfo<void> {
+  const TourHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          TourHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TourHomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

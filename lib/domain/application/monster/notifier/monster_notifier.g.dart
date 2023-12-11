@@ -6,7 +6,7 @@ part of 'monster_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$monsterNotifierHash() => r'f8a861d34dc8be9b09e74e7b07187958bb750023';
+String _$monsterNotifierHash() => r'39d46243ed5e0e72be5a299e6f245a0fdd3dfcef';
 
 /// See also [MonsterNotifier].
 @ProviderFor(MonsterNotifier)
