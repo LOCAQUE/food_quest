@@ -19,16 +19,16 @@ class BottomNavigationScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     //真ん中を除くページのリスト
     final pageList = [
-      const RecommendedSpotsRoute(),
-      const ProfileRoute(),
-      const QuestHomeRoute(),
       const PetRoute(),
+      const QuestHomeRoute(),
+      const ProfileRoute(),
     ];
 
     return AutoTabsScaffold(
       routes: pageList,
       bottomNavigationBuilder: (_, tabsRouter) {
         return Container(
+          height: 107, // ここで高さを設定
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey, width: 0.1),
           ),
@@ -38,27 +38,32 @@ class BottomNavigationScreen extends HookConsumerWidget {
             onTap: tabsRouter.setActiveIndex,
             items: [
               SalomonBottomBarItem(
-                icon: const Icon(Icons.local_library_outlined),
-                activeIcon: const Icon(Icons.local_library),
-                title: const Text('ツアー'),
-                selectedColor: Colors.orange,
-              ),
-              SalomonBottomBarItem(
-                icon: const Icon(Icons.person_outline),
-                activeIcon: const Icon(Icons.person),
-                title: const Text('プロフィール'),
+                icon: const Icon(
+                  Icons.pets_outlined,
+                  size: 28, // アイコンのサイズを変更
+                ),
+                title: const Text(
+                  'キャラクター',
+                  style: TextStyle(fontSize: 10), // テキストのサイズ
+                ),
                 selectedColor: Colors.orange,
               ),
               SalomonBottomBarItem(
                 icon: const Icon(Icons.checklist_outlined),
                 activeIcon: const Icon(Icons.checklist),
-                title: const Text('クエスト'),
+                title: const Text(
+                  'クエスト',
+                  style: TextStyle(fontSize: 10), // テキストのサイズ
+                ),
                 selectedColor: Colors.orange,
               ),
               SalomonBottomBarItem(
-                icon: const Icon(Icons.pets_outlined),
-                activeIcon: const Icon(Icons.pets),
-                title: const Text('キャラクター'),
+                icon: const Icon(Icons.person_outline),
+                activeIcon: const Icon(Icons.person),
+                title: const Text(
+                  'プロフィール',
+                  style: TextStyle(fontSize: 10), // テキストのサイズ
+                ),
                 selectedColor: Colors.orange,
               ),
             ],
