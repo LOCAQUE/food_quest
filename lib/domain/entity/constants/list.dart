@@ -78,8 +78,8 @@ final List<String> questChipList = [
   '画像',
 ];
 
-//翻訳する国選択
-final List<String> translateCountryList = [
-  '英語',
-  '日本語',
-];
+//翻訳する国選択と実際に返す値
+final Map<String, String> translateCountryMap = {
+  '英語': 'en',
+  '日本語': 'ja',
+};

@@ -59,6 +59,9 @@ dependencies:
   geolocator: ^10.1.0
   google_place: ^0.4.7
 
+  # 翻訳
+  translator: ^0.1.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
