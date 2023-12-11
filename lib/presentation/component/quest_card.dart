@@ -1,9 +1,11 @@
+// ignore_for_file: await_only_futures
+
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/translation/provider/translation.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
-import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/swiper_image.dart';
 import 'package:food_quest/presentation/component/translation_selector.dart';
 
@@ -53,7 +55,12 @@ class QuestCard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isShowTranslateDialog = useState(false);
-    final translatedContent = useState<String?>(null);
+    final translatedContent = useState<String>('');
+    final translateLoading = useState(false);
+    //翻訳元の国
+    final fromCountry = useTextEditingController(text: 'en');
+    //翻訳先の国
+    final toCountry = useTextEditingController(text: 'ja');
 
     return GestureDetector(
       onTap: onTap,
@@ -110,7 +117,9 @@ class QuestCard extends HookConsumerWidget {
                       ),
                     ),
                   Text(
-                    translatedContent.value ?? question.contents,
+                    translatedContent.value == ''
+                        ? question.contents
+                        : translatedContent.value,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                   ),
@@ -128,9 +137,12 @@ class QuestCard extends HookConsumerWidget {
                       ),
                       Row(
                         children: [
-                          _TranslationIconWidget(
-                            isShowTranslateDialog: isShowTranslateDialog,
-                          ),
+                          if (translateLoading.value)
+                            const CircularProgressIndicator(strokeWidth: 1,),
+                          if (!translateLoading.value)
+                            _TranslationIconWidget(
+                              isShowTranslateDialog: isShowTranslateDialog,
+                            ),
                           const Gap(8),
                           const _BookmarkIconWidget(),
                           const Gap(8),
@@ -158,58 +170,48 @@ class QuestCard extends HookConsumerWidget {
             Positioned(
               bottom: MediaQuery.of(context).size.height * 0.06,
               right: MediaQuery.of(context).size.width * 0.05,
-              child: TranslationDialog(
-                isShowTranslateDialog: isShowTranslateDialog,
-                translatedContent: translatedContent,
+              child: SpeechBalloon(
+                borderColor: AppColor.primaryColor,
+                height: 52,
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TranslationSelector(
+                      options: translateCountryMap,
+                      controller: fromCountry,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.swap_horiz,
+                      ),
+                    ),
+                    TranslationSelector(
+                      options: translateCountryMap,
+                      controller: toCountry,
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        isShowTranslateDialog.value = false;
+                        translateLoading.value = true;
+                        //翻訳処理
+                        await Translate.translate(
+                          content: question.contents,
+                          fromCountry: fromCountry.text,
+                          toCountry: toCountry.text,
+                          ref: ref,
+                        ).then((value) {
+                          translatedContent.value = value;
+                        });
+                        translateLoading.value = false;
+                      },
+                      child: const Text('翻訳'),
+                    ),
+                  ],
+                ),
               ),
             ),
-        ],
-      ),
-    );
-  }
-}
-
-class TranslationDialog extends HookConsumerWidget {
-  const TranslationDialog({
-    required this.isShowTranslateDialog,
-    required this.translatedContent,
-    super.key,
-  });
-
-  final ValueNotifier<bool> isShowTranslateDialog;
-  final ValueNotifier<String?> translatedContent;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    //翻訳元の国
-    final fromCountry = useTextEditingController();
-    //翻訳先の国
-    final toCountry = useTextEditingController();
-
-    return SpeechBalloon(
-      borderColor: AppColor.primaryColor,
-      height: 52,
-      width: MediaQuery.of(context).size.width * 0.6,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TranslationSelector(
-            options: translateCountryList,
-            controller: fromCountry,
-          ),
-          const Icon(
-            Icons.swap_horiz,
-          ),
-          TranslationSelector(
-            options: translateCountryList,
-            controller: toCountry,
-          ),
-          TextButton(
-            onPressed: () {
-              isShowTranslateDialog.value = false;
-            },
-            child: const Text('翻訳'),
-          ),
         ],
       ),
     );

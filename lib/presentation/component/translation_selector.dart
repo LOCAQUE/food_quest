@@ -13,13 +13,13 @@ class TranslationSelector extends HookConsumerWidget {
     super.key,
   });
 
-  final List<String> options;
+  final Map<String, String> options;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //controller.text を optionsの最初をデフォルトに設定
-    final selectedOption = useState(options.first);
+    final selectedOption = useState(controller.text);
 
     return TextButton(
       onPressed: () {
@@ -40,7 +40,7 @@ class TranslationSelector extends HookConsumerWidget {
         );
       },
       child: Text(
-        selectedOption.value != '' ? selectedOption.value : '選択してください',
+        selectedOption.value == 'ja' ? '日本語' : '英語',
         style: const TextStyle(
           fontSize: 16,
           color: AppColor.textColor,
@@ -59,43 +59,52 @@ class Picker extends HookConsumerWidget {
     super.key,
   });
 
-  final List<String> options;
+  final Map<String, String> options;
   final String title;
   final TextEditingController controller;
   final ValueNotifier<String> selectedOption;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        CupertinoNavigationBar(
-          middle: Text(title),
-          trailing: CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('完了'),
-          ),
-        ),
-        SizedBox(
-          height: 200, // ドラムロールの高さを調整
-          child: CupertinoPicker(
-            itemExtent: 40, // 各アイテムの高さを調整
-            onSelectedItemChanged: (int index) {
-              selectedOption.value = options[index];
-              controller.text = selectedOption.value;
-            },
-            children: List<Widget>.generate(options.length, (int index) {
-              return Center(
-                child: Text(
-                  options[index],
-                  style: const TextStyle(fontSize: 20),
+    return ListView(
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            CupertinoNavigationBar(
+              middle: Text(title),
+              trailing: CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('完了'),
+              ),
+            ),
+            SizedBox(
+              height: 200, // ドラムロールの高さを調整
+              child: CupertinoPicker(
+                scrollController: FixedExtentScrollController(
+                  initialItem: selectedOption.value == 'ja'
+                      ? 1
+                      : 0,
                 ),
-              );
-            }),
-          ),
+                itemExtent: 40, // 各アイテムの高さを調整
+                onSelectedItemChanged: (int index) {
+                  selectedOption.value = options.values.toList()[index];
+                  controller.text = selectedOption.value;
+                },
+                children: List<Widget>.generate(options.length, (int index) {
+                  return Center(
+                    child: Text(
+                      options.keys.toList()[index],
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ],
         ),
       ],
     );
