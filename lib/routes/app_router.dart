@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/presentation/screen/tour/make_tour/make_tour_screen.dart';
 import 'package:food_quest/presentation/screen/tour/tour_home_screen.dart';
 import 'package:google_place/google_place.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -89,6 +90,7 @@ class AppRouter extends _$AppRouter {
       AutoRoute(page: QuestSelectPrefectureRoute.page),
       AutoRoute(page: QuestImageDetailRoute.page),
       AutoRoute(page: MapSearchRoute.page),
+      AutoRoute(page: MakeTourRoute.page),
     ];
   }
 }

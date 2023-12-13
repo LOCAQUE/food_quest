@@ -37,6 +37,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    MakeTourRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MakeTourScreen(),
+      );
+    },
     MapAutoRouterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -272,6 +278,20 @@ class CompletionPetRouteArgs {
   String toString() {
     return 'CompletionPetRouteArgs{selectedPet: $selectedPet, key: $key}';
   }
+}
+
+/// generated route for
+/// [MakeTourScreen]
+class MakeTourRoute extends PageRouteInfo<void> {
+  const MakeTourRoute({List<PageRouteInfo>? children})
+      : super(
+          MakeTourRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MakeTourRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

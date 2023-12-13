@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +18,7 @@ class TourHomeScreen extends HookConsumerWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          
+          context.pushRoute(const MakeTourRoute());
         },
         child: const Icon(Icons.add),
       ),

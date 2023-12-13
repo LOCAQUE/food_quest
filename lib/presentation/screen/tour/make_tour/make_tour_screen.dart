@@ -1,83 +1,34 @@
-// ignore_for_file: cascade_invocations
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:gap/gap.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'package:food_quest/domain/application/my_quest/notifier/my_quest_notifier.dart';
 import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
 import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
 import 'package:food_quest/presentation/component/button.dart';
-import 'package:food_quest/presentation/component/custom_date_picker.dart';
 import 'package:food_quest/presentation/component/custom_picker.dart';
+import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/component/filter_chip.dart';
 import 'package:food_quest/presentation/component/image_selector.dart';
+import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MakeQuestionModal extends HookConsumerWidget {
-  const MakeQuestionModal({
-    required this.context,
-    this.content,
-    super.key,
-  });
-
-  final BuildContext context;
-  final String? content;
-
-  static Future<void> show({
-    required BuildContext context,
-    String? content,
-  }) async {
-    await showModalBottomSheet<void>(
-      isDismissible: false,
-      enableDrag: false,
-      useRootNavigator: true,
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      builder: (context) => MakeQuestionModal(
-        context: context,
-        content: content,
-      ),
-    );
-  }
-
+@RoutePage()
+class MakeTourScreen extends HookConsumerWidget {
+  const MakeTourScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final content = useTextEditingController();
-    final minimumBudget = useTextEditingController(text: '0');
-    final maximumBudget = useTextEditingController(text: '0');
-    final deadLine = useTextEditingController();
+    final budget = useTextEditingController(text: '0');
     final prefecture = useTextEditingController();
+    final title = useTextEditingController();
 
     final notifier = ref.watch(questListNotifierProvider.notifier);
     final usecase = ref.watch(uploadImageUsecaseProvider.notifier);
     final filterChipList = ref.watch(filterChipListProvider);
-    final isKeyboard = useState(false);
     final textFieldScrollController = useScrollController();
-
-    useEffect(
-      () {
-        final keyboard = KeyboardVisibilityController();
-        // キーボードの表示を監視
-        final keyboardSubscription = keyboard.onChange.listen((visible) {
-          if (!visible) {
-            FocusScope.of(context).unfocus();
-            isKeyboard.value = false;
-          } else {
-            isKeyboard.value = true;
-          }
-        });
-        return keyboardSubscription.cancel;
-      },
-      const [],
-    );
 
     return GestureDetector(
       onTap: () {
@@ -108,26 +59,26 @@ class MakeQuestionModal extends HookConsumerWidget {
                           },
                         ),
                         CustomButton(
-                          text: '受注',
+                          text: '作成',
                           variant: ButtonVariant.primary,
                           size: ButtonSize.small,
                           onPressed: () async {
                             // 画像をアップロード
                             await usecase.uploadImage();
                             // クエストを作成
-                            await notifier
-                                .createQuest(
-                              content: content.text,
-                              deadLine: deadLine.text,
-                              prefecture: prefecture.text,
-                              minimumBudget: minimumBudget.text,
-                              maximumBudget: maximumBudget.text,
-                            )
-                                .then((value) {
-                              Navigator.of(context).pop();
-                            });
-                            // providerを強制破棄させる
-                            ref.refresh(myQuestNotifierProvider);
+                            // await notifier
+                            //     .createQuest(
+                            //   content: content.text,
+                            //   deadLine: deadLine.text,
+                            //   prefecture: prefecture.text,
+                            //   minimumBudget: minimumBudget.text,
+                            //   maximumBudget: maximumBudget.text,
+                            // )
+                            //     .then((value) {
+                            //   Navigator.of(context).pop();
+                            // });
+                            // // providerを強制破棄させる
+                            // ref.refresh(myQuestNotifierProvider);
                           },
                         ),
                       ],
@@ -145,21 +96,36 @@ class MakeQuestionModal extends HookConsumerWidget {
                       ],
                     ),
                     const Gap(16),
+                    if (filterChipList.contains('画像'))
+                      Column(
+                        children: [
+                          Text(
+                            'ツアーの表紙を設定しよう',
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          const Gap(8),
+                          const ImageSelectWidget(onlySingleImage: true),
+                          const Gap(16),
+                        ],
+                      ),
+
+                    CustomTextField(
+                      title: 'タイトル',
+                      controller: title,
+                      hintText: 'タイトルを設定してください',
+                    ),
+                    const Gap(16),
+
                     CustomPicker(
                       title: 'エリア',
                       options: prefectures,
                       controller: prefecture,
                     ),
-                    const Gap(16),
-                    CustomDatePicker(
-                      title: '締切日',
-                      controller: deadLine,
-                    ),
+
                     const Gap(16),
                     if (filterChipList.contains('予算'))
                       BadgetWidget(
-                        minimumBudget: minimumBudget,
-                        maximumBudget: maximumBudget,
+                        budget: budget,
                       ),
                     const Gap(8),
                     TextField(
@@ -167,7 +133,7 @@ class MakeQuestionModal extends HookConsumerWidget {
                       maxLines: 12,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: '回答内容を入力してください',
+                        hintText: 'ツアーの説明を入力してください',
                       ),
                       maxLength: 255,
                       onChanged: (value) {
@@ -179,19 +145,10 @@ class MakeQuestionModal extends HookConsumerWidget {
                         });
                       },
                     ),
-                    const Gap(16),
-                    if (filterChipList.contains('画像') && !isKeyboard.value)
-                      const ImageSelectWidget(onlySingleImage: false,),
                   ],
                 ),
               ),
             ),
-            if (filterChipList.contains('画像') && isKeyboard.value)
-              const Positioned(
-                bottom: 8,
-                left: 8,
-                child: ImageSelectWidget(onlySingleImage: false,),
-              ),
           ],
         ),
       ),
@@ -202,31 +159,21 @@ class MakeQuestionModal extends HookConsumerWidget {
 //予算
 class BadgetWidget extends HookConsumerWidget {
   const BadgetWidget({
-    required this.minimumBudget,
-    required this.maximumBudget,
+    required this.budget,
     super.key,
   });
-
-  final TextEditingController minimumBudget;
-  final TextEditingController maximumBudget;
+  final TextEditingController budget;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
+    return Column(
       children: [
         CustomPicker(
-          title: '最低予算',
+          title: '予算',
           options: priceList,
-          controller: minimumBudget,
+          controller: budget,
         ),
         const Gap(8),
-        const Text('~'),
-        const Gap(8),
-        CustomPicker(
-          title: '最大予算',
-          options: priceList,
-          controller: maximumBudget,
-        ),
       ],
     );
   }
