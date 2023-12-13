@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/quest_list/notifier/quest_list_notifier.dart';
 import 'package:food_quest/domain/application/quest_list/usecase/upload_image_usecase.dart';
+import 'package:food_quest/domain/application/tour/notifier/tour_notifier.dart';
 import 'package:food_quest/domain/entity/constants/list.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/%20ui_provier/filter_chip_list.dart';
@@ -12,6 +13,7 @@ import 'package:food_quest/presentation/component/custom_picker.dart';
 import 'package:food_quest/presentation/component/custom_text_field.dart';
 import 'package:food_quest/presentation/component/filter_chip.dart';
 import 'package:food_quest/presentation/component/image_selector.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,15 +22,20 @@ class MakeTourScreen extends HookConsumerWidget {
   const MakeTourScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final content = useTextEditingController();
+    final loading = useState(false);
+    final contents = useTextEditingController();
     final budget = useTextEditingController(text: '0');
     final prefecture = useTextEditingController();
     final title = useTextEditingController();
 
-    final notifier = ref.watch(questListNotifierProvider.notifier);
+    final notifier = ref.watch(tourNotifierProvider.notifier);
     final usecase = ref.watch(uploadImageUsecaseProvider.notifier);
     final filterChipList = ref.watch(filterChipListProvider);
     final textFieldScrollController = useScrollController();
+
+    if (loading.value) {
+      return const Scaffold(body: LoadingWidget());
+    }
 
     return GestureDetector(
       onTap: () {
@@ -63,21 +70,22 @@ class MakeTourScreen extends HookConsumerWidget {
                           variant: ButtonVariant.primary,
                           size: ButtonSize.small,
                           onPressed: () async {
+                            loading.value = true;
                             // 画像をアップロード
                             await usecase.uploadImage();
-                            // クエストを作成
-                            // await notifier
-                            //     .createQuest(
-                            //   content: content.text,
-                            //   deadLine: deadLine.text,
-                            //   prefecture: prefecture.text,
-                            //   minimumBudget: minimumBudget.text,
-                            //   maximumBudget: maximumBudget.text,
-                            // )
-                            //     .then((value) {
-                            //   Navigator.of(context).pop();
-                            // });
-                            // // providerを強制破棄させる
+                            // ツアーを作成
+                            await notifier
+                                .createTour(
+                              contents: contents.text,
+                              budget: budget.text,
+                              prefecture: prefecture.text,
+                              title: title.text,
+                            )
+                                .then((value) {
+                              Navigator.of(context).pop();
+                            });
+                            loading.value = false;
+                            // providerを強制破棄させる
                             // ref.refresh(myQuestNotifierProvider);
                           },
                         ),
@@ -129,7 +137,7 @@ class MakeTourScreen extends HookConsumerWidget {
                       ),
                     const Gap(8),
                     TextField(
-                      controller: content,
+                      controller: contents,
                       maxLines: 12,
                       decoration: const InputDecoration(
                         border: InputBorder.none,

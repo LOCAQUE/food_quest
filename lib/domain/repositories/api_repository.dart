@@ -1,5 +1,6 @@
 import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/monster.dart';
+import 'package:food_quest/domain/entity/tour.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:food_quest/domain/entity/question.dart';
@@ -60,4 +61,16 @@ abstract class ApiRepository {
 
   //モンスター情報を取得する
   Future<Monster?> getMonster();
-} 
+
+  //ツアー情報を取得する
+  Future<List<Tour>?> getTourList();
+
+  //ツアーを作成する
+  Future<void> createTour({
+    required String contents,
+    required String budget,
+    required String prefecture,
+    required String title,
+    required String imagePath,
+  });
+}

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:food_quest/domain/entity/monster.dart';
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
+import 'package:food_quest/domain/entity/tour.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -227,6 +228,48 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
       final monster = response.map(Monster.fromJson).toList().first;
       return monster;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Tour>?> getTourList() async {
+    try {
+      final response = await supabaseClient
+          .from('tours')
+          .select<PostgrestList>()
+          .order('id', ascending: true);
+
+      final tourList = response.map(Tour.fromJson).toList();
+      return tourList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//ツアー作成
+  @override
+  Future<void> createTour({
+    required String contents,
+    required String budget,
+    required String prefecture,
+    required String title,
+    required String imagePath,
+  }) async {
+    final currentId = supabaseClient.auth.currentUser?.id;
+
+    final sendTourData = Tour(
+      contents: contents,
+      budget: int.parse(budget),
+      prefecture: prefecture,
+      title: title,
+      userId: currentId!,
+      imagePath: imagePath,
+    );
+
+    try {
+      await supabaseClient.from('tours').insert(sendTourData);
     } catch (e) {
       rethrow;
     }
