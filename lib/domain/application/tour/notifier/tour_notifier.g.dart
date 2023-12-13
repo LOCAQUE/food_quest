@@ -6,12 +6,12 @@ part of 'tour_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tourNotifierHash() => r'199c1a933737d454cd703b0e62d86f6e6a11fe76';
+String _$tourNotifierHash() => r'e02d0a29b453bc79fc297daa18700735fdd96a40';
 
 /// See also [TourNotifier].
 @ProviderFor(TourNotifier)
 final tourNotifierProvider =
-    AsyncNotifierProvider<TourNotifier, List<Tour>?>.internal(
+    AsyncNotifierProvider<TourNotifier, List<TourResponse>?>.internal(
   TourNotifier.new,
   name: r'tourNotifierProvider',
   debugGetCreateSourceHash:
@@ -20,6 +20,6 @@ final tourNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$TourNotifier = AsyncNotifier<List<Tour>?>;
+typedef _$TourNotifier = AsyncNotifier<List<TourResponse>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

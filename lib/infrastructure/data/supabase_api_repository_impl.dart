@@ -234,14 +234,14 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<List<Tour>?> getTourList() async {
+  Future<List<TourResponse>?> getTourList() async {
     try {
       final response = await supabaseClient
           .from('tours')
           .select<PostgrestList>()
           .order('id', ascending: true);
 
-      final tourList = response.map(Tour.fromJson).toList();
+      final tourList = response.map(TourResponse.fromJson).toList();
       return tourList;
     } catch (e) {
       rethrow;

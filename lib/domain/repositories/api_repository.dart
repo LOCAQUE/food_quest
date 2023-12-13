@@ -63,7 +63,7 @@ abstract class ApiRepository {
   Future<Monster?> getMonster();
 
   //ツアー情報を取得する
-  Future<List<Tour>?> getTourList();
+  Future<List<TourResponse>?> getTourList();
 
   //ツアーを作成する
   Future<void> createTour({

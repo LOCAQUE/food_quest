@@ -8,7 +8,7 @@ part 'tour_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class TourNotifier extends _$TourNotifier {
   @override
-  Future<List<Tour>?> build() {
+  Future<List<TourResponse>?> build() {
     final repository = ref.read(apiRepositoryProvider);
 
     return repository.getTourList();

@@ -1,6 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/tour/usecase/group_tour_usecase.dart';
+import 'package:food_quest/domain/entity/tour.dart';
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/routes/app_router.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,6 +19,28 @@ class TourHomeScreen extends HookConsumerWidget {
   const TourHomeScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loading = useState(false);
+    final releasedTours = useState<List<TourResponse>?>([]);
+    final notReleasedTours = useState<List<TourResponse>?>([]);
+
+    ref.watch(groupTourUsecaseProvider).when(
+      data: (data) {
+        releasedTours.value = data!['release'];
+        notReleasedTours.value = data['notRelease'];
+        loading.value = false;
+      },
+      loading: () {
+        loading.value = true;
+      },
+      error: (error, stackTrace) {
+        debugPrint(error.toString());
+      },
+    );
+
+    if (loading.value) {
+      return const Scaffold(body: LoadingWidget());
+    }
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
