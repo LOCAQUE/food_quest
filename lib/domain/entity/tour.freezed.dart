@@ -26,6 +26,7 @@ mixin _$Tour {
   String get prefecture => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
+  bool? get isRelease => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $TourCopyWith<$Res> {
       int budget,
       String prefecture,
       String title,
-      String? imagePath});
+      String? imagePath,
+      bool? isRelease});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$TourCopyWithImpl<$Res, $Val extends Tour>
     Object? prefecture = null,
     Object? title = null,
     Object? imagePath = freezed,
+    Object? isRelease = freezed,
   }) {
     return _then(_value.copyWith(
       contents: null == contents
@@ -91,6 +94,10 @@ class _$TourCopyWithImpl<$Res, $Val extends Tour>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
+      isRelease: freezed == isRelease
+          ? _value.isRelease
+          : isRelease // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -108,7 +115,8 @@ abstract class _$$TourImplCopyWith<$Res> implements $TourCopyWith<$Res> {
       int budget,
       String prefecture,
       String title,
-      String? imagePath});
+      String? imagePath,
+      bool? isRelease});
 }
 
 /// @nodoc
@@ -127,6 +135,7 @@ class __$$TourImplCopyWithImpl<$Res>
     Object? prefecture = null,
     Object? title = null,
     Object? imagePath = freezed,
+    Object? isRelease = freezed,
   }) {
     return _then(_$TourImpl(
       contents: null == contents
@@ -153,6 +162,10 @@ class __$$TourImplCopyWithImpl<$Res>
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String?,
+      isRelease: freezed == isRelease
+          ? _value.isRelease
+          : isRelease // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -166,7 +179,8 @@ class _$TourImpl extends _Tour {
       required this.budget,
       required this.prefecture,
       required this.title,
-      this.imagePath = ''})
+      this.imagePath = '',
+      this.isRelease = false})
       : super._();
 
   factory _$TourImpl.fromJson(Map<String, dynamic> json) =>
@@ -185,10 +199,13 @@ class _$TourImpl extends _Tour {
   @override
   @JsonKey()
   final String? imagePath;
+  @override
+  @JsonKey()
+  final bool? isRelease;
 
   @override
   String toString() {
-    return 'Tour(contents: $contents, userId: $userId, budget: $budget, prefecture: $prefecture, title: $title, imagePath: $imagePath)';
+    return 'Tour(contents: $contents, userId: $userId, budget: $budget, prefecture: $prefecture, title: $title, imagePath: $imagePath, isRelease: $isRelease)';
   }
 
   @override
@@ -204,13 +221,15 @@ class _$TourImpl extends _Tour {
                 other.prefecture == prefecture) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imagePath, imagePath) ||
-                other.imagePath == imagePath));
+                other.imagePath == imagePath) &&
+            (identical(other.isRelease, isRelease) ||
+                other.isRelease == isRelease));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, contents, userId, budget, prefecture, title, imagePath);
+  int get hashCode => Object.hash(runtimeType, contents, userId, budget,
+      prefecture, title, imagePath, isRelease);
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +252,8 @@ abstract class _Tour extends Tour {
       required final int budget,
       required final String prefecture,
       required final String title,
-      final String? imagePath}) = _$TourImpl;
+      final String? imagePath,
+      final bool? isRelease}) = _$TourImpl;
   const _Tour._() : super._();
 
   factory _Tour.fromJson(Map<String, dynamic> json) = _$TourImpl.fromJson;
@@ -250,6 +270,8 @@ abstract class _Tour extends Tour {
   String get title;
   @override
   String? get imagePath;
+  @override
+  bool? get isRelease;
   @override
   @JsonKey(ignore: true)
   _$$TourImplCopyWith<_$TourImpl> get copyWith =>
@@ -269,7 +291,8 @@ mixin _$TourResponse {
   int get budget => throw _privateConstructorUsedError;
   String get prefecture => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String? get imagePath => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
+  bool get isRelease => throw _privateConstructorUsedError;
   UserData? get users => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -292,7 +315,8 @@ abstract class $TourResponseCopyWith<$Res> {
       int budget,
       String prefecture,
       String title,
-      String? imagePath,
+      String imagePath,
+      bool isRelease,
       UserData? users});
 
   $UserDataCopyWith<$Res>? get users;
@@ -318,7 +342,8 @@ class _$TourResponseCopyWithImpl<$Res, $Val extends TourResponse>
     Object? budget = null,
     Object? prefecture = null,
     Object? title = null,
-    Object? imagePath = freezed,
+    Object? imagePath = null,
+    Object? isRelease = null,
     Object? users = freezed,
   }) {
     return _then(_value.copyWith(
@@ -350,10 +375,14 @@ class _$TourResponseCopyWithImpl<$Res, $Val extends TourResponse>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      imagePath: freezed == imagePath
+      imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      isRelease: null == isRelease
+          ? _value.isRelease
+          : isRelease // ignore: cast_nullable_to_non_nullable
+              as bool,
       users: freezed == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
@@ -390,7 +419,8 @@ abstract class _$$TourResponseImplCopyWith<$Res>
       int budget,
       String prefecture,
       String title,
-      String? imagePath,
+      String imagePath,
+      bool isRelease,
       UserData? users});
 
   @override
@@ -415,7 +445,8 @@ class __$$TourResponseImplCopyWithImpl<$Res>
     Object? budget = null,
     Object? prefecture = null,
     Object? title = null,
-    Object? imagePath = freezed,
+    Object? imagePath = null,
+    Object? isRelease = null,
     Object? users = freezed,
   }) {
     return _then(_$TourResponseImpl(
@@ -447,10 +478,14 @@ class __$$TourResponseImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      imagePath: freezed == imagePath
+      imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      isRelease: null == isRelease
+          ? _value.isRelease
+          : isRelease // ignore: cast_nullable_to_non_nullable
+              as bool,
       users: freezed == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
@@ -471,6 +506,7 @@ class _$TourResponseImpl extends _TourResponse {
       required this.prefecture,
       required this.title,
       this.imagePath = '',
+      this.isRelease = false,
       this.users})
       : super._();
 
@@ -493,13 +529,16 @@ class _$TourResponseImpl extends _TourResponse {
   final String title;
   @override
   @JsonKey()
-  final String? imagePath;
+  final String imagePath;
+  @override
+  @JsonKey()
+  final bool isRelease;
   @override
   final UserData? users;
 
   @override
   String toString() {
-    return 'TourResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, budget: $budget, prefecture: $prefecture, title: $title, imagePath: $imagePath, users: $users)';
+    return 'TourResponse(id: $id, createdAt: $createdAt, contents: $contents, userId: $userId, budget: $budget, prefecture: $prefecture, title: $title, imagePath: $imagePath, isRelease: $isRelease, users: $users)';
   }
 
   @override
@@ -519,13 +558,15 @@ class _$TourResponseImpl extends _TourResponse {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath) &&
+            (identical(other.isRelease, isRelease) ||
+                other.isRelease == isRelease) &&
             (identical(other.users, users) || other.users == users));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdAt, contents, userId,
-      budget, prefecture, title, imagePath, users);
+      budget, prefecture, title, imagePath, isRelease, users);
 
   @JsonKey(ignore: true)
   @override
@@ -550,7 +591,8 @@ abstract class _TourResponse extends TourResponse {
       required final int budget,
       required final String prefecture,
       required final String title,
-      final String? imagePath,
+      final String imagePath,
+      final bool isRelease,
       final UserData? users}) = _$TourResponseImpl;
   const _TourResponse._() : super._();
 
@@ -572,7 +614,9 @@ abstract class _TourResponse extends TourResponse {
   @override
   String get title;
   @override
-  String? get imagePath;
+  String get imagePath;
+  @override
+  bool get isRelease;
   @override
   UserData? get users;
   @override

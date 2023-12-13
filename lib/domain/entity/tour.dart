@@ -14,6 +14,7 @@ abstract class Tour with _$Tour {
     required String prefecture,
     required String title,
     @Default('') String? imagePath,
+    @Default(false) bool? isRelease,
   }) = _Tour;
 
   const Tour._();
@@ -31,7 +32,8 @@ abstract class TourResponse with _$TourResponse {
     required int budget,
     required String prefecture,
     required String title,
-    @Default('') String? imagePath,
+    @Default('') String imagePath,
+    @Default(false) bool isRelease,
     UserData? users,
   }) = _TourResponse;
 
