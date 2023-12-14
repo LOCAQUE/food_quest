@@ -215,6 +215,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const TopScreen(),
       );
     },
+    TourDetailHomeRoute.name: (routeData) {
+      final args = routeData.argsAs<TourDetailHomeRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TourDetailHomeScreen(
+          tourId: args.tourId,
+          key: args.key,
+        ),
+      );
+    },
     TourHomeAutoRouterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -783,6 +793,44 @@ class TopRoute extends PageRouteInfo<void> {
   static const String name = 'TopRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourDetailHomeScreen]
+class TourDetailHomeRoute extends PageRouteInfo<TourDetailHomeRouteArgs> {
+  TourDetailHomeRoute({
+    required int tourId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TourDetailHomeRoute.name,
+          args: TourDetailHomeRouteArgs(
+            tourId: tourId,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TourDetailHomeRoute';
+
+  static const PageInfo<TourDetailHomeRouteArgs> page =
+      PageInfo<TourDetailHomeRouteArgs>(name);
+}
+
+class TourDetailHomeRouteArgs {
+  const TourDetailHomeRouteArgs({
+    required this.tourId,
+    this.key,
+  });
+
+  final int tourId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TourDetailHomeRouteArgs{tourId: $tourId, key: $key}';
+  }
 }
 
 /// generated route for

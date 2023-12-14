@@ -6,7 +6,7 @@ part of 'tour_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tourNotifierHash() => r'e02d0a29b453bc79fc297daa18700735fdd96a40';
+String _$tourNotifierHash() => r'60fd0892da9136e5872ba950b303b9975e71da44';
 
 /// See also [TourNotifier].
 @ProviderFor(TourNotifier)

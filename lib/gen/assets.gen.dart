@@ -77,6 +77,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/castle.png
   AssetGenImage get castle => const AssetGenImage('assets/images/castle.png');
 
+  /// File path: assets/images/default_tours.png
+  AssetGenImage get defaultTours =>
+      const AssetGenImage('assets/images/default_tours.png');
+
   /// File path: assets/images/header.jpeg
   AssetGenImage get header => const AssetGenImage('assets/images/header.jpeg');
 
@@ -116,6 +120,7 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
         box,
         castle,
+        defaultTours,
         header,
         header2,
         logo,

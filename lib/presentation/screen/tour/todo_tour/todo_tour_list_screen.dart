@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_quest/domain/entity/tour.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -33,6 +34,7 @@ class TodoTourListScreen extends HookConsumerWidget {
       body: ListView.builder(
         itemCount: notReleasedTours.length,
         itemBuilder: (context, index) {
+          final tourId = notReleasedTours[index].id;
           final imagePath = notReleasedTours[index].imagePath;
 
           return Container(
@@ -58,6 +60,11 @@ class TodoTourListScreen extends HookConsumerWidget {
               leading: imagePath != 'null'
                   ? HasImagePath(imagePath: imagePath)
                   : const DefaultImage(),
+              onTap: () {
+                context.pushRoute(
+                  TourDetailHomeRoute(tourId: tourId),
+                );
+              },
             ),
           );
         },
