@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:food_quest/domain/application/notifier/mon_choice_notifier.dart';
 import 'package:food_quest/domain/entity/constants/pets.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/screen/pet/items_modal_sheet.dart';
@@ -21,21 +19,21 @@ class PetScreen extends HookConsumerWidget {
     const heart = 50;
 
     final gif = getGifUrlForPet(Pet.caracter1, level);
-    final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
-    final monIdState = useState<int?>(null);
+    // final monchoicenotifier = ref.watch(monchoiceNotifierProvider.notifier);
+    // final monIdState = useState<int?>(null);
 
-    useEffect(
-      () {
-        Future<void> fetchMonId() async {
-          final monData = await monchoicenotifier.getBaseMonster();
-          monIdState.value = monData?.baseMonster; //モンスターのID取得
-        }
+    // useEffect(
+    //   () {
+    //     Future<void> fetchMonId() async {
+    //       final monData = await monchoicenotifier.getBaseMonster();
+    //       monIdState.value = monData?.baseMonster; //モンスターのID取得
+    //     }
 
-        fetchMonId();
-        return null;
-      },
-      [],
-    );
+    //     fetchMonId();
+    //     return null;
+    //   },
+    //   [],
+    // );
 
     return Scaffold(
       body: Stack(

@@ -86,7 +86,7 @@ class MakeTourScreen extends HookConsumerWidget {
                             });
                             loading.value = false;
                             // providerを強制破棄させる
-                            // ref.refresh(myQuestNotifierProvider);
+                            ref.refresh(tourNotifierProvider);
                           },
                         ),
                       ],

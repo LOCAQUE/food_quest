@@ -51,16 +51,13 @@ class TourHomeScreen extends HookConsumerWidget {
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              const SliverAppBar(
-                title: Text('ツアー'),
-                backgroundColor: AppColor.backgroundColor,
-              ),
+              TourTopHeader(notReleasedTours: notReleasedTours.value!),
             ];
           },
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TourHeader(
+              TourCategoryHeader(
                 title: '全国',
                 onTap: () {},
               ),
@@ -81,7 +78,7 @@ class TourHomeScreen extends HookConsumerWidget {
                               width: 200,
                               height: 100,
                             ),
-                            Text('ツアー名'),
+                            const Text('ツアー名'),
                           ],
                         ),
                       ),
@@ -90,7 +87,7 @@ class TourHomeScreen extends HookConsumerWidget {
                 ),
               ),
               const Gap(16),
-              TourHeader(
+              TourCategoryHeader(
                 title: '人気',
                 onTap: () {},
               ),
@@ -111,7 +108,7 @@ class TourHomeScreen extends HookConsumerWidget {
                               width: 200,
                               height: 100,
                             ),
-                            Text('ツアー名'),
+                            const Text('ツアー名'),
                           ],
                         ),
                       ),
@@ -125,8 +122,53 @@ class TourHomeScreen extends HookConsumerWidget {
   }
 }
 
-class TourHeader extends StatelessWidget {
-  const TourHeader({
+//AppBar
+class TourTopHeader extends StatelessWidget {
+  const TourTopHeader({
+    required this.notReleasedTours,
+    super.key,
+  });
+
+  final List<TourResponse> notReleasedTours;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      title: const Text('ツアー'),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 10,
+          ),
+          child: InkWell(
+            onTap: () {
+              
+            },
+            child: Badge(
+              isLabelVisible: notReleasedTours.isNotEmpty ? true : false,
+              label: Text(notReleasedTours.length.toString()),
+              textStyle: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+              child: const Icon(
+                Icons.task_alt,
+                color: Colors.black,
+                size: 28,
+              ),
+            ),
+          ),
+        ),
+      ],
+      backgroundColor: AppColor.backgroundColor,
+    );
+  }
+}
+
+//ツアーのカテゴリーのヘッダー
+class TourCategoryHeader extends StatelessWidget {
+  const TourCategoryHeader({
     required this.title,
     required this.onTap,
     super.key,
