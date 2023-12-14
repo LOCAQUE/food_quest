@@ -193,6 +193,22 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const TaskScreen(),
       );
     },
+    TodoTourListAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TodoTourListAutoRouterScreen(),
+      );
+    },
+    TodoTourListRoute.name: (routeData) {
+      final args = routeData.argsAs<TodoTourListRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TodoTourListScreen(
+          notReleasedTours: args.notReleasedTours,
+          key: args.key,
+        ),
+      );
+    },
     TopRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -701,6 +717,58 @@ class TaskRoute extends PageRouteInfo<void> {
   static const String name = 'TaskRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TodoTourListAutoRouterScreen]
+class TodoTourListAutoRouterRoute extends PageRouteInfo<void> {
+  const TodoTourListAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          TodoTourListAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoTourListAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TodoTourListScreen]
+class TodoTourListRoute extends PageRouteInfo<TodoTourListRouteArgs> {
+  TodoTourListRoute({
+    required List<TourResponse> notReleasedTours,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TodoTourListRoute.name,
+          args: TodoTourListRouteArgs(
+            notReleasedTours: notReleasedTours,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoTourListRoute';
+
+  static const PageInfo<TodoTourListRouteArgs> page =
+      PageInfo<TodoTourListRouteArgs>(name);
+}
+
+class TodoTourListRouteArgs {
+  const TodoTourListRouteArgs({
+    required this.notReleasedTours,
+    this.key,
+  });
+
+  final List<TourResponse> notReleasedTours;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TodoTourListRouteArgs{notReleasedTours: $notReleasedTours, key: $key}';
+  }
 }
 
 /// generated route for

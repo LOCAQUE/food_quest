@@ -143,7 +143,9 @@ class TourTopHeader extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
-              
+              context.pushRoute(
+                TodoTourListRoute(notReleasedTours: notReleasedTours),
+              );
             },
             child: Badge(
               isLabelVisible: notReleasedTours.isNotEmpty ? true : false,
@@ -161,7 +163,7 @@ class TourTopHeader extends StatelessWidget {
           ),
         ),
       ],
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: const Color.fromARGB(255, 248, 248, 248),
     );
   }
 }

@@ -30,7 +30,7 @@ class TourNotifier extends _$TourNotifier {
         budget: budget,
         prefecture: prefecture,
         title: title,
-        imagePath: imagePath.isEmpty ? '' : imagePath.first,
+        imagePath: imagePath.isEmpty ? 'null' : imagePath.first,
       );
     } catch (e) {
       debugPrint(e.toString());

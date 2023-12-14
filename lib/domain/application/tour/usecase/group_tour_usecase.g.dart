@@ -6,7 +6,7 @@ part of 'group_tour_usecase.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$groupTourUsecaseHash() => r'20f442853e56e8b01fdd410bac9bdbb2c6ea0ebc';
+String _$groupTourUsecaseHash() => r'9012399d86a901a42b83de86128f0ae550de7c37';
 
 /// See also [GroupTourUsecase].
 @ProviderFor(GroupTourUsecase)
