@@ -151,6 +151,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RecommendedSpotsScreen(),
       );
     },
+    RoadMapDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RoadMapDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RoadMapDetailScreen(
+          index: args.index,
+          key: args.key,
+        ),
+      );
+    },
     SelectPetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -225,6 +235,16 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    TourDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<TourDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TourDetailScreen(
+          detailTour: args.detailTour,
+          key: args.key,
+        ),
+      );
+    },
     TourHomeAutoRouterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -235,6 +255,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TourHomeScreen(),
+      );
+    },
+    TourRoadMapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TourRoadMapScreen(),
       );
     },
   };
@@ -632,6 +658,44 @@ class RecommendedSpotsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RoadMapDetailScreen]
+class RoadMapDetailRoute extends PageRouteInfo<RoadMapDetailRouteArgs> {
+  RoadMapDetailRoute({
+    required int index,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RoadMapDetailRoute.name,
+          args: RoadMapDetailRouteArgs(
+            index: index,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RoadMapDetailRoute';
+
+  static const PageInfo<RoadMapDetailRouteArgs> page =
+      PageInfo<RoadMapDetailRouteArgs>(name);
+}
+
+class RoadMapDetailRouteArgs {
+  const RoadMapDetailRouteArgs({
+    required this.index,
+    this.key,
+  });
+
+  final int index;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RoadMapDetailRouteArgs{index: $index, key: $key}';
+  }
+}
+
+/// generated route for
 /// [SelectPetScreen]
 class SelectPetRoute extends PageRouteInfo<void> {
   const SelectPetRoute({List<PageRouteInfo>? children})
@@ -834,6 +898,44 @@ class TourDetailHomeRouteArgs {
 }
 
 /// generated route for
+/// [TourDetailScreen]
+class TourDetailRoute extends PageRouteInfo<TourDetailRouteArgs> {
+  TourDetailRoute({
+    required TourResponse detailTour,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TourDetailRoute.name,
+          args: TourDetailRouteArgs(
+            detailTour: detailTour,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TourDetailRoute';
+
+  static const PageInfo<TourDetailRouteArgs> page =
+      PageInfo<TourDetailRouteArgs>(name);
+}
+
+class TourDetailRouteArgs {
+  const TourDetailRouteArgs({
+    required this.detailTour,
+    this.key,
+  });
+
+  final TourResponse detailTour;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TourDetailRouteArgs{detailTour: $detailTour, key: $key}';
+  }
+}
+
+/// generated route for
 /// [TourHomeAutoRouterScreen]
 class TourHomeAutoRouterRoute extends PageRouteInfo<void> {
   const TourHomeAutoRouterRoute({List<PageRouteInfo>? children})
@@ -857,6 +959,20 @@ class TourHomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'TourHomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourRoadMapScreen]
+class TourRoadMapRoute extends PageRouteInfo<void> {
+  const TourRoadMapRoute({List<PageRouteInfo>? children})
+      : super(
+          TourRoadMapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TourRoadMapRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

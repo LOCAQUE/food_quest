@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/screen/tour/tour_detail/tab/road_map_detail_screen.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,12 +25,8 @@ class TourRoadMapScreen extends HookConsumerWidget {
               child: TabBarView(
                 children: [
                   ...List.generate(
-                    dayCount.value,
-                    (index) => Container(
-                      child: const Center(
-                        child: Text('Day1'),
-                      ),
-                    ),
+                    dayCount.value + 1,
+                    (index) => RoadMapDetailScreen(index: index),
                   ),
                 ],
               ),
