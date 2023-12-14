@@ -238,7 +238,7 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
     try {
       final response = await supabaseClient
           .from('tours')
-          .select<PostgrestList>()
+          .select<PostgrestList>('*, users(*)')
           .order('id', ascending: true);
 
       final tourList = response.map(TourResponse.fromJson).toList();

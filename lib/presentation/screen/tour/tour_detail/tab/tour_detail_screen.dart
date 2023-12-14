@@ -14,23 +14,66 @@ class TourDetailScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (detailTour.imagePath != 'null')
-              _HasImageWidget(imagePath: detailTour.imagePath),
-            if (detailTour.imagePath == 'null') const _DefaultImageWidget(),
-            const Gap(8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                detailTour.title,
-                style: Theme.of(context).textTheme.headlineLarge,
+      backgroundColor: Colors.white,
+      body: ListView(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (detailTour.imagePath != 'null')
+                _HasImageWidget(imagePath: detailTour.imagePath),
+              if (detailTour.imagePath == 'null') const _DefaultImageWidget(),
+              const Gap(8),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                child: Text(
+                  detailTour.title,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
               ),
-            ),
-          ],
-        ));
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 24,
+                      backgroundImage:
+                          AssetImage('assets/images/monster_a_1.png'),
+                    ),
+                    const Gap(10),
+                    Text(
+                      detailTour.users!.name,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  'ツアーの説明',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.grey[700],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  detailTour.contents,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 
