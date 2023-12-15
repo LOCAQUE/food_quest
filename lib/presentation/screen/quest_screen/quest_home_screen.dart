@@ -40,7 +40,8 @@ class QuestHomeScreen extends HookConsumerWidget {
       final prefecturesError = prefectures is AsyncError
           ? (prefectures as AsyncError).error.toString()
           : '';
-      return Text('Error: $questListError $prefecturesError');
+      debugPrint('questListError: $questListError');
+      debugPrint('prefecturesError: $prefecturesError');
     }
 
     if (questList is AsyncLoading || prefectures is AsyncLoading) {
