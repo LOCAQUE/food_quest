@@ -8,7 +8,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
 class TourRoadMapScreen extends HookConsumerWidget {
-  const TourRoadMapScreen({super.key});
+  const TourRoadMapScreen({required this.tourId, super.key});
+
+  final int tourId;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dayCount = useState(1);
@@ -26,7 +29,8 @@ class TourRoadMapScreen extends HookConsumerWidget {
                 children: [
                   ...List.generate(
                     dayCount.value + 1,
-                    (index) => RoadMapDetailScreen(index: index),
+                    (index) =>
+                        RoadMapDetailScreen(dayIndex: index, tourId: tourId),
                   ),
                 ],
               ),

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:food_quest/domain/application/tour/usecase/group_tour_road_map_usecase.dart';
 import 'package:food_quest/domain/entity/tour.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,6 +14,18 @@ class TourDetailScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(GroupTourRoadMapUsecaseProvider(tourId: detailTour.id)).when(
+      data: (data) {
+        print(data);
+      },
+      loading: () {
+        print('loading');
+      },
+      error: (error, stackTrace) {
+        print(error);
+      },
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(

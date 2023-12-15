@@ -69,7 +69,7 @@ class TourDetailHomeScreen extends HookConsumerWidget {
         body: TabBarView(
           children: [
             TourDetailScreen(detailTour: detailTour.value!),
-            TourRoadMapScreen(),
+            TourRoadMapScreen(tourId: tourId),
           ],
         ),
       ),
