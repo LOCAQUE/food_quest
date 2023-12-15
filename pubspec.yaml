@@ -43,6 +43,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   top_snackbar_flutter: ^3.1.0
   card_swiper: ^3.0.1
+  speech_balloon: ^0.0.4
 
   #Loading
   loading_animation_widget: ^1.2.0+4
@@ -57,6 +58,9 @@ dependencies:
   google_maps_flutter: ^2.5.0
   geolocator: ^10.1.0
   google_place: ^0.4.7
+
+  # 翻訳
+  translator: ^0.1.7
 
 dev_dependencies:
   flutter_test:
