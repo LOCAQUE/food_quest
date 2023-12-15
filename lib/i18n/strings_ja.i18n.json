@@ -1,0 +1,11 @@
+{
+  "mainScreen": {
+      "title": "タイトル",
+      "signIn": "新規登録",
+      "signOut": "ログアウト"
+  },
+  "locales(map)": {
+      "en": "英語",
+      "ja": "日本語"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mainScreen": {
+      "title": "title",
+      "signIn": "sign in",
+      "signOut": "sign out"
+  },
+  "locales(map)": {
+      "en": "en",
+      "ja": "ja"
+  }
+}
