@@ -16,7 +16,6 @@ class TourDetailScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(GroupTourRoadMapUsecaseProvider(tourId: detailTour.id)).when(
       data: (data) {
-        print(data);
       },
       loading: () {
         print('loading');

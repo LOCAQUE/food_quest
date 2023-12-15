@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/tour/usecase/group_tour_road_map_usecase.dart';
+import 'package:food_quest/domain/entity/tour_road_map.dart';
 import 'package:food_quest/gen/colors.gen.dart';
+import 'package:food_quest/presentation/%20ui_provier/tour_day_tab_count.dart';
 import 'package:food_quest/presentation/screen/tour/tour_detail/tab/road_map_detail_screen.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,6 +19,17 @@ class TourRoadMapScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final dayCount = useState(1);
 
+    ref.watch(GroupTourRoadMapUsecaseProvider(tourId: tourId)).when(
+          data: (data) {
+            dayCount.value =
+                ref.watch(TourDayTabCountProvider(tabCount: data!.length));
+          },
+          loading: () {},
+          error: (error, stackTrace) {
+            debugPrint(error.toString());
+          },
+        );
+
     return DefaultTabController(
       length: dayCount.value + 1,
       child: Scaffold(
@@ -23,14 +37,18 @@ class TourRoadMapScreen extends HookConsumerWidget {
         body: Column(
           children: [
             const Gap(16),
-            _TabBarWidget(dayCount: dayCount),
+            _TabBarWidget(
+              dayCount: dayCount,
+            ),
             Expanded(
               child: TabBarView(
                 children: [
                   ...List.generate(
                     dayCount.value + 1,
-                    (index) =>
-                        RoadMapDetailScreen(dayIndex: index, tourId: tourId),
+                    (index) => RoadMapDetailScreen(
+                      dayIndex: index,
+                      tourId: tourId,
+                    ),
                   ),
                 ],
               ),
@@ -42,13 +60,15 @@ class TourRoadMapScreen extends HookConsumerWidget {
   }
 }
 
-class _TabBarWidget extends StatelessWidget {
-  const _TabBarWidget({required this.dayCount});
+class _TabBarWidget extends HookConsumerWidget {
+  const _TabBarWidget({
+    required this.dayCount,
+  });
 
   final ValueNotifier<int> dayCount;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
@@ -76,7 +96,11 @@ class _TabBarWidget extends StatelessWidget {
                       top: -1,
                       child: InkWell(
                         onTap: () {
-                          dayCount.value--;
+                          ref
+                              .read(TourDayTabCountProvider(
+                                      tabCount: dayCount.value)
+                                  .notifier)
+                              .removeDate();
                         },
                         child: const Icon(
                           Icons.close,
@@ -92,7 +116,10 @@ class _TabBarWidget extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {
-                dayCount.value++;
+                ref
+                    .read(TourDayTabCountProvider(tabCount: dayCount.value)
+                        .notifier)
+                    .addDate();
               },
             ),
           ],

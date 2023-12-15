@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/tour/usecase/group_tour_road_map_usecase.dart';
 import 'package:food_quest/domain/entity/tour_road_map.dart';
+import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/icon_button.dart';
 import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/presentation/screen/tour/tour_detail/tab/road_map_spot_sreach_scren.dart';
@@ -29,7 +30,9 @@ class RoadMapDetailScreen extends HookConsumerWidget {
 
     ref.watch(GroupTourRoadMapUsecaseProvider(tourId: tourId)).when(
         data: (data) {
-      groupedRoadMap.value = data![(dayIndex + 1).toString()];
+      if (data!.length == dayIndex + 1 || data.length > dayIndex + 1) {
+        groupedRoadMap.value = data[(dayIndex + 1).toString()];
+      }
       loading.value = false;
     }, loading: () {
       loading.value = true;
@@ -47,10 +50,13 @@ class RoadMapDetailScreen extends HookConsumerWidget {
           child: Column(
             children: [
               const Gap(16),
-              for (final roadMap in groupedRoadMap.value!)
-                RoadMapTile(
-                  roadMap: roadMap,
+              ...List.generate(
+                groupedRoadMap.value!.length,
+                (roadIndex) => RoadMapTile(
+                  roadMap: groupedRoadMap.value![roadIndex],
+                  roadIndex: roadIndex,
                 ),
+              )
             ],
           ),
         ),
@@ -95,36 +101,42 @@ class RoadMapDetailScreen extends HookConsumerWidget {
 class RoadMapTile extends StatelessWidget {
   const RoadMapTile({
     required this.roadMap,
+    required this.roadIndex,
     super.key,
   });
 
   final TourRoadMapResponse roadMap;
+  final int roadIndex;
 
   @override
   Widget build(BuildContext context) {
-    final imagePath = roadMap.imagePath ?? '';
+    final imagePath = roadMap.imagePath == 'null';
     final dotEnv = dotenv.get('VAR_GOOGLEKEY');
 
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CircleAvatar(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              child: Text(
-                roadMap.day.toString(),
-                style: const TextStyle(fontSize: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: 30,
+                width: 30,
+                child: CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  foregroundColor: Colors.white,
+                  child: Text(
+                    (roadIndex + 1).toString(),
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
               ),
-            ),
-            const Gap(16),
-            Row(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16),
+              const Gap(16),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -164,10 +176,10 @@ class RoadMapTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
         const Gap(8),
         SizedBox(

@@ -7,7 +7,7 @@ part of 'group_tour_road_map_usecase.dart';
 // **************************************************************************
 
 String _$groupTourRoadMapUsecaseHash() =>
-    r'069ea438214fbe00788dd3f36ae99e6689022029';
+    r'7f6c700ee1277460885c3be3e8b32d09a04939de';
 
 /// Copied from Dart SDK
 class _SystemHash {
