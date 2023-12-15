@@ -1,10 +1,12 @@
 // ignore_for_file: cascade_invocations
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -56,10 +58,10 @@ class MakeQuestionModal extends HookConsumerWidget {
     final deadLine = useTextEditingController();
     final prefecture = useTextEditingController();
 
-    final notifier = ref.watch(questListNotifierProvider.notifier);
     final usecase = ref.watch(uploadImageUsecaseProvider.notifier);
     final filterChipList = ref.watch(filterChipListProvider);
     final isKeyboard = useState(false);
+    final loading = useState(false);
     final textFieldScrollController = useScrollController();
 
     useEffect(
@@ -78,6 +80,14 @@ class MakeQuestionModal extends HookConsumerWidget {
       },
       const [],
     );
+
+    if (loading.value) {
+      return const Scaffold(
+        body: Center(
+          child: LoadingWidget(),
+        ),
+      );
+    }
 
     return GestureDetector(
       onTap: () {
@@ -112,22 +122,24 @@ class MakeQuestionModal extends HookConsumerWidget {
                           variant: ButtonVariant.primary,
                           size: ButtonSize.small,
                           onPressed: () async {
+                            loading.value = true;
                             // 画像をアップロード
                             await usecase.uploadImage();
                             // クエストを作成
-                            await notifier
+                            await ref
+                                .read(questListNotifierProvider.notifier)
                                 .createQuest(
-                              content: content.text,
-                              deadLine: deadLine.text,
-                              prefecture: prefecture.text,
-                              minimumBudget: minimumBudget.text,
-                              maximumBudget: maximumBudget.text,
-                            )
-                                .then((value) {
-                              Navigator.of(context).pop();
-                            });
+                                  content: content.text,
+                                  deadLine: deadLine.text,
+                                  prefecture: prefecture.text,
+                                  minimumBudget: minimumBudget.text,
+                                  maximumBudget: maximumBudget.text,
+                                );
+                            await ref.refresh(myQuestNotifierProvider);
+                            loading.value = false;
+                            await context.popRoute();
+
                             // providerを強制破棄させる
-                            ref.refresh(myQuestNotifierProvider);
                           },
                         ),
                       ],
