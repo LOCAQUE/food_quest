@@ -156,7 +156,8 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: RoadMapDetailScreen(
-          index: args.index,
+          dayIndex: args.dayIndex,
+          tourId: args.tourId,
           key: args.key,
         ),
       );
@@ -258,9 +259,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     TourRoadMapRoute.name: (routeData) {
+      final args = routeData.argsAs<TourRoadMapRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const TourRoadMapScreen(),
+        child: TourRoadMapScreen(
+          tourId: args.tourId,
+          key: args.key,
+        ),
       );
     },
   };
@@ -661,13 +666,15 @@ class RecommendedSpotsRoute extends PageRouteInfo<void> {
 /// [RoadMapDetailScreen]
 class RoadMapDetailRoute extends PageRouteInfo<RoadMapDetailRouteArgs> {
   RoadMapDetailRoute({
-    required int index,
+    required int dayIndex,
+    required int tourId,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           RoadMapDetailRoute.name,
           args: RoadMapDetailRouteArgs(
-            index: index,
+            dayIndex: dayIndex,
+            tourId: tourId,
             key: key,
           ),
           initialChildren: children,
@@ -681,17 +688,20 @@ class RoadMapDetailRoute extends PageRouteInfo<RoadMapDetailRouteArgs> {
 
 class RoadMapDetailRouteArgs {
   const RoadMapDetailRouteArgs({
-    required this.index,
+    required this.dayIndex,
+    required this.tourId,
     this.key,
   });
 
-  final int index;
+  final int dayIndex;
+
+  final int tourId;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'RoadMapDetailRouteArgs{index: $index, key: $key}';
+    return 'RoadMapDetailRouteArgs{dayIndex: $dayIndex, tourId: $tourId, key: $key}';
   }
 }
 
@@ -965,14 +975,38 @@ class TourHomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [TourRoadMapScreen]
-class TourRoadMapRoute extends PageRouteInfo<void> {
-  const TourRoadMapRoute({List<PageRouteInfo>? children})
-      : super(
+class TourRoadMapRoute extends PageRouteInfo<TourRoadMapRouteArgs> {
+  TourRoadMapRoute({
+    required int tourId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           TourRoadMapRoute.name,
+          args: TourRoadMapRouteArgs(
+            tourId: tourId,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'TourRoadMapRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<TourRoadMapRouteArgs> page =
+      PageInfo<TourRoadMapRouteArgs>(name);
+}
+
+class TourRoadMapRouteArgs {
+  const TourRoadMapRouteArgs({
+    required this.tourId,
+    this.key,
+  });
+
+  final int tourId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TourRoadMapRouteArgs{tourId: $tourId, key: $key}';
+  }
 }

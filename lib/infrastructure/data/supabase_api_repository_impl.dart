@@ -6,6 +6,7 @@ import 'package:food_quest/domain/entity/monster.dart';
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
 import 'package:food_quest/domain/entity/tour.dart';
+import 'package:food_quest/domain/entity/tour_road_map.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -270,6 +271,51 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
     try {
       await supabaseClient.from('tours').insert(sendTourData);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<TourRoadMapResponse>?> getTourRoadMap({required int tourId}) async {
+    try {
+      final response = await supabaseClient
+          .from('tour_road_maps')
+          .select<PostgrestList>()
+          .eq('tourId', tourId)
+          .order('id', ascending: true);
+
+      final tourRoadMapList = response.map(TourRoadMapResponse.fromJson).toList();
+      return tourRoadMapList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> createTourRoadMap({
+    required int day,
+    required int tourId,
+    String? address,
+    String? detailId,
+    String? name,
+    int? longitude,
+    int? latitude,
+    String? imagePath,
+  }) async {
+    final sendTourRoadMapData = TourRoadMap(
+      day: day,
+      tourId: tourId,
+      address: address,
+      detailId: detailId,
+      name: name,
+      longitude: longitude,
+      latitude: latitude,
+      imagePath: imagePath,
+    );
+
+    try {
+      await supabaseClient.from('tour_road_maps').insert(sendTourRoadMapData);
     } catch (e) {
       rethrow;
     }

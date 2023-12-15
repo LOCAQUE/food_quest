@@ -1,6 +1,7 @@
 import 'package:food_quest/domain/entity/answer.dart';
 import 'package:food_quest/domain/entity/monster.dart';
 import 'package:food_quest/domain/entity/tour.dart';
+import 'package:food_quest/domain/entity/tour_road_map.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:food_quest/domain/entity/question.dart';
@@ -72,5 +73,20 @@ abstract class ApiRepository {
     required String prefecture,
     required String title,
     required String imagePath,
+  });
+
+  //ツアーのロードマップを取得する
+  Future<List<TourRoadMapResponse>?> getTourRoadMap({required int tourId});
+
+  //ツアーのロードマップを作成する
+  Future<void> createTourRoadMap({
+    required int day,
+    required int tourId,
+    String? address,
+    String? detailId,
+    String? name,
+    int? longitude,
+    int? latitude,
+    String? imagePath,
   });
 }
