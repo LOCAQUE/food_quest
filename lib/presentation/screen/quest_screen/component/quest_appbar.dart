@@ -44,7 +44,7 @@ class TopBarWIdget extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 onPressed: () {
-                  // 通知アイコンがタップされた時の処理
+                  context.router.push(const TaskRoute());
                 },
               ),
               IconButton(

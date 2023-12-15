@@ -86,6 +86,7 @@ class AppRouter extends _$AppRouter {
       AutoRoute(page: QuestSelectPrefectureRoute.page),
       AutoRoute(page: QuestImageDetailRoute.page),
       AutoRoute(page: MapSearchRoute.page),
+      AutoRoute(page: TaskRoute.page),
     ];
   }
 }
