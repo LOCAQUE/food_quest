@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:food_quest/domain/application/tour/notifier/tour_notifier.dart';
 import 'package:food_quest/domain/application/tour/usecase/tour_detail_usecase.dart';
 import 'package:food_quest/domain/entity/tour.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/presentation/screen/tour/tour_detail/tab/tour_detail_screen.dart';
 import 'package:food_quest/presentation/screen/tour/tour_detail/tab/tour_road_map_screen.dart';
+import 'package:food_quest/routes/app_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -54,7 +56,20 @@ class TourDetailHomeScreen extends HookConsumerWidget {
             ),
           ),
           title: const Text('ツアー詳細'),
-          
+          actions: [
+            TextButton(
+              onPressed: () async {
+                await ref
+                    .read(tourNotifierProvider.notifier)
+                    .updateIsReleaseTour(
+                      tourId: tourId,
+                    );
+                await ref.refresh(tourNotifierProvider);
+                context.pushRoute(const TourHomeRoute());
+              },
+              child: const Text('公開'),
+            ),
+          ],
           bottom: const TabBar(
             indicatorColor: AppColor.primaryColor,
             tabs: <Widget>[

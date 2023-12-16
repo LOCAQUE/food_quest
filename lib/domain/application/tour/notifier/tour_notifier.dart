@@ -36,4 +36,19 @@ class TourNotifier extends _$TourNotifier {
       debugPrint(e.toString());
     }
   }
+
+  Future<void> updateIsReleaseTour({
+    required int tourId,
+  }) async {
+    try {
+      state = const AsyncValue.loading();
+      final repository = ref.read(apiRepositoryProvider);
+
+      await repository.updateIsReleaseTour(
+        tourId: tourId,
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 }

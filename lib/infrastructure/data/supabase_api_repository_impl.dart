@@ -320,4 +320,15 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> updateIsReleaseTour({required int tourId}) async {
+    try {
+      await supabaseClient
+          .from('tours')
+          .update({'isRelease': true}).eq('id', tourId);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -89,4 +89,7 @@ abstract class ApiRepository {
     int? latitude,
     String? imagePath,
   });
+
+  //ツアーのisReleaseを更新する
+  Future<void> updateIsReleaseTour({required int tourId});
 }

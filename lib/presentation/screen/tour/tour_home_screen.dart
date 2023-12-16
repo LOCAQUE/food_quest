@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/tour/usecase/group_tour_usecase.dart';
 import 'package:food_quest/domain/entity/tour.dart';
-import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/loading_widget.dart';
 import 'package:food_quest/routes/app_router.dart';
 import 'package:gap/gap.dart';
@@ -61,61 +61,103 @@ class TourHomeScreen extends HookConsumerWidget {
                 title: '全国',
                 onTap: () {},
               ),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              'assets/images/test.png',
-                              width: 200,
-                              height: 100,
+              if (releasedTours.value!.isNotEmpty)
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: releasedTours.value!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          context.pushRoute(
+                            TourDetailHomeRoute(
+                                tourId: releasedTours.value![index].id),
+                          );
+                        },
+                        child: SizedBox(
+                          height: 90,
+                          width: 180,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(15.0), // 角の半径を設定
                             ),
-                            const Text('ツアー名'),
-                          ],
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(15),
+                                      topRight: Radius.circular(15),
+                                    ),
+                                    child: CachedNetworkImage(
+                                      height: 90,
+                                      width: 180,
+                                      imageUrl:
+                                          releasedTours.value![index].imagePath,
+                                      fit: BoxFit.cover,
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              Center(
+                                        child: CircularProgressIndicator(
+                                          value: downloadProgress.progress,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      releasedTours.value![index].title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      releasedTours.value![index].contents,
+                                      style:
+                                          Theme.of(context).textTheme.bodyMedium,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
+              if (releasedTours.value!.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'まだ投稿はありません...',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ),
               const Gap(16),
               TourCategoryHeader(
                 title: '人気',
                 onTap: () {},
               ),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              'assets/images/test.png',
-                              width: 200,
-                              height: 100,
-                            ),
-                            const Text('ツアー名'),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+              const Gap(16),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'まだ投稿はありません...',
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
-              ),
+              )
             ],
           )),
     );

@@ -90,7 +90,7 @@ class AppRouter extends _$AppRouter {
           AutoRoute(
             page: TourHomeAutoRouterRoute.page,
             children: [
-              AutoRoute(page: TourHomeRoute.page, initial: true),
+              AutoRoute(page: TourHomeRoute.page, initial: true,),
               AutoRoute(
                 page: TodoTourListAutoRouterRoute.page,
                 children: [
