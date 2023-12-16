@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pick_image_notifier.dart';
+part of 'group_tour_usecase.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pickImageNotifierHash() => r'cbfaee195917018ccc6070fda9bc8da006bf5d35';
+String _$groupTourUsecaseHash() => r'9012399d86a901a42b83de86128f0ae550de7c37';
 
-/// See also [PickImageNotifier].
-@ProviderFor(PickImageNotifier)
-final pickImageNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<PickImageNotifier, List<XFile>>.internal(
-  PickImageNotifier.new,
-  name: r'pickImageNotifierProvider',
+/// See also [GroupTourUsecase].
+@ProviderFor(GroupTourUsecase)
+final groupTourUsecaseProvider = AutoDisposeAsyncNotifierProvider<
+    GroupTourUsecase, Map<String, List<TourResponse>>?>.internal(
+  GroupTourUsecase.new,
+  name: r'groupTourUsecaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$pickImageNotifierHash,
+      : _$groupTourUsecaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PickImageNotifier = AutoDisposeAsyncNotifier<List<XFile>>;
+typedef _$GroupTourUsecase
+    = AutoDisposeAsyncNotifier<Map<String, List<TourResponse>>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

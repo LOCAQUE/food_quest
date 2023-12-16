@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:food_quest/domain/entity/tour.dart';
+import 'package:food_quest/presentation/screen/tour/make_tour/make_tour_screen.dart';
+import 'package:food_quest/presentation/screen/tour/todo_tour/todo_tour_list_screen.dart';
+import 'package:food_quest/presentation/screen/tour/tour_detail/tab/road_map_detail_screen.dart';
+import 'package:food_quest/presentation/screen/tour/tour_detail/tab/tour_detail_screen.dart';
+import 'package:food_quest/presentation/screen/tour/tour_detail/tab/tour_road_map_screen.dart';
+import 'package:food_quest/presentation/screen/tour/tour_detail/tour_detail_home_screen.dart';
+import 'package:food_quest/presentation/screen/tour/tour_home_screen.dart';
 import 'package:google_place/google_place.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -79,13 +87,26 @@ class AppRouter extends _$AppRouter {
             ],
           ),
           AutoRoute(page: PetRoute.page),
-          AutoRoute(page: SettingRoute.page),
+          AutoRoute(
+            page: TourHomeAutoRouterRoute.page,
+            children: [
+              AutoRoute(page: TourHomeRoute.page, initial: true,),
+              AutoRoute(
+                page: TodoTourListAutoRouterRoute.page,
+                children: [
+                  AutoRoute(page: TodoTourListRoute.page, initial: true),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
       //ボトムバーをはずしたい場合はこちら
       AutoRoute(page: QuestSelectPrefectureRoute.page),
       AutoRoute(page: QuestImageDetailRoute.page),
       AutoRoute(page: MapSearchRoute.page),
+      AutoRoute(page: MakeTourRoute.page),
+      AutoRoute(page: TourDetailHomeRoute.page),
       AutoRoute(page: TaskRoute.page),
     ];
   }

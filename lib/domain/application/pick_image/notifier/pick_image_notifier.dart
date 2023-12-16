@@ -17,16 +17,19 @@ class PickImageNotifier extends _$PickImageNotifier {
   }
 
 //ギャラリーから写真を選択する
-  Future<void> pickImageForlibrary({required BuildContext context}) async {
+  Future<void> pickImageForlibrary({
+    required BuildContext context,
+    required bool onlySingleImage,
+  }) async {
     try {
       state = const AsyncValue.loading();
       final imagePicker = ref.watch(imagePickerClientProvider);
       final pickedFiles = await imagePicker.pickMultiImage();
-      if (pickedFiles.length >= 3) {
+      if (pickedFiles.length >= (onlySingleImage ? 2 : 3)) {
         // 3枚以上の画像が選択された場合、ダイアログを表示
         await ErrorDialog.show(
           context,
-          '画像は3枚以上は選択できません',
+          onlySingleImage ? '一枚しか選択できません' : '画像は3枚以上は選択できません',
         );
         // state を初期化
         state = const AsyncValue.data([]);

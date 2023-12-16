@@ -37,6 +37,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    MakeTourRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MakeTourScreen(),
+      );
+    },
     MapAutoRouterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -145,6 +151,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RecommendedSpotsScreen(),
       );
     },
+    RoadMapDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<RoadMapDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RoadMapDetailScreen(
+          dayIndex: args.dayIndex,
+          tourId: args.tourId,
+          key: args.key,
+          myTour: args.myTour,
+        ),
+      );
+    },
     SelectPetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -187,10 +205,68 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const TaskScreen(),
       );
     },
+    TodoTourListAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TodoTourListAutoRouterScreen(),
+      );
+    },
+    TodoTourListRoute.name: (routeData) {
+      final args = routeData.argsAs<TodoTourListRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TodoTourListScreen(
+          notReleasedTours: args.notReleasedTours,
+          key: args.key,
+        ),
+      );
+    },
     TopRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TopScreen(),
+      );
+    },
+    TourDetailHomeRoute.name: (routeData) {
+      final args = routeData.argsAs<TourDetailHomeRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TourDetailHomeScreen(
+          tourId: args.tourId,
+          key: args.key,
+        ),
+      );
+    },
+    TourDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<TourDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TourDetailScreen(
+          detailTour: args.detailTour,
+          key: args.key,
+        ),
+      );
+    },
+    TourHomeAutoRouterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TourHomeAutoRouterScreen(),
+      );
+    },
+    TourHomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TourHomeScreen(),
+      );
+    },
+    TourRoadMapRoute.name: (routeData) {
+      final args = routeData.argsAs<TourRoadMapRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TourRoadMapScreen(
+          tourId: args.tourId,
+          key: args.key,
+        ),
       );
     },
   };
@@ -260,6 +336,20 @@ class CompletionPetRouteArgs {
   String toString() {
     return 'CompletionPetRouteArgs{selectedPet: $selectedPet, key: $key}';
   }
+}
+
+/// generated route for
+/// [MakeTourScreen]
+class MakeTourRoute extends PageRouteInfo<void> {
+  const MakeTourRoute({List<PageRouteInfo>? children})
+      : super(
+          MakeTourRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MakeTourRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -574,6 +664,54 @@ class RecommendedSpotsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RoadMapDetailScreen]
+class RoadMapDetailRoute extends PageRouteInfo<RoadMapDetailRouteArgs> {
+  RoadMapDetailRoute({
+    required int dayIndex,
+    required int tourId,
+    Key? key,
+    required bool myTour,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RoadMapDetailRoute.name,
+          args: RoadMapDetailRouteArgs(
+            dayIndex: dayIndex,
+            tourId: tourId,
+            key: key,
+            myTour: myTour,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RoadMapDetailRoute';
+
+  static const PageInfo<RoadMapDetailRouteArgs> page =
+      PageInfo<RoadMapDetailRouteArgs>(name);
+}
+
+class RoadMapDetailRouteArgs {
+  const RoadMapDetailRouteArgs({
+    required this.dayIndex,
+    required this.tourId,
+    this.key,
+    required this.myTour,
+  });
+
+  final int dayIndex;
+
+  final int tourId;
+
+  final Key? key;
+
+  final bool myTour;
+
+  @override
+  String toString() {
+    return 'RoadMapDetailRouteArgs{dayIndex: $dayIndex, tourId: $tourId, key: $key, myTour: $myTour}';
+  }
+}
+
+/// generated route for
 /// [SelectPetScreen]
 class SelectPetRoute extends PageRouteInfo<void> {
   const SelectPetRoute({List<PageRouteInfo>? children})
@@ -672,6 +810,58 @@ class TaskRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [TodoTourListAutoRouterScreen]
+class TodoTourListAutoRouterRoute extends PageRouteInfo<void> {
+  const TodoTourListAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          TodoTourListAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoTourListAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TodoTourListScreen]
+class TodoTourListRoute extends PageRouteInfo<TodoTourListRouteArgs> {
+  TodoTourListRoute({
+    required List<TourResponse> notReleasedTours,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TodoTourListRoute.name,
+          args: TodoTourListRouteArgs(
+            notReleasedTours: notReleasedTours,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoTourListRoute';
+
+  static const PageInfo<TodoTourListRouteArgs> page =
+      PageInfo<TodoTourListRouteArgs>(name);
+}
+
+class TodoTourListRouteArgs {
+  const TodoTourListRouteArgs({
+    required this.notReleasedTours,
+    this.key,
+  });
+
+  final List<TourResponse> notReleasedTours;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TodoTourListRouteArgs{notReleasedTours: $notReleasedTours, key: $key}';
+  }
+}
+
+/// generated route for
 /// [TopScreen]
 class TopRoute extends PageRouteInfo<void> {
   const TopRoute({List<PageRouteInfo>? children})
@@ -683,4 +873,146 @@ class TopRoute extends PageRouteInfo<void> {
   static const String name = 'TopRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourDetailHomeScreen]
+class TourDetailHomeRoute extends PageRouteInfo<TourDetailHomeRouteArgs> {
+  TourDetailHomeRoute({
+    required int tourId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TourDetailHomeRoute.name,
+          args: TourDetailHomeRouteArgs(
+            tourId: tourId,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TourDetailHomeRoute';
+
+  static const PageInfo<TourDetailHomeRouteArgs> page =
+      PageInfo<TourDetailHomeRouteArgs>(name);
+}
+
+class TourDetailHomeRouteArgs {
+  const TourDetailHomeRouteArgs({
+    required this.tourId,
+    this.key,
+  });
+
+  final int tourId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TourDetailHomeRouteArgs{tourId: $tourId, key: $key}';
+  }
+}
+
+/// generated route for
+/// [TourDetailScreen]
+class TourDetailRoute extends PageRouteInfo<TourDetailRouteArgs> {
+  TourDetailRoute({
+    required TourResponse detailTour,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TourDetailRoute.name,
+          args: TourDetailRouteArgs(
+            detailTour: detailTour,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TourDetailRoute';
+
+  static const PageInfo<TourDetailRouteArgs> page =
+      PageInfo<TourDetailRouteArgs>(name);
+}
+
+class TourDetailRouteArgs {
+  const TourDetailRouteArgs({
+    required this.detailTour,
+    this.key,
+  });
+
+  final TourResponse detailTour;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TourDetailRouteArgs{detailTour: $detailTour, key: $key}';
+  }
+}
+
+/// generated route for
+/// [TourHomeAutoRouterScreen]
+class TourHomeAutoRouterRoute extends PageRouteInfo<void> {
+  const TourHomeAutoRouterRoute({List<PageRouteInfo>? children})
+      : super(
+          TourHomeAutoRouterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TourHomeAutoRouterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourHomeScreen]
+class TourHomeRoute extends PageRouteInfo<void> {
+  const TourHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          TourHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TourHomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TourRoadMapScreen]
+class TourRoadMapRoute extends PageRouteInfo<TourRoadMapRouteArgs> {
+  TourRoadMapRoute({
+    required int tourId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TourRoadMapRoute.name,
+          args: TourRoadMapRouteArgs(
+            tourId: tourId,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TourRoadMapRoute';
+
+  static const PageInfo<TourRoadMapRouteArgs> page =
+      PageInfo<TourRoadMapRouteArgs>(name);
+}
+
+class TourRoadMapRouteArgs {
+  const TourRoadMapRouteArgs({
+    required this.tourId,
+    this.key,
+  });
+
+  final int tourId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'TourRoadMapRouteArgs{tourId: $tourId, key: $key}';
+  }
 }

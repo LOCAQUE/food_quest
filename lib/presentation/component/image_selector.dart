@@ -14,8 +14,11 @@ import 'package:food_quest/presentation/component/loading_widget.dart';
 
 class ImageSelectWidget extends HookConsumerWidget {
   const ImageSelectWidget({
+    required this.onlySingleImage,
     super.key,
   });
+
+  final bool onlySingleImage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,7 +41,10 @@ class ImageSelectWidget extends HookConsumerWidget {
           ],
           ImageSelecterButton(
             onTap: () async {
-              await notifier.pickImageForlibrary(context: context);
+              await notifier.pickImageForlibrary(
+                context: context,
+                onlySingleImage: onlySingleImage,
+              );
             },
             icon: const Icon(
               Icons.photo_library,

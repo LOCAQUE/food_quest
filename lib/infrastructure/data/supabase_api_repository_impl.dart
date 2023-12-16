@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:food_quest/domain/entity/monster.dart';
 import 'package:food_quest/domain/entity/quest_image.dart';
 import 'package:food_quest/domain/entity/receive_id.dart';
+import 'package:food_quest/domain/entity/tour.dart';
+import 'package:food_quest/domain/entity/tour_road_map.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
@@ -227,6 +229,104 @@ class SupabaseApiRepositoryImpl implements ApiRepository {
 
       final monster = response.map(Monster.fromJson).toList().first;
       return monster;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<TourResponse>?> getTourList() async {
+    try {
+      final response = await supabaseClient
+          .from('tours')
+          .select<PostgrestList>('*, users(*)')
+          .order('id', ascending: true);
+
+      final tourList = response.map(TourResponse.fromJson).toList();
+      return tourList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+//ツアー作成
+  @override
+  Future<void> createTour({
+    required String contents,
+    required String budget,
+    required String prefecture,
+    required String title,
+    required String imagePath,
+  }) async {
+    final currentId = supabaseClient.auth.currentUser?.id;
+
+    final sendTourData = Tour(
+      contents: contents,
+      budget: int.parse(budget),
+      prefecture: prefecture,
+      title: title,
+      userId: currentId!,
+      imagePath: imagePath,
+    );
+
+    try {
+      await supabaseClient.from('tours').insert(sendTourData);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<TourRoadMapResponse>?> getTourRoadMap({required int tourId}) async {
+    try {
+      final response = await supabaseClient
+          .from('tour_road_maps')
+          .select<PostgrestList>()
+          .eq('tourId', tourId)
+          .order('id', ascending: true);
+
+      final tourRoadMapList = response.map(TourRoadMapResponse.fromJson).toList();
+      return tourRoadMapList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> createTourRoadMap({
+    required int day,
+    required int tourId,
+    String? address,
+    String? detailId,
+    String? name,
+    int? longitude,
+    int? latitude,
+    String? imagePath,
+  }) async {
+    final sendTourRoadMapData = TourRoadMap(
+      day: day,
+      tourId: tourId,
+      address: address,
+      detailId: detailId,
+      name: name,
+      longitude: longitude,
+      latitude: latitude,
+      imagePath: imagePath,
+    );
+
+    try {
+      await supabaseClient.from('tour_road_maps').insert(sendTourRoadMapData);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> updateIsReleaseTour({required int tourId}) async {
+    try {
+      await supabaseClient
+          .from('tours')
+          .update({'isRelease': true}).eq('id', tourId);
     } catch (e) {
       rethrow;
     }

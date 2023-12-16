@@ -183,7 +183,7 @@ class MakeAnswerModal extends HookConsumerWidget {
                     ),
                     const Gap(16),
                     if (filterChipList.contains('画像') && !isKeyboard.value)
-                      const ImageSelectWidget(),
+                      const ImageSelectWidget(onlySingleImage: false,),
                   ],
                 ),
               ),
@@ -192,7 +192,7 @@ class MakeAnswerModal extends HookConsumerWidget {
               const Positioned(
                 bottom: 8,
                 left: 8,
-                child: ImageSelectWidget(),
+                child: ImageSelectWidget(onlySingleImage: false,),
               ),
           ],
         ),
