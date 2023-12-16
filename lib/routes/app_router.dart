@@ -107,6 +107,7 @@ class AppRouter extends _$AppRouter {
       AutoRoute(page: MapSearchRoute.page),
       AutoRoute(page: MakeTourRoute.page),
       AutoRoute(page: TourDetailHomeRoute.page),
+      AutoRoute(page: TaskRoute.page),
     ];
   }
 }

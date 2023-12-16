@@ -164,11 +164,11 @@ class HeaderContents extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '2',
+                          '1',
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Text(
-                          'ツアー',
+                          'アンサー',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
@@ -188,11 +188,11 @@ class HeaderContents extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '2',
+                          '7',
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Text(
-                          'ツアー',
+                          '質問',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
@@ -200,11 +200,11 @@ class HeaderContents extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '2',
+                          '6',
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         Text(
-                          'ツアー',
+                          'いいね',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],

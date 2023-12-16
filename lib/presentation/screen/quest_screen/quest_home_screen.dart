@@ -26,6 +26,7 @@ class QuestHomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final questListState = useState<Map<String, List<QuestionResponse>>>({});
+    final loading = useState<bool>(true);
 
     final prefecturesState = useState<List<String>>([]);
 
@@ -33,22 +34,31 @@ class QuestHomeScreen extends HookConsumerWidget {
 
     final questList = ref.watch(groupePrefectureUsecaseProvider);
 
-    if (questList is AsyncError || prefectures is AsyncError) {
-      final questListError = questList is AsyncError
-          ? (questList as AsyncError).error.toString()
-          : '';
-      final prefecturesError = prefectures is AsyncError
-          ? (prefectures as AsyncError).error.toString()
-          : '';
-      return Text('Error: $questListError $prefecturesError');
-    }
+    questList.when(
+      data: (data) {
+        questListState.value = data;
+        loading.value = false;
+      },
+      loading: () {
+        loading.value = true;
+      },
+      error: (error, stackTrace) {},
+    );
 
-    if (questList is AsyncLoading || prefectures is AsyncLoading) {
-      return const LoadingWidget();
-    }
+    prefectures.when(
+      data: (data) {
+        prefecturesState.value = data;
+        loading.value = false;
+      },
+      loading: () {
+        loading.value = true;
+      },
+      error: (error, stackTrace) {},
+    );
 
-    questListState.value = questList.value!;
-    prefecturesState.value = prefectures.value!;
+    if (loading.value) {
+      return const Scaffold(body: LoadingWidget());
+    }
 
     return Scaffold(
       body: DefaultTabController(

@@ -9,15 +9,17 @@ import 'package:food_quest/gen/colors.gen.dart';
 
 class CustomPicker extends HookConsumerWidget {
   const CustomPicker({
-    required this.title,
     required this.options,
     required this.controller,
+    this.title,
+    this.noTitle,
     super.key,
   });
 
-  final String title;
+  final String? title;
   final List<String> options;
   final TextEditingController controller;
+  final bool? noTitle;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,13 +33,18 @@ class CustomPicker extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 12,
+        if (noTitle != null)
+          Column(
+            children: [
+              Text(
+                title ?? '',
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+              const Gap(4),
+            ],
           ),
-        ),
-        const Gap(4),
         Row(
           mainAxisAlignment: MainAxisAlignment.end, // 画面右端に寄せる
           children: [
@@ -51,7 +58,7 @@ class CustomPicker extends HookConsumerWidget {
                       heightFactor: 0.3, // 画面の30%の高さを使用
                       child: Picker(
                         options: options,
-                        title: title,
+                        title: title ?? '',
                         controller: controller,
                         selectedOption: selectedOption,
                       ),
