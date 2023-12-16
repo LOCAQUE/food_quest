@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/tour/usecase/group_tour_road_map_usecase.dart';
 import 'package:food_quest/domain/entity/tour_road_map.dart';
+import 'package:food_quest/gen/assets.gen.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/component/icon_button.dart';
 import 'package:food_quest/presentation/component/loading_widget.dart';
@@ -18,10 +19,12 @@ class RoadMapDetailScreen extends HookConsumerWidget {
     required this.dayIndex,
     required this.tourId,
     super.key,
+    required this.myTour,
   });
 
   final int dayIndex;
   final int tourId;
+  final bool myTour;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,39 +63,40 @@ class RoadMapDetailScreen extends HookConsumerWidget {
             ],
           ),
         ),
-        Positioned(
-          bottom: 42,
-          left: 0,
-          right: 6,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: CustomIconButton(
+        if (myTour)
+          Positioned(
+            bottom: 42,
+            left: 0,
+            right: 6,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: CustomIconButton(
+                    icon: Icons.add,
+                    label: 'スポット',
+                    onPressed: () {
+                      RoadMapSpotSreachModal.show(
+                        context: context,
+                        tourId: tourId,
+                        dayIndex: dayIndex,
+                      );
+                    },
+                    height: 48,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                  ),
+                ),
+                OutlinedIconButton(
                   icon: Icons.add,
-                  label: 'スポット',
-                  onPressed: () {
-                    RoadMapSpotSreachModal.show(
-                      context: context,
-                      tourId: tourId,
-                      dayIndex: dayIndex,
-                    );
-                  },
+                  label: 'メモ・移動',
+                  onPressed: () {},
                   height: 48,
                   width: MediaQuery.of(context).size.width * 0.4,
                 ),
-              ),
-              OutlinedIconButton(
-                icon: Icons.add,
-                label: 'メモ・移動',
-                onPressed: () {},
-                height: 48,
-                width: MediaQuery.of(context).size.width * 0.4,
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
       ],
     );
   }
@@ -110,7 +114,8 @@ class RoadMapTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imagePath = roadMap.imagePath == 'null';
+    final imagePath = roadMap.imagePath;
+    final isImagePath = imagePath != 'null';
     final dotEnv = dotenv.get('VAR_GOOGLEKEY');
 
     return Column(
@@ -144,33 +149,27 @@ class RoadMapTile extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: CachedNetworkImage(
+                            if (isImagePath)
+                              NetWorkImage(
+                                imagePath: imagePath,
+                                dotEnv: dotEnv,
+                              ),
+                            if (!isImagePath)
+                              SizedBox(
                                 height: 100,
                                 width: 120,
-                                imageUrl:
-                                    "https://maps.googleapis.com/maps/api/place/photo?maxwidth=120&photoreference=$imagePath&key=$dotEnv",
-                                fit: BoxFit.cover,
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                  child: CircularProgressIndicator(
-                                    value: downloadProgress.progress,
-                                  ),
-                                ),
+                                child: Assets.images.defaultTours.image(),
+                              ),
+                            const SizedBox(width: 8),
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Text(
+                                roadMap.name!,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            GestureDetector(
-                              onTap: () {
-                                // Do something
-                              },
-                              child: Icon(Icons.comment),
-                            ),
+                            const Gap(8),
                           ],
                         ),
                       ),
@@ -191,6 +190,37 @@ class RoadMapTile extends StatelessWidget {
         ),
         const Gap(8),
       ],
+    );
+  }
+}
+
+class NetWorkImage extends StatelessWidget {
+  const NetWorkImage({
+    required this.imagePath,
+    required this.dotEnv,
+    super.key,
+  });
+
+  final String? imagePath;
+  final String dotEnv;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: CachedNetworkImage(
+        height: 100,
+        width: 120,
+        imageUrl:
+            "https://maps.googleapis.com/maps/api/place/photo?maxwidth=120&photoreference=$imagePath&key=$dotEnv",
+        fit: BoxFit.cover,
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+          child: CircularProgressIndicator(
+            value: downloadProgress.progress,
+          ),
+        ),
+      ),
     );
   }
 }

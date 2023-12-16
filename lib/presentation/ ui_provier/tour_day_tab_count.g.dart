@@ -6,7 +6,7 @@ part of 'tour_day_tab_count.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tourDayTabCountHash() => r'07ced3bb71867108f21a1adca5d6953efffff8ba';
+String _$tourDayTabCountHash() => r'4647bcfb9dc875b7c7ae07670a279c222a244da7';
 
 /// Copied from Dart SDK
 class _SystemHash {

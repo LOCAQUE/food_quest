@@ -159,6 +159,7 @@ abstract class _$AppRouter extends RootStackRouter {
           dayIndex: args.dayIndex,
           tourId: args.tourId,
           key: args.key,
+          myTour: args.myTour,
         ),
       );
     },
@@ -669,6 +670,7 @@ class RoadMapDetailRoute extends PageRouteInfo<RoadMapDetailRouteArgs> {
     required int dayIndex,
     required int tourId,
     Key? key,
+    required bool myTour,
     List<PageRouteInfo>? children,
   }) : super(
           RoadMapDetailRoute.name,
@@ -676,6 +678,7 @@ class RoadMapDetailRoute extends PageRouteInfo<RoadMapDetailRouteArgs> {
             dayIndex: dayIndex,
             tourId: tourId,
             key: key,
+            myTour: myTour,
           ),
           initialChildren: children,
         );
@@ -691,6 +694,7 @@ class RoadMapDetailRouteArgs {
     required this.dayIndex,
     required this.tourId,
     this.key,
+    required this.myTour,
   });
 
   final int dayIndex;
@@ -699,9 +703,11 @@ class RoadMapDetailRouteArgs {
 
   final Key? key;
 
+  final bool myTour;
+
   @override
   String toString() {
-    return 'RoadMapDetailRouteArgs{dayIndex: $dayIndex, tourId: $tourId, key: $key}';
+    return 'RoadMapDetailRouteArgs{dayIndex: $dayIndex, tourId: $tourId, key: $key, myTour: $myTour}';
   }
 }
 

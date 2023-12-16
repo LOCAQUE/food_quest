@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:food_quest/domain/application/tour/usecase/group_tour_road_map_usecase.dart';
-import 'package:food_quest/domain/entity/tour_road_map.dart';
 import 'package:food_quest/gen/colors.gen.dart';
 import 'package:food_quest/presentation/%20ui_provier/tour_day_tab_count.dart';
 import 'package:food_quest/presentation/screen/tour/tour_detail/tab/road_map_detail_screen.dart';
@@ -48,6 +47,7 @@ class TourRoadMapScreen extends HookConsumerWidget {
                     (index) => RoadMapDetailScreen(
                       dayIndex: index,
                       tourId: tourId,
+                      myTour: true,
                     ),
                   ),
                 ],

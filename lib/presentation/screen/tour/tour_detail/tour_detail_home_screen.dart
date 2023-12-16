@@ -54,6 +54,7 @@ class TourDetailHomeScreen extends HookConsumerWidget {
             ),
           ),
           title: const Text('ツアー詳細'),
+          
           bottom: const TabBar(
             indicatorColor: AppColor.primaryColor,
             tabs: <Widget>[
